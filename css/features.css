@@ -236,11 +236,11 @@
 }
 
 .feature-screenshots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.08);
-    height: fit-content;
 }
 
 .feature-screenshots img {
@@ -248,10 +248,14 @@
     height: auto;
     display: block;
     transition: transform 0.5s ease;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.08);
 }
 
-.feature-screenshots:hover img {
-    transform: scale(1.02);
+.feature-screenshots img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* Nút back to top */
