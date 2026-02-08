@@ -21,14 +21,12 @@ body {
     line-height: 1.7;
 }
 
-/* ================= HEADER (LUÔN NỔI) ================= */
+/* ================= HEADER ================= */
 .navbar {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid #e5e7eb;
@@ -38,13 +36,11 @@ body {
     max-width: 1200px;
     margin: auto;
     padding: 14px 20px;
-
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
-/* LOGO */
 .logo {
     font-size: 24px;
     font-weight: 800;
@@ -52,7 +48,6 @@ body {
     text-decoration: none;
 }
 
-/* ===== MENU CARD WRAPPER ===== */
 .nav-menu {
     display: flex;
     gap: 14px;
@@ -61,47 +56,31 @@ body {
     border-radius: 20px;
 }
 
-/* ===== MENU CARD ===== */
 .nav-menu a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 42px;
-    padding: 0 20px;
-
+    padding: 10px 20px;
     background: var(--card);
     border-radius: 16px;
-
-    font-size: 14px;
     font-weight: 600;
-    color: var(--text);
+    font-size: 14px;
     text-decoration: none;
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,0.12),
-        inset 0 0 0 1px #e5e7eb;
-
+    color: var(--text);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     transition: all .25s ease;
 }
 
 .nav-menu a:hover {
     transform: translateY(-2px);
     color: var(--primary);
-    box-shadow:
-        0 14px 30px rgba(0,0,0,0.2),
-        inset 0 0 0 1px var(--primary);
 }
 
 .nav-menu a.active {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
-    box-shadow: 0 16px 36px rgba(37,99,235,0.5);
 }
 
-/* ================= PAGE LAYOUT ================= */
+/* ================= PAGE ================= */
 .page {
-    padding-top: 110px; /* CHỪA CHỖ CHO HEADER FIXED */
+    padding-top: 110px;
     padding-bottom: 80px;
 }
 
@@ -111,15 +90,9 @@ body {
     padding: 0 20px;
 }
 
-/* ================= TYPO ================= */
 .page h1 {
     font-size: 38px;
     margin-bottom: 16px;
-}
-
-.page h2 {
-    font-size: 26px;
-    margin: 40px 0 16px;
 }
 
 .page p {
@@ -127,20 +100,83 @@ body {
     color: var(--muted);
 }
 
-/* ================= CARD ================= */
+/* ================= GRID 4 THẺ ================= */
 .card-grid {
-    margin-top: 30px;
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 thẻ / dòng */
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
 }
 
-
-.card {
+/* ================= FEATURE CARD ================= */
+.feature-card {
     background: var(--card);
+    border-radius: 22px;
     padding: 26px;
-    border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+    display: flex;
+    gap: 22px;
+    align-items: stretch;
+
+    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 26px 60px rgba(0,0,0,0.22);
+}
+
+/* ================= CONTENT ================= */
+.feature-content {
+    flex: 1;
+}
+
+.feature-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+/* LIST + MŨI TÊN */
+.feature-list {
+    list-style: none;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.feature-list li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ================= IMAGE ================= */
+.feature-image {
+    width: 150px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden; /* QUAN TRỌNG: KHÔNG TRÀN */
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.feature-card:hover .feature-image img {
+    transform: scale(1.06);
 }
 
 /* ================= FOOTER ================= */
@@ -158,182 +194,12 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
     .feature-card {
         flex-direction: column;
     }
 
     .feature-image {
         width: 100%;
-        height: 220px;
+        height: 280px;
     }
 }
-
-/* ================= FEATURE GRID ================= */
-
-.card-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-}
-
-.feature-card {
-    display: flex;
-    gap: 22px;
-    align-items: stretch;
-}
-
-.feature-content {
-    flex: 1;
-}
-
-.feature-content h3 {
-    font-size: 20px;
-    margin-bottom: 14px;
-}
-
-/* LIST + MŨI TÊN */
-.feature-list {
-    list-style: none;
-}
-
-.feature-list li {
-    position: relative;
-    padding-left: 22px;
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-.feature-list li::before {
-    content: "➜";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--primary);
-    font-weight: 700;
-}
-
-/* ẢNH DỌC */
-.feature-image {
-    width: 150px;
-    flex-shrink: 0;
-}
-
-.feature-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 14px;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .feature-card {
-        flex-direction: column;
-    }
-
-    .feature-image {
-        width: 100%;
-        height: 320px;
-    }
-}
-
-
-/* ================= FEATURE CARD ================= */
-.feature-card {
-    display: flex;
-    gap: 22px;
-    align-items: stretch;
-
-    background: var(--card);
-    padding: 26px;
-    border-radius: 20px;
-
-    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-}
-
-
-.feature-content {
-    flex: 1;
-}
-
-.feature-content h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.feature-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.feature-content li {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 8px;
-    display: flex;
-    gap: 8px;
-}
-
-/* Ảnh dọc */
-.feature-image {
-    width: 160px;
-    flex-shrink: 0;
-}
-
-.feature-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 14px;
-}
-
-/* ===== ARROW LIST (TÍNH NĂNG) ===== */
-.feature-content li {
-    position: relative;
-    padding-left: 22px;
-    line-height: 1.6;
-}
-
-.feature-content li::before {
-    content: "➜";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--primary);
-    font-weight: 700;
-}
-/* ===== HOVER NỔI KHỐI ===== */
-.feature-card {
-    transition: 
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.18),
-        0 8px 16px rgba(0,0,0,0.08);
-}
-
-/* Ảnh zoom nhẹ khi hover */
-.feature-card:hover .feature-image img {
-    transform: scale(1.06);
-}
-
-.feature-image img {
-    transition: transform 0.35s ease;
-}
-
-
