@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tuyên bố pháp lý - Đọc Online</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=20260215">
+<style>
+    /* CSS riêng cho trang pháp lý */
+    .legal-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    
+    .legal-header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+        border-bottom: 3px solid #2563eb;
+    }
+    
+    .legal-title {
+        font-size: 36px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 15px;
+    }
+    
+    .legal-subtitle {
+        font-size: 18px;
+        color: #6b7280;
+        font-weight: 500;
+    }
+    
+    .legal-section {
+        margin-bottom: 50px;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border-left: 4px solid #2563eb;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .section-icon {
+        font-size: 28px;
+    }
+    
+    .section-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #374151;
+    }
+    
+    .legal-points {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+    
+    .legal-point {
+        margin-bottom: 15px;
+        padding-left: 10px;
+        position: relative;
+    }
+    
+    .legal-point:before {
+        content: "•";
+        color: #2563eb;
+        font-weight: bold;
+        position: absolute;
+        left: -15px;
+    }
+    
+    .highlight-box {
+        background: #f8fafc;
+        border-left: 3px solid #dc2626;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 8px;
+    }
+    
+    .highlight-title {
+        font-weight: 700;
+        color: #dc2626;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .note-box {
+        background: #fffbeb;
+        border-left: 3px solid #f59e0b;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 8px;
+    }
+    
+    .note-title {
+        font-weight: 700;
+        color: #d97706;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .legal-footer {
+        text-align: center;
+        margin-top: 60px;
+        padding-top: 30px;
+        border-top: 1px solid #e5e7eb;
+        color: #6b7280;
+        font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+        .legal-title {
+            font-size: 28px;
+        }
+        
+        .legal-section {
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- HEADER sẽ được tự động chèn vào đây -->
+<div id="header-placeholder"></div>
+
+<main class="page">
+    <div class="page-inner">
+        <div class="legal-page">
+            
+            <!-- Header -->
+            <div class="legal-header">
+                <h1 class="legal-title">Tuyên bố pháp lý</h1>
+                <div class="legal-subtitle">Tính hợp pháp và nguyên tắc hoạt động của ứng dụng Đọc Online</div>
+            </div>
+            
+            <!-- Phần 1: Tuyên bố chung -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">⚖️</span>
+                    Tuyên bố từ chối trách nhiệm pháp lý
+                </h2>
+                <div class="section-content">
+                    <p>Ứng dụng "Đọc Online" là một plugin hỗ trợ đọc cho thiết bị e-ink, được phát triển với mục đích cải thiện trải nghiệm đọc và hoạt động dựa trên các nguyên tắc pháp lý dưới đây.</p>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">Ứng dụng hoạt động như công cụ trung gian kỹ thuật và KHÔNG chịu trách nhiệm về nội dung từ các nguồn bên ngoài.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 2: Báo RSS -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">📰</span>
+                    Đối với tính năng đọc báo RSS
+                </h2>
+                <div class="section-content">
+                    <p><strong>Mô hình hoạt động:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng <strong>KHÔNG lưu trữ, phân phối hoặc sao chép</strong> nội dung bài viết gốc từ các báo điện tử</div>
+                        <div class="legal-point">Ứng dụng chỉ đóng vai trò <strong>công cụ trung gian điều hướng</strong>, chuyển tiếp yêu cầu của người dùng đến website gốc</div>
+                        <div class="legal-point">Dữ liệu được tải <strong>trực tiếp từ nguồn gốc</strong> về thiết bị của người dùng</div>
+                    </div>
+                    
+                    <p><strong>Xử lý nội dung hiển thị:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point"><strong>Loại bỏ các thành phần không cần thiết</strong>: quảng cáo, pop-up, script chạy nền</div>
+                        <div class="legal-point"><strong>Giữ lại nội dung chính</strong>: tiêu đề, tác giả, nội dung bài viết, ảnh minh họa</div>
+                        <div class="legal-point"><strong>Tái cấu trúc giao diện</strong>: điều chỉnh bố cục, font chữ, khoảng cách cho dễ đọc trên màn hình e-ink</div>
+                    </div>
+                    
+                    <div class="note-box">
+                        <div class="note-title">Mục đích duy nhất</div>
+                        <p>Cải thiện trải nghiệm đọc, giảm mỏi mắt cho người dùng thiết bị e-ink, không làm thay đổi bản quyền hay nội dung gốc của bài viết.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 3: Đọc truyện online -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">📖</span>
+                    Đối với tính năng đọc truyện online
+                </h2>
+                <div class="section-content">
+                    <p><strong>Nguyên tắc hoạt động:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng <strong>KHÔNG lưu trữ kho truyện</strong> trên server riêng</div>
+                        <div class="legal-point">Ứng dụng chỉ <strong>kết nối và truy cập</strong> đến các nguồn truyện đã được chia sẻ công khai, miễn phí trên internet</div>
+                        <div class="legal-point">Dữ liệu truyện được tải <strong>trực tiếp từ nguồn gốc</strong> về thiết bị người dùng</div>
+                    </div>
+                    
+                    <p><strong>Phạm vi hỗ trợ:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Chỉ liên kết đến các website cung cấp truyện <strong>hợp pháp, công khai</strong></div>
+                        <div class="legal-point">Không hỗ trợ truy cập nội dung có bản quyền hạn chế hoặc nội dung trả phí</div>
+                        <div class="legal-point">Người dùng tự chịu trách nhiệm về việc lựa chọn và sử dụng nguồn truyện</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 4: Kho truyện chia sẻ -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">📚</span>
+                    Đối với kho truyện chia sẻ cộng đồng
+                </h2>
+                <div class="section-content">
+                    <p><strong>Cơ chế hoạt động:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Server <strong>CHỈ lưu trữ thông tin meta</strong> (đường dẫn, tiêu đề, tác giả, thể loại)</div>
+                        <div class="legal-point"><strong>KHÔNG lưu trữ nội dung truyện gốc</strong> (file EPUB, PDF, MOBI, TXT)</div>
+                        <div class="legal-point">Hệ thống hoạt động như <strong>công cụ tổng hợp liên kết</strong> (link aggregator)</div>
+                    </div>
+                    
+                    <p><strong>Quy trình truy cập:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Người dùng chọn truyện từ danh sách liên kết</div>
+                        <div class="legal-point">Ứng dụng kết nối trực tiếp đến nguồn lưu trữ bên ngoài</div>
+                        <div class="legal-point">Dữ liệu được tải thẳng về thiết bị người dùng</div>
+                        <div class="legal-point">Server không can thiệp vào quá trình truyền tải nội dung</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 5: Google Drive -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">☁️</span>
+                    Đối với kết nối Google Drive
+                </h2>
+                <div class="section-content">
+                    <p><strong>Bảo mật thông tin đăng nhập:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng <strong>KHÔNG LƯU TRỮ</strong> mật khẩu, token truy cập Google Drive trên server</div>
+                        <div class="legal-point">Thông tin xác thực <strong>CHỈ ĐƯỢC LƯU TRỮ CỤC BỘ</strong> trên thiết bị của người dùng</div>
+                        <div class="legal-point">Kết nối sử dụng <strong>OAuth 2.0</strong> - giao thức bảo mật tiêu chuẩn của Google</div>
+                    </div>
+                    
+                    <p><strong>Quyền truy cập giới hạn:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng chỉ yêu cầu quyền đọc file (read-only)</div>
+                        <div class="legal-point">Không có quyền chỉnh sửa, xóa hoặc chia sẻ file</div>
+                        <div class="legal-point">Mọi hoạt động đều thông qua API chính thức của Google</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 6: Nguyên tắc bảo mật -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">🔒</span>
+                    Nguyên tắc bảo mật & minh bạch
+                </h2>
+                <div class="section-content">
+                    <p><strong>Về dữ liệu người dùng:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Không thu thập thông tin cá nhân nhạy cảm</div>
+                        <div class="legal-point">Dữ liệu đọc (lịch sử, bookmark) chỉ lưu cục bộ trên thiết bị</div>
+                        <div class="legal-point">Người dùng có thể xóa toàn bộ dữ liệu bất cứ lúc nào</div>
+                    </div>
+                    
+                    <p><strong>Về mã nguồn:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Plugin được phát triển dựa trên mã nguồn mở KOReader</div>
+                        <div class="legal-point">Tuân thủ giấy phép GPLv3</div>
+                        <div class="legal-point">Công khai phương thức hoạt động và nguyên tắc thiết kế</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 7: Từ chối trách nhiệm cuối cùng -->
+            <div class="legal-section">
+                <h2 class="section-title">
+                    <span class="section-icon">⚠️</span>
+                    Từ chối trách nhiệm cuối cùng
+                </h2>
+                <div class="section-content">
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng hoạt động như <strong>công cụ trung gian kỹ thuật</strong>, không phải nhà cung cấp nội dung</div>
+                        <div class="legal-point"><strong>Không chịu trách nhiệm</strong> về nội dung từ các nguồn bên ngoài</div>
+                        <div class="legal-point">Người dùng <strong>tự chịu trách nhiệm</strong> về việc sử dụng ứng dụng và lựa chọn nội dung</div>
+                        <div class="legal-point">Khuyến khích tôn trọng bản quyền và tuân thủ pháp luật địa phương về sở hữu trí tuệ</div>
+                        <div class="legal-point">Ứng dụng có thể ngừng hỗ trợ bất kỳ nguồn nào được xác định là vi phạm pháp luật</div>
+                    </div>
+                    
+                    <div class="note-box">
+                        <div class="note-title">Lưu ý quan trọng</div>
+                        <p>Văn bản này có thể được cập nhật khi có thay đổi về tính năng hoặc quy định pháp luật. Người dùng nên kiểm tra định kỳ để cập nhật thông tin mới nhất.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="legal-footer">
+                <p><strong>Cập nhật lần cuối: Tháng 02/2026</strong></p>
+                <p>© 2026 Đọc Online - Plugin hỗ trợ đọc cho thiết bị e-ink</p>
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER sẽ được tự động chèn vào đây -->
+<div id="footer-placeholder"></div>
+
+<!-- Load include.js -->
+<script src="../js/include.js?v=20260215"></script>
+
+</body>
+</html>
