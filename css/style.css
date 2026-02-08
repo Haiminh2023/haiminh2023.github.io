@@ -173,12 +173,79 @@ body {
 }
 
 /* ================= FEATURE GRID ================= */
-.feature-grid {
-    margin-top: 30px;
+
+.card-grid {
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 thẻ / dòng */
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
 }
+
+.feature-card {
+    display: flex;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-content h3 {
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+/* LIST + MŨI TÊN */
+.feature-list {
+    list-style: none;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.feature-list li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ẢNH DỌC */
+.feature-image {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        flex-direction: column;
+    }
+
+    .feature-image {
+        width: 100%;
+        height: 320px;
+    }
+}
+
 
 /* ================= FEATURE CARD ================= */
 .feature-card {
