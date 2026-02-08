@@ -6,23 +6,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=7">
-<link rel="stylesheet" href="../css/features.css?v=7">
+<link rel="stylesheet" href="../css/style.css?v=20260215">
+<link rel="stylesheet" href="../css/features.css?v=20260215">
+<style>
+/* CSS cho multiple images */
+.feature-screenshots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.feature-screenshots img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.feature-screenshots img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+    .feature-screenshots {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+</style>
 </head>
 <body>
 
-<header class="navbar">
-    <div class="nav-inner">
-        <a class="logo" href="../index.html">❄ Đọc Online</a>
-        <nav class="nav-menu">
-            <a href="../index.html">Trang chủ</a>
-            <a class="active" href="features.html">Tính năng</a>
-            <a href="guide.html">Hướng dẫn</a>
-            <a href="pricing.html">Giá</a>
-            <a href="contact.html">Liên hệ</a>
-        </nav>
-    </div>
-</header>
+<!-- HEADER sẽ được tự động chèn vào đây -->
+<div id="header-placeholder"></div>
 
 <main class="page">
     <section class="page-inner">
@@ -206,48 +226,26 @@
     </section>
 </main>
 
-<footer class="footer">
-    © 2026 Doc Online
-</footer>
+<!-- FOOTER sẽ được tự động chèn vào đây -->
+<div id="footer-placeholder"></div>
 
-<a href="#" class="back-to-top">↑</a>
+<!-- Load include.js với đường dẫn tương đối -->
+<script src="../js/include.js"></script>
 
+<!-- Script riêng cho features -->
 <script>
-// Tự động điều chỉnh padding-top cho content
-function adjustPagePadding() {
-    const header = document.querySelector('.navbar');
-    const page = document.querySelector('.page');
-    
-    if (header && page) {
-        const headerHeight = header.offsetHeight;
-        page.style.paddingTop = (headerHeight + 20) + 'px';
-    }
-}
-
-// Xử lý click vào thẻ sidebar
-document.addEventListener('DOMContentLoaded', function() {
+// Đợi include.js load xong
+setTimeout(function() {
     const sidebarCards = document.querySelectorAll('.sidebar-card');
     const featureSections = document.querySelectorAll('.feature-detail-section');
-    
-    // Tính toán offset chính xác cho header
-    function getScrollOffset() {
-        const header = document.querySelector('.navbar');
-        if (!header) return 100;
-        
-        // Trên mobile, header cao hơn
-        if (window.innerWidth <= 900) {
-            return header.offsetHeight + 60;
-        }
-        // Trên desktop
-        return header.offsetHeight + 40;
-    }
     
     // Hàm cuộn đến section
     function scrollToSection(sectionId) {
         const targetSection = document.getElementById(sectionId);
         if (!targetSection) return;
         
-        const offset = getScrollOffset();
+        const header = document.querySelector('.navbar');
+        const offset = header ? header.offsetHeight + 40 : 100;
         const targetPosition = targetSection.offsetTop - offset;
         
         window.scrollTo({
@@ -257,102 +255,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Xử lý click vào thẻ sidebar
-    sidebarCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('data-target');
-            
-            // Xóa active khỏi tất cả thẻ
-            sidebarCards.forEach(c => c.classList.remove('active'));
-            
-            // Thêm active vào thẻ được click
-            this.classList.add('active');
-            
-            // Cuộn đến section tương ứng
-            scrollToSection(targetId);
+    if (sidebarCards.length > 0) {
+        sidebarCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                
+                sidebarCards.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                scrollToSection(targetId);
+            });
         });
-    });
+    }
     
     // Intersection Observer để highlight thẻ khi cuộn
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                sidebarCards.forEach(card => {
-                    card.classList.remove('active');
-                    if (card.getAttribute('data-target') === id) {
-                        card.classList.add('active');
-                    }
-                });
-            }
+    if (featureSections.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    sidebarCards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.getAttribute('data-target') === id) {
+                            card.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px',
+            threshold: 0.1
         });
-    }, observerOptions);
+        
+        featureSections.forEach(section => {
+            observer.observe(section);
+        });
+    }
     
-    // Quan sát tất cả các section
-    featureSections.forEach(section => {
-        observer.observe(section);
-    });
-    
-    // Xử lý hash trong URL (nếu có)
+    // Xử lý hash trong URL
     if (window.location.hash) {
         const hash = window.location.hash.substring(1);
         setTimeout(() => {
             scrollToSection(hash);
-            
-            // Highlight thẻ tương ứng
             sidebarCards.forEach(card => {
                 card.classList.remove('active');
                 if (card.getAttribute('data-target') === hash) {
                     card.classList.add('active');
                 }
             });
-        }, 500);
+        }, 800);
     }
-    
-    // Tự động highlight section đầu tiên khi load trang
-    const firstSection = featureSections[0];
-    if (firstSection) {
-        const rect = firstSection.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top <= window.innerHeight) {
-            sidebarCards.forEach(card => {
-                card.classList.remove('active');
-                if (card.getAttribute('data-target') === firstSection.id) {
-                    card.classList.add('active');
-                }
-            });
-        }
-    }
-});
-
-// Hiển thị/ẩn nút back to top
-window.addEventListener('scroll', function() {
-    const backToTop = document.querySelector('.back-to-top');
-    if (window.scrollY > 500) {
-        backToTop.style.display = 'flex';
-    } else {
-        backToTop.style.display = 'none';
-    }
-});
-
-// Smooth scroll cho nút back to top
-document.querySelector('.back-to-top').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Chạy khi trang tải và khi resize
-window.addEventListener('load', adjustPagePadding);
-window.addEventListener('resize', adjustPagePadding);
-document.addEventListener('DOMContentLoaded', adjustPagePadding);
+}, 500); // Delay để include.js chạy xong
 </script>
 
 </body>
