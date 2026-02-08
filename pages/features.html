@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=2">
-<link rel="stylesheet" href="../css/features.css?v=2">
+<link rel="stylesheet" href="../css/style.css?v=3">
+<link rel="stylesheet" href="../css/features.css?v=3">
 </head>
 <body>
 
@@ -221,14 +221,30 @@ function adjustPagePadding() {
     }
 }
 
-// Xử lý click vào thẻ sidebar
+// Xử lý click vào thẻ sidebar và cuộn đến nội dung
 document.addEventListener('DOMContentLoaded', function() {
     const sidebarCards = document.querySelectorAll('.sidebar-card');
     const featureSections = document.querySelectorAll('.feature-detail-section');
+    const featuresContent = document.querySelector('.features-content');
+    
+    // Tính toán vị trí của các section
+    function calculateSectionPositions() {
+        const positions = {};
+        const headerHeight = document.querySelector('.navbar').offsetHeight;
+        const sidebarHeight = document.querySelector('.features-sidebar').offsetHeight;
+        
+        featureSections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            positions[section.id] = sectionTop - headerHeight - 20;
+        });
+        
+        return positions;
+    }
     
     // Xử lý click vào thẻ sidebar
     sidebarCards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
             const targetId = this.getAttribute('data-target');
             
             // Xóa active khỏi tất cả thẻ
@@ -237,23 +253,24 @@ document.addEventListener('DOMContentLoaded', function() {
             // Thêm active vào thẻ được click
             this.classList.add('active');
             
-            // Scroll đến section tương ứng
+            // Cuộn đến section tương ứng trong features-content
             const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                const headerHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+            if (targetSection && featuresContent) {
+                // Tính toán vị trí cuộn tương đối trong features-content
+                const sectionOffset = targetSection.offsetTop;
                 
-                window.scrollTo({
-                    top: targetPosition,
+                // Cuộn features-content đến vị trí section
+                featuresContent.scrollTo({
+                    top: sectionOffset,
                     behavior: 'smooth'
                 });
             }
         });
     });
     
-    // Intersection Observer để highlight thẻ khi cuộn
+    // Intersection Observer để highlight thẻ khi cuộn trong features-content
     const observerOptions = {
-        root: null,
+        root: featuresContent, // Sử dụng features-content làm root
         rootMargin: '-20% 0px -60% 0px',
         threshold: 0
     };
@@ -272,13 +289,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Quan sát tất cả các section
+    // Quan sát tất cả các section trong features-content
     featureSections.forEach(section => {
         observer.observe(section);
     });
 });
 
-// Hiển thị/ẩn nút back to top
+// Hiển thị/ẩn nút back to top (cuộn toàn trang)
 window.addEventListener('scroll', function() {
     const backToTop = document.querySelector('.back-to-top');
     if (window.scrollY > 500) {
@@ -288,7 +305,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Smooth scroll cho nút back to top
+// Smooth scroll cho nút back to top (cuộn toàn trang)
 document.querySelector('.back-to-top').addEventListener('click', function(e) {
     e.preventDefault();
     window.scrollTo({
