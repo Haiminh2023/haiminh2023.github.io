@@ -176,10 +176,10 @@
                 <div class="section-content">
                     <p><strong>Mô hình hoạt động:</strong></p>
                     <div class="legal-points">
-                        <div class="legal-point">Server <strong>CHỈ lưu trữ thông tin meta</strong> (đường dẫn, tiêu đề, thumbnail)</div>
+                        <div class="legal-point">Ứng dụng <strong>CHỈ lưu trữ thông tin meta</strong> (đường dẫn, tiêu đề, thumbnail)</div>
                         <div class="legal-point">Ứng dụng <strong>KHÔNG lưu trữ, phân phối hoặc sao chép</strong> nội dung bài viết gốc từ các báo điện tử</div>
                         <div class="legal-point">Ứng dụng chỉ đóng vai trò <strong>công cụ trung gian điều hướng</strong>, chuyển tiếp yêu cầu của người dùng đến website gốc</div>
-                        <div class="legal-point">Dữ liệu được tải <strong>trực tiếp từ nguồn gốc</strong> về thiết bị của người dùng</div>
+                        <div class="legal-point">Dữ liệu được tải <strong>trực tiếp từ nguồn website gốc</strong> về thiết bị của người dùng</div>
                     </div>
                     
                     <p><strong>Xử lý nội dung hiển thị:</strong></p>
@@ -207,12 +207,12 @@
                     <div class="legal-points">
                         <div class="legal-point">Ứng dụng <strong>KHÔNG lưu trữ kho truyện</strong> trên server riêng</div>
                         <div class="legal-point">Ứng dụng chỉ <strong>kết nối và truy cập</strong> đến các nguồn truyện đã được chia sẻ công khai, miễn phí trên internet</div>
-                        <div class="legal-point">Dữ liệu truyện được tải <strong>trực tiếp từ nguồn gốc</strong> về thiết bị người dùng</div>
+                        <div class="legal-point">Dữ liệu truyện được tải <strong>trực tiếp từ nguồn website gốc</strong> về thiết bị người dùng</div>
                     </div>
                     
                     <p><strong>Phạm vi hỗ trợ:</strong></p>
                     <div class="legal-points">
-                        <div class="legal-point">Chỉ liên kết đến các website cung cấp truyện <strong>hợp pháp, công khai</strong></div>
+                        <div class="legal-point">Chỉ liên kết đến các website cung cấp truyện <strong>miễn phí, công khai</strong></div>
                         <div class="legal-point">Không hỗ trợ truy cập nội dung có bản quyền hạn chế hoặc nội dung trả phí</div>
                         <div class="legal-point">Người dùng tự chịu trách nhiệm về việc lựa chọn và sử dụng nguồn truyện</div>
                     </div>
@@ -228,7 +228,7 @@
                 <div class="section-content">
                     <p><strong>Cơ chế hoạt động:</strong></p>
                     <div class="legal-points">
-                        <div class="legal-point">Server <strong>CHỈ lưu trữ thông tin meta</strong> (đường dẫn, tiêu đề, tác giả, thể loại)</div>
+                        <div class="legal-point">Ứng dụng <strong>CHỈ lưu trữ thông tin meta</strong> (đường dẫn, tiêu đề, thể loại, kích thước file)</div>
                         <div class="legal-point"><strong>KHÔNG lưu trữ nội dung truyện gốc</strong> (file EPUB, PDF, MOBI, TXT)</div>
                         <div class="legal-point">Hệ thống hoạt động như <strong>công cụ tổng hợp liên kết</strong> (link aggregator)</div>
                     </div>
@@ -243,25 +243,37 @@
                 </div>
             </div>
             
-            <!-- Phần 5: Google Drive -->
+                <!-- Phần 5: Google Drive -->
             <div class="legal-section">
                 <h2 class="section-title">
                     <span class="section-icon">☁️</span>
                     Đối với kết nối Google Drive
                 </h2>
                 <div class="section-content">
-                    <p><strong>Bảo mật thông tin đăng nhập:</strong></p>
+                    <p><strong>Mô hình xác thực tạm thời:</strong></p>
                     <div class="legal-points">
-                        <div class="legal-point">Ứng dụng <strong>KHÔNG LƯU TRỮ</strong> mật khẩu, token truy cập Google Drive trên server</div>
-                        <div class="legal-point">Thông tin xác thực <strong>CHỈ ĐƯỢC LƯU TRỮ CỤC BỘ</strong> trên thiết bị của người dùng</div>
-                        <div class="legal-point">Kết nối sử dụng <strong>OAuth 2.0</strong> - giao thức bảo mật tiêu chuẩn của Google</div>
+                        <div class="legal-point">Quá trình xác thực diễn ra <strong>thông qua trình duyệt web</strong> của người dùng để đảm bảo bảo mật tối đa</div>
+                        <div class="legal-point">Thông tin đăng nhập <strong>KHÔNG BAO GIỜ</strong> được nhập trực tiếp vào ứng dụng</div>
+                        <div class="legal-point">Thông tin xác thực chính <strong>CHỈ TỒN TẠI TRÊN THIẾT BỊ</strong> của người dùng sau khi hoàn tất xác thực</div>
                     </div>
                     
-                    <p><strong>Quyền truy cập giới hạn:</strong></p>
+                    <p><strong>Cơ chế bảo mật nhiều lớp:</strong></p>
                     <div class="legal-points">
-                        <div class="legal-point">Ứng dụng chỉ yêu cầu quyền đọc file (read-only)</div>
-                        <div class="legal-point">Không có quyền chỉnh sửa, xóa hoặc chia sẻ file</div>
-                        <div class="legal-point">Mọi hoạt động đều thông qua API chính thức của Google</div>
+                        <div class="legal-point">Kết nối sử dụng <strong>OAuth 2.0</strong> - giao thức bảo mật tiêu chuẩn của Google</div>
+                        <div class="legal-point">Token truy cập được Google cấp có <strong>thời gian tồn tại rất ngắn</strong> và tự động hết hạn</div>
+                        <div class="legal-point">Mọi yêu cầu truy cập đều phải qua <strong>xác thực lại từ đầu</strong> nếu token hết hạn</div>
+                    </div>
+                    
+                    <p><strong>Quyền truy cập tối thiểu:</strong></p>
+                    <div class="legal-points">
+                        <div class="legal-point">Ứng dụng chỉ yêu cầu quyền <strong>đọc file (read-only)</strong></div>
+                        <div class="legal-point">Không có quyền chỉnh sửa, xóa, chia sẻ hoặc thay đổi bất kỳ file nào</div>
+                        <div class="legal-point">Mọi hoạt động đều thông qua <strong>API chính thức của Google</strong> với quyền hạn được giới hạn nghiêm ngặt</div>
+                    </div>
+                    
+                    <div class="note-box">
+                        <div class="note-title">Nguyên tắc "Không lưu trữ dài hạn"</div>
+                        <p>Hệ thống được thiết kế theo nguyên tắc <strong>không lưu trữ thông tin truy cập của người dùng</strong>. Mọi thông tin xác thực đều mang tính chất tạm thời và tự động bị hủy sau khi hoàn thành phiên làm việc.</p>
                     </div>
                 </div>
             </div>
