@@ -6,8 +6,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=20260213">
+<link rel="stylesheet" href="/css/style.css?v=20260214">
 </head>
+<script>
+// Tự động điều chỉnh padding-top cho content dựa trên chiều cao header
+function adjustPagePadding() {
+    const header = document.querySelector('.navbar');
+    const page = document.querySelector('.page');
+    
+    if (header && page) {
+        const headerHeight = header.offsetHeight;
+        page.style.paddingTop = (headerHeight + 20) + 'px';
+    }
+}
+
+// Chạy khi trang tải và khi resize
+window.addEventListener('load', adjustPagePadding);
+window.addEventListener('resize', adjustPagePadding);
+
+// Cũng chạy khi DOM đã sẵn sàng
+document.addEventListener('DOMContentLoaded', adjustPagePadding);
+</script>
+    
 <body>
 
 <header class="navbar">
