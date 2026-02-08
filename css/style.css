@@ -131,9 +131,10 @@ body {
 .card-grid {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr); /* 2 thẻ / dòng */
+    gap: 32px;
 }
+
 
 .card {
     background: var(--card);
@@ -153,8 +154,52 @@ body {
 
 /* ================= MOBILE ================= */
 @media (max-width: 900px) {
-    .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
+    .card-grid {
+        grid-template-columns: 1fr;
     }
 }
+/* ================= FEATURE CARD ================= */
+
+.feature-card {
+    display: flex;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.feature-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-content li {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+/* Ảnh dọc */
+.feature-image {
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
