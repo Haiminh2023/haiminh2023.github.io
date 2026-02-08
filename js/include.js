@@ -1,38 +1,36 @@
-// js/include.js - Xử lý include header và footer
-
+// js/include.js
 document.addEventListener('DOMContentLoaded', function() {
     
     // ==================== LOAD HEADER ====================
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
-        fetch('includes/header.html')
+        // Xác định đường dẫn đúng
+        const isInPages = window.location.pathname.includes('/pages/');
+        const headerPath = isInPages ? '../includes/header.html' : 'includes/header.html';
+        
+        fetch(headerPath)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Không tìm thấy file header.html');
-                }
+                if (!response.ok) throw new Error('Không tìm thấy header');
                 return response.text();
             })
             .then(headerHTML => {
-                // Thay thế placeholder bằng header thật
                 headerPlaceholder.outerHTML = headerHTML;
-                
-                // Sau khi header được load, xử lý active state
                 setTimeout(handleActiveState, 50);
                 setTimeout(adjustPagePadding, 100);
             })
             .catch(error => {
-                console.error('Lỗi khi load header:', error);
-                // Fallback: Hiển thị header cơ bản nếu load thất bại
+                console.error('Lỗi load header:', error);
+                // Fallback header
                 headerPlaceholder.outerHTML = `
                     <header class="navbar">
                         <div class="nav-inner">
                             <a class="logo" href="../index.html">❄ Đọc Online</a>
                             <nav class="nav-menu">
                                 <a href="../index.html">Trang chủ</a>
-                                <a href="pages/features.html">Tính năng</a>
-                                <a href="pages/guide.html">Hướng dẫn</a>
-                                <a href="pages/pricing.html">Giá</a>
-                                <a href="pages/contact.html">Liên hệ</a>
+                                <a href="features.html">Tính năng</a>
+                                <a href="guide.html">Hướng dẫn</a>
+                                <a href="pricing.html">Giá</a>
+                                <a href="contact.html">Liên hệ</a>
                             </nav>
                         </div>
                     </header>
@@ -45,23 +43,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== LOAD FOOTER ====================
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-        fetch('includes/footer.html')
+        const isInPages = window.location.pathname.includes('/pages/');
+        const footerPath = isInPages ? '../includes/footer.html' : 'includes/footer.html';
+        
+        fetch(footerPath)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Không tìm thấy file footer.html');
-                }
+                if (!response.ok) throw new Error('Không tìm thấy footer');
                 return response.text();
             })
             .then(footerHTML => {
-                // Thay thế placeholder bằng footer thật
                 footerPlaceholder.outerHTML = footerHTML;
-                
-                // Khởi tạo back to top button
                 setTimeout(initBackToTop, 50);
             })
             .catch(error => {
-                console.error('Lỗi khi load footer:', error);
-                // Fallback: Hiển thị footer cơ bản
+                console.error('Lỗi load footer:', error);
+                // Fallback footer
                 footerPlaceholder.outerHTML = `
                     <footer class="footer">
                         © 2026 Doc Online
@@ -76,31 +72,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Xử lý active state cho navigation
     function handleActiveState() {
-        const currentPath = window.location.pathname;
-        const currentPage = currentPath.split('/').pop() || 'index.html';
-        
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         const navLinks = document.querySelectorAll('.nav-menu a');
         
         navLinks.forEach(link => {
-            // Xóa class active cũ
             link.classList.remove('active');
             
-            // Lấy href của link
+            // Lấy phần cuối của href
             const linkHref = link.getAttribute('href');
             const linkPage = linkHref.split('/').pop();
             
-            // Kiểm tra và thêm class active
-            if (currentPage === linkPage || 
-                (currentPage === '' && linkPage === 'index.html') ||
-                (currentPage === 'index.html' && linkPage === 'index.html')) {
+            // Kiểm tra active
+            if (currentPage === linkPage) {
                 link.classList.add('active');
             }
             
-            // Xử lý đặc biệt cho trang chủ
-            if (currentPage === '' || currentPage === 'index.html') {
-                if (link.classList.contains('nav-home')) {
-                    link.classList.add('active');
-                }
+            // Xử lý trang chủ (index.html hoặc /)
+            if ((currentPage === '' || currentPage === 'index.html') && link.classList.contains('nav-home')) {
+                link.classList.add('active');
             }
         });
     }
@@ -121,7 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const backToTop = document.querySelector('.back-to-top');
         if (!backToTop) return;
         
-        // Ẩn hiện button khi scroll
+        backToTop.style.display = 'none';
+        
         window.addEventListener('scroll', function() {
             if (window.scrollY > 500) {
                 backToTop.style.display = 'flex';
@@ -130,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Xử lý click để scroll lên đầu
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({
@@ -140,6 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Gọi adjustPagePadding khi resize window
+    // Gọi khi resize
     window.addEventListener('resize', adjustPagePadding);
 });
