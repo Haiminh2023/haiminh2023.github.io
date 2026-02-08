@@ -225,3 +225,20 @@ body {
     border-radius: 14px;
 }
 
+/* ===== ARROW LIST (TÍNH NĂNG) ===== */
+.feature-content li {
+    position: relative;
+    padding-left: 22px;
+    line-height: 1.6;
+}
+
+.feature-content li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+
