@@ -143,34 +143,14 @@
 
 /* ================= NỘI DUNG CHI TIẾT BÊN PHẢI ================= */
 .features-content {
-    max-height: calc(100vh - 160px);
-    overflow-y: auto;
+    /* Bỏ max-height và overflow-y để cuộn toàn trang */
     padding-right: 10px;
-}
-
-/* Ẩn scrollbar nhưng vẫn scroll được */
-.features-content::-webkit-scrollbar {
-    width: 4px;
-}
-
-.features-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 2px;
-}
-
-.features-content::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 2px;
-}
-
-.features-content::-webkit-scrollbar-thumb:hover {
-    background: #a1a1a1;
 }
 
 /* Các section nội dung */
 .feature-detail-section {
     margin-bottom: 80px;
-    scroll-margin-top: 140px;
+    scroll-margin-top: 140px; /* Quan trọng: giúp không bị che bởi header */
 }
 
 .feature-detail-section:last-child {
@@ -335,8 +315,6 @@
     }
     
     .features-content {
-        /*max-height: none;*/
-       /* overflow-y: visible;*/
         padding-right: 0;
     }
     
