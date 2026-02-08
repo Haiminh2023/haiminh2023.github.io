@@ -2,158 +2,115 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Giới thiệu tính năng</title>
-
-<style>
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    margin: 0;
-    padding: 30px;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* mỗi dòng 2 thẻ */
-    gap: 24px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.feature-card {
-    background: #ffffff;
-    border-radius: 14px;
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 32px rgba(0,0,0,0.1);
-}
-
-.feature-content {
-    flex: 1;
-}
-
-.feature-content h2 {
-    margin: 0 0 12px;
-    font-size: 20px;
-}
-
-.feature-content ul {
-    padding-left: 0;
-    list-style: none;
-    margin: 0;
-}
-
-.feature-content li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-    color: #444;
-}
-
-.feature-content li::before {
-    content: "✔";
-    color: #2ecc71;
-    margin-right: 8px;
-}
-
-.feature-image {
-    width: 140px;
-    min-width: 140px;
-}
-
-.feature-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+<title>Đọc Online </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="feature-grid">
-
-    <!-- 📰 Đọc báo RSS -->
-    <div class="feature-card">
-        <div class="feature-content">
-            <h2>📰 Đọc báo RSS</h2>
-            <ul>
-                <li>Danh sách bài viết dạng thumbnail trực quan</li>
-                <li>Trang chủ tổng hợp nhiều đầu báo</li>
-                <li>Quản lý danh mục yêu thích</li>
-                <li>Tin mới nhất, cập nhật liên tục</li>
-                <li>Tìm kiếm nội dung bài viết</li>
-            </ul>
-        </div>
-        <div class="feature-image">
-            <img src="https://via.placeholder.com/300x600" alt="Đọc báo RSS">
-        </div>
-    </div>
-
-    <!-- 📖 Đọc truyện online -->
-    <div class="feature-card">
-        <div class="feature-content">
-            <h2>📖 Đọc truyện online</h2>
-            <ul>
-                <li>Cập nhật truyện mới nhanh chóng</li>
-                <li>Nhiều thể loại: tu tiên, kiếm hiệp, ngôn tình…</li>
-                <li>Đồng bộ chương đọc dang dở</li>
-                <li>Tìm kiếm truyện từ nhiều nguồn</li>
-                <li>Tải truyện về đọc offline</li>
-            </ul>
-        </div>
-        <div class="feature-image">
-            <img src="https://via.placeholder.com/300x600" alt="Đọc truyện online">
-        </div>
-    </div>
-
-    <!-- 📚 Kho truyện chia sẻ -->
-    <div class="feature-card">
-        <div class="feature-content">
-            <h2>📚 Kho truyện chia sẻ</h2>
-            <ul>
-                <li>Tải truyện, sách do cộng đồng chia sẻ</li>
-                <li>Phân loại rõ: truyện chữ, truyện tranh</li>
-                <li>Hỗ trợ nhiều định dạng</li>
-                <li>Dễ tìm – dễ tải – dễ đọc</li>
-            </ul>
-        </div>
-        <div class="feature-image">
-            <img src="https://via.placeholder.com/300x600" alt="Kho truyện">
-        </div>
-    </div>
-
-    <!-- ☁️ Google Drive -->
-    <div class="feature-card">
-        <div class="feature-content">
-            <h2>☁️ Truy cập Google Drive</h2>
-            <ul>
-                <li>Đăng nhập Google Drive cá nhân</li>
-                <li>Xem “Drive của tôi” và “Được chia sẻ với tôi”</li>
-                <li>Tải sách, truyện về đọc offline</li>
-                <li>An toàn – riêng tư – tiện lợi</li>
-            </ul>
-        </div>
-        <div class="feature-image">
-            <img src="https://via.placeholder.com/300x600" alt="Google Drive">
-        </div>
-    </div>
-
+<header class="navbar">
+<div class="nav-inner">
+<a class="logo" href="/index.html">❄ Đọc Online</a>
+<nav class="nav-menu">
+<a class="active" href="/index.html">Trang chủ</a>
+<a href="/pages/features.html">Tính năng</a>
+<a href="/pages/guide.html">Hướng dẫn</a>
+<a href="/pages/pricing.html">Giá</a>
+<a href="/pages/contact.html">Liên hệ</a>
+</nav>
 </div>
+</header>
+
+<main class="page">
+<section class="page-inner">
+
+<h1>Truy cập nhanh - tiện lợi - tập trung hơn</h1>
+<p>
+Đọc online là ứng dụng plugin koreader hỗ trợ đọc tốt hơn cho các máy đọc sách e-ink như android - kobo - kindle - pocketbook...
+</p>
+
+
+<section class="features">
+  <div class="feature-grid">
+
+    <!-- 📰 RSS -->
+    <div class="feature-card">
+      <div class="feature-content">
+        <h3>📰 Đọc báo RSS</h3>
+        <ul>
+          <li>🖼️ Bài viết hiển thị dạng thumbnail</li>
+          <li>🏠 Trang chủ tổng hợp nhiều đầu báo</li>
+          <li>⭐ Lưu & quản lý danh mục yêu thích</li>
+          <li>⚡ Luôn có tin mới nhất</li>
+          <li>🔍 Tìm kiếm nội dung bài viết</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="/images/rss-vertical.png" alt="Đọc báo RSS">
+      </div>
+    </div>
+
+    <!-- 📖 TRUYỆN ONLINE -->
+    <div class="feature-card">
+      <div class="feature-content">
+        <h3>📖 Đọc truyện online</h3>
+        <ul>
+          <li>🆕 Cập nhật truyện mới liên tục</li>
+          <li>📂 Nhiều thể loại: tu tiên, kiếm hiệp…</li>
+          <li>🔄 Đồng bộ chương đang đọc</li>
+          <li>🌐 Tìm truyện từ nhiều nguồn</li>
+          <li>⬇️ Tải về đọc offline</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="/images/novel-vertical.png" alt="Đọc truyện online">
+      </div>
+    </div>
+
+    <!-- 📚 KHO CHIA SẺ -->
+    <div class="feature-card">
+      <div class="feature-content">
+        <h3>📚 Kho truyện chia sẻ</h3>
+        <ul>
+          <li>🤝 Truyện & sách do cộng đồng đóng góp</li>
+          <li>🗂️ Phân loại rõ: truyện chữ – truyện tranh</li>
+          <li>📈 Nội dung được cập nhật thường xuyên</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="/images/library-vertical.png" alt="Kho truyện chia sẻ">
+      </div>
+    </div>
+
+    <!-- ☁️ DRIVE -->
+    <div class="feature-card">
+      <div class="feature-content">
+        <h3>☁️ Truy cập Google Drive</h3>
+        <ul>
+          <li>🔐 Đăng nhập Google Drive cá nhân</li>
+          <li>📁 Drive của tôi & Được chia sẻ</li>
+          <li>📥 Tải sách – truyện về đọc offline</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="/images/drive-vertical.png" alt="Google Drive">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+</section>
+</main>
+
+<footer class="footer">
+© 2026 Doc Online
+</footer>
 
 </body>
 </html>
