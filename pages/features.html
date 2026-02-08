@@ -26,41 +26,44 @@
 
 <main class="page">
     <section class="page-inner">
-        <h1>Tính năng nổi bật</h1>
-        <p>Khám phá tất cả các tính năng mạnh mẽ của plugin KOReader Đọc Online, được thiết kế đặc biệt cho thiết bị e-ink.</p>
-        
         <div class="features-container">
-            <!-- CỘT TRÁI: MENU THẺ DỌC -->
+            <!-- CỘT TRÁI: MENU THẺ DỌC + TIÊU ĐỀ -->
             <div class="features-sidebar">
-                <div class="sidebar-card active" data-target="rss-feature">
-                    <div class="sidebar-icon">📰</div>
-                    <div class="sidebar-content">
-                        <h3>Đọc báo RSS</h3>
-                        <p>Cập nhật tin tức trên e-ink</p>
-                    </div>
+                <div class="sidebar-header">
+                    <h1>Tính năng nổi bật</h1>
                 </div>
                 
-                <div class="sidebar-card" data-target="story-feature">
-                    <div class="sidebar-icon">📖</div>
-                    <div class="sidebar-content">
-                        <h3>Đọc truyện online</h3>
-                        <p>Kho truyện đa dạng</p>
+                <div class="sidebar-cards">
+                    <div class="sidebar-card active" data-target="rss-feature">
+                        <div class="sidebar-icon">📰</div>
+                        <div class="sidebar-content">
+                            <h3>Đọc báo RSS</h3>
+                            <p>Cập nhật tin tức trên e-ink</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="sidebar-card" data-target="library-feature">
-                    <div class="sidebar-icon">📚</div>
-                    <div class="sidebar-content">
-                        <h3>Kho truyện chia sẻ</h3>
-                        <p>Cộng đồng chia sẻ sách</p>
+                    
+                    <div class="sidebar-card" data-target="story-feature">
+                        <div class="sidebar-icon">📖</div>
+                        <div class="sidebar-content">
+                            <h3>Đọc truyện online</h3>
+                            <p>Kho truyện đa dạng</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="sidebar-card" data-target="drive-feature">
-                    <div class="sidebar-icon">☁️</div>
-                    <div class="sidebar-content">
-                        <h3>Google Drive</h3>
-                        <p>Đồng bộ sách đám mây</p>
+                    
+                    <div class="sidebar-card" data-target="library-feature">
+                        <div class="sidebar-icon">📚</div>
+                        <div class="sidebar-content">
+                            <h3>Kho truyện chia sẻ</h3>
+                            <p>Cộng đồng chia sẻ sách</p>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-card" data-target="drive-feature">
+                        <div class="sidebar-icon">☁️</div>
+                        <div class="sidebar-content">
+                            <h3>Google Drive</h3>
+                            <p>Đồng bộ sách đám mây</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -223,14 +226,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarCards = document.querySelectorAll('.sidebar-card');
     const featureSections = document.querySelectorAll('.feature-detail-section');
     
-    // Ẩn tất cả các section, chỉ hiện section đầu tiên
-    featureSections.forEach(section => {
-        section.classList.remove('active');
-    });
-    if (featureSections.length > 0) {
-        featureSections[0].classList.add('active');
-    }
-    
     // Xử lý click vào thẻ sidebar
     sidebarCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -238,17 +233,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Xóa active khỏi tất cả thẻ
             sidebarCards.forEach(c => c.classList.remove('active'));
-            featureSections.forEach(s => s.classList.remove('active'));
             
             // Thêm active vào thẻ được click
             this.classList.add('active');
             
-            // Hiển thị section tương ứng
+            // Scroll đến section tương ứng
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
-                targetSection.classList.add('active');
-                
-                // Scroll đến section
                 const headerHeight = document.querySelector('.navbar').offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight - 20;
                 
@@ -258,6 +249,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+    
+    // Intersection Observer để highlight thẻ khi cuộn
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                sidebarCards.forEach(card => {
+                    card.classList.remove('active');
+                    if (card.getAttribute('data-target') === id) {
+                        card.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+    
+    // Quan sát tất cả các section
+    featureSections.forEach(section => {
+        observer.observe(section);
     });
 });
 
