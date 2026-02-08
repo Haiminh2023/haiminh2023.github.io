@@ -157,7 +157,29 @@ body {
     .card-grid {
         grid-template-columns: 1fr;
     }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        flex-direction: column;
+    }
+
+    .feature-image {
+        width: 100%;
+        height: 220px;
+    }
 }
+
+/* ================= FEATURE GRID ================= */
+.feature-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 thẻ / dòng */
+    gap: 32px;
+}
+
 /* ================= FEATURE CARD ================= */
 
 .feature-card {
