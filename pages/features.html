@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=3">
-<link rel="stylesheet" href="../css/features.css?v=3">
+<link rel="stylesheet" href="../css/style.css?v=5">
+<link rel="stylesheet" href="../css/features.css?v=5">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
             <!-- CỘT PHẢI: NỘI DUNG CHI TIẾT -->
             <div class="features-content">
                 <!-- Phần 1: Đọc báo RSS -->
-                <section id="rss-feature" class="feature-detail-section active">
+                <section id="rss-feature" class="feature-detail-section">
                     <div class="feature-detail-header">
                         <h2 class="feature-detail-title">Đọc báo RSS</h2>
                         <div class="feature-detail-subtitle">Cập nhật tin tức mọi lúc, mọi nơi trên thiết bị e-ink</div>
@@ -226,10 +226,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarCards = document.querySelectorAll('.sidebar-card');
     const featureSections = document.querySelectorAll('.feature-detail-section');
     
-    // Tính toán offset chính xác
+    // Tính toán offset chính xác cho header
     function getScrollOffset() {
         const header = document.querySelector('.navbar');
-        return header ? header.offsetHeight + 40 : 100; // Header height + thêm khoảng cách
+        if (!header) return 100;
+        
+        // Trên mobile, header cao hơn
+        if (window.innerWidth <= 900) {
+            return header.offsetHeight + 60;
+        }
+        // Trên desktop
+        return header.offsetHeight + 40;
+    }
+    
+    // Hàm cuộn đến section
+    function scrollToSection(sectionId) {
+        const targetSection = document.getElementById(sectionId);
+        if (!targetSection) return;
+        
+        const offset = getScrollOffset();
+        const targetPosition = targetSection.offsetTop - offset;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
     }
     
     // Xử lý click vào thẻ sidebar
@@ -245,29 +266,14 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
             
             // Cuộn đến section tương ứng
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                const offset = getScrollOffset();
-                const targetPosition = targetSection.offsetTop - offset;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Hoặc có thể dùng scrollIntoView
-                // targetSection.scrollIntoView({
-                //     behavior: 'smooth',
-                //     block: 'start'
-                // });
-            }
+            scrollToSection(targetId);
         });
     });
     
     // Intersection Observer để highlight thẻ khi cuộn
     const observerOptions = {
         root: null,
-        rootMargin: '-30% 0px -50% 0px', // Điều chỉnh margin để highlight sớm hơn
+        rootMargin: '-20% 0px -60% 0px',
         threshold: 0.1
     };
     
@@ -293,24 +299,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Xử lý hash trong URL (nếu có)
     if (window.location.hash) {
         const hash = window.location.hash.substring(1);
-        const targetSection = document.getElementById(hash);
-        if (targetSection) {
-            setTimeout(() => {
-                const offset = getScrollOffset();
-                const targetPosition = targetSection.offsetTop - offset;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Highlight thẻ tương ứng
-                sidebarCards.forEach(card => {
-                    card.classList.remove('active');
-                    if (card.getAttribute('data-target') === hash) {
-                        card.classList.add('active');
-                    }
-                });
-            }, 300);
+        setTimeout(() => {
+            scrollToSection(hash);
+            
+            // Highlight thẻ tương ứng
+            sidebarCards.forEach(card => {
+                card.classList.remove('active');
+                if (card.getAttribute('data-target') === hash) {
+                    card.classList.add('active');
+                }
+            });
+        }, 500);
+    }
+    
+    // Tự động highlight section đầu tiên khi load trang
+    const firstSection = featureSections[0];
+    if (firstSection) {
+        const rect = firstSection.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight) {
+            sidebarCards.forEach(card => {
+                card.classList.remove('active');
+                if (card.getAttribute('data-target') === firstSection.id) {
+                    card.classList.add('active');
+                }
+            });
         }
     }
 });
