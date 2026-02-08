@@ -50,15 +50,18 @@ body {
     font-weight: 800;
     color: var(--primary);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 /* ===== MENU CARD WRAPPER ===== */
 .nav-menu {
     display: flex;
-    gap: 14px;
+    gap: 10px;
     background: #eef2ff;
-    padding: 8px;
-    border-radius: 20px;
+    padding: 6px;
+    border-radius: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* ===== MENU CARD ===== */
@@ -67,19 +70,20 @@ body {
     align-items: center;
     justify-content: center;
 
-    min-height: 42px;
-    padding: 0 20px;
+    min-height: 38px;
+    padding: 0 16px;
 
     background: var(--card);
-    border-radius: 16px;
+    border-radius: 14px;
 
     font-size: 14px;
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
+    white-space: nowrap;
 
     box-shadow:
-        0 6px 18px rgba(0,0,0,0.12),
+        0 4px 12px rgba(0,0,0,0.08),
         inset 0 0 0 1px #e5e7eb;
 
     transition: all .25s ease;
@@ -89,20 +93,21 @@ body {
     transform: translateY(-2px);
     color: var(--primary);
     box-shadow:
-        0 14px 30px rgba(0,0,0,0.2),
+        0 10px 24px rgba(0,0,0,0.15),
         inset 0 0 0 1px var(--primary);
 }
 
 .nav-menu a.active {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
-    box-shadow: 0 16px 36px rgba(37,99,235,0.5);
+    box-shadow: 0 12px 28px rgba(37,99,235,0.4);
 }
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 110px; /* CHỪA CHỖ CHO HEADER FIXED */
+    padding-top: 110px; /* Giá trị mặc định cho desktop */
     padding-bottom: 80px;
+    transition: padding-top 0.3s ease;
 }
 
 .page-inner {
@@ -200,23 +205,23 @@ body {
 
 /* ================= ẢNH NẰM TRONG KHUNG - KHÔNG BỊ CẮT ================= */
 .feature-image {
-    width: 220px; /* Tăng chiều rộng khung ảnh */
+    width: 220px;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8fafc; /* Nền trắng cho phần ảnh */
+    background: #f8fafc;
 }
 
 .feature-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ảnh nằm trong khung mà không bị cắt */
+    object-fit: contain;
     display: block;
     transition: transform 0.5s ease;
-    padding: 10px; /* Thêm padding để ảnh không chạm viền */
+    padding: 10px;
 }
 
 .feature-card:hover .feature-image img {
@@ -263,6 +268,19 @@ body {
 }
 
 /* ================= MOBILE ================= */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 8px;
+        padding: 5px;
+    }
+    
+    .nav-menu a {
+        min-height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+    }
+}
+
 @media (max-width: 900px) {
     .feature-grid {
         grid-template-columns: 1fr;
@@ -275,8 +293,8 @@ body {
     
     .feature-image {
         width: 100%;
-        height: 180px; /* Chiều cao cố định trên mobile */
-        order: -1; /* Đưa ảnh lên trên ở mobile */
+        height: 180px;
+        order: -1;
     }
     
     .feature-image:before {
@@ -284,27 +302,56 @@ body {
         border-top: 1px solid rgba(0,0,0,0.05);
     }
     
-    .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
     .page h1 {
-        font-size: 30px;
+        font-size: 32px;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .nav-inner {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        padding: 12px 20px;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        gap: 6px;
+    }
+    
+    .nav-menu a {
+        flex: 1;
+        min-width: 100px;
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 12px;
     }
     
     .page {
-        padding-top: 140px;
+        padding-top: 160px; /* Tăng padding cho mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu a {
+        min-width: 85px;
+        padding: 0 8px;
+        font-size: 11px;
+    }
+    
+    .page {
+        padding-top: 180px; /* Tăng thêm cho màn hình rất nhỏ */
+    }
+    
+    .page h1 {
+        font-size: 28px;
     }
     
     .feature-image {
         height: 160px;
+    }
+    
+    .feature-content {
+        padding: 20px;
     }
 }
