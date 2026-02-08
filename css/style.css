@@ -7,7 +7,7 @@
     --muted: #6b7280;
 }
 
-/* RESET */
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
@@ -104,26 +104,29 @@ body {
 .card-grid {
     margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
 }
 
 /* ================= FEATURE CARD ================= */
 .feature-card {
     background: var(--card);
     border-radius: 22px;
-    padding: 26px;
+    padding: 24px;
 
     display: flex;
-    gap: 22px;
-    align-items: stretch;
+    align-items: center;
+    gap: 20px;
+
+    width: 100%;
+    overflow: hidden;
 
     box-shadow: 0 14px 36px rgba(0,0,0,0.12);
-    transition: transform .35s ease, box-shadow .35s ease;
+    transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .feature-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: 0 26px 60px rgba(0,0,0,0.22);
 }
 
@@ -138,45 +141,49 @@ body {
     margin-bottom: 14px;
 }
 
-/* LIST + MŨI TÊN */
+/* ================= LIST DẤU TÍCH ================= */
 .feature-list {
     list-style: none;
 }
 
 .feature-list li {
     position: relative;
-    padding-left: 22px;
+    padding-left: 26px;
     margin-bottom: 10px;
     font-size: 15px;
     line-height: 1.6;
 }
 
 .feature-list li::before {
-    content: "➜";
+    content: "✓";
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--primary);
-    font-weight: 700;
+    color: #22c55e;
+    font-weight: 800;
 }
 
 /* ================= IMAGE ================= */
 .feature-image {
-    width: 150px;
+    width: 160px;
+    height: 200px;
     flex-shrink: 0;
+
     border-radius: 16px;
-    overflow: hidden; /* QUAN TRỌNG: KHÔNG TRÀN */
+    overflow: hidden;
+    background: #e5e7eb;
 }
 
 .feature-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform .4s ease;
 }
 
 .feature-card:hover .feature-image img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
 /* ================= FOOTER ================= */
@@ -200,6 +207,6 @@ body {
 
     .feature-image {
         width: 100%;
-        height: 280px;
+        height: 260px;
     }
 }
