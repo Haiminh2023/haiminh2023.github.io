@@ -170,7 +170,7 @@
 /* Các section nội dung */
 .feature-detail-section {
     margin-bottom: 80px;
-    scroll-margin-top: 120px;
+    scroll-margin-top: 140px;
 }
 
 .feature-detail-section:last-child {
@@ -335,8 +335,8 @@
     }
     
     .features-content {
-        max-height: none;
-        overflow-y: visible;
+        /*max-height: none;*/
+       /* overflow-y: visible;*/
         padding-right: 0;
     }
     
