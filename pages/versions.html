@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         let allVersions = [];
         let currentVersionIndex = 0;
-        const VERSIONS_PER_PAGE = 3; // Hiển thị 4 thẻ (1 mới nhất + 3 thẻ thường)
+        const VERSIONS_PER_PAGE = 3; // Hiển thị 3 thẻ
         
         const sidebarCardsContainer = document.querySelector('.sidebar-cards');
         const versionDetailsContainer = document.querySelector('.version-details');
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const backToTopBtn = document.getElementById('backToTop');
         
         function formatVersionNumber(version) {
-            return version.startsWith('v') ? version : `v${version}`;
+            return version.startsWith('Ver ') ? version : `v${version}`;
         }
         
         function createVersionCard(version, index, isActive = false) {
