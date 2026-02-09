@@ -1,4 +1,6 @@
-/* Thêm vào features.css */
+/* CSS giữ nguyên style cũ cho trang tính năng */
+
+/* CSS cho multiple images */
 .feature-screenshots {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -25,5 +27,206 @@
     .feature-screenshots {
         grid-template-columns: 1fr;
         gap: 15px;
+    }
+}
+
+/* STYLE CŨ - Không thay đổi */
+.features-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Sidebar bên trái - Giữ nguyên style cũ */
+.features-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+}
+
+.sidebar-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.sidebar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar-card:hover {
+    background: #f0f7ff;
+    border-color: #e1eeff;
+    transform: translateY(-2px);
+}
+
+.sidebar-card.active {
+    background: linear-gradient(135deg, #eef6ff, #e1eeff);
+    border-color: #4a90e2;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.15);
+}
+
+.sidebar-icon {
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.sidebar-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 5px 0;
+}
+
+.sidebar-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* Nội dung bên phải - Giữ nguyên style cũ */
+.features-content {
+    flex: 1;
+    padding: 0 0 50px 0;
+}
+
+.feature-detail-section {
+    margin-bottom: 80px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+}
+
+.feature-detail-header {
+    margin-bottom: 30px;
+}
+
+.feature-detail-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 10px 0;
+}
+
+.feature-detail-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+}
+
+.feature-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.feature-description p {
+    margin-bottom: 20px;
+}
+
+.feature-highlights {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.feature-highlights h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 15px 0;
+}
+
+.feature-highlights ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.feature-highlights li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Responsive - Giữ nguyên style cũ */
+@media (max-width: 1024px) {
+    .features-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .features-sidebar {
+        width: 100%;
+        position: static;
+        top: 0;
+    }
+    
+    .sidebar-cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .sidebar-card {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-detail-section {
+        padding: 25px;
+    }
+    
+    .feature-detail-title {
+        font-size: 26px;
+    }
+    
+    .sidebar-card {
+        min-width: 100%;
     }
 }
