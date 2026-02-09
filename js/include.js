@@ -106,17 +106,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Khởi tạo back to top button
+    // Khởi tạo back to top button - GIỐNG TRANG TÍNH NĂNG
     function initBackToTop() {
         const backToTop = document.querySelector('.back-to-top');
         if (!backToTop) return;
         
-        backToTop.style.display = 'none';
+        // Ẩn ban đầu
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+        backToTop.style.transform = 'translateY(20px)';
+        
+        // Thêm class nếu chưa có
+        if (!backToTop.classList.contains('back-to-top')) {
+            backToTop.classList.add('back-to-top');
+        }
         
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 500) {
-                backToTop.style.display = 'flex';
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Hiển thị khi cuộn xuống 80% chiều cao màn hình
+            if (scrollPosition > windowHeight * 0.8) {
+                backToTop.classList.add('visible');
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+                backToTop.style.transform = 'translateY(0)';
             } else {
-                backToTop.style.display = 'none';
+                backToTop.classList.remove('visible');
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+                backToTop.style.transform = 'translateY(20px)';
             }
         });
         
@@ -127,6 +146,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
+        
+        // Kiểm tra ban đầu
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        if (scrollPosition > windowHeight * 0.8) {
+            backToTop.classList.add('visible');
+            backToTop.style.opacity = '1';
+            backToTop.style.visibility = 'visible';
+            backToTop.style.transform = 'translateY(0)';
+        }
     }
     
     // Gọi khi resize
