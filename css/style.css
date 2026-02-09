@@ -126,8 +126,8 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 80px; /* Tăng lên vì body không còn padding */
-    padding-bottom: 80px;
+    padding-top: 60px; /* Giảm mạnh: 80px → 60px */
+    padding-bottom: 60px;
     min-height: 100vh;
 }
 
@@ -608,22 +608,38 @@ body {
 }
 
 /* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
-
-/* Trang tính năng & phiên bản & hướng dẫn */
 .features-container, .guide-container {
-    padding-top: 20px;
-    min-height: calc(100vh - 80px);
+    padding-top: 15px; /* Giảm từ 20px */
+    min-height: calc(100vh - 60px);
 }
 
-/* Các section có anchor */
 .feature-detail-section, .guide-section, .legal-section {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px; /* Giảm từ 100px */
 }
 
-/* Responsive cho các trang */
+/* Responsive */
 @media (max-width: 1024px) {
+    .page {
+        padding-top: 70px; /* Giảm từ 90px */
+    }
+    
     .features-container, .guide-container {
-        padding-top: 15px;
+        padding-top: 10px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
+        scroll-margin-top: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding-top: 100px; /* Giảm từ 140px */
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 5px;
+        margin-top: 5px;
     }
     
     .feature-detail-section, .guide-section, .legal-section {
@@ -631,24 +647,23 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .page {
+        padding-top: 110px; /* Giảm từ 160px */
+    }
+    
     .features-container, .guide-container {
-        padding-top: 10px;
-        margin-top: 10px;
+        padding-top: 0;
+        margin-top: 0;
     }
     
     .feature-detail-section, .guide-section, .legal-section {
-        scroll-margin-top: 130px;
+        scroll-margin-top: 120px;
     }
 }
 
-@media (max-width: 480px) {
-    .features-container, .guide-container {
-        padding-top: 5px;
-        margin-top: 5px;
-    }
-    
-    .feature-detail-section, .guide-section, .legal-section {
-        scroll-margin-top: 150px;
+@media (max-width: 360px) {
+    .page {
+        padding-top: 120px; /* Giảm từ 170px */
     }
 }
