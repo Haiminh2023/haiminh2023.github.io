@@ -408,13 +408,28 @@
 }
 
 .feature-desc {
-    font-size: 14px;
-    color: #666;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
     margin-left: 30px;
     padding-left: 0;
     margin-top: 5px;
     margin-bottom: 10px;
     line-height: 1.5;
+}
+
+.feature-desc .desc-icon {
+    color: #4a90e2;
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.feature-desc .desc-text {
+    flex: 1;
+    font-size: 14px;
+    color: #666;
 }
 
 .feature-desc::before {
