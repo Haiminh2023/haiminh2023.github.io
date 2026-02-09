@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260216">
+<link rel="stylesheet" href="../css/style.css?v=20260217">
 <link rel="stylesheet" href="../css/features.css?v=20260217">
 </head>
 <body>
@@ -196,6 +196,13 @@
     </section>
 </main>
 
+<!-- NÚT BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+    </svg>
+</button>
+
 <!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
 
@@ -208,6 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         const sidebarCards = document.querySelectorAll('.sidebar-card');
         const featureSections = document.querySelectorAll('.feature-detail-section');
+        const backToTopBtn = document.getElementById('backToTop');
         
         // Hàm cuộn đến section
         function scrollToSection(sectionId) {
@@ -241,30 +249,41 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Intersection Observer để highlight thẻ khi cuộn
+        // CẢI THIỆN: Intersection Observer để highlight thẻ khi cuộn
         if (featureSections.length > 0) {
             const observer = new IntersectionObserver((entries) => {
-                let currentActive = null;
-                
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const id = entry.target.id;
-                        currentActive = id;
+                        
+                        // Cập nhật active class cho sidebar card
+                        sidebarCards.forEach(card => {
+                            card.classList.remove('active');
+                            if (card.getAttribute('data-target') === id) {
+                                card.classList.add('active');
+                                
+                                // Cuộn sidebar để thẻ active luôn hiển thị
+                                const sidebar = document.querySelector('.features-sidebar');
+                                if (sidebar) {
+                                    const cardRect = card.getBoundingClientRect();
+                                    const sidebarRect = sidebar.getBoundingClientRect();
+                                    
+                                    // Nếu thẻ không nằm trong viewport của sidebar
+                                    if (cardRect.top < sidebarRect.top || cardRect.bottom > sidebarRect.bottom) {
+                                        card.scrollIntoView({ 
+                                            behavior: 'smooth', 
+                                            block: 'center',
+                                            inline: 'nearest'
+                                        });
+                                    }
+                                }
+                            }
+                        });
                     }
                 });
-                
-                // Nếu có section đang active, highlight thẻ tương ứng
-                if (currentActive) {
-                    sidebarCards.forEach(card => {
-                        card.classList.remove('active');
-                        if (card.getAttribute('data-target') === currentActive) {
-                            card.classList.add('active');
-                        }
-                    });
-                }
             }, {
                 root: null,
-                rootMargin: '-20% 0px -70% 0px', // Điều chỉnh để highlight chính xác hơn
+                rootMargin: '-10% 0px -70% 0px', // Điều chỉnh để highlight sớm hơn
                 threshold: 0.2
             });
             
@@ -305,6 +324,69 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+        });
+        
+        // XỬ LÝ NÚT BACK TO TOP
+        if (backToTopBtn) {
+            // Hiển thị/ẩn nút khi cuộn
+            function toggleBackToTopButton() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                // Hiện nút khi cuộn xuống ít nhất 1 trang (khoảng 80% chiều cao màn hình)
+                if (scrollPosition > windowHeight * 0.8) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            }
+            
+            // Sự kiện click nút back to top
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Thêm sự kiện scroll
+            window.addEventListener('scroll', toggleBackToTopButton);
+            
+            // Kiểm tra ban đầu
+            toggleBackToTopButton();
+        }
+        
+        // Thêm sự kiện scroll để highlight chính xác hơn
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                // Tìm section nào đang gần nhất với top của viewport
+                const scrollPosition = window.scrollY + 150; // Offset để highlight sớm hơn
+                
+                let closestSection = null;
+                let closestDistance = Infinity;
+                
+                featureSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const distance = Math.abs(sectionTop - scrollPosition);
+                    
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestSection = section;
+                    }
+                });
+                
+                if (closestSection) {
+                    const id = closestSection.id;
+                    sidebarCards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.getAttribute('data-target') === id) {
+                            card.classList.add('active');
+                        }
+                    });
+                }
+            }, 100);
         });
         
     }, 500); // Delay để include.js chạy xong
