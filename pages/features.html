@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260216">
-<link rel="stylesheet" href="../css/features.css?v=20260218">
+<link rel="stylesheet" href="../css/style.css?v=20260215">
+<link rel="stylesheet" href="features-style.css?v=20260216">
 </head>
 <body>
 
@@ -200,83 +200,115 @@
 <div id="footer-placeholder"></div>
 
 <!-- Load include.js với đường dẫn tương đối -->
-<script src="../js/include.js?v=20260217"></script>
+<script src="../js/include.js?v=20260216"></script>
 
-<!-- Script riêng cho features -->
 <script>
-// Đợi include.js load xong
-setTimeout(function() {
-    const sidebarCards = document.querySelectorAll('.sidebar-card');
-    const featureSections = document.querySelectorAll('.feature-detail-section');
-    
-    // Hàm cuộn đến section
-    function scrollToSection(sectionId) {
-        const targetSection = document.getElementById(sectionId);
-        if (!targetSection) return;
+document.addEventListener('DOMContentLoaded', function() {
+    // Đợi include.js load xong
+    setTimeout(function() {
+        const sidebarCards = document.querySelectorAll('.sidebar-card');
+        const featureSections = document.querySelectorAll('.feature-detail-section');
         
-        const header = document.querySelector('.navbar');
-        const offset = header ? header.offsetHeight + 40 : 100;
-        const targetPosition = targetSection.offsetTop - offset;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    }
-    
-    // Xử lý click vào thẻ sidebar
-    if (sidebarCards.length > 0) {
-        sidebarCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('data-target');
-                
-                sidebarCards.forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                scrollToSection(targetId);
+        // Hàm cuộn đến section
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (!targetSection) return;
+            
+            const header = document.querySelector('.navbar');
+            const offset = header ? header.offsetHeight + 40 : 100;
+            const targetPosition = targetSection.offsetTop - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
-        });
-    }
-    
-    // Intersection Observer để highlight thẻ khi cuộn
-    if (featureSections.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
+            
+            // Cập nhật URL với hash
+            history.pushState(null, null, `#${sectionId}`);
+        }
+        
+        // Xử lý click vào thẻ sidebar
+        if (sidebarCards.length > 0) {
+            sidebarCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    
+                    sidebarCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    scrollToSection(targetId);
+                });
+            });
+        }
+        
+        // Intersection Observer để highlight thẻ khi cuộn
+        if (featureSections.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                let currentActive = null;
+                
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        currentActive = id;
+                    }
+                });
+                
+                // Nếu có section đang active, highlight thẻ tương ứng
+                if (currentActive) {
                     sidebarCards.forEach(card => {
                         card.classList.remove('active');
-                        if (card.getAttribute('data-target') === id) {
+                        if (card.getAttribute('data-target') === currentActive) {
                             card.classList.add('active');
                         }
                     });
                 }
+            }, {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px', // Điều chỉnh để highlight chính xác hơn
+                threshold: 0.2
             });
-        }, {
-            root: null,
-            rootMargin: '-20% 0px -60% 0px',
-            threshold: 0.1
+            
+            featureSections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Xử lý hash trong URL khi load trang
+        function handleInitialHash() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                setTimeout(() => {
+                    scrollToSection(hash);
+                    
+                    // Highlight thẻ tương ứng
+                    sidebarCards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.getAttribute('data-target') === hash) {
+                            card.classList.add('active');
+                        }
+                    });
+                }, 1000); // Đợi trang load hoàn toàn
+            }
+        }
+        
+        // Gọi hàm xử lý hash
+        handleInitialHash();
+        
+        // Lắng nghe sự kiện hashchange
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                sidebarCards.forEach(card => {
+                    card.classList.remove('active');
+                    if (card.getAttribute('data-target') === hash) {
+                        card.classList.add('active');
+                    }
+                });
+            }
         });
         
-        featureSections.forEach(section => {
-            observer.observe(section);
-        });
-    }
-    
-    // Xử lý hash trong URL
-    if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        setTimeout(() => {
-            scrollToSection(hash);
-            sidebarCards.forEach(card => {
-                card.classList.remove('active');
-                if (card.getAttribute('data-target') === hash) {
-                    card.classList.add('active');
-                }
-            });
-        }, 800);
-    }
-}, 500); // Delay để include.js chạy xong
+    }, 500); // Delay để include.js chạy xong
+});
 </script>
 
 </body>
