@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260218">
-<link rel="stylesheet" href="../css/version.css?v=20260218">
+<link rel="stylesheet" href="../css/style.css?v=20260215">
+<link rel="stylesheet" href="version-style.css?v=20260217">
 </head>
 <body>
 
@@ -26,16 +26,20 @@
                 
                 <div class="version-cards">
                     <!-- Các thẻ phiên bản sẽ được JS tự động tạo -->
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Đang tải dữ liệu phiên bản...</p>
+                    </div>
                 </div>
                 
                 <div class="sidebar-footer">
-                    <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản cũ hơn">
+                    <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản cũ hơn" disabled>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m15 18-6-6 6-6"/>
                         </svg>
                         <span>Cũ hơn</span>
                     </button>
-                    <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản mới hơn">
+                    <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản mới hơn" disabled>
                         <span>Mới hơn</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m9 18 6-6-6-6"/>
@@ -47,11 +51,19 @@
             <!-- CỘT PHẢI: CHI TIẾT CẬP NHẬT -->
             <div class="versions-content">
                 <!-- Banner phiên bản mới nhất -->
-                <div id="latestVersionBanner" class="latest-version-banner"></div>
+                <div id="latestVersionBanner" class="latest-version-banner">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Đang tải thông tin phiên bản mới nhất...</p>
+                    </div>
+                </div>
                 
                 <!-- Danh sách chi tiết phiên bản -->
                 <div class="version-details">
-                    <!-- Các phiên bản chi tiết sẽ được JS tự động tạo -->
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Đang tải chi tiết phiên bản...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,10 +83,7 @@
 <!-- Load include.js -->
 <script src="../js/include.js?v=20260216"></script>
 
-<!-- File JSON riêng biệt để dễ quản lý -->
-<script src="../json/version.json?v=20260218"></script>
-
-<!-- Script chính -->
+<!-- Script chính - Sử dụng fetch() để load JSON -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Đợi include.js load xong
@@ -90,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const latestVersionBanner = document.getElementById('latestVersionBanner');
         const prevBtn = document.getElementById('prevVersions');
         const nextBtn = document.getElementById('nextVersions');
+        const backToTopBtn = document.getElementById('backToTop');
         
         // Hàm định dạng version number
         function formatVersionNumber(version) {
@@ -182,10 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const startIndex = currentVersionIndex;
             const endIndex = Math.min(startIndex + VERSIONS_PER_PAGE, allVersions.length);
             
-            // Xác định phiên bản đang active (phiên bản đầu tiên trong danh sách hiện tại)
-            const activeVersion = allVersions[startIndex];
-            const activeVersionId = activeVersion ? activeVersion.version : '';
-            
             // Tạo HTML cho các thẻ
             let cardsHTML = '';
             for (let i = startIndex; i < endIndex; i++) {
@@ -274,15 +280,52 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
+        // Hàm xử lý back to top
+        function initBackToTop() {
+            if (backToTopBtn) {
+                function toggleBackToTopButton() {
+                    const scrollPosition = window.scrollY;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPosition > windowHeight * 0.8) {
+                        backToTopBtn.classList.add('visible');
+                    } else {
+                        backToTopBtn.classList.remove('visible');
+                    }
+                }
+                
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                window.addEventListener('scroll', toggleBackToTopButton);
+                toggleBackToTopButton();
+            }
+        }
+        
         // Hàm khởi tạo
-        function init() {
-            // Kiểm tra dữ liệu từ versionData
-            if (typeof versionData !== 'undefined' && versionData.versions) {
+        async function init() {
+            try {
+                // Load dữ liệu từ JSON file
+                const response = await fetch('../json/version.json?v=' + Date.now());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const versionData = await response.json();
+                
+                if (!versionData.versions || !Array.isArray(versionData.versions)) {
+                    throw new Error('Dữ liệu JSON không đúng định dạng');
+                }
+                
                 allVersions = versionData.versions;
                 
                 // Đảm bảo sắp xếp từ mới đến cũ
                 allVersions.sort((a, b) => {
-                    // Sắp xếp theo version number, phiên bản mới nhất trước
                     const verA = a.version.split('.').map(Number);
                     const verB = b.version.split('.').map(Number);
                     
@@ -331,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Xử lý hash URL khi load
                 if (window.location.hash) {
-                    const hash = window.location.hash.substring(1); // Bỏ dấu #
+                    const hash = window.location.hash.substring(1);
                     const versionMatch = hash.match(/version-(.+)/);
                     
                     if (versionMatch) {
@@ -360,38 +403,52 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 }
-            } else {
-                console.error('Không tìm thấy dữ liệu phiên bản!');
+                
+                // Khởi tạo back to top button
+                initBackToTop();
+                
+                // Xử lý click vào banner button
+                document.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('banner-button')) {
+                        e.preventDefault();
+                        const targetId = e.target.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            const header = document.querySelector('.navbar');
+                            const offset = header ? header.offsetHeight + 40 : 100;
+                            const targetPosition = targetElement.offsetTop - offset;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu phiên bản:', error);
+                
+                // Hiển thị thông báo lỗi
+                const errorHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Không thể tải dữ liệu phiên bản</h3>
+                        <p>Đã xảy ra lỗi khi tải thông tin phiên bản. Vui lòng thử lại sau.</p>
+                        <p class="error-detail">Chi tiết: ${error.message}</p>
+                        <button onclick="location.reload()" class="retry-button">Thử lại</button>
+                    </div>
+                `;
+                
+                if (versionCardsContainer) versionCardsContainer.innerHTML = errorHTML;
+                if (latestVersionBanner) latestVersionBanner.innerHTML = errorHTML;
+                if (versionDetailsContainer) versionDetailsContainer.innerHTML = errorHTML;
             }
         }
         
         // Khởi tạo
         init();
-        
-        // XỬ LÝ NÚT BACK TO TOP
-        const backToTopBtn = document.getElementById('backToTop');
-        if (backToTopBtn) {
-            function toggleBackToTopButton() {
-                const scrollPosition = window.scrollY;
-                const windowHeight = window.innerHeight;
-                
-                if (scrollPosition > windowHeight * 0.8) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            }
-            
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            window.addEventListener('scroll', toggleBackToTopButton);
-            toggleBackToTopButton();
-        }
         
     }, 500);
 });
