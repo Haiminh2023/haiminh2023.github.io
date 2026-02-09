@@ -154,27 +154,6 @@
           "description": "Quản lý cache hình ảnh thông minh, tiết kiệm bộ nhớ"
         }
       ]
-    },
-    {
-      "version": "1.0.17",
-      "date": "Tháng 7, 2023",
-      "isLatest": false,
-      "title": "Thêm nguồn báo mới",
-      "description": "Mở rộng danh sách nguồn báo RSS",
-      "features": [
-        {
-          "title": "Thêm 3 nguồn báo mới",
-          "description": "Bổ sung các báo điện tử uy tín vào danh sách"
-        },
-        {
-          "title": "Cải thiện tốc độ tải RSS",
-          "description": "Tải nội dung RSS nhanh hơn 50%"
-        },
-        {
-          "title": "Thêm tính năng làm mới thủ công",
-          "description": "Kéo xuống để làm mới danh sách tin tức"
-        }
-      ]
     }
   ]
 }
