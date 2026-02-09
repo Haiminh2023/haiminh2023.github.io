@@ -1,17 +1,50 @@
 {
-  "version": "1.0.25",                    // Số phiên bản mới
-  "date": "Tháng 3, 2024",                // Thời gian phát hành
-  "isLatest": true,                       // Đánh dấu là phiên bản mới nhất
-  "title": "Tiêu đề cập nhật mới",        // Tiêu đề phiên bản
-  "description": "Mô tả ngắn về phiên bản", // Mô tả ngắn
-  "features": [                           // Danh sách tính năng mới
+  "versions": [
     {
-      "title": "Tính năng 1",
-      "description": "Mô tả chi tiết tính năng 1"
+      "version": "0.3.2",
+      "date": "2026-02-05",
+      "changes": [
+        "Cải thiện hiệu năng",
+        "Fix crash khi load ảnh",
+        "Tối ưu giao diện lưới"
+      ]
     },
     {
-      "title": "Tính năng 2", 
-      "description": "Mô tả chi tiết tính năng 2"
+      "version": "0.3.1",
+      "date": "2026-01-28",
+      "changes": [
+        "Thêm tìm kiếm nội dung",
+        "Cải thiện ReaderUI"
+      ]
+    },
+    {
+      "version": "0.3.0",
+      "date": "2026-01-20",
+      "changes": [
+        "Thiết kế lại giao diện đọc",
+        "Thêm thumbnail bài viết"
+      ]
+    },
+    {
+      "version": "0.2.9",
+      "date": "2026-01-10",
+      "changes": [
+        "Fix lỗi đồng bộ dữ liệu"
+      ]
+    },
+    {
+      "version": "0.2.8",
+      "date": "2026-01-02",
+      "changes": [
+        "Tối ưu bộ nhớ"
+      ]
+    },
+    {
+      "version": "0.2.7",
+      "date": "2025-12-25",
+      "changes": [
+        "Cải thiện tốc độ khởi động"
+      ]
     }
   ]
 }
