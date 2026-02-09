@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260301">
-<link rel="stylesheet" href="../css/version.css?v=20260301">
+<link rel="stylesheet" href="../css/style.css?v=20260310">
+<link rel="stylesheet" href="../css/version.css?v=20260310">
 </head>
 <body>
 
@@ -33,14 +33,14 @@
                 
                 <div class="sidebar-footer">
                     <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản mới hơn" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m15 18-6-6 6-6"/>
                         </svg>
                         <span>Mới hơn</span>
                     </button>
                     <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản cũ hơn" disabled>
                         <span>Cũ hơn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m9 18 6-6-6-6"/>
                         </svg>
                     </button>
@@ -71,7 +71,7 @@
 
 <!-- NÚT BACK TO TOP -->
 <button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="m18 15-6-6-6 6"/>
     </svg>
 </button>
@@ -106,11 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="version-card ${isActive ? 'active' : ''}" 
                      data-index="${index}" 
                      data-version="${version.version}">
+                    <div class="version-card-icon">📱</div>
                     <div class="version-card-content">
-                        <div class="version-card-title-row">
-                            <h3 class="version-card-title">${formatVersionNumber(version.version)}</h3>
-                            <span class="version-card-date">${version.date}</span>
-                        </div>
+                        <h3 class="version-card-title">${formatVersionNumber(version.version)}</h3>
+                        <p class="version-card-date">${version.date}</p>
                         ${version.isLatest ? '<span class="version-badge">Mới nhất</span>' : ''}
                     </div>
                 </div>
@@ -121,19 +120,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let featuresContent = '';
             if (version.features && version.features.length > 0) {
                 featuresContent = `
-                    <div class="features-content">
-                        <div class="features-title">Cập nhật chi tiết:</div>
-                        <div class="features-list">
+                    <div class="feature-highlights">
+                        <h4>Cập nhật chi tiết</h4>
+                        <ul>
                             ${version.features.map(feature => `
-                                <div class="feature-line">
-                                    <span class="feature-check">✓</span>
-                                    <span class="feature-text">
-                                        <span class="feature-title-text">${feature.title}</span>
-                                        ${feature.description ? `<span class="feature-desc">${feature.description}</span>` : ''}
-                                    </span>
-                                </div>
+                                <li>
+                                    ${feature.title}
+                                    ${feature.description ? `<span class="feature-desc">${feature.description}</span>` : ''}
+                                </li>
                             `).join('')}
-                        </div>
+                        </ul>
                     </div>
                 `;
             }
@@ -141,17 +137,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return `
                 <section class="version-detail-section" id="version-${version.version}">
                     <div class="version-detail-header">
-                        <div class="version-header-left">
-                            <div class="version-title-row">
-                                <h2 class="version-detail-title">${formatVersionNumber(version.version)}</h2>
-                                <span class="version-detail-date">${version.date}</span>
-                            </div>
+                        <h2 class="version-detail-title">${formatVersionNumber(version.version)}</h2>
+                        <div class="version-detail-subtitle">
+                            <span class="version-date">${version.date}</span>
                             ${version.isLatest ? '<span class="latest-badge">Phiên bản mới nhất</span>' : ''}
                         </div>
                     </div>
                     
-                    <div class="version-detail-body">
-                        <div class="version-intro">
+                    <div class="version-content-wrapper">
+                        <div class="version-description">
                             <h3 class="version-intro-title">${version.title}</h3>
                             <p class="version-intro-text">${version.description}</p>
                         </div>
@@ -208,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.getElementById(`version-${versionId}`);
             if (targetSection) {
                 const header = document.querySelector('.navbar');
-                const offset = header ? header.offsetHeight + 20 : 60;
+                const offset = header ? header.offsetHeight + 40 : 100;
                 const targetPosition = targetSection.offsetTop - offset;
                 
                 window.scrollTo({
@@ -229,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function handleScroll() {
-            const scrollPosition = window.scrollY + 100;
+            const scrollPosition = window.scrollY + 150;
             let currentActiveIndex = 0;
             
             for (let i = 0; i < allVersions.length; i++) {
