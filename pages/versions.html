@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         let allVersions = [];
         let currentVersionIndex = 0;
-        const VERSIONS_PER_PAGE = 4; // Hiển thị 4 thẻ (1 mới nhất + 3 thẻ thường)
+        const VERSIONS_PER_PAGE = 3; // Hiển thị 4 thẻ (1 mới nhất + 3 thẻ thường)
         
         const sidebarCardsContainer = document.querySelector('.sidebar-cards');
         const versionDetailsContainer = document.querySelector('.version-details');
@@ -130,9 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             ${version.features.map(feature => `
                                 <li>${feature.title}</li>
                                 ${feature.description ? `
-                                    <li class="feature-desc">
-                                        <span class="desc-icon">•</span>
-                                        <span class="desc-text">${feature.description}</span>
+                                    <li class="feature-sub">
+                                        <span class="sub-bullet">-</span>
+                                        <span>${feature.description}</span>
                                     </li>
                                 ` : ''}
                             `).join('')}
