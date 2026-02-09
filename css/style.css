@@ -29,8 +29,6 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 70px; /* Chiều cao cố định cho desktop */
-    min-height: 70px;
 
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
@@ -40,11 +38,11 @@ body {
 .nav-inner {
     max-width: 1200px;
     margin: auto;
-    padding: 15px 20px;
+    padding: 14px 20px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
 }
 
 /* ================= HEADER IMPROVEMENTS ================= */
