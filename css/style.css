@@ -260,13 +260,13 @@ body {
 
 /* ================= FOOTER ================= */
 .footer {
-    background: #4a90e2; /* Xanh da trời đậm hơn */
-    color: #ffffff; /* Chữ trắng để nổi bật trên nền đậm */
+    background: #4a90e2;
+    color: #ffffff;
     text-align: center;
-    padding: 15px 20px; /* Giảm padding để chiều cao thấp xuống */
+    padding: 8px 20px; /* Giảm thêm padding */
     font-size: 13px;
     font-weight: 500;
-    min-height: 60px; /* Giới hạn chiều cao tối thiểu */
+    min-height: 40px; /* Giảm chiều cao tối thiểu */
     display: flex;
     align-items: center;
     justify-content: center;
