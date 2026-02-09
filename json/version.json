@@ -1,0 +1,17 @@
+{
+  "version": "1.0.25",                    // Số phiên bản mới
+  "date": "Tháng 3, 2024",                // Thời gian phát hành
+  "isLatest": true,                       // Đánh dấu là phiên bản mới nhất
+  "title": "Tiêu đề cập nhật mới",        // Tiêu đề phiên bản
+  "description": "Mô tả ngắn về phiên bản", // Mô tả ngắn
+  "features": [                           // Danh sách tính năng mới
+    {
+      "title": "Tính năng 1",
+      "description": "Mô tả chi tiết tính năng 1"
+    },
+    {
+      "title": "Tính năng 2", 
+      "description": "Mô tả chi tiết tính năng 2"
+    }
+  ]
+}
