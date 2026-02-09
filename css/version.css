@@ -393,11 +393,12 @@
 }
 
 /* THAY DẤU LIỆT KÊ BẰNG GẠCH ĐẦU DÒNG - THAY ĐỔI Ở ĐÂY */
+/* THAY DẤU LIỆT KÊ BẰNG TÍCH XANH CHO DÒNG CHÍNH */
 .feature-highlights li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 8px; /* Điều chỉnh vị trí */
+    top: 8px;
     width: 6px;
     height: 6px;
     background-color: #4a90e2;
@@ -410,28 +411,48 @@
     margin-bottom: 8px;
 }
 
+/* TÍCH XANH CHO DÒNG CHÍNH */
 .feature-highlights li.feature-main::before {
-    width: 8px;
-    height: 8px;
-    top: 9px;
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
     background-color: #2ecc71;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
 }
 
+/* CHẤM TRÒN NHỎ CHO DÒNG PHỤ */
 .feature-sub {
-    margin-left: 20px; /* Giảm margin từ 30px xuống 20px */
+    margin-left: 25px; /* Tăng margin để cân đối với tích xanh lớn */
     padding-left: 0;
     margin-top: 5px;
     margin-bottom: 10px;
     line-height: 1.5;
     color: #666;
     font-size: 14px;
+    position: relative;
+}
+
+.feature-sub::before {
+    content: '•';
+    position: absolute;
+    left: -15px;
+    top: 0;
+    color: #4a90e2;
+    font-size: 20px;
 }
 
 .feature-sub .sub-bullet {
-    color: #4a90e2;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 6px;
+    display: none; /* Ẩn dấu gạch đầu dòng cũ */
 }
 
 .feature-desc {
