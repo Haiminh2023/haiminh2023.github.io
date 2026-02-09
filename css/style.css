@@ -19,7 +19,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    padding-top: 80px; /* FIX: Ngăn header che nội dung */
+    padding-top: 60px; /* FIX: Ngăn header che nội dung */
 }
 
 /* ================= HEADER (LUÔN NỔI) ================= */
@@ -125,7 +125,7 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 40px; /* Giảm vì body đã có padding-top */
+    padding-top: 20px; /* Giảm vì body đã có padding-top */
     padding-bottom: 80px;
 }
 
@@ -301,7 +301,7 @@ body {
 /* Tablet */
 @media (max-width: 1024px) {
     body {
-        padding-top: 90px; /* Tăng cho tablet */
+        padding-top: 70px; /* Tăng cho tablet */
     }
     
     .navbar {
@@ -364,7 +364,7 @@ body {
 /* Mobile Portrait */
 @media (max-width: 768px) {
     body {
-        padding-top: 120px; /* Tăng đáng kể cho mobile */
+        padding-top: 100px; /* Tăng đáng kể cho mobile */
     }
     
     .navbar {
@@ -428,7 +428,7 @@ body {
 /* Small Mobile */
 @media (max-width: 600px) {
     body {
-        padding-top: 140px; /* Tăng thêm cho màn hình nhỏ */
+        padding-top: 120px; /* Tăng thêm cho màn hình nhỏ */
     }
     
     .logo-section {
@@ -460,7 +460,7 @@ body {
 /* Extra Small Mobile */
 @media (max-width: 480px) {
     body {
-        padding-top: 150px; /* Đảm bảo không bị che */
+        padding-top: 130px; /* Đảm bảo không bị che */
     }
     
     .nav-inner {
@@ -510,7 +510,7 @@ body {
 /* Very Small Mobile */
 @media (max-width: 360px) {
     body {
-        padding-top: 160px;
+        padding-top: 140px;
     }
     
     .nav-menu a {
