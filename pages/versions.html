@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260215">
+<link rel="stylesheet" href="../css/style.css?v=20260218">
 <link rel="stylesheet" href="../css/version.css?v=20260218">
 </head>
 <body>
@@ -17,38 +17,7 @@
 <main class="page">
     <section class="page-inner">
         <div class="versions-container">
-            <!-- CỘT TRÁI: CÁC THẺ PHIÊN BẢN -->
-            <div class="versions-sidebar">
-                <div class="sidebar-header">
-                    <h1>Phiên bản</h1>
-                    <p class="sidebar-subtitle">Lịch sử cập nhật</p>
-                </div>
-                
-                <div class="version-cards">
-                    <!-- Các thẻ phiên bản sẽ được JS tự động tạo -->
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Đang tải dữ liệu phiên bản...</p>
-                    </div>
-                </div>
-                
-                <div class="sidebar-footer">
-                    <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản cũ hơn" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m15 18-6-6 6-6"/>
-                        </svg>
-                        <span>Cũ hơn</span>
-                    </button>
-                    <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản mới hơn" disabled>
-                        <span>Mới hơn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- CỘT PHẢI: CHI TIẾT CẬP NHẬT -->
+            <!-- CỘT TRÁI: NỘI DUNG CHI TIẾT UPDATE -->
             <div class="versions-content">
                 <!-- Banner phiên bản mới nhất -->
                 <div id="latestVersionBanner" class="latest-version-banner">
@@ -64,6 +33,37 @@
                         <div class="loading-spinner"></div>
                         <p>Đang tải chi tiết phiên bản...</p>
                     </div>
+                </div>
+            </div>
+            
+            <!-- CỘT PHẢI: CÁC THẺ PHIÊN BẢN -->
+            <div class="versions-sidebar">
+                <div class="sidebar-header">
+                    <h1>Phiên bản</h1>
+                    <p class="sidebar-subtitle">Lịch sử cập nhật</p>
+                </div>
+                
+                <div class="version-cards">
+                    <!-- Các thẻ phiên bản sẽ được JS tự động tạo -->
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Đang tải dữ liệu phiên bản...</p>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản mới hơn" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Mới hơn</span>
+                    </button>
+                    <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản cũ hơn" disabled>
+                        <span>Cũ hơn</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -91,14 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Biến toàn cục
         let allVersions = [];
         let currentVersionIndex = 0;
-        const VERSIONS_PER_PAGE = 4;
+        const VERSIONS_PER_PAGE = 6; // Tăng số thẻ hiển thị lên 6
         
         // Các phần tử DOM
         const versionCardsContainer = document.querySelector('.version-cards');
         const versionDetailsContainer = document.querySelector('.version-details');
         const latestVersionBanner = document.getElementById('latestVersionBanner');
-        const prevBtn = document.getElementById('prevVersions');
-        const nextBtn = document.getElementById('nextVersions');
+        const prevBtn = document.getElementById('prevVersions'); // Nút "Mới hơn"
+        const nextBtn = document.getElementById('nextVersions'); // Nút "Cũ hơn"
         const backToTopBtn = document.getElementById('backToTop');
         
         // Hàm định dạng version number
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return version.startsWith('v') ? version : `v${version}`;
         }
         
-        // Hàm tạo thẻ phiên bản
+        // Hàm tạo thẻ phiên bản (GIẢM CHIỀU CAO)
         function createVersionCard(version, index, isActive = false) {
             return `
                 <div class="version-card ${isActive ? 'active' : ''}" 
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
         
-        // Hàm tạo chi tiết phiên bản
+        // Hàm tạo chi tiết phiên bản (GIẢM CHIỀU CAO CÁC PHẦN)
         function createVersionDetail(version, index) {
             const featuresHTML = version.features.map(feature => `
                 <div class="feature-item">
@@ -157,11 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="feature-list">
                             ${featuresHTML}
                         </div>
-                        
-                        <div class="update-tip">
-                            <span class="tip-icon">💡</span>
-                            <span class="tip-text">Cập nhật ngay để trải nghiệm những cải tiến mới nhất</span>
-                        </div>
                     </div>
                 </section>
             `;
@@ -187,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
         
-        // Hàm cập nhật hiển thị thẻ bên trái
+        // Hàm cập nhật hiển thị thẻ bên phải
         function updateVersionCards() {
             const startIndex = currentVersionIndex;
             const endIndex = Math.min(startIndex + VERSIONS_PER_PAGE, allVersions.length);
@@ -203,7 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
             versionCardsContainer.innerHTML = cardsHTML;
             
             // Cập nhật trạng thái nút điều hướng
+            // "Mới hơn" (prevBtn): đi đến phiên bản mới hơn (số index nhỏ hơn)
             prevBtn.disabled = currentVersionIndex === 0;
+            
+            // "Cũ hơn" (nextBtn): đi đến phiên bản cũ hơn (số index lớn hơn)
             nextBtn.disabled = endIndex >= allVersions.length;
             
             // Thêm sự kiện click cho các thẻ
@@ -246,9 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
             versionDetailsContainer.innerHTML = detailsHTML;
         }
         
-        // Hàm xử lý cuộn để cập nhật thẻ bên trái
+        // Hàm xử lý cuộn để cập nhật thẻ bên phải
         function handleScroll() {
-            const scrollPosition = window.scrollY + 200; // Offset để update sớm hơn
+            const scrollPosition = window.scrollY + 150; // Offset để update sớm hơn
             let currentActiveIndex = 0;
             
             // Tìm phiên bản nào đang hiển thị gần nhất
@@ -333,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const numA = verA[i] || 0;
                         const numB = verB[i] || 0;
                         if (numB !== numA) {
-                            return numB - numA;
+                            return numB - numA; // Mới nhất trước
                         }
                     }
                     return 0;
@@ -356,8 +354,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Xử lý sự kiện cuộn
                 window.addEventListener('scroll', handleScroll);
                 
-                // Xử lý nút điều hướng
+                // Xử lý nút điều hướng - ĐÃ SỬA CHỨC NĂNG
                 prevBtn.addEventListener('click', function() {
+                    // "Mới hơn" - đi lên phiên bản mới hơn (số index nhỏ hơn)
                     if (currentVersionIndex > 0) {
                         currentVersionIndex -= VERSIONS_PER_PAGE;
                         if (currentVersionIndex < 0) currentVersionIndex = 0;
@@ -366,6 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 nextBtn.addEventListener('click', function() {
+                    // "Cũ hơn" - đi xuống phiên bản cũ hơn (số index lớn hơn)
                     if (currentVersionIndex + VERSIONS_PER_PAGE < allVersions.length) {
                         currentVersionIndex += VERSIONS_PER_PAGE;
                         updateVersionCards();
