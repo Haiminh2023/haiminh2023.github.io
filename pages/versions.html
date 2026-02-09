@@ -7,7 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css?v=20260215">
-<link rel="stylesheet" href="../css/version.css?v=20260311">
+<link rel="stylesheet" href="../css/version.css?v=20260312">
 </head>
 <body>
 
@@ -129,7 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <ul>
                             ${version.features.map(feature => `
                                 <li>${feature.title}</li>
-                                ${feature.description ? `<li class="feature-desc">${feature.description}</li>` : ''}
+                                ${feature.description ? `
+                                    <li class="feature-desc">
+                                        <span class="desc-icon">•</span>
+                                        <span class="desc-text">${feature.description}</span>
+                                    </li>
+                                ` : ''}
                             `).join('')}
                         </ul>
                     </div>
