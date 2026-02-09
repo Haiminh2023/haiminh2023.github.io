@@ -1,49 +1,179 @@
 {
   "versions": [
     {
-      "version": "0.3.2",
-      "date": "2026-02-05",
-      "changes": [
-        "Cải thiện hiệu năng",
-        "Fix crash khi load ảnh",
-        "Tối ưu giao diện lưới"
+      "version": "1.0.24",
+      "date": "Tháng 2, 2024",
+      "isLatest": true,
+      "title": "Giao diện đọc báo hoàn toàn mới",
+      "description": "Trải nghiệm đọc báo mượt mà và trực quan hơn với thiết kế được tối ưu cho màn hình e-ink",
+      "features": [
+        {
+          "title": "Danh sách bài viết có ảnh thumbnail sinh động",
+          "description": "Mỗi bài báo hiển thị hình ảnh thumbnail rõ nét, giúp dễ dàng nhận diện và chọn bài viết muốn đọc"
+        },
+        {
+          "title": "Bố cục bài viết sạch sẽ, rõ ràng, dễ đọc",
+          "description": "Thiết kế tối giản, loại bỏ mọi yếu tố gây nhiễu, tập trung vào nội dung chính"
+        },
+        {
+          "title": "Tìm kiếm nội dung tin tức nhanh và tiện lợi",
+          "description": "Tìm kiếm thông minh theo từ khóa, lọc kết quả chính xác trong toàn bộ nội dung tin tức"
+        },
+        {
+          "title": "Chức năng yêu thích - Thêm danh mục vào mục yêu thích",
+          "description": "Menu → Nguồn web → chọn báo → hiện danh mục → Nhấn giữ danh mục để thêm vào danh mục yêu thích. Có thể chọn nhiều danh mục"
+        }
       ]
     },
     {
-      "version": "0.3.1",
-      "date": "2026-01-28",
-      "changes": [
-        "Thêm tìm kiếm nội dung",
-        "Cải thiện ReaderUI"
+      "version": "1.0.23",
+      "date": "Tháng 1, 2024",
+      "isLatest": false,
+      "title": "Cải thiện đồng bộ hóa và tốc độ",
+      "description": "Tối ưu hóa hiệu suất và cải thiện trải nghiệm đồng bộ đa thiết bị",
+      "features": [
+        {
+          "title": "Đồng bộ lịch sử đọc nhanh hơn 50%",
+          "description": "Tốc độ đồng bộ dữ liệu giữa các thiết bị được cải thiện đáng kể"
+        },
+        {
+          "title": "Tải truyện nhanh hơn",
+          "description": "Tối ưu hóa bộ nhớ cache, giảm thời gian tải truyện khi chuyển chương"
+        },
+        {
+          "title": "Sửa lỗi hiển thị trên một số thiết bị e-ink",
+          "description": "Khắc phục vấn đề hiển thị trên các dòng máy Kindle, Kobo"
+        }
       ]
     },
     {
-      "version": "0.3.0",
-      "date": "2026-01-20",
-      "changes": [
-        "Thiết kế lại giao diện đọc",
-        "Thêm thumbnail bài viết"
+      "version": "1.0.22",
+      "date": "Tháng 12, 2023",
+      "isLatest": false,
+      "title": "Thêm nguồn truyện mới và cải thiện UI",
+      "description": "Mở rộng kho truyện và cải thiện giao diện người dùng",
+      "features": [
+        {
+          "title": "Thêm 5 nguồn truyện mới",
+          "description": "Bổ sung các trang truyện chất lượng cao với đa dạng thể loại"
+        },
+        {
+          "title": "Cải thiện giao diện danh sách truyện",
+          "description": "Thiết kế mới cho danh sách truyện với hình ảnh thumbnail đẹp hơn"
+        },
+        {
+          "title": "Tùy chỉnh font chữ và kích thước chữ",
+          "description": "Thêm nhiều tùy chọn font chữ và kích thước cho việc đọc"
+        },
+        {
+          "title": "Tối ưu hóa cho màn hình e-ink",
+          "description": "Cải thiện độ tương phản và hiển thị trên màn hình e-ink"
+        }
       ]
     },
     {
-      "version": "0.2.9",
-      "date": "2026-01-10",
-      "changes": [
-        "Fix lỗi đồng bộ dữ liệu"
+      "version": "1.0.21",
+      "date": "Tháng 11, 2023",
+      "isLatest": false,
+      "title": "Tính năng chia sẻ và bảo mật",
+      "description": "Thêm tính năng chia sẻ và cải thiện bảo mật",
+      "features": [
+        {
+          "title": "Chia sẻ truyện với bạn bè",
+          "description": "Tính năng chia sẻ link truyện qua các ứng dụng khác"
+        },
+        {
+          "title": "Cải thiện bảo mật đăng nhập",
+          "description": "Nâng cấp hệ thống xác thực và mã hóa dữ liệu"
+        },
+        {
+          "title": "Thêm tính năng sao lưu dữ liệu",
+          "description": "Tự động sao lưu lịch sử đọc và cài đặt"
+        }
       ]
     },
     {
-      "version": "0.2.8",
-      "date": "2026-01-02",
-      "changes": [
-        "Tối ưu bộ nhớ"
+      "version": "1.0.20",
+      "date": "Tháng 10, 2023",
+      "isLatest": false,
+      "title": "Cải thiện trải nghiệm đọc",
+      "description": "Tối ưu hóa trải nghiệm đọc và thêm tính năng mới",
+      "features": [
+        {
+          "title": "Thêm chế độ đọc ban đêm",
+          "description": "Chế độ tối với ánh sáng dịu nhẹ, bảo vệ mắt"
+        },
+        {
+          "title": "Cải thiện chuyển trang mượt mà",
+          "description": "Hiệu ứng chuyển trang mượt mà, không giật lag"
+        },
+        {
+          "title": "Thêm tính năng đánh dấu trang",
+          "description": "Đánh dấu trang quan trọng để đọc lại sau"
+        }
       ]
     },
     {
-      "version": "0.2.7",
-      "date": "2025-12-25",
-      "changes": [
-        "Cải thiện tốc độ khởi động"
+      "version": "1.0.19",
+      "date": "Tháng 9, 2023",
+      "isLatest": false,
+      "title": "Hỗ trợ định dạng sách mới",
+      "description": "Thêm hỗ trợ cho nhiều định dạng sách điện tử",
+      "features": [
+        {
+          "title": "Hỗ trợ định dạng EPUB3",
+          "description": "Đọc sách định dạng EPUB3 với đầy đủ tính năng"
+        },
+        {
+          "title": "Cải thiện hỗ trợ PDF",
+          "description": "Đọc PDF với chất lượng tốt hơn, tối ưu cho màn hình e-ink"
+        },
+        {
+          "title": "Thêm hỗ trợ định dạng AZW",
+          "description": "Hỗ trợ đọc sách định dạng Kindle AZW"
+        }
+      ]
+    },
+    {
+      "version": "1.0.18",
+      "date": "Tháng 8, 2023",
+      "isLatest": false,
+      "title": "Tối ưu hóa bộ nhớ",
+      "description": "Giảm sử dụng bộ nhớ và cải thiện hiệu suất",
+      "features": [
+        {
+          "title": "Giảm 30% sử dụng RAM",
+          "description": "Tối ưu hóa bộ nhớ, giúp ứng dụng chạy mượt hơn"
+        },
+        {
+          "title": "Cải thiện thời gian khởi động",
+          "description": "Ứng dụng khởi động nhanh hơn 40%"
+        },
+        {
+          "title": "Tối ưu hóa cache hình ảnh",
+          "description": "Quản lý cache hình ảnh thông minh, tiết kiệm bộ nhớ"
+        }
+      ]
+    },
+    {
+      "version": "1.0.17",
+      "date": "Tháng 7, 2023",
+      "isLatest": false,
+      "title": "Thêm nguồn báo mới",
+      "description": "Mở rộng danh sách nguồn báo RSS",
+      "features": [
+        {
+          "title": "Thêm 3 nguồn báo mới",
+          "description": "Bổ sung các báo điện tử uy tín vào danh sách"
+        },
+        {
+          "title": "Cải thiện tốc độ tải RSS",
+          "description": "Tải nội dung RSS nhanh hơn 50%"
+        },
+        {
+          "title": "Thêm tính năng làm mới thủ công",
+          "description": "Kéo xuống để làm mới danh sách tin tức"
+        }
       ]
     }
   ]
