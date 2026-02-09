@@ -1,20 +1,285 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Lịch sử cập nhật</title>
-    <link rel="stylesheet" href="css/version.css">
+<meta charset="UTF-8">
+<title>Lịch sử phiên bản - Đọc Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=20260215">
+<link rel="stylesheet" href="version-style.css?v=20260216">
 </head>
 <body>
 
-<div class="version-container">
-    <!-- LEFT -->
-    <div class="version-sidebar" id="versionSidebar"></div>
+<!-- HEADER sẽ được tự động chèn vào đây -->
+<div id="header-placeholder"></div>
 
-    <!-- RIGHT -->
-    <div class="version-content" id="versionContent"></div>
-</div>
+<main class="page">
+    <section class="page-inner">
+        <div class="version-container">
+            <!-- TIÊU ĐỀ TRANG -->
+            <div class="version-header">
+                <h1 class="version-title">Lịch sử phiên bản</h1>
+                <p class="version-subtitle">Theo dõi các cập nhật và cải tiến mới nhất của ứng dụng</p>
+            </div>
 
-<script src="js/version.js"></script>
+            <!-- THÔNG BÁO PHIÊN BẢN MỚI NHẤT (sẽ được JS tự động tạo) -->
+            <div id="latestVersionBanner" class="latest-version-banner"></div>
+
+            <!-- DANH SÁCH PHIÊN BẢN (sẽ được JS tự động tạo) -->
+            <div id="versionTimeline" class="version-timeline"></div>
+        </div>
+    </section>
+</main>
+
+<!-- NÚT BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+    </svg>
+</button>
+
+<!-- FOOTER sẽ được tự động chèn vào đây -->
+<div id="footer-placeholder"></div>
+
+<!-- Load include.js -->
+<script src="../js/include.js?v=20260216"></script>
+
+<!-- Dữ liệu phiên bản -->
+<script id="versionData" type="application/json">
+{
+  "versions": [
+    {
+      "version": "1.0.24",
+      "date": "Tháng 2, 2024",
+      "isLatest": true,
+      "title": "Giao diện đọc báo hoàn toàn mới",
+      "description": "Trải nghiệm đọc báo mượt mà và trực quan hơn với thiết kế được tối ưu cho màn hình e-ink",
+      "features": [
+        {
+          "title": "Danh sách bài viết có ảnh thumbnail sinh động",
+          "description": "Mỗi bài báo hiển thị hình ảnh thumbnail rõ nét, giúp dễ dàng nhận diện và chọn bài viết muốn đọc"
+        },
+        {
+          "title": "Bố cục bài viết sạch sẽ, rõ ràng, dễ đọc",
+          "description": "Thiết kế tối giản, loại bỏ mọi yếu tố gây nhiễu, tập trung vào nội dung chính"
+        },
+        {
+          "title": "Tìm kiếm nội dung tin tức nhanh và tiện lợi",
+          "description": "Tìm kiếm thông minh theo từ khóa, lọc kết quả chính xác trong toàn bộ nội dung tin tức"
+        },
+        {
+          "title": "Chức năng yêu thích - Thêm danh mục vào mục yêu thích",
+          "description": "Menu → Nguồn web → chọn báo → hiện danh mục → Nhấn giữ danh mục để thêm vào danh mục yêu thích. Có thể chọn nhiều danh mục"
+        }
+      ]
+    },
+    {
+      "version": "1.0.23",
+      "date": "Tháng 1, 2024",
+      "isLatest": false,
+      "title": "Cải thiện đồng bộ hóa và tốc độ",
+      "description": "Tối ưu hóa hiệu suất và cải thiện trải nghiệm đồng bộ đa thiết bị",
+      "features": [
+        {
+          "title": "Đồng bộ lịch sử đọc nhanh hơn 50%",
+          "description": "Tốc độ đồng bộ dữ liệu giữa các thiết bị được cải thiện đáng kể"
+        },
+        {
+          "title": "Tải truyện nhanh hơn",
+          "description": "Tối ưu hóa bộ nhớ cache, giảm thời gian tải truyện khi chuyển chương"
+        },
+        {
+          "title": "Sửa lỗi hiển thị trên một số thiết bị e-ink",
+          "description": "Khắc phục vấn đề hiển thị trên các dòng máy Kindle, Kobo"
+        }
+      ]
+    },
+    {
+      "version": "1.0.22",
+      "date": "Tháng 12, 2023",
+      "isLatest": false,
+      "title": "Thêm nguồn truyện mới và cải thiện UI",
+      "description": "Mở rộng kho truyện và cải thiện giao diện người dùng",
+      "features": [
+        {
+          "title": "Thêm 5 nguồn truyện mới",
+          "description": "Bổ sung các trang truyện chất lượng cao với đa dạng thể loại"
+        },
+        {
+          "title": "Cải thiện giao diện danh sách truyện",
+          "description": "Thiết kế mới cho danh sách truyện với hình ảnh thumbnail đẹp hơn"
+        },
+        {
+          "title": "Tùy chỉnh font chữ và kích thước chữ",
+          "description": "Thêm nhiều tùy chọn font chữ và kích thước cho việc đọc"
+        },
+        {
+          "title": "Tối ưu hóa cho màn hình e-ink",
+          "description": "Cải thiện độ tương phản và hiển thị trên màn hình e-ink"
+        }
+      ]
+    },
+    {
+      "version": "1.0.21",
+      "date": "Tháng 11, 2023",
+      "isLatest": false,
+      "title": "Tính năng chia sẻ và bảo mật",
+      "description": "Thêm tính năng chia sẻ và cải thiện bảo mật",
+      "features": [
+        {
+          "title": "Chia sẻ truyện với bạn bè",
+          "description": "Tính năng chia sẻ link truyện qua các ứng dụng khác"
+        },
+        {
+          "title": "Cải thiện bảo mật đăng nhập",
+          "description": "Nâng cấp hệ thống xác thực và mã hóa dữ liệu"
+        },
+        {
+          "title": "Thêm tính năng sao lưu dữ liệu",
+          "description": "Tự động sao lưu lịch sử đọc và cài đặt"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Script hiển thị phiên bản -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Đợi include.js load xong
+    setTimeout(function() {
+        // Lấy dữ liệu phiên bản từ JSON
+        const versionData = JSON.parse(document.getElementById('versionData').textContent);
+        const versions = versionData.versions;
+        
+        // Tìm phiên bản mới nhất
+        const latestVersion = versions.find(v => v.isLatest);
+        
+        // Hiển thị banner phiên bản mới nhất
+        const bannerContainer = document.getElementById('latestVersionBanner');
+        if (latestVersion && bannerContainer) {
+            bannerContainer.innerHTML = `
+                <div class="banner-content">
+                    <div class="banner-badge">
+                        <span class="badge-text">MỚI NHẤT</span>
+                        <span class="version-number">v${latestVersion.version}</span>
+                    </div>
+                    <h2 class="banner-title">🎉 <span class="highlight">ĐÃ CÓ BẢN CẬP NHẬT ${latestVersion.version}</span> 🎉</h2>
+                    <p class="banner-description">${latestVersion.title} – ${latestVersion.description}</p>
+                    <a href="#v${latestVersion.version}" class="banner-button">Xem chi tiết cập nhật</a>
+                </div>
+                <div class="banner-decoration">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-circle"></div>
+                </div>
+            `;
+        }
+        
+        // Hiển thị danh sách phiên bản
+        const timelineContainer = document.getElementById('versionTimeline');
+        if (timelineContainer) {
+            let timelineHTML = '';
+            
+            versions.forEach(version => {
+                const featuresHTML = version.features.map(feature => `
+                    <div class="feature-item">
+                        <div class="feature-icon">🔹</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">${feature.title}</h4>
+                            ${feature.description ? `<p class="feature-description">${feature.description}</p>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+                
+                timelineHTML += `
+                    <div class="version-card ${version.isLatest ? 'latest' : ''}" id="v${version.version}">
+                        <div class="version-card-header">
+                            <div class="version-badge">
+                                <span class="version-tag">v${version.version}</span>
+                                <span class="version-date">${version.date}</span>
+                            </div>
+                            ${version.isLatest ? `
+                                <div class="version-status">
+                                    <span class="status-badge">Mới nhất</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="version-card-body">
+                            <div class="version-intro">
+                                <h3 class="version-intro-title">✨ ${version.title}</h3>
+                                <p class="version-intro-text">${version.description}</p>
+                            </div>
+                            
+                            <div class="feature-list">
+                                ${featuresHTML}
+                            </div>
+                        </div>
+                        
+                        <div class="version-card-footer">
+                            <div class="update-tip">
+                                <span class="tip-icon">💡</span>
+                                <span class="tip-text">Mời cập nhật ngay để trải nghiệm phiên bản tốt hơn</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            timelineContainer.innerHTML = timelineHTML;
+        }
+        
+        // XỬ LÝ NÚT BACK TO TOP
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            function toggleBackToTopButton() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                if (scrollPosition > windowHeight * 0.8) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            }
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            window.addEventListener('scroll', toggleBackToTopButton);
+            toggleBackToTopButton();
+        }
+        
+        // Xử lý click vào banner button để cuộn đến phiên bản mới nhất
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('banner-button')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const header = document.querySelector('.navbar');
+                    const offset = header ? header.offsetHeight + 40 : 100;
+                    const targetPosition = targetElement.offsetTop - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+        
+    }, 500);
+});
+</script>
+
 </body>
 </html>
