@@ -341,26 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Khởi tạo back to top button
-                if (backToTopBtn) {
-                    function toggleBackToTopButton() {
-                        const scrollPosition = window.scrollY;
-                        const windowHeight = window.innerHeight;
-                        if (scrollPosition > windowHeight * 0.8) {
-                            backToTopBtn.classList.add('visible');
-                        } else {
-                            backToTopBtn.classList.remove('visible');
-                        }
-                    }
-                    
-                    backToTopBtn.addEventListener('click', function() {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    });
-                    
-                    window.addEventListener('scroll', toggleBackToTopButton);
-                    toggleBackToTopButton();
-                }
-                
+
                 // Xử lý banner button
                 document.addEventListener('click', function(e) {
                     if (e.target.id === 'bannerDetailLink' || e.target.classList.contains('banner-button')) {
