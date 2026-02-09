@@ -260,12 +260,16 @@ body {
 
 /* ================= FOOTER ================= */
 .footer {
-    background: #f0f8ff; /* Xanh nhạt - Alice Blue */
-    color: #333; /* Chữ đen nhạt */
-    border-top: 1px solid #e1eeff; /* Thêm viền trên nhẹ */
+    background: #4a90e2; /* Xanh da trời đậm hơn */
+    color: #ffffff; /* Chữ trắng để nổi bật trên nền đậm */
     text-align: center;
-    padding: 30px 20px;
-    font-size: 14px;
+    padding: 15px 20px; /* Giảm padding để chiều cao thấp xuống */
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 60px; /* Giới hạn chiều cao tối thiểu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ================= MOBILE ================= */
