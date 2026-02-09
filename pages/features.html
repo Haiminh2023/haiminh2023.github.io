@@ -326,36 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // XỬ LÝ NÚT BACK TO TOP
-        if (backToTopBtn) {
-            // Hiển thị/ẩn nút khi cuộn
-            function toggleBackToTopButton() {
-                const scrollPosition = window.scrollY;
-                const windowHeight = window.innerHeight;
-                
-                // Hiện nút khi cuộn xuống ít nhất 1 trang (khoảng 80% chiều cao màn hình)
-                if (scrollPosition > windowHeight * 0.8) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            }
-            
-            // Sự kiện click nút back to top
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Thêm sự kiện scroll
-            window.addEventListener('scroll', toggleBackToTopButton);
-            
-            // Kiểm tra ban đầu
-            toggleBackToTopButton();
-        }
-        
+
         // Thêm sự kiện scroll để highlight chính xác hơn
         let scrollTimeout;
         window.addEventListener('scroll', function() {
