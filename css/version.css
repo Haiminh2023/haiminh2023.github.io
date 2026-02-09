@@ -67,12 +67,14 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 18px 20px;
+    padding: 15px 18px; /* SỬA THÀNH GIỐNG TRANG TÍNH NĂNG */
     border-radius: 12px;
     background: #f9f9f9;
     border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-height: 70px;
+    height: auto;
 }
 
 .sidebar-card:hover {
@@ -100,16 +102,18 @@
 }
 
 .sidebar-content h3 {
-    font-size: 18px;
+    font-size: 16px; /* SỬA THÀNH 16px */
     font-weight: 700;
     color: #1a1a1a;
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0; /* SỬA margin-bottom từ 5px thành 4px */
+    line-height: 1.3; /* THÊM line-height */
 }
 
 .sidebar-content p {
-    font-size: 14px;
+    font-size: 13px; /* SỬA THÀNH 13px */
     color: #666;
     margin: 0;
+    line-height: 1.4; /* THÊM line-height */
 }
 
 /* Nút điều hướng */
