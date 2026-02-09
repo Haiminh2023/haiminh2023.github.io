@@ -411,17 +411,30 @@
     box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
 }
 
-.feature-desc {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+.feature-sub {
     margin-left: 30px;
     padding-left: 0;
     margin-top: 5px;
     margin-bottom: 10px;
     line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
 }
 
+.feature-sub .sub-bullet {
+    color: #4a90e2;
+    font-size: 16px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.feature-sub span {
+    flex: 1;
+}
 .feature-desc .desc-icon {
     color: #4a90e2;
     font-size: 18px;
