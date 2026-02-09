@@ -457,3 +457,203 @@
 /* Hướng dẫn sử dụng */
 .usage-step {
     margin-bottom: 25
+
+/* ================= RESPONSIVE - GUIDE PAGE ================= */
+@media (max-width: 1024px) {
+    .guide-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .guide-sidebar {
+        width: 100%;
+        position: static;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .guide-section {
+        padding: 30px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .requirements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .guide-section {
+        padding: 25px;
+        margin-bottom: 60px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+    
+    .nav-item {
+        min-width: 100%;
+        padding: 12px 15px;
+    }
+    
+    .nav-title {
+        font-size: 14px;
+    }
+    
+    .device-tabs {
+        flex-direction: column;
+    }
+    
+    .device-tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .download-card,
+    .koreader-download {
+        padding: 20px;
+    }
+    
+    .download-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .download-note {
+        padding-left: 0;
+        margin-left: 0;
+    }
+    
+    .download-btn {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .koreader-download {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .koreader-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .guide-sidebar {
+        padding: 20px;
+    }
+    
+    .sidebar-header h1 {
+        font-size: 22px;
+    }
+    
+    .guide-section {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+    .download-section h3 {
+        font-size: 20px;
+    }
+    
+    .file-info h4 {
+        font-size: 16px;
+    }
+    
+    .path-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .copy-btn {
+        align-self: flex-end;
+    }
+    
+    .requirement-card,
+    .download-card {
+        padding: 20px;
+    }
+    
+    .requirement-icon,
+    .file-icon,
+    .koreader-icon {
+        font-size: 32px;
+    }
+}
+
+/* Đảm bảo không bị header che trên mobile */
+@media (max-width: 768px) {
+    .guide-container {
+        margin-top: 80px;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .guide-container {
+        margin-top: 90px;
+        padding-top: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
+}
