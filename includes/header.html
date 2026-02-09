@@ -3,7 +3,7 @@
     <div class="nav-inner">
         <div class="logo-section">
             <a class="logo" href="/">❄ Đọc Online</a>
-            <div class="slogan">Đọc tập trung - trọn nội dung</div>
+            <span class="slogan">Đọc tập trung - trọn nội dung</span>
         </div>
         <nav class="nav-menu">
             <a href="/" class="nav-home">Trang chủ</a>
@@ -16,31 +16,75 @@
 </header>
 
 <style>
-/* Thêm CSS mới cho slogan */
+/* Thêm CSS mới cho logo và slogan */
 .logo-section {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: baseline; /* Căn theo baseline để slogan ngang hàng */
+    gap: 12px; /* Khoảng cách giữa logo và slogan */
+}
+
+.logo {
+    font-size: 24px; /* Tăng kích thước logo */
+    font-weight: 800;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #4a90e2;
+    transform: translateY(-1px);
 }
 
 .slogan {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
     font-weight: 500;
-    margin-top: 2px;
     letter-spacing: 0.3px;
     line-height: 1.2;
+    padding-left: 12px;
+    border-left: 1px solid #e0e0e0; /* Đường phân cách tinh tế */
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .logo {
+        font-size: 22px;
+    }
+    
     .slogan {
+        font-size: 13px;
+        padding-left: 10px;
+        border-left-width: 1px;
+    }
+    
+    .logo-section {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo-section {
+        flex-direction: column; /* Trên mobile nhỏ, chuyển xuống hàng */
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .slogan {
+        border-left: none;
+        padding-left: 0;
         font-size: 12px;
-        margin-top: 1px;
+        padding-top: 2px;
+        border-top: 1px solid #e0e0e0;
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    
     .slogan {
         font-size: 11px;
     }
