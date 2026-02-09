@@ -19,6 +19,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
+    padding-top: 80px; /* FIX: Ngăn header che nội dung */
 }
 
 /* ================= HEADER (LUÔN NỔI) ================= */
@@ -28,8 +29,8 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 60px; /* THÊM DÒNG NÀY */
-    min-height: 60px; /* THÊM DÒNG NÀY */
+    height: 70px; /* Chiều cao cố định cho desktop */
+    min-height: 70px;
 
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
@@ -39,20 +40,42 @@ body {
 .nav-inner {
     max-width: 1200px;
     margin: auto;
-    padding: 10px 20px; /* GIẢM TỪ 14px XUỐNG 10px */
-
+    padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%; /* THÊM DÒNG NÀY để căn giữa */
+    height: 100%;
 }
-/* LOGO */
+
+/* ================= HEADER IMPROVEMENTS ================= */
+.logo-section {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
 .logo {
     font-size: 24px;
     font-weight: 800;
     color: var(--primary);
     text-decoration: none;
     white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.slogan {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+    padding-left: 12px;
+    border-left: 1px solid #e0e0e0;
 }
 
 /* ===== MENU CARD WRAPPER ===== */
@@ -71,23 +94,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-height: 38px;
     padding: 0 16px;
-
     background: var(--card);
     border-radius: 14px;
-
     font-size: 14px;
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
     white-space: nowrap;
-
     box-shadow:
         0 4px 12px rgba(0,0,0,0.08),
         inset 0 0 0 1px #e5e7eb;
-
     transition: all .25s ease;
 }
 
@@ -107,9 +125,8 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 110px; /* Giá trị mặc định cho desktop */
+    padding-top: 40px; /* Giảm vì body đã có padding-top */
     padding-bottom: 80px;
-    transition: padding-top 0.3s ease;
 }
 
 .page-inner {
@@ -120,27 +137,34 @@ body {
 
 /* ================= TYPO ================= */
 .page h1 {
-    font-size: 25px;
-    margin-bottom: 16px;
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--text);
+    line-height: 1.2;
 }
 
 .page h2 {
-    font-size: 26px;
-    margin: 40px 0 16px;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 50px 0 20px;
+    color: var(--text);
 }
 
 .page p {
     max-width: 820px;
     color: var(--muted);
     margin-bottom: 30px;
+    font-size: 17px;
+    line-height: 1.7;
 }
 
 /* ================= FEATURE GRID ================= */
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 thẻ / dòng */
+    grid-template-columns: repeat(2, 1fr);
     gap: 28px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 /* ================= FEATURE CARD ================= */
@@ -149,7 +173,7 @@ body {
     border-radius: 20px;
     overflow: hidden;
     display: flex;
-    height: 260px; /* Chiều cao cố định */
+    height: 260px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
     position: relative;
@@ -205,7 +229,7 @@ body {
     margin-top: 3px;
 }
 
-/* ================= ẢNH NẰM TRONG KHUNG - KHÔNG BỊ CẮT ================= */
+/* ================= ẢNH NẰM TRONG KHUNG ================= */
 .feature-image {
     width: 220px;
     flex-shrink: 0;
@@ -230,7 +254,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Thêm border nhẹ cho phần ảnh */
 .feature-image:before {
     content: '';
     position: absolute;
@@ -242,7 +265,6 @@ body {
     pointer-events: none;
 }
 
-/* Hiệu ứng overlay khi hover */
 .feature-image:after {
     content: '';
     position: absolute;
@@ -265,17 +287,28 @@ body {
     background: #4a90e2;
     color: #ffffff;
     text-align: center;
-    padding: 8px 20px; /* Giảm thêm padding */
-    font-size: 13px;
+    padding: 12px 20px;
+    font-size: 14px;
     font-weight: 500;
-    min-height: 40px; /* Giảm chiều cao tối thiểu */
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
 @media (max-width: 1024px) {
+    body {
+        padding-top: 90px; /* Tăng cho tablet */
+    }
+    
+    .navbar {
+        height: 80px;
+        min-height: 80px;
+    }
+    
     .nav-menu {
         gap: 8px;
         padding: 5px;
@@ -286,8 +319,18 @@ body {
         padding: 0 14px;
         font-size: 13px;
     }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    .slogan {
+        font-size: 13px;
+        padding-left: 10px;
+    }
 }
 
+/* Mobile Landscape */
 @media (max-width: 900px) {
     .feature-grid {
         grid-template-columns: 1fr;
@@ -312,46 +355,129 @@ body {
     .page h1 {
         font-size: 32px;
     }
+    
+    .page h2 {
+        font-size: 26px;
+    }
 }
 
+/* Mobile Portrait */
 @media (max-width: 768px) {
+    body {
+        padding-top: 120px; /* Tăng đáng kể cho mobile */
+    }
+    
+    .navbar {
+        height: auto; /* Header cao tự nhiên */
+        min-height: auto;
+        position: fixed;
+    }
+    
     .nav-inner {
         flex-direction: column;
         gap: 15px;
-        padding: 12px 20px;
+        padding: 15px 20px;
+    }
+    
+    .logo-section {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .slogan {
+        border-left: none;
+        padding-left: 0;
+        font-size: 13px;
     }
     
     .nav-menu {
         width: 100%;
         gap: 6px;
+        padding: 8px;
     }
     
     .nav-menu a {
         flex: 1;
         min-width: 100px;
-        min-height: 34px;
-        padding: 0 10px;
+        min-height: 36px;
+        padding: 0 12px;
         font-size: 12px;
     }
     
     .page {
-        padding-top: 100px; /* Tăng padding cho mobile */
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-menu a {
-        min-width: 85px;
-        padding: 0 8px;
-        font-size: 11px;
-    }
-    
-    .page {
-        padding-top: 110px; /* Tăng thêm cho màn hình rất nhỏ */
+        padding-top: 20px;
     }
     
     .page h1 {
         font-size: 28px;
+        text-align: center;
+    }
+    
+    .page h2 {
+        font-size: 24px;
+        margin: 40px 0 16px;
+    }
+    
+    .page p {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 600px) {
+    body {
+        padding-top: 140px; /* Tăng thêm cho màn hình nhỏ */
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .slogan {
+        border-top: 1px solid #e0e0e0;
+        padding-top: 6px;
+        padding-left: 0;
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+    
+    .nav-menu a {
+        min-width: calc(50% - 6px); /* 2 items per row */
+        font-size: 11px;
+        padding: 0 8px;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    body {
+        padding-top: 150px; /* Đảm bảo không bị che */
+    }
+    
+    .nav-inner {
+        padding: 12px 15px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .slogan {
+        font-size: 11px;
+    }
+    
+    .nav-menu a {
+        min-height: 34px;
+        font-size: 11px;
     }
     
     .feature-image {
@@ -360,5 +486,39 @@ body {
     
     .feature-content {
         padding: 20px;
+    }
+    
+    .feature-content h3 {
+        font-size: 20px;
+    }
+    
+    .page h1 {
+        font-size: 26px;
+    }
+    
+    .page h2 {
+        font-size: 22px;
+    }
+    
+    .footer {
+        padding: 10px 15px;
+        font-size: 13px;
+        min-height: 45px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+    body {
+        padding-top: 160px;
+    }
+    
+    .nav-menu a {
+        min-width: 100%; /* 1 item per row */
+        font-size: 12px;
+    }
+    
+    .page h1 {
+        font-size: 24px;
     }
 }
