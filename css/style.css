@@ -19,7 +19,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    padding-top: 60px; /* FIX: Ngăn header che nội dung */
+    /* XÓA: padding-top: 60px; */
 }
 
 /* ================= HEADER (LUÔN NỔI) ================= */
@@ -126,8 +126,9 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 20px; /* Giảm vì body đã có padding-top */
+    padding-top: 80px; /* Tăng lên vì body không còn padding */
     padding-bottom: 80px;
+    min-height: 100vh;
 }
 
 .page-inner {
@@ -301,13 +302,13 @@ body {
 
 /* Tablet */
 @media (max-width: 1024px) {
-    body {
-        padding-top: 70px; /* Tăng cho tablet */
+    .navbar {
+        height: 70px;
+        min-height: 70px;
     }
     
-    .navbar {
-        height: 80px;
-        min-height: 80px;
+    .page {
+        padding-top: 90px;
     }
     
     .nav-menu {
@@ -364,16 +365,15 @@ body {
 
 /* Mobile Portrait */
 @media (max-width: 768px) {
-    body {
-        padding-top: 100px; /* Tăng đáng kể cho mobile */
-    }
-    
     .navbar {
-        height: auto; /* Header cao tự nhiên */
-        min-height: auto;
+        height: auto;
         position: fixed;
+        padding: 10px 0;
     }
     
+    .page {
+        padding-top: 140px; /* Tăng cho mobile layout 2 dòng */
+    }
     .nav-inner {
         flex-direction: column;
         gap: 15px;
@@ -426,10 +426,11 @@ body {
     }
 }
 
+
 /* Small Mobile */
 @media (max-width: 600px) {
-    body {
-        padding-top: 120px; /* Tăng thêm cho màn hình nhỏ */
+    .page {
+        padding-top: 150px;
     }
     
     .logo-section {
@@ -458,10 +459,11 @@ body {
     }
 }
 
+
 /* Extra Small Mobile */
 @media (max-width: 480px) {
-    body {
-        padding-top: 130px; /* Đảm bảo không bị che */
+    .page {
+        padding-top: 160px;
     }
     
     .nav-inner {
@@ -510,8 +512,8 @@ body {
 
 /* Very Small Mobile */
 @media (max-width: 360px) {
-    body {
-        padding-top: 140px;
+    .page {
+        padding-top: 170px;
     }
     
     .nav-menu a {
@@ -602,5 +604,51 @@ body {
     .back-to-top svg {
         width: 20px !important;
         height: 20px !important;
+    }
+}
+
+/* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
+
+/* Trang tính năng & phiên bản & hướng dẫn */
+.features-container, .guide-container {
+    padding-top: 20px;
+    min-height: calc(100vh - 80px);
+}
+
+/* Các section có anchor */
+.feature-detail-section, .guide-section, .legal-section {
+    scroll-margin-top: 100px;
+}
+
+/* Responsive cho các trang */
+@media (max-width: 1024px) {
+    .features-container, .guide-container {
+        padding-top: 15px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
+        scroll-margin-top: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-container, .guide-container {
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
+        scroll-margin-top: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-container, .guide-container {
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
+        scroll-margin-top: 150px;
     }
 }
