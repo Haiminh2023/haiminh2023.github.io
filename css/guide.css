@@ -1180,3 +1180,106 @@
         padding: 8px 6px !important;
     }
 }
+/* Thêm vào guide.css */
+.usage-step {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.usage-step:last-child {
+    border-bottom: none;
+}
+
+.usage-step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.usage-step p {
+    color: #444;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.usage-step ul,
+.usage-step ol {
+    margin: 10px 0 10px 20px;
+    color: #444;
+}
+
+.usage-step li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.usage-step .note {
+    background: #f0f7ff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.usage-step .tip {
+    background: #f0fff4;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #27ae60;
+}
+
+.usage-step .note strong,
+.usage-step .tip strong {
+    color: #1a1a1a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .usage-step {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+    }
+    
+    .usage-step h3 {
+        font-size: 18px;
+    }
+    
+    .usage-step p,
+    .usage-step li {
+        font-size: 14px;
+    }
+    
+    .usage-step .note,
+    .usage-step .tip {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .usage-step {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    
+    .usage-step h3 {
+        font-size: 16px;
+    }
+    
+    .usage-step p,
+    .usage-step li {
+        font-size: 14px;
+    }
+}
