@@ -20,6 +20,7 @@ html, body {
     position: relative;
     padding: 0 20px;
     box-sizing: border-box;
+    align-items: flex-start;
 }
 
 /* Sidebar bên trái */
@@ -28,14 +29,15 @@ html, body {
     flex-shrink: 0;
     position: sticky;
     top: 100px;
-    height: fit-content;
+    height: calc(100vh - 150px); /* THAY ĐỔI: fit-content → calc */
     max-height: calc(100vh - 150px);
-    overflow-y: auto;
+    overflow-y: auto; /* GIỮ LẠI */
     background: #fff;
     border-radius: 16px;
     padding: 25px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     border: 1px solid #eaeaea;
+    z-index: 10; /* THÊM DÒNG NÀY */
 }
 
 /* Ẩn scrollbar cho đẹp */
@@ -137,6 +139,7 @@ html, body {
 .guide-content {
     flex: 1;
     padding: 0 0 50px 0;
+    min-width: 0; /* THÊM DÒNG NÀY để tránh overflow */
 }
 
 /* Section styling */
@@ -517,7 +520,7 @@ html, body {
 .back-to-top:hover svg {
     transform: translateY(-2px);
 }
-/* ================= RESPONSIVE - GUIDE PAGE ================= */
+
 /* ================= RESPONSIVE - GUIDE PAGE ================= */
 @media (max-width: 1024px) {
     .guide-container {
