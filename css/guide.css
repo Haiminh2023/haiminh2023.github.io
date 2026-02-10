@@ -6,7 +6,19 @@
     margin: 0 auto;
     position: relative;
 }
+/* ================= FIX ĐỒNG NHẤT VỚI CÁC TRANG KHÁC ================= */
+.page {
+    width: 100%;
+    overflow-x: hidden;
+}
 
+.page-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
 /* ================= SIDEBAR BÊN TRÁI - STICKY GIỐNG FEATURES ================= */
 .guide-sidebar {
     width: 320px;
@@ -499,61 +511,105 @@
     }
 }
 
-/* Mobile */
+/* Tablet & Mobile (768px) - ĐỒNG NHẤT VỚI CÁC TRANG KHÁC */
 @media (max-width: 768px) {
     .page-inner {
-        padding: 10px; /* GIẢM XUỐNG 10px (Features dùng 10px) */
-        max-width: 100%;
-        overflow-x: hidden;
+        padding: 15px !important; /* QUAN TRỌNG: Features/Home dùng 15px */
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .guide-container {
+        flex-direction: column;
         gap: 15px;
-        margin-top: 20px;
+        margin-top: 0;
         width: 100%;
+        padding: 0;
         box-sizing: border-box;
-        padding: 0; /* THÊM DÒNG NÀY */
     }
     
-    body {
-        overflow-x: hidden;
+    .guide-sidebar {
+        width: 100%;
+        position: static;
+        padding: 20px;
+        margin-bottom: 0;
+        border-radius: 12px;
     }
     
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .nav-item {
+        flex: 1;
+        min-width: calc(50% - 5px); /* 2 cột giống Features */
+        padding: 15px;
+        min-height: 60px;
+        margin: 0;
+    }
+    
+    .nav-title {
+        font-size: 14px;
+    }
+    
+    .nav-number {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    /* QUAN TRỌNG: ĐỒNG NHẤT SECTION VỚI FEATURES */
     .guide-section {
-        padding: 20px; /* GIẢM XUỐNG 20px (Features dùng 20px) */
-        margin-bottom: 40px; /* GIẢM XUỐNG 40px */
-        max-width: 100%;
+        padding: 25px 20px !important; /* Features dùng 25px 20px */
+        margin-bottom: 40px;
+        border-radius: 16px;
+        width: 100%;
         box-sizing: border-box;
-        width: 100%;
-        border-radius: 12px; /* THÊM DÒNG NÀY - Features dùng 12px */
-    }
-    
-    .section-content {
-        max-width: 100%;
-        overflow-x: hidden;
-        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
     
     .section-title {
         font-size: 24px;
-        padding: 0; /* THÊM DÒNG NÀY */
-        margin: 0 0 10px 0;
+        margin-bottom: 10px;
     }
     
     .section-subtitle {
         font-size: 16px;
-        padding: 0; /* THÊM DÒNG NÀY */
-        margin: 0 0 20px 0;
+        margin-bottom: 20px;
     }
     
-    .nav-item {
-        min-width: 100%;
-        margin: 0; /* THÊM DÒNG NÀY */
+    /* CARD ĐỒNG NHẤT VỚI FEATURES */
+    .requirement-card,
+    .download-card {
+        padding: 20px !important; /* Features card dùng 20px */
+        border-radius: 12px;
+        width: 100%;
+        margin-bottom: 15px;
+        box-sizing: border-box;
     }
     
+    .requirements-grid {
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .requirement-card h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .requirement-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    /* DEVICE TABS - GIỐNG FEATURES */
     .device-tabs {
-        flex-direction: row; /* ĐỔI TỪ column THÀNH row */
+        display: flex;
         flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 25px;
@@ -561,40 +617,17 @@
     }
     
     .device-tab {
-        width: auto; /* ĐỔI TỪ 100% THÀNH auto */
         flex: 1;
-        min-width: calc(50% - 4px); /* THÊM DÒNG NÀY - 2 cột */
+        min-width: calc(50% - 4px); /* 2 cột */
+        padding: 12px 10px;
         text-align: center;
-        padding: 10px 12px; /* THÊM DÒNG NÀY */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        font-size: 14px; /* THÊM DÒNG NÀY */
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ MỞ RỘNG CARD */
-    .requirement-card,
-    .download-card {
-        padding: 20px; /* GIỮ NGUYÊN */
-        border-radius: 12px; /* THÊM DÒNG NÀY */
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .requirements-grid {
-        gap: 15px; /* GIẢM XUỐNG 15px */
-        margin-top: 20px;
-    }
-    
-    .download-card {
-        margin-bottom: 15px;
-    }
-    
-    .download-header {
-        flex-direction: row; /* ĐỔI LẠI THÀNH row (để giống Features) */
-        align-items: center;
-        gap: 20px;
-    }
-    
+    /* STEP - GIỐNG FEATURES */
     .step {
         flex-direction: column;
         gap: 15px;
@@ -603,178 +636,238 @@
     }
     
     .step-number {
-        width: 36px;
-        height: 36px;
+        width: 35px;
+        height: 35px;
         font-size: 16px;
-        border-radius: 8px; /* THÊM DÒNG NÀY */
+        border-radius: 8px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX FEATURE SCREENSHOTS */
-    .feature-screenshots {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        width: 100%;
+    .step-content h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
     }
     
-    .feature-screenshots img {
-        border-radius: 10px; /* THÊM DÒNG NÀY */
-    }
-    
-    /* THÊM ĐOẠN NÀY ĐỂ FIX PATH BOX */
+    /* PATH BOX - GIỐNG FEATURES */
     .path-box {
         padding: 12px 15px;
-        border-radius: 10px;
+        border-radius: 8px;
         width: 100%;
+        margin: 12px 0;
         box-sizing: border-box;
-        margin: 15px 0;
     }
     
     .path-box code {
-        font-size: 14px; /* GIẢM XUỐNG 14px */
+        font-size: 14px;
+    }
+    
+    /* FEATURE SCREENSHOTS - GIỐNG FEATURES */
+    .feature-screenshots {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .feature-screenshots img {
+        border-radius: 10px;
+    }
+    
+    /* DOWNLOAD - GIỐNG FEATURES */
+    .download-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .file-icon {
+        font-size: 32px;
+    }
+    
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    /* FAQ - GIỐNG FEATURES */
+    .faq-item {
+        margin-bottom: 20px;
+    }
+    
+    .faq-item h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 }
-
-/* Mobile nhỏ */
+/* Mobile nhỏ (480px) - ĐỒNG NHẤT VỚI FEATURES/HOME */
 @media (max-width: 480px) {
     .page-inner {
-        padding: 8px; /* GIẢM XUỐNG 8px (Features dùng 8px) */
+        padding: 12px !important; /* Features/Home dùng 12px */
     }
     
     .guide-sidebar {
-        padding: 15px; /* GIẢM XUỐNG 15px */
-        border-radius: 10px; /* THÊM DÒNG NÀY */
+        padding: 18px;
+        border-radius: 12px;
     }
     
     .sidebar-header h1 {
-        font-size: 20px; /* GIẢM XUỐNG 20px */
-        padding: 0;
+        font-size: 20px;
     }
     
     .nav-item {
-        padding: 12px 15px;
-        min-height: 60px; /* GIẢM XUỐNG 60px */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        margin: 0 0 8px 0; /* THÊM DÒNG NÀY */
+        min-width: 100%; /* Trên mobile nhỏ: 1 cột */
+        padding: 14px;
+        min-height: 55px;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+    
+    .nav-title {
+        font-size: 13px;
     }
     
     .nav-number {
-        width: 36px; /* GIẢM XUỐNG 36px */
-        height: 36px;
-        font-size: 14px; /* GIẢM XUỐNG 14px */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
     }
     
-    /* QUAN TRỌNG: MỞ RỘNG CÁC SECTION */
+    /* SECTION - GIỐNG HẾT FEATURES */
     .guide-section {
-        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
-        margin-bottom: 30px; /* GIẢM XUỐNG 30px */
-        border-radius: 10px; /* THÊM DÒNG NÀY */
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        padding: 20px 15px !important; /* Features dùng 20px 15px */
+        margin-bottom: 30px;
+        border-radius: 14px;
     }
     
     .section-title {
-        font-size: 20px; /* GIẢM XUỐNG 20px */
+        font-size: 20px;
         margin-bottom: 8px;
     }
     
     .section-subtitle {
-        font-size: 15px; /* GIẢM XUỐNG 15px */
+        font-size: 14px;
         margin-bottom: 15px;
     }
     
-    .download-section h3 {
-        font-size: 18px; /* GIẢM XUỐNG 18px */
-        margin-bottom: 8px;
-    }
-    
-    /* QUAN TRỌNG: MỞ RỘNG CARD */
+    /* CARD - GIỐNG HẾT FEATURES */
     .requirement-card,
     .download-card {
-        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        margin: 0 0 12px 0; /* THÊM DÒNG NÀY */
-        width: 100%;
+        padding: 18px 15px !important; /* Features card dùng 18px 15px */
+        border-radius: 10px;
+        margin-bottom: 12px;
     }
     
     .requirements-grid {
-        gap: 12px; /* GIẢM XUỐNG 12px */
-    }
-    
-    .requirement-icon,
-    .file-icon {
-        font-size: 28px; /* GIẢM XUỐNG 28px */
+        gap: 12px;
     }
     
     .requirement-card h3 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+        font-size: 16px;
         margin-bottom: 10px;
     }
     
-    .download-header {
-        gap: 15px; /* GIẢM XUỐNG 15px */
+    .requirement-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
     }
     
-    .file-info h4 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+    .requirement-card li {
+        font-size: 14px;
     }
     
-    /* FIX CHO DEVICE TABS */
+    /* DEVICE TABS */
     .device-tabs {
         gap: 6px;
         margin-bottom: 20px;
     }
     
     .device-tab {
-        padding: 8px 10px; /* GIẢM PADDING */
-        font-size: 13px; /* GIẢM FONT SIZE */
-        border-radius: 6px; /* THÊM DÒNG NÀY */
+        min-width: calc(50% - 3px); /* Vẫn 2 cột */
+        padding: 10px 8px;
+        font-size: 13px;
+        border-radius: 6px;
     }
     
-    /* FIX CHO STEP */
+    /* STEP */
     .step {
         margin-bottom: 20px;
         gap: 12px;
     }
     
     .step-number {
-        width: 32px; /* GIẢM XUỐNG 32px */
+        width: 32px;
         height: 32px;
-        font-size: 14px; /* GIẢM XUỐNG 14px */
-        border-radius: 6px; /* THÊM DÒNG NÀY */
+        font-size: 14px;
     }
     
     .step-content h3 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+        font-size: 16px;
     }
     
-    /* FIX CHO PATH BOX */
+    .step-content p {
+        font-size: 14px;
+    }
+    
+    /* PATH BOX */
     .path-box {
         padding: 10px 12px;
         border-radius: 6px;
+        margin: 10px 0;
     }
     
     .path-box code {
-        font-size: 13px; /* GIẢM XUỐNG 13px */
+        font-size: 13px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX DOWNLOAD BUTTON */
+    .copy-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    /* DOWNLOAD */
+    .download-section h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .device-list {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .download-header {
+        gap: 12px;
+    }
+    
+    .file-icon {
+        font-size: 28px;
+    }
+    
+    .file-info h4 {
+        font-size: 15px;
+    }
+    
+    .download-note {
+        font-size: 14px;
+    }
+    
     .download-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 10px 15px; /* GIẢM PADDING */
-        font-size: 14px; /* GIẢM FONT SIZE */
-        border-radius: 8px;
+        padding: 10px 18px;
+        font-size: 14px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX FAQ */
+    /* FAQ */
     .faq-item {
         margin-bottom: 15px;
     }
     
     .faq-item h3 {
-        font-size: 16px;
+        font-size: 15px;
+    }
+    
+    .faq-item p {
+        font-size: 14px;
     }
 }
 /* ================= IMAGE SLIDER STYLES - ĐÃ FIX MOBILE ================= */
@@ -1039,3 +1132,51 @@
     }
 }
 
+/* ================= ĐẢM BẢO ĐỒNG NHẤT VỚI FEATURES/HOME ================= */
+
+/* Override mọi padding không cần thiết trên mobile */
+@media (max-width: 768px) {
+    /* Đảm bảo không có margin/padding thừa */
+    body .guide-container * {
+        max-width: 100% !important;
+    }
+    
+    /* Fix riêng cho các section để chắc chắn */
+    #requirements,
+    #download,
+    #installation,
+    #usage,
+    #troubleshooting {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Đảm bảo hình ảnh không vượt quá */
+    .guide-section img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Đặc biệt cho mobile rất nhỏ */
+@media (max-width: 360px) {
+    .page-inner {
+        padding: 10px !important; /* Giống Features */
+    }
+    
+    .guide-section {
+        padding: 15px 12px !important; /* Giống Features */
+    }
+    
+    .requirement-card,
+    .download-card {
+        padding: 15px 12px !important; /* Giống Features */
+    }
+    
+    .device-tab {
+        font-size: 12px !important;
+        padding: 8px 6px !important;
+    }
+}
