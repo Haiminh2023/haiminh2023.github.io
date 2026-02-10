@@ -12,7 +12,7 @@
     width: 320px;
     flex-shrink: 0;
     position: sticky;
-    top: 100px; /* GIỐNG FEATURES: 100px chứ không phải 120px */
+    top: 100px; /* GIỐNG FEATURES: 100px */
     height: fit-content;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
@@ -91,7 +91,7 @@
 }
 
 .nav-number {
-    width: 45px; /* GIỐNG FEATURES: 45px không phải 32px */
+    width: 45px; /* GIỐNG FEATURES: 45px */
     height: 45px;
     display: flex;
     align-items: center;
@@ -358,6 +358,7 @@
     line-height: 1.6;
 }
 
+/* FIX QUAN TRỌNG: Path-box cho mobile */
 .path-box {
     background: #f8fbff;
     padding: 15px;
@@ -375,6 +376,8 @@
     color: #4a90e2;
     background: none;
     padding: 0;
+    word-break: break-all; /* Quan trọng: cho phép ngắt từ dài */
+    overflow-wrap: break-word; /* Quan trọng: ngắt từ */
 }
 
 .copy-btn {
@@ -440,167 +443,6 @@
 .faq-item p {
     color: #444;
     margin: 0;
-}
-
-/* ================= RESPONSIVE - GIỐNG FEATURES ================= */
-
-/* Desktop nhỏ */
-@media (max-width: 1200px) {
-    .guide-container {
-        max-width: 100%;
-        padding: 0 20px;
-    }
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-    .guide-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .guide-sidebar {
-        width: 100%;
-        position: static;
-        top: 0;
-        max-height: none;
-        overflow-y: visible;
-    }
-    
-    .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .nav-item {
-        flex: 1;
-        min-width: 220px; /* GIỐNG FEATURES */
-        padding: 14px 16px;
-    }
-    
-    .nav-item .nav-title {
-        font-size: 15px;
-    }
-    
-    .guide-section {
-        padding: 30px;
-    }
-    
-    .section-title {
-        font-size: 28px;
-    }
-    
-    .requirements-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .feature-screenshots {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .page-inner {
-        padding: 15px;
-    }
-    
-    .guide-container {
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
-    .guide-section {
-        padding: 25px;
-        margin-bottom: 60px;
-    }
-    
-    .section-title {
-        font-size: 24px;
-    }
-    
-    .section-subtitle {
-        font-size: 16px;
-    }
-    
-    .nav-item {
-        min-width: 100%;
-    }
-    
-    .device-tabs {
-        flex-direction: column;
-    }
-    
-    .device-tab {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .download-card {
-        padding: 20px;
-    }
-    
-    .download-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .step {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .step-number {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-    }
-}
-
-/* Mobile nhỏ */
-@media (max-width: 480px) {
-    .guide-sidebar {
-        padding: 20px;
-    }
-    
-    .sidebar-header h1 {
-        font-size: 22px;
-    }
-    
-    .nav-item {
-        padding: 12px 15px;
-        min-height: 65px;
-    }
-    
-    .nav-number {
-        width: 40px;
-        height: 40px;
-        font-size: 15px;
-    }
-    
-    .guide-section {
-        padding: 20px;
-        margin-bottom: 40px;
-    }
-    
-    .section-title {
-        font-size: 22px;
-    }
-    
-    .download-section h3 {
-        font-size: 20px;
-    }
-    
-    .requirement-card,
-    .download-card {
-        padding: 20px;
-    }
-    
-    .requirement-icon,
-    .file-icon {
-        font-size: 32px;
-    }
 }
 
 /* ================= IMAGE SLIDER STYLES ================= */
@@ -694,14 +536,6 @@
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
 
-.slider-prev:disabled,
-.slider-next:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
 /* Slider dots */
 .slider-dots {
     display: flex;
@@ -722,19 +556,55 @@
     transform: scale(1.2);
 }
 
-.slider-dots span:hover {
-    background: #bbb;
-    transform: scale(1.1);
-}
+/* ================= RESPONSIVE - GIỐNG HỆT FEATURES.CSS ================= */
 
-/* Active slide */
-.slider-slide {
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-/* Responsive slider */
-@media (max-width: 768px) {
+/* Tablet & Small Desktop - GIỐNG FEATURES.CSS */
+@media (max-width: 1024px) {
+    .guide-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .guide-sidebar {
+        width: 100%;
+        position: static;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        flex: 1;
+        min-width: 220px; /* GIỐNG FEATURES.CSS */
+        padding: 14px 16px;
+    }
+    
+    .nav-item .nav-title {
+        font-size: 15px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .guide-section {
+        padding: 30px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .requirements-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-screenshots {
+        grid-template-columns: 1fr; /* GIỐNG FEATURES.CSS */
+        gap: 15px; /* GIỐNG FEATURES.CSS */
+    }
+    
     .image-slider {
         padding: 15px;
         margin: 20px 0;
@@ -757,7 +627,79 @@
     }
 }
 
-@media (max-width: 480px) {
+/* Mobile - GIỐNG FEATURES.CSS */
+@media (max-width: 768px) {
+    .guide-section {
+        padding: 25px; /* GIỐNG FEATURES.CSS */
+        margin-bottom: 60px;
+    }
+    
+    .section-title {
+        font-size: 26px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+    
+    .nav-item {
+        min-width: 100%; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .device-tabs {
+        flex-direction: column;
+    }
+    
+    .device-tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .download-card {
+        padding: 20px;
+    }
+    
+    .download-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    /* FIX QUAN TRỌNG CHO MOBILE: Path-box layout */
+    .step {
+        flex-direction: column; /* GIỐNG FEATURES.CSS responsive */
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .step-number {
+        width: 36px; /* GIỐNG FEATURES.CSS responsive */
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    /* FIX PATH-BOX TRÊN MOBILE */
+    .path-box {
+        display: block; /* Đổi từ flex thành block trên mobile */
+        padding: 12px;
+    }
+    
+    .path-box code {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+        word-break: break-all; /* QUAN TRỌNG: fix tràn code */
+        overflow-wrap: break-word;
+        white-space: pre-wrap; /* Cho phép xuống dòng */
+    }
+    
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    /* Fix cho ảnh slider trên mobile */
     .slider-slide img {
         max-width: 200px;
     }
@@ -769,5 +711,65 @@
     
     .slider-controls {
         gap: 15px;
+    }
+}
+
+/* Small Mobile - GIỐNG FEATURES.CSS */
+@media (max-width: 480px) {
+    .guide-sidebar {
+        padding: 20px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .sidebar-header h1 {
+        font-size: 22px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .nav-item {
+        padding: 12px 15px; /* GIỐNG FEATURES.CSS */
+        min-height: 65px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .nav-number {
+        width: 40px; /* GIỐNG FEATURES.CSS */
+        height: 40px;
+        font-size: 15px;
+    }
+    
+    .guide-section {
+        padding: 20px; /* GIỐNG FEATURES.CSS */
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 22px; /* GIỐNG FEATURES.CSS */
+    }
+    
+    .download-section h3 {
+        font-size: 20px;
+    }
+    
+    .requirement-card,
+    .download-card {
+        padding: 20px;
+    }
+    
+    .requirement-icon,
+    .file-icon {
+        font-size: 32px;
+    }
+    
+    /* FIX THÊM CHO MOBILE NHỎ */
+    .path-box code {
+        font-size: 13px; /* Nhỏ hơn cho mobile nhỏ */
+    }
+    
+    .step-content h3 {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+    
+    .step-content p {
+        font-size: 15px;
+        line-height: 1.5;
     }
 }
