@@ -1142,3 +1142,13 @@
         font-size: 14px;
     }
 }
+.requirement-card .device-requirements {
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.requirement-card .device-requirements p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14.5px;
+}
