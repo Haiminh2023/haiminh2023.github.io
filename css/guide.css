@@ -526,38 +526,43 @@
     transform: translateY(-2px);
 }
 
-/* Slider hình ảnh */
+/* ================= SLIDER HÌNH ẢNH ================= */
 .image-slider {
-    margin-top: 20px;
+    margin-top: 25px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
 }
 
 .slider-container {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    background: #fff;
 }
 
 .slider-track {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slider-slide {
     min-width: 100%;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .slider-slide img {
     width: 100%;
     max-width: 300px;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     margin: 0 auto;
     display: block;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
 }
 
 .slide-caption {
@@ -565,14 +570,17 @@
     font-size: 16px;
     font-weight: 600;
     color: #333;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
 .slider-controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    margin-top: 15px;
+    margin-top: 20px;
+    gap: 15px;
 }
 
 .slider-prev,
@@ -580,8 +588,8 @@
     background: #4a90e2;
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
@@ -589,17 +597,30 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .slider-prev:hover,
 .slider-next:hover {
     background: #3a80d2;
     transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(58, 128, 210, 0.3);
+}
+
+.slider-prev:disabled,
+.slider-next:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .slider-dots {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
+    flex: 1;
 }
 
 .slider-dots span {
@@ -608,11 +629,53 @@
     background: #ddd;
     border-radius: 50%;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.slider-dots span:hover {
+    background: #bbb;
 }
 
 .slider-dots span.active {
     background: #4a90e2;
+    transform: scale(1.2);
+}
+
+/* Responsive cho slider */
+@media (max-width: 768px) {
+    .image-slider {
+        padding: 15px;
+    }
+    
+    .slider-slide {
+        padding: 10px;
+    }
+    
+    .slider-slide img {
+        max-width: 250px;
+    }
+    
+    .slide-caption {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .slider-controls {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-slide img {
+        max-width: 200px;
+    }
+    
+    .slider-prev,
+    .slider-next {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
 
 /* ================= RESPONSIVE - GUIDE PAGE ================= */
