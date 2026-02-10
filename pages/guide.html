@@ -625,6 +625,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', toggleBackToTopButton);
     toggleBackToTopButton();
+    setTimeout(initImageSliders, 500);
 });
 
 // Hàm giả lập tải file (thay bằng link thật)
@@ -639,6 +640,102 @@ function copyToClipboard(text) {
         alert('Đã copy đường dẫn vào clipboard!');
     }).catch(err => {
         console.error('Lỗi khi copy: ', err);
+    });
+}
+
+// THÊM HÀM NÀY VÀO CUỐI PHẦN JavaScript trong guide.html
+function initImageSliders() {
+    const sliders = document.querySelectorAll('.image-slider');
+    if (sliders.length === 0) return;
+    
+    sliders.forEach(slider => {
+        const track = slider.querySelector('.slider-track');
+        const slides = slider.querySelectorAll('.slider-slide');
+        const prevBtn = slider.querySelector('.slider-prev');
+        const nextBtn = slider.querySelector('.slider-next');
+        const dotsContainer = slider.querySelector('.slider-dots');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        
+        // Tạo dots
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('span') : [];
+        
+        function updateSlider() {
+            // Di chuyển track
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Cập nhật dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Cập nhật trạng thái nút
+            if (prevBtn) {
+                prevBtn.disabled = currentSlide === 0;
+                prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+            }
+            if (nextBtn) {
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+                nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+            }
+            
+            // Thêm hiệu ứng fade cho slide
+            slides.forEach((slide, index) => {
+                slide.style.opacity = index === currentSlide ? '1' : '0.5';
+            });
+        }
+        
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+            updateSlider();
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        }
+        
+        // Thêm sự kiện cho nút
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevSlide);
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextSlide);
+        }
+        
+        // Khởi tạo ban đầu
+        updateSlider();
+        
+        // Tự động chuyển slide mỗi 5 giây (tùy chọn)
+        // let autoSlide = setInterval(nextSlide, 5000);
+        
+        // Dừng auto slide khi hover
+        // slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        // slider.addEventListener('mouseleave', () => {
+        //     clearInterval(autoSlide);
+        //     autoSlide = setInterval(nextSlide, 5000);
+        // });
     });
 }
 
