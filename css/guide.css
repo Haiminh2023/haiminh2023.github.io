@@ -683,37 +683,38 @@
     .guide-container {
         flex-direction: column;
         gap: 20px;
-        padding: 0 20px; /* THÊM */
-        width: 100%; /* THÊM */
-        max-width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
+    /* QUAN TRỌNG: Trên mobile, sidebar KHÔNG sticky */
     .guide-sidebar {
-        width: 100%;
-        position: static;
+        width: 100% !important;
+        position: static; /* KHÔNG sticky */
         top: 0;
         max-height: none;
         overflow-y: visible;
-        margin-bottom: 20px; /* THÊM */
+        margin-bottom: 20px;
     }
     
     .sidebar-nav {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px; /* THÊM */
+        gap: 10px;
     }
     
     .nav-item {
-        flex: 1 1 calc(50% - 10px); /* SỬA */
-        min-width: 0; /* SỬA */
-        box-sizing: border-box; /* THÊM */
+        flex: 1 1 calc(50% - 10px);
+        min-width: 0;
+        box-sizing: border-box;
     }
     
     .guide-section {
         padding: 30px;
-        width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .section-title {
@@ -729,18 +730,25 @@
     .guide-container {
         flex-direction: column;
         gap: 15px;
-        padding: 0 15px; /* THÊM */
-        margin-top: 20px; /* THÊM */
-        width: 100%; /* THÊM */
-        max-width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        padding: 0 15px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* QUAN TRỌNG: Trên tablet nhỏ cũng KHÔNG sticky */
+    .guide-sidebar {
+        position: static !important;
+        height: auto !important;
+        max-height: none !important;
     }
     
     .guide-section {
         padding: 25px;
         margin-bottom: 60px;
-        width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .section-title {
@@ -752,10 +760,10 @@
     }
     
     .nav-item {
-        flex: 1 1 100%; /* SỬA */
-        min-width: 0; /* SỬA */
+        flex: 1 1 100%;
+        min-width: 0;
         padding: 12px 15px;
-        box-sizing: border-box; /* THÊM */
+        box-sizing: border-box;
     }
     
     .nav-title {
@@ -764,60 +772,60 @@
     
     .device-tabs {
         flex-direction: column;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .device-tab {
         width: 100%;
         text-align: center;
-        box-sizing: border-box; /* THÊM */
+        box-sizing: border-box;
     }
     
     .download-card,
     .koreader-download {
         padding: 20px;
-        width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .download-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .download-note {
         padding-left: 0;
         margin-left: 0;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .download-btn {
         margin-left: 0;
         width: 100%;
         justify-content: center;
-        box-sizing: border-box; /* THÊM */
+        box-sizing: border-box;
     }
     
     .koreader-download {
         flex-direction: column;
         gap: 20px;
         text-align: center;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .koreader-info {
         flex-direction: column;
         text-align: center;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .step {
         flex-direction: column;
         gap: 15px;
-        width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .step-number {
@@ -829,13 +837,13 @@
 
 @media (max-width: 480px) {
     .guide-container {
-        padding: 0 15px; /* THÊM */
-        margin-top: 15px; /* THÊM */
+        padding: 0 15px;
+        margin-top: 15px;
     }
     
     .guide-sidebar {
         padding: 20px;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .sidebar-header h1 {
@@ -845,7 +853,7 @@
     .guide-section {
         padding: 20px;
         margin-bottom: 40px;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .section-title {
@@ -864,19 +872,19 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        width: 100%; /* THÊM */
-        box-sizing: border-box; /* THÊM */
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .copy-btn {
-        align-self: stretch; /* SỬA */
-        text-align: center; /* THÊM */
+        align-self: stretch;
+        text-align: center;
     }
     
     .requirement-card,
     .download-card {
         padding: 20px;
-        width: 100%; /* THÊM */
+        width: 100%;
     }
     
     .requirement-icon,
@@ -886,19 +894,24 @@
     }
 }
 
-/* XÓA HOÀN TOÀN 2 ĐOẠN NÀY Ở CUỐI FILE: */
-/*
-@media (max-width: 768px) {
+/* ================= ĐẢM BẢO STICKY HOẠT ĐỘNG TRÊN DESKTOP ================= */
+@media (min-width: 1025px) {
+    .guide-sidebar {
+        position: -webkit-sticky; /* Cho Safari */
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+    }
+    
+    /* Đảm bảo parent có đủ chiều cao cho sticky */
+    .page-inner {
+        min-height: 100vh;
+    }
+    
+    /* Đảm bảo container không bị overflow */
     .guide-container {
-        margin-top: 80px;
-        padding-top: 20px;
+        align-items: flex-start;
     }
 }
-
-@media (max-width: 480px) {
-    .guide-container {
-        margin-top: 90px;
-        padding-top: 15px;
-    }
-}
-*/
