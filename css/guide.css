@@ -29,18 +29,25 @@ html, body {
     flex-shrink: 0;
     position: sticky;
     top: 100px;
-    height: calc(100vh - 150px); /* THAY ĐỔI: fit-content → calc */
-    max-height: calc(100vh - 150px);
+    height: fit-content; /* THAY ĐỔI: calc → fit-content */
+    max-height: calc(100vh - 150px); /* GIỮ LẠI */
     overflow-y: auto; /* GIỮ LẠI */
     background: #fff;
     border-radius: 16px;
     padding: 25px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     border: 1px solid #eaeaea;
-    z-index: 10; /* THÊM DÒNG NÀY */
+    z-index: 10;
 }
 
-/* Ẩn scrollbar cho đẹp */
+/* Đảm bảo sidebar chỉ hiển thị scroll khi cần và không ảnh hưởng layout */
+.guide-sidebar {
+    will-change: transform; /* Tối ưu hiệu suất */
+    backface-visibility: hidden; /* Tối ưu hiệu suất */
+    transform: translateZ(0); /* Tối ưu hiệu suất */
+}
+
+/* Cải thiện scrollbar - GIỐNG TRANG TÍNH NĂNG */
 .guide-sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -48,6 +55,7 @@ html, body {
 .guide-sidebar::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
+    margin: 10px 0;
 }
 
 .guide-sidebar::-webkit-scrollbar-thumb {
@@ -59,6 +67,10 @@ html, body {
     background: #a8a8a8;
 }
 
+/* Ẩn scrollbar khi không hover - để sidebar gọn gàng */
+.guide-sidebar:not(:hover)::-webkit-scrollbar-thumb {
+    background: transparent;
+}
 .sidebar-header {
     margin-bottom: 25px;
     padding-bottom: 20px;
@@ -534,10 +546,11 @@ html, body {
     
     .guide-sidebar {
         width: 100% !important;
-        position: static;
+        position: static; /* QUAN TRỌNG */
         top: 0;
-        max-height: none;
-        overflow-y: visible;
+        height: auto; /* QUAN TRỌNG: auto */
+        max-height: none; /* QUAN TRỌNG: none */
+        overflow-y: visible; /* QUAN TRỌNG: visible */
         margin-bottom: 20px;
     }
     
@@ -761,6 +774,31 @@ html, body {
     .file-icon,
     .koreader-icon {
         font-size: 28px;
+    }
+}
+
+/* Đảm bảo sticky sidebar hoạt động trên desktop */
+@media (min-width: 1025px) {
+    .page-inner {
+        min-height: 100vh;
+    }
+    
+    .guide-sidebar {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        max-height: calc(100vh - 150px);
+    }
+}
+
+/* Trên mobile, tắt hoàn toàn sticky */
+@media (max-width: 1024px) {
+    .guide-sidebar {
+        position: static !important;
+        top: auto !important;
+        height: auto !important;
+        max-height: none !important;
     }
 }
 
