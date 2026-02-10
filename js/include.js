@@ -160,4 +160,137 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Gọi khi resize
     window.addEventListener('resize', adjustPagePadding);
+
+        // ==================== INIT IMAGE SLIDERS ====================
+    function initImageSliders() {
+        const sliders = document.querySelectorAll('.image-slider');
+        if (sliders.length === 0) return;
+        
+        sliders.forEach(slider => {
+            const track = slider.querySelector('.slider-track');
+            const slides = slider.querySelectorAll('.slider-slide');
+            const prevBtn = slider.querySelector('.slider-prev');
+            const nextBtn = slider.querySelector('.slider-next');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            // Tạo dots nếu có container
+            if (dotsContainer) {
+                dotsContainer.innerHTML = ''; // Xóa dots cũ
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('span');
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('span') : [];
+            
+            function updateSlider() {
+                // Di chuyển track
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Cập nhật dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Cập nhật trạng thái nút
+                if (prevBtn) {
+                    prevBtn.disabled = currentSlide === 0;
+                }
+                if (nextBtn) {
+                    nextBtn.disabled = currentSlide === totalSlides - 1;
+                }
+                
+                // Thêm hiệu ứng fade cho slide
+                slides.forEach((slide, index) => {
+                    slide.style.opacity = index === currentSlide ? '1' : '0.7';
+                    slide.style.transition = 'opacity 0.3s ease';
+                });
+            }
+            
+            function goToSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+                currentSlide = index;
+                updateSlider();
+            }
+            
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
+            
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+            
+            // Thêm sự kiện cho nút
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            
+            // Thêm sự kiện swipe cho mobile (tùy chọn)
+            let startX = 0;
+            let endX = 0;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+            
+            track.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const diff = startX - endX;
+                if (Math.abs(diff) > 50) { // Ngưỡng swipe
+                    if (diff > 0) {
+                        nextSlide(); // Swipe trái
+                    } else {
+                        prevSlide(); // Swipe phải
+                    }
+                }
+            }
+            
+            // Tự động chuyển slide (tùy chọn - bỏ comment nếu muốn)
+            // let autoSlideInterval = setInterval(nextSlide, 5000);
+            
+            // Dừng auto slide khi hover
+            // slider.addEventListener('mouseenter', () => {
+            //     clearInterval(autoSlideInterval);
+            // });
+            
+            // slider.addEventListener('mouseleave', () => {
+            //     autoSlideInterval = setInterval(nextSlide, 5000);
+            // });
+            
+            // Khởi tạo ban đầu
+            updateSlider();
+            
+            // Xử lý responsive - điều chỉnh kích thước slide
+            function handleResize() {
+                slides.forEach(slide => {
+                    slide.style.minWidth = '100%';
+                });
+            }
+            
+            window.addEventListener('resize', handleResize);
+        });
+    }
+    
+    // Gọi hàm khởi tạo slider sau khi load nội dung
+    setTimeout(initImageSliders, 100);
 });
