@@ -667,3 +667,43 @@ body {
         padding-top: 120px; /* Giảm từ 170px */
     }
 }
+
+/* ĐẢM BẢO CÁC CONTAINER KHÔNG BỊ TRÀN TRÊN MOBILE */
+.features-container, .guide-container {
+    padding-top: 15px;
+    min-height: calc(100vh - 60px);
+}
+
+.feature-detail-section, .guide-section {
+    scroll-margin-top: 80px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .page {
+        padding-top: 70px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 10px;
+    }
+    
+    .feature-detail-section, .guide-section {
+        scroll-margin-top: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding-top: 100px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+    
+    .feature-detail-section, .guide-section {
+        scroll-margin-top: 110px;
+    }
+}
