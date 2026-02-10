@@ -1,24 +1,22 @@
-/* guide.css - Tương tự trang tính năng */
-/* FIX MOBILE WIDTH */
-.page-inner {
+/* ================= RESET & BASE ================= */
+html, body {
+    overflow-x: hidden;
     width: 100%;
     max-width: 100%;
+}
+
+.page, .page-inner {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
-@media (max-width: 768px) {
-    body, html {
-        overflow-x: hidden;
-        width: 100%;
-    }
-    
-    .page, .page-inner, .guide-container {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
+.page-inner {
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* ================= MAIN CONTAINER ================= */
 .guide-container {
     display: flex;
     gap: 30px;
@@ -27,20 +25,21 @@
     position: relative;
 }
 
-/* Sidebar bên trái */
+/* ================= SIDEBAR BÊN TRÁI ================= */
 .guide-sidebar {
     width: 320px;
     flex-shrink: 0;
     position: sticky;
-    top: 100px;
+    top: 120px; /* Header height + khoảng cách */
     height: fit-content;
-    max-height: calc(100vh - 150px);
+    max-height: calc(100vh - 170px);
     overflow-y: auto;
     background: #fff;
     border-radius: 16px;
     padding: 25px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     border: 1px solid #eaeaea;
+    z-index: 10;
 }
 
 /* Ẩn scrollbar cho đẹp */
@@ -62,9 +61,14 @@
     background: #a8a8a8;
 }
 
+/* Ẩn scrollbar khi không hover */
+.guide-sidebar:not(:hover)::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
 .sidebar-header {
-    margin-bottom: 25px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #eee;
 }
 
@@ -79,20 +83,22 @@
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 15px 20px;
+    padding: 15px 18px;
     border-radius: 12px;
     background: #f9f9f9;
     border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
+    min-height: 70px;
+    height: auto;
 }
 
 .nav-item:hover {
@@ -104,7 +110,7 @@
 .nav-item.active {
     background: linear-gradient(135deg, #eef6ff, #e1eeff);
     border-color: #4a90e2;
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.15);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
 }
 
 .nav-number {
@@ -119,6 +125,7 @@
     color: #4a90e2;
     font-size: 15px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    flex-shrink: 0;
 }
 
 .nav-item.active .nav-number {
@@ -131,17 +138,18 @@
 }
 
 .nav-title {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: #1a1a1a;
-    margin: 0;
+    margin: 0 0 4px 0;
     line-height: 1.3;
 }
 
-/* Nội dung bên phải */
+/* ================= NỘI DUNG BÊN PHẢI ================= */
 .guide-content {
     flex: 1;
     padding: 0 0 50px 0;
+    min-width: 0;
 }
 
 /* Section styling */
@@ -474,14 +482,11 @@
 }
 
 /* Hướng dẫn sử dụng */
-/* Hướng dẫn sử dụng */
 .usage-step {
-    margin-bottom: 25px; /* THÊM px VÀ ĐÓNG NGOẶC */
+    margin-bottom: 25px;
 }
 
-/* Thêm vào cuối file guide.css, trước responsive */
-
-/* NÚT BACK TO TOP - GIỐNG TRANG TÍNH NĂNG */
+/* ================= NÚT BACK TO TOP ================= */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -526,202 +531,38 @@
     transform: translateY(-2px);
 }
 
-/* ================= SLIDER HÌNH ẢNH ================= */
-.image-slider {
-    margin-top: 25px;
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #eaeaea;
-}
-
-.slider-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slider-slide {
-    min-width: 100%;
-    padding: 15px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.slider-slide img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin: 0 auto;
-    display: block;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
-}
-
-.slide-caption {
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 8px;
-}
-
-.slider-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    gap: 15px;
-}
-
-.slider-prev,
-.slider-next {
-    background: #4a90e2;
-    color: white;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-}
-
-.slider-prev:hover,
-.slider-next:hover {
-    background: #3a80d2;
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(58, 128, 210, 0.3);
-}
-
-.slider-prev:disabled,
-.slider-next:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-}
-
-.slider-dots span {
-    width: 10px;
-    height: 10px;
-    background: #ddd;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.slider-dots span:hover {
-    background: #bbb;
-}
-
-.slider-dots span.active {
-    background: #4a90e2;
-    transform: scale(1.2);
-}
-
-/* Responsive cho slider */
-@media (max-width: 768px) {
-    .image-slider {
-        padding: 15px;
-    }
-    
-    .slider-slide {
-        padding: 10px;
-    }
-    
-    .slider-slide img {
-        max-width: 250px;
-    }
-    
-    .slide-caption {
-        font-size: 14px;
-        padding: 8px;
-    }
-    
-    .slider-controls {
-        flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 480px) {
-    .slider-slide img {
-        max-width: 200px;
-    }
-    
-    .slider-prev,
-    .slider-next {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-}
-
-/* ================= RESPONSIVE - GUIDE PAGE ================= */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
     .guide-container {
         flex-direction: column;
         gap: 20px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    /* THÊM PADDING CHO PHẦN CHA */
-    .page-inner {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        padding: 0 20px; /* THÊM PADDING Ở ĐÂY */
-        box-sizing: border-box;
     }
     
-    /* QUAN TRỌNG: Trên mobile, sidebar KHÔNG sticky */
     .guide-sidebar {
-        width: 100% !important;
-        position: static; /* KHÔNG sticky */
+        width: 100%;
+        position: static;
         top: 0;
         max-height: none;
         overflow-y: visible;
-        margin-bottom: 20px;
     }
     
     .sidebar-nav {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
     }
     
     .nav-item {
-        flex: 1 1 calc(50% - 10px);
-        min-width: 0;
-        box-sizing: border-box;
+        flex: 1;
+        min-width: 220px;
+        padding: 14px 16px;
+    }
+    
+    .nav-item .nav-title {
+        font-size: 15px;
     }
     
     .guide-section {
         padding: 30px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .section-title {
@@ -731,31 +572,28 @@
     .requirements-grid {
         grid-template-columns: 1fr;
     }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
 }
 
 @media (max-width: 768px) {
-    .guide-container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 15px;
-        margin-top: 20px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+    .page-inner {
+        padding: 15px;
     }
     
-    /* QUAN TRỌNG: Trên tablet nhỏ cũng KHÔNG sticky */
-    .guide-sidebar {
-        position: static !important;
-        height: auto !important;
-        max-height: none !important;
+    .guide-container {
+        gap: 15px;
+        margin-top: 20px;
     }
     
     .guide-section {
         padding: 25px;
         margin-bottom: 60px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .section-title {
@@ -767,72 +605,54 @@
     }
     
     .nav-item {
-        flex: 1 1 100%;
-        min-width: 0;
-        padding: 12px 15px;
-        box-sizing: border-box;
-    }
-    
-    .nav-title {
-        font-size: 14px;
+        min-width: 100%;
     }
     
     .device-tabs {
         flex-direction: column;
-        width: 100%;
     }
     
     .device-tab {
         width: 100%;
         text-align: center;
-        box-sizing: border-box;
     }
     
     .download-card,
     .koreader-download {
         padding: 20px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .download-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        width: 100%;
     }
     
     .download-note {
         padding-left: 0;
         margin-left: 0;
-        width: 100%;
     }
     
     .download-btn {
         margin-left: 0;
         width: 100%;
         justify-content: center;
-        box-sizing: border-box;
     }
     
     .koreader-download {
         flex-direction: column;
         gap: 20px;
         text-align: center;
-        width: 100%;
     }
     
     .koreader-info {
         flex-direction: column;
         text-align: center;
-        width: 100%;
     }
     
     .step {
         flex-direction: column;
         gap: 15px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .step-number {
@@ -840,27 +660,38 @@
         height: 36px;
         font-size: 16px;
     }
+    
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 48px;
+        height: 48px;
+    }
 }
 
 @media (max-width: 480px) {
-    .guide-container {
-        padding: 0 15px;
-        margin-top: 15px;
-    }
-    
     .guide-sidebar {
         padding: 20px;
-        width: 100%;
     }
     
     .sidebar-header h1 {
         font-size: 22px;
     }
     
+    .nav-item {
+        padding: 12px 15px;
+        min-height: 65px;
+    }
+    
+    .nav-number {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
     .guide-section {
         padding: 20px;
         margin-bottom: 40px;
-        width: 100%;
     }
     
     .section-title {
@@ -879,8 +710,6 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        width: 100%;
-        box-sizing: border-box;
     }
     
     .copy-btn {
@@ -891,7 +720,6 @@
     .requirement-card,
     .download-card {
         padding: 20px;
-        width: 100%;
     }
     
     .requirement-icon,
@@ -899,26 +727,38 @@
     .koreader-icon {
         font-size: 32px;
     }
+    
+    .back-to-top {
+        bottom: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* ================= ĐẢM BẢO STICKY HOẠT ĐỘNG TRÊN DESKTOP ================= */
 @media (min-width: 1025px) {
+    .page {
+        position: relative;
+        padding-top: 80px; /* Bù cho header fixed */
+    }
+    
     .guide-sidebar {
-        position: -webkit-sticky; /* Cho Safari */
+        position: -webkit-sticky; /* Safari */
         position: sticky;
-        top: 100px;
-        height: fit-content;
-        max-height: calc(100vh - 150px);
-        overflow-y: auto;
+        top: 120px; /* Header height + 20px */
     }
-    
-    /* Đảm bảo parent có đủ chiều cao cho sticky */
-    .page-inner {
-        min-height: 100vh;
-    }
-    
-    /* Đảm bảo container không bị overflow */
-    .guide-container {
-        align-items: flex-start;
+}
+
+/* Trên mobile, tắt sticky */
+@media (max-width: 1024px) {
+    .guide-sidebar {
+        position: static !important;
+        top: auto !important;
     }
 }
