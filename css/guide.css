@@ -502,128 +502,281 @@
 /* Mobile */
 @media (max-width: 768px) {
     .page-inner {
-        padding: 15px;
+        padding: 10px; /* GIẢM XUỐNG 10px (Features dùng 10px) */
         max-width: 100%;
-        overflow-x: hidden; /* Thêm dòng này */
+        overflow-x: hidden;
+        width: 100%;
     }
     
     .guide-container {
         gap: 15px;
         margin-top: 20px;
         width: 100%;
-        box-sizing: border-box; /* Thêm dòng này */
+        box-sizing: border-box;
+        padding: 0; /* THÊM DÒNG NÀY */
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX HEADER QUÁ RỘNG */
     body {
         overflow-x: hidden;
     }
     
     .guide-section {
-        padding: 25px;
-        margin-bottom: 60px;
+        padding: 20px; /* GIẢM XUỐNG 20px (Features dùng 20px) */
+        margin-bottom: 40px; /* GIẢM XUỐNG 40px */
         max-width: 100%;
         box-sizing: border-box;
+        width: 100%;
+        border-radius: 12px; /* THÊM DÒNG NÀY - Features dùng 12px */
     }
     
     .section-content {
         max-width: 100%;
         overflow-x: hidden;
-    }
-    
-    .guide-section {
-        padding: 25px;
-        margin-bottom: 60px;
+        width: 100%;
     }
     
     .section-title {
         font-size: 24px;
+        padding: 0; /* THÊM DÒNG NÀY */
+        margin: 0 0 10px 0;
     }
     
     .section-subtitle {
         font-size: 16px;
+        padding: 0; /* THÊM DÒNG NÀY */
+        margin: 0 0 20px 0;
     }
     
     .nav-item {
         min-width: 100%;
+        margin: 0; /* THÊM DÒNG NÀY */
     }
     
     .device-tabs {
-        flex-direction: column;
+        flex-direction: row; /* ĐỔI TỪ column THÀNH row */
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 25px;
+        width: 100%;
     }
     
     .device-tab {
-        width: 100%;
+        width: auto; /* ĐỔI TỪ 100% THÀNH auto */
+        flex: 1;
+        min-width: calc(50% - 4px); /* THÊM DÒNG NÀY - 2 cột */
         text-align: center;
+        padding: 10px 12px; /* THÊM DÒNG NÀY */
+        border-radius: 8px; /* THÊM DÒNG NÀY */
+        font-size: 14px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ MỞ RỘNG CARD */
+    .requirement-card,
+    .download-card {
+        padding: 20px; /* GIỮ NGUYÊN */
+        border-radius: 12px; /* THÊM DÒNG NÀY */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .requirements-grid {
+        gap: 15px; /* GIẢM XUỐNG 15px */
+        margin-top: 20px;
     }
     
     .download-card {
-        padding: 20px;
+        margin-bottom: 15px;
     }
     
     .download-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        flex-direction: row; /* ĐỔI LẠI THÀNH row (để giống Features) */
+        align-items: center;
+        gap: 20px;
     }
     
     .step {
         flex-direction: column;
         gap: 15px;
+        margin-bottom: 25px;
+        width: 100%;
     }
     
     .step-number {
         width: 36px;
         height: 36px;
         font-size: 16px;
+        border-radius: 8px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ FIX FEATURE SCREENSHOTS */
+    .feature-screenshots {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .feature-screenshots img {
+        border-radius: 10px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ FIX PATH BOX */
+    .path-box {
+        padding: 12px 15px;
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 15px 0;
+    }
+    
+    .path-box code {
+        font-size: 14px; /* GIẢM XUỐNG 14px */
     }
 }
 
 /* Mobile nhỏ */
 @media (max-width: 480px) {
+    .page-inner {
+        padding: 8px; /* GIẢM XUỐNG 8px (Features dùng 8px) */
+    }
+    
     .guide-sidebar {
-        padding: 20px;
+        padding: 15px; /* GIẢM XUỐNG 15px */
+        border-radius: 10px; /* THÊM DÒNG NÀY */
     }
     
     .sidebar-header h1 {
-        font-size: 22px;
+        font-size: 20px; /* GIẢM XUỐNG 20px */
+        padding: 0;
     }
     
     .nav-item {
         padding: 12px 15px;
-        min-height: 65px;
+        min-height: 60px; /* GIẢM XUỐNG 60px */
+        border-radius: 8px; /* THÊM DÒNG NÀY */
+        margin: 0 0 8px 0; /* THÊM DÒNG NÀY */
     }
     
     .nav-number {
-        width: 40px;
-        height: 40px;
-        font-size: 15px;
+        width: 36px; /* GIẢM XUỐNG 36px */
+        height: 36px;
+        font-size: 14px; /* GIẢM XUỐNG 14px */
+        border-radius: 8px; /* THÊM DÒNG NÀY */
     }
     
+    /* QUAN TRỌNG: MỞ RỘNG CÁC SECTION */
     .guide-section {
-        padding: 20px;
-        margin-bottom: 40px;
+        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
+        margin-bottom: 30px; /* GIẢM XUỐNG 30px */
+        border-radius: 10px; /* THÊM DÒNG NÀY */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
     
     .section-title {
-        font-size: 22px;
+        font-size: 20px; /* GIẢM XUỐNG 20px */
+        margin-bottom: 8px;
+    }
+    
+    .section-subtitle {
+        font-size: 15px; /* GIẢM XUỐNG 15px */
+        margin-bottom: 15px;
     }
     
     .download-section h3 {
-        font-size: 20px;
+        font-size: 18px; /* GIẢM XUỐNG 18px */
+        margin-bottom: 8px;
     }
     
+    /* QUAN TRỌNG: MỞ RỘNG CARD */
     .requirement-card,
     .download-card {
-        padding: 20px;
+        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
+        border-radius: 8px; /* THÊM DÒNG NÀY */
+        margin: 0 0 12px 0; /* THÊM DÒNG NÀY */
+        width: 100%;
+    }
+    
+    .requirements-grid {
+        gap: 12px; /* GIẢM XUỐNG 12px */
     }
     
     .requirement-icon,
     .file-icon {
-        font-size: 32px;
+        font-size: 28px; /* GIẢM XUỐNG 28px */
+    }
+    
+    .requirement-card h3 {
+        font-size: 16px; /* THÊM DÒNG NÀY */
+        margin-bottom: 10px;
+    }
+    
+    .download-header {
+        gap: 15px; /* GIẢM XUỐNG 15px */
+    }
+    
+    .file-info h4 {
+        font-size: 16px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* FIX CHO DEVICE TABS */
+    .device-tabs {
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+    
+    .device-tab {
+        padding: 8px 10px; /* GIẢM PADDING */
+        font-size: 13px; /* GIẢM FONT SIZE */
+        border-radius: 6px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* FIX CHO STEP */
+    .step {
+        margin-bottom: 20px;
+        gap: 12px;
+    }
+    
+    .step-number {
+        width: 32px; /* GIẢM XUỐNG 32px */
+        height: 32px;
+        font-size: 14px; /* GIẢM XUỐNG 14px */
+        border-radius: 6px; /* THÊM DÒNG NÀY */
+    }
+    
+    .step-content h3 {
+        font-size: 16px; /* THÊM DÒNG NÀY */
+    }
+    
+    /* FIX CHO PATH BOX */
+    .path-box {
+        padding: 10px 12px;
+        border-radius: 6px;
+    }
+    
+    .path-box code {
+        font-size: 13px; /* GIẢM XUỐNG 13px */
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ FIX DOWNLOAD BUTTON */
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 15px; /* GIẢM PADDING */
+        font-size: 14px; /* GIẢM FONT SIZE */
+        border-radius: 8px;
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ FIX FAQ */
+    .faq-item {
+        margin-bottom: 15px;
+    }
+    
+    .faq-item h3 {
+        font-size: 16px;
     }
 }
-
 /* ================= IMAGE SLIDER STYLES - ĐÃ FIX MOBILE ================= */
 .image-slider {
     margin: 25px 0;
@@ -885,28 +1038,4 @@
         font-size: 16px;
     }
 }
-/* THÊM: FIX CHUNG CHO RESPONSIVE */
-@media (max-width: 480px) {
-    /* Đảm bảo tất cả phần tử không vượt quá màn hình */
-    * {
-        max-width: 100%;
-    }
-    
-    /* Fix cho các phần tử có thể gây tràn */
-    .path-box code {
-        word-break: break-all;
-        white-space: pre-wrap;
-        font-size: 13px;
-    }
-    
-    .feature-screenshots img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Fix cho nút download */
-    .download-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
+
