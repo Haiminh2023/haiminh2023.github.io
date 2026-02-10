@@ -12,7 +12,7 @@
     width: 320px;
     flex-shrink: 0;
     position: sticky;
-    top: 100px; /* GIỐNG FEATURES: 100px */
+    top: 100px; /* GIỐNG FEATURES: 100px chứ không phải 120px */
     height: fit-content;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
@@ -91,7 +91,7 @@
 }
 
 .nav-number {
-    width: 45px; /* GIỐNG FEATURES: 45px */
+    width: 45px; /* GIỐNG FEATURES: 45px không phải 32px */
     height: 45px;
     display: flex;
     align-items: center;
@@ -358,7 +358,6 @@
     line-height: 1.6;
 }
 
-/* FIX QUAN TRỌNG: Path-box cho mobile */
 .path-box {
     background: #f8fbff;
     padding: 15px;
@@ -376,8 +375,6 @@
     color: #4a90e2;
     background: none;
     padding: 0;
-    word-break: break-all; /* Quan trọng: cho phép ngắt từ dài */
-    overflow-wrap: break-word; /* Quan trọng: ngắt từ */
 }
 
 .copy-btn {
@@ -445,125 +442,17 @@
     margin: 0;
 }
 
+/* ================= RESPONSIVE - GIỐNG FEATURES ================= */
 
-    margin: 25px 0;
-    border-radius: 16px;
-    background: #f8fbff;
-    border: 2px solid #e1eeff;
-    padding: 20px;
-    width: 100%; /* QUAN TRỌNG */
-    max-width: 100%; /* QUAN TRỌNG */
-    overflow: hidden; /* QUAN TRỌNG */
-    box-sizing: border-box; /* QUAN TRỌNG */
+/* Desktop nhỏ */
+@media (max-width: 1200px) {
+    .guide-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
 }
 
-.slider-container {
-    position: relative;
-    overflow: hidden; /* QUAN TRỌNG */
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    width: 100%; /* QUAN TRỌNG */
-    max-width: 100%; /* QUAN TRỌNG */
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    width: 100%; /* QUAN TRỌNG */
-}
-
-.slider-slide {
-    min-width: 100%; /* QUAN TRỌNG: Mỗi slide chiếm 100% */
-    flex-shrink: 0;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    box-sizing: border-box; /* QUAN TRỌNG */
-}
-
-.slider-slide img {
-    width: 100%; /* QUAN TRỌNG: Ảnh chiếm 100% slide */
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.08);
-    margin-bottom: 15px;
-    display: block; /* QUAN TRỌNG */
-}
-
-.slide-caption {
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
-    color: #333;
-    padding: 10px 15px;
-    background: #f0f7ff;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box; /* QUAN TRỌNG */
-}
-
-/* Slider controls */
-.slider-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.slider-prev,
-.slider-next {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #4a90e2;
-    color: white;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
-    flex-shrink: 0; /* QUAN TRỌNG: Không bị co */
-}
-
-/* Slider dots */
-.slider-dots {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap; /* QUAN TRỌNG: Xuống dòng nếu cần */
-    justify-content: center;
-}
-
-.slider-dots span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.slider-dots span.active {
-    background: #4a90e2;
-    transform: scale(1.2);
-}
-
-/* ================= RESPONSIVE - GIỐNG HỆT FEATURES.CSS ================= */
-
-/* Tablet & Small Desktop - GIỐNG FEATURES.CSS */
+/* Tablet */
 @media (max-width: 1024px) {
     .guide-container {
         flex-direction: column;
@@ -585,12 +474,12 @@
     
     .nav-item {
         flex: 1;
-        min-width: 220px; /* GIỐNG FEATURES.CSS */
+        min-width: 220px; /* GIỐNG FEATURES */
         padding: 14px 16px;
     }
     
     .nav-item .nav-title {
-        font-size: 15px; /* GIỐNG FEATURES.CSS */
+        font-size: 15px;
     }
     
     .guide-section {
@@ -606,10 +495,246 @@
     }
     
     .feature-screenshots {
-        grid-template-columns: 1fr; /* GIỐNG FEATURES.CSS */
-        gap: 15px; /* GIỐNG FEATURES.CSS */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .page-inner {
+        padding: 15px;
     }
     
+    .guide-container {
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .guide-section {
+        padding: 25px;
+        margin-bottom: 60px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+    
+    .nav-item {
+        min-width: 100%;
+    }
+    
+    .device-tabs {
+        flex-direction: column;
+    }
+    
+    .device-tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .download-card {
+        padding: 20px;
+    }
+    
+    .download-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .step {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile nhỏ */
+@media (max-width: 480px) {
+    .guide-sidebar {
+        padding: 20px;
+    }
+    
+    .sidebar-header h1 {
+        font-size: 22px;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        min-height: 65px;
+    }
+    
+    .nav-number {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+    
+    .guide-section {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+    .download-section h3 {
+        font-size: 20px;
+    }
+    
+    .requirement-card,
+    .download-card {
+        padding: 20px;
+    }
+    
+    .requirement-icon,
+    .file-icon {
+        font-size: 32px;
+    }
+}
+
+/* ================= IMAGE SLIDER STYLES ================= */
+.image-slider {
+    margin: 25px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f8fbff;
+    border: 2px solid #e1eeff;
+    padding: 20px;
+}
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.slider-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.slider-slide img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+}
+
+.slide-caption {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 15px;
+    background: #f0f7ff;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Slider controls */
+.slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.slider-prev,
+.slider-next {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+    background: #3a80d2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+}
+
+.slider-prev:disabled,
+.slider-next:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Slider dots */
+.slider-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.slider-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dots span.active {
+    background: #4a90e2;
+    transform: scale(1.2);
+}
+
+.slider-dots span:hover {
+    background: #bbb;
+    transform: scale(1.1);
+}
+
+/* Active slide */
+.slider-slide {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* Responsive slider */
+@media (max-width: 768px) {
     .image-slider {
         padding: 15px;
         margin: 20px 0;
@@ -632,79 +757,7 @@
     }
 }
 
-/* Mobile - GIỐNG FEATURES.CSS */
-@media (max-width: 768px) {
-    .guide-section {
-        padding: 25px; /* GIỐNG FEATURES.CSS */
-        margin-bottom: 60px;
-    }
-    
-    .section-title {
-        font-size: 26px; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .section-subtitle {
-        font-size: 16px;
-    }
-    
-    .nav-item {
-        min-width: 100%; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .device-tabs {
-        flex-direction: column;
-    }
-    
-    .device-tab {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .download-card {
-        padding: 20px;
-    }
-    
-    .download-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    /* FIX QUAN TRỌNG CHO MOBILE: Path-box layout */
-    .step {
-        flex-direction: column; /* GIỐNG FEATURES.CSS responsive */
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-    
-    .step-number {
-        width: 36px; /* GIỐNG FEATURES.CSS responsive */
-        height: 36px;
-        font-size: 16px;
-    }
-    
-    /* FIX PATH-BOX TRÊN MOBILE */
-    .path-box {
-        display: block; /* Đổi từ flex thành block trên mobile */
-        padding: 12px;
-    }
-    
-    .path-box code {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 10px;
-        word-break: break-all; /* QUAN TRỌNG: fix tràn code */
-        overflow-wrap: break-word;
-        white-space: pre-wrap; /* Cho phép xuống dòng */
-    }
-    
-    .copy-btn {
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-    }
-    
-    /* Fix cho ảnh slider trên mobile */
+@media (max-width: 480px) {
     .slider-slide img {
         max-width: 200px;
     }
@@ -716,175 +769,5 @@
     
     .slider-controls {
         gap: 15px;
-    }
-}
-
-/* Small Mobile - GIỐNG FEATURES.CSS */
-@media (max-width: 480px) {
-    .guide-sidebar {
-        padding: 20px; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .sidebar-header h1 {
-        font-size: 22px; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .nav-item {
-        padding: 12px 15px; /* GIỐNG FEATURES.CSS */
-        min-height: 65px; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .nav-number {
-        width: 40px; /* GIỐNG FEATURES.CSS */
-        height: 40px;
-        font-size: 15px;
-    }
-    
-    .guide-section {
-        padding: 20px; /* GIỐNG FEATURES.CSS */
-        margin-bottom: 40px;
-    }
-    
-    .section-title {
-        font-size: 22px; /* GIỐNG FEATURES.CSS */
-    }
-    
-    .download-section h3 {
-        font-size: 20px;
-    }
-    
-    .requirement-card,
-    .download-card {
-        padding: 20px;
-    }
-    
-    .requirement-icon,
-    .file-icon {
-        font-size: 32px;
-    }
-    
-    /* FIX THÊM CHO MOBILE NHỎ */
-    .path-box code {
-        font-size: 13px; /* Nhỏ hơn cho mobile nhỏ */
-    }
-    
-    .step-content h3 {
-        font-size: 18px;
-        line-height: 1.4;
-    }
-    
-    .step-content p {
-        font-size: 15px;
-        line-height: 1.5;
-    }
-}
-
-/* ================= RESPONSIVE SLIDER - FIX TRÀN MÀN HÌNH ================= */
-
-/* Mobile */
-@media (max-width: 768px) {
-    .image-slider {
-        margin: 20px 0; /* CHỈNH: bỏ âm margin */
-        padding: 15px;
-        border-radius: 12px;
-        width: 100%; /* QUAN TRỌNG: không dùng calc() */
-        max-width: 100%; /* QUAN TRỌNG */
-    }
-    
-    .slider-container {
-        border-radius: 10px;
-    }
-    
-    .slider-slide {
-        padding: 10px;
-    }
-    
-    .slider-slide img {
-        max-width: 100% !important; /* QUAN TRỌNG: Ảnh không vượt quá slide */
-        width: auto; /* Tự động điều chỉnh */
-        height: auto;
-        max-height: 400px; /* Giới hạn chiều cao */
-    }
-    
-    .slide-caption {
-        max-width: 100% !important; /* QUAN TRỌNG: Caption không vượt quá slide */
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    
-    .slider-prev,
-    .slider-next {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-    
-    .slider-controls {
-        gap: 15px;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-    .image-slider {
-        margin: 20px 0;
-        padding: 12px;
-    }
-    
-    .slider-slide img {
-        max-height: 350px;
-    }
-    
-    .slide-caption {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-    
-    .slider-prev,
-    .slider-next {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-    }
-    
-    .slider-controls {
-        gap: 12px;
-    }
-}
-
-/* ================= FIX CHUNG CHO MOBILE OVERFLOW ================= */
-@media (max-width: 768px) {
-    /* Đảm bảo không có phần tử nào tràn */
-    .guide-section,
-    .step-content,
-    .device-guide {
-        overflow: visible;
-        width: 100%;
-    }
-    
-    /* Fix cho slider không tràn */
-    .image-slider,
-    .slider-container,
-    .slider-track {
-        max-width: 100vw;
-        overflow: hidden;
-    }
-    
-    /* Đảm bảo ảnh không tràn */
-    .slider-slide img {
-        max-width: 100% !important;
-        height: auto !important;
-    }
-}
-
-/* Fix cứng cho rất nhỏ */
-@media (max-width: 360px) {
-    .slider-slide img {
-        max-height: 300px !important;
-    }
-    
-    .slide-caption {
-        font-size: 12px !important;
-        padding: 5px 8px !important;
     }
 }
