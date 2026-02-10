@@ -723,3 +723,169 @@
         height: 20px;
     }
 }
+/* ============================== */
+/* BANNER ACTION BUTTONS - STYLE MỚI */
+/* ============================== */
+
+.banner-action-buttons {
+    margin-top: 32px;
+}
+
+.action-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button-spacer {
+    width: 32px;
+    height: 1px;
+    flex-shrink: 0;
+}
+
+/* Nút banner style mới */
+.banner-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.banner-button:hover::before {
+    left: 100%;
+}
+
+.banner-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Nút xem chi tiết */
+.detail-button {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+}
+
+.detail-button:hover {
+    background: linear-gradient(135deg, #5a6268, #3d4348);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+}
+
+/* Nút tải về */
+.download-button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.download-button:hover {
+    background: linear-gradient(135deg, #218838, #1ba87e);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.banner-button svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke-width: 2.5;
+}
+
+/* Responsive cho banner buttons */
+@media (max-width: 1024px) {
+    .banner-button {
+        min-width: 180px;
+        padding: 13px 24px;
+    }
+    
+    .button-spacer {
+        width: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-action-buttons {
+        margin-top: 28px;
+    }
+    
+    .action-buttons-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .button-spacer {
+        width: 1px;
+        height: 16px;
+    }
+    
+    .banner-button {
+        width: 100%;
+        min-width: auto;
+        padding: 15px 24px;
+        font-size: 16px;
+    }
+    
+    .banner-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .action-buttons-container {
+        justify-content: center;
+        gap: 16px;
+    }
+    
+    .banner-button {
+        min-width: 170px;
+        padding: 13px 20px;
+    }
+}
+
+/* Animation cho banner buttons */
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 5px 20px rgba(40, 167, 69, 0.2);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(40, 167, 69, 0.4);
+    }
+    100% {
+        box-shadow: 0 5px 20px rgba(40, 167, 69, 0.2);
+    }
+}
+
+/* Hiệu ứng nhấp nháy cho nút download */
+.download-button {
+    animation: buttonPulse 3s infinite ease-in-out;
+}
+
+/* Hiệu ứng active khi click */
+.banner-button:active {
+    transform: translateY(0) scale(0.98);
+    transition: transform 0.1s ease;
+}
