@@ -503,11 +503,32 @@
 @media (max-width: 768px) {
     .page-inner {
         padding: 15px;
+        max-width: 100%;
+        overflow-x: hidden; /* Thêm dòng này */
     }
     
     .guide-container {
         gap: 15px;
         margin-top: 20px;
+        width: 100%;
+        box-sizing: border-box; /* Thêm dòng này */
+    }
+    
+    /* THÊM ĐOẠN NÀY ĐỂ FIX HEADER QUÁ RỘNG */
+    body {
+        overflow-x: hidden;
+    }
+    
+    .guide-section {
+        padding: 25px;
+        margin-bottom: 60px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .section-content {
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .guide-section {
