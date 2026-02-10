@@ -641,6 +641,164 @@ function copyToClipboard(text) {
         console.error('Lỗi khi copy: ', err);
     });
 }
+
+// THÊM VÀO CUỐI <script> TRONG guide.html (hoặc tạo file riêng)
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Đợi include.js load xong
+    setTimeout(function() {
+        const navItems = document.querySelectorAll('.nav-item');
+        const guideSections = document.querySelectorAll('.guide-section');
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Hàm cuộn đến section
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (!targetSection) return;
+            
+            const header = document.querySelector('.navbar');
+            const offset = header ? header.offsetHeight + 40 : 100;
+            const targetPosition = targetSection.offsetTop - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Cập nhật URL với hash
+            history.pushState(null, null, `#${sectionId}`);
+        }
+        
+        // Xử lý click vào thẻ sidebar
+        if (navItems.length > 0) {
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    scrollToSection(targetId);
+                });
+            });
+        }
+        
+        // Intersection Observer để highlight thẻ khi cuộn - GIỐNG FEATURES
+        if (guideSections.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        
+                        // Cập nhật active class cho nav item
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                            const href = item.getAttribute('href');
+                            if (href && href.substring(1) === id) {
+                                item.classList.add('active');
+                                
+                                // Cuộn sidebar để thẻ active luôn hiển thị
+                                const sidebar = document.querySelector('.guide-sidebar');
+                                if (sidebar) {
+                                    const itemRect = item.getBoundingClientRect();
+                                    const sidebarRect = sidebar.getBoundingClientRect();
+                                    
+                                    // Nếu thẻ không nằm trong viewport của sidebar
+                                    if (itemRect.top < sidebarRect.top || itemRect.bottom > sidebarRect.bottom) {
+                                        item.scrollIntoView({ 
+                                            behavior: 'smooth', 
+                                            block: 'center',
+                                            inline: 'nearest'
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '-10% 0px -70% 0px', // Điều chỉnh để highlight sớm hơn
+                threshold: 0.2
+            });
+            
+            guideSections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Xử lý hash trong URL khi load trang
+        function handleInitialHash() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                setTimeout(() => {
+                    scrollToSection(hash);
+                    
+                    // Highlight thẻ tương ứng
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        const href = item.getAttribute('href');
+                        if (href && href.substring(1) === hash) {
+                            item.classList.add('active');
+                        }
+                    });
+                }, 1000); // Đợi trang load hoàn toàn
+            }
+        }
+        
+        // Gọi hàm xử lý hash
+        handleInitialHash();
+        
+        // Lắng nghe sự kiện hashchange
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const href = item.getAttribute('href');
+                    if (href && href.substring(1) === hash) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+        
+        // Thêm sự kiện scroll để highlight chính xác hơn
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                // Tìm section nào đang gần nhất với top của viewport
+                const scrollPosition = window.scrollY + 150; // Offset để highlight sớm hơn
+                
+                let closestSection = null;
+                let closestDistance = Infinity;
+                
+                guideSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const distance = Math.abs(sectionTop - scrollPosition);
+                    
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestSection = section;
+                    }
+                });
+                
+                if (closestSection) {
+                    const id = closestSection.id;
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        const href = item.getAttribute('href');
+                        if (href && href.substring(1) === id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            }, 100);
+        });
+        
+    }, 500); // Delay để include.js chạy xong
+});
 </script>
 
 </body>
