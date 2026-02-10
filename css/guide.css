@@ -762,3 +762,133 @@ html, body {
         top: auto !important;
     }
 }
+
+/* ================= STICKY SIDEBAR - GIỐNG FEATURES ================= */
+.guide-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px; /* Thay đổi từ 120px xuống 100px để giống features */
+    height: fit-content;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+    z-index: 10;
+}
+
+/* GIẢM CHIỀU CAO THẺ NAV ITEM - GIỐNG FEATURES */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Giống features.css */
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 70px; /* Giống features */
+    height: auto;
+}
+
+.nav-item:hover {
+    background: #f0f7ff;
+    border-color: #e1eeff;
+    transform: translateY(-2px); /* Hiệu ứng hover giống features */
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, #eef6ff, #e1eeff);
+    border-color: #4a90e2;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
+}
+
+/* SỬA LẠI NAV-NUMBER ĐỂ GIỐNG FEATURES */
+.nav-number {
+    width: 45px; /* Tăng từ 32px lên 45px */
+    height: 45px; /* Tăng từ 32px lên 45px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #4a90e2;
+    font-size: 16px; /* Tăng từ 15px */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+}
+
+.nav-item.active .nav-number {
+    background: #4a90e2;
+    color: white;
+}
+
+/* RESPONSIVE - GIỐNG FEATURES */
+@media (max-width: 1024px) {
+    .guide-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .guide-sidebar {
+        width: 100%;
+        position: static;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        flex: 1;
+        min-width: 220px; /* Giống features.css */
+        padding: 14px 16px;
+    }
+    
+    .nav-item .nav-title {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-item {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .guide-sidebar {
+        padding: 20px;
+    }
+    
+    .sidebar-header h1 {
+        font-size: 22px;
+    }
+    
+    .nav-item {
+        padding: 12px 15px;
+        min-height: 65px;
+    }
+    
+    .nav-number {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+}
