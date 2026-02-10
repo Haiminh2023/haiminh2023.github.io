@@ -707,3 +707,62 @@ body {
         scroll-margin-top: 110px;
     }
 }
+/* ================= LAYOUT MOBILE VỚI ẢNH LỚN ================= */
+@media (max-width: 768px) {
+    .feature-card {
+        flex-direction: column;
+        height: auto;
+        min-height: 420px; /* Tăng chiều cao tối thiểu */
+    }
+    
+    .feature-image {
+        width: 100%;
+        height: 240px; /* Tăng chiều cao ảnh đáng kể */
+        order: -1; /* Đưa ảnh lên đầu */
+        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+    }
+    
+    .feature-image img {
+        object-fit: contain;
+        padding: 20px;
+        max-width: 90%;
+        max-height: 90%;
+        transform: scale(1.1);
+    }
+    
+    .feature-content {
+        padding: 25px;
+        flex: none; /* Không co giãn */
+    }
+    
+    .feature-content h3 {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+    
+    .feature-content li {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Mobile nhỏ hơn */
+@media (max-width: 480px) {
+    .feature-card {
+        min-height: 380px;
+    }
+    
+    .feature-image {
+        height: 200px;
+    }
+    
+    .feature-image img {
+        padding: 15px;
+        transform: scale(1.05);
+    }
+    
+    .feature-content {
+        padding: 20px;
+    }
+}
