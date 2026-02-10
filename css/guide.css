@@ -6,6 +6,8 @@
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
+    padding: 0 20px; /* Thêm padding để tránh sát mép */
+    box-sizing: border-box;
 }
 
 /* Sidebar bên trái */
