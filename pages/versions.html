@@ -172,17 +172,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <h2 class="banner-title">🎉 Đã có bản cập nhật ${latestVersion.version} 🎉</h2>
                     <p class="banner-description">${latestVersion.title}</p>
-                    <div class="banner-buttons">
-                        <a href="#${latestVersion.version}" class="banner-button" id="bannerDetailLink">Xem chi tiết cập nhật</a>
-                        <!-- THÊM NÚT TẢI VỀ Ở ĐÂY -->
-                        <a href="guide.html#download" class="banner-button banner-download-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                <polyline points="7 10 12 15 17 10"/>
-                                <line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
-                            Tải plugin mới nhất
-                        </a>
+                    
+                    <div class="banner-action-buttons">
+                        <div class="action-buttons-container">
+                            <a href="#${latestVersion.version}" class="banner-button detail-button" id="bannerDetailLink">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4"/>
+                                    <path d="M12 8h.01"/>
+                                </svg>
+                                Xem chi tiết cập nhật
+                            </a>
+                            
+                            <div class="button-spacer"></div>
+                            
+                            <a href="features.html#download" class="banner-button download-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                Tải plugin mới nhất
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="banner-decoration">
@@ -355,17 +367,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Xử lý banner button
                 document.addEventListener('click', function(e) {
                     if (e.target.id === 'bannerDetailLink' || 
-                        e.target.classList.contains('banner-button') ||
-                        e.target.closest('.banner-button')) {
-                        
-                        const target = e.target.closest('.banner-button');
-                        if (target && target.id === 'bannerDetailLink') {
-                            e.preventDefault();
-                            const targetId = target.getAttribute('href');
-                            scrollToVersion(targetId.replace('#', ''));
-                        }
-                        // Các nút khác (như nút download) sẽ điều hướng bình thường
+                        e.target.closest('.detail-button')) {
+                        e.preventDefault();
+                        const targetId = e.target.closest('.detail-button').getAttribute('href');
+                        scrollToVersion(targetId.replace('#', ''));
                     }
+                    // Nút download sẽ điều hướng bình thường
                 });
                 
             } catch (error) {
