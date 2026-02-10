@@ -683,9 +683,16 @@
     .guide-container {
         flex-direction: column;
         gap: 20px;
-        padding: 0 20px;
         width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
+    }
+    /* THÊM PADDING CHO PHẦN CHA */
+    .page-inner {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 0 20px; /* THÊM PADDING Ở ĐÂY */
         box-sizing: border-box;
     }
     
