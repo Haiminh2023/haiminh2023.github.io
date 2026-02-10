@@ -792,3 +792,28 @@
         gap: 15px;
     }
 }
+/* THÊM: FIX CHUNG CHO RESPONSIVE */
+@media (max-width: 480px) {
+    /* Đảm bảo tất cả phần tử không vượt quá màn hình */
+    * {
+        max-width: 100%;
+    }
+    
+    /* Fix cho các phần tử có thể gây tràn */
+    .path-box code {
+        word-break: break-all;
+        white-space: pre-wrap;
+        font-size: 13px;
+    }
+    
+    .feature-screenshots img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Fix cho nút download */
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
