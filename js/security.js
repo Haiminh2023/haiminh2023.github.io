@@ -1,94 +1,82 @@
-// js/security.js - FIXED cho anchor links và inline handlers
+// js/security.js - FIXED với Cloudflare Insights
 (function() {
     'use strict';
     
     // Kiểm tra đã có CSP chưa
-    if (document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
+    const existingCSP = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    if (existingCSP) {
+        console.log('⚠️ Đã có CSP, không thêm mới');
         return;
     }
     
-    // Lấy hostname hiện tại
+    console.log('🔄 Đang thêm CSP tự động...');
+    
+    // Lấy thông tin trang
     const hostname = window.location.hostname;
-    const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+    const protocol = window.location.protocol;
     const baseDomain = hostname.replace('www.', '');
     
-    // CSP HOÀN CHỈNH - Cho phép tất cả cần thiết
+    // CSP HOÀN CHỈNH với Cloudflare Insights
     const csp = `
-        default-src 'self';
+        default-src 'self' ${protocol}//${baseDomain};
         script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com;
+        script-src-elem 'self' 'unsafe-inline' https://static.cloudflareinsights.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: blob: https://haiminh2023.github.io;
-        connect-src 'self' ${isLocalhost ? 'http://localhost:* http://127.0.0.1:*' : `https://${baseDomain} https://*.${baseDomain}`} https://*.cloudflare.com;
-        media-src 'self';
-        object-src 'none';
-        base-uri 'self';
+        connect-src 'self' ${protocol}//${baseDomain} ${protocol}//*.${baseDomain} https://*.cloudflare.com;
+        frame-src 'self';
         form-action 'self';
-        frame-ancestors 'self';
-        frame-src 'self' https://www.youtube.com https://player.vimeo.com;
+        base-uri 'self';
+        object-src 'none';
         worker-src 'self' blob:;
-        child-src 'self' blob:;
         manifest-src 'self';
-        prefetch-src 'self';
-        navigate-to 'self' https://${baseDomain}/*;
     `.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
     
-    // Thêm CSP
+    // Thêm CSP meta tag
     const meta = document.createElement('meta');
     meta.setAttribute('http-equiv', 'Content-Security-Policy');
     meta.setAttribute('content', csp);
     document.head.appendChild(meta);
     
-    console.log('✅ Applied CSP for:', hostname);
+    console.log('✅ CSP đã được thêm với Cloudflare support');
     console.log('CSP:', csp);
     
-    // FIX THÊM: Đảm bảo anchor links hoạt động
-    setTimeout(() => {
-        fixAnchorLinks();
-        fixInlineHandlers();
-    }, 100);
+    // TẠO SCRIPT CLOUDFLARE ĐÚNG CÁCH
+    createCloudflareScript();
     
-    // Hàm fix anchor links
-    function fixAnchorLinks() {
-        // Tìm tất cả links có hash (#)
-        const anchorLinks = document.querySelectorAll('a[href*="#"]');
-        anchorLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                // Đảm bảo click handler hoạt động
-                link.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                        // Update URL hash
-                        history.pushState(null, null, `#${targetId}`);
-                    }
-                }, { passive: false });
-            }
-        });
-        console.log(`🔗 Fixed ${anchorLinks.length} anchor links`);
-    }
-    
-    // Hàm fix inline handlers (onclick, etc.)
-    function fixInlineHandlers() {
-        // Tìm các element có onclick
-        const elementsWithOnclick = document.querySelectorAll('[onclick]');
-        elementsWithOnclick.forEach(el => {
-            const onclickAttr = el.getAttribute('onclick');
-            if (onclickAttr) {
-                // Thêm event listener thay thế
-                el.addEventListener('click', function() {
-                    try {
-                        // Chạy onclick code
-                        new Function(onclickAttr).call(this);
-                    } catch (error) {
-                        console.error('Error executing onclick:', error);
-                    }
-                });
-                console.log(`🔄 Fixed onclick for:`, el);
-            }
-        });
+    function createCloudflareScript() {
+        // Chỉ tạo script cho các trang cần Cloudflare
+        const path = window.location.pathname;
+        const needCloudflare = path.includes('versions.html') || 
+                               path.includes('policies.html') ||
+                               path.includes('features.html');
+        
+        if (!needCloudflare) return;
+        
+        console.log('🌐 Tạo Cloudflare Analytics script...');
+        
+        // Tạo script element
+        const script = document.createElement('script');
+        script.defer = true;
+        script.src = 'https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015';
+        script.integrity = 'sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==';
+        script.crossOrigin = 'anonymous';
+        
+        // Token Cloudflare (nếu có thể ẩn)
+        // Trong thực tế, nên lấy từ biến môi trường hoặc backend
+        const cfToken = '6253bf09a72b4f46a2de8059f99c0982'; // Token hiện tại
+        
+        script.setAttribute('data-cf-beacon', JSON.stringify({
+            "token": cfToken,
+            "spa": true,
+            "version": "2024.11.0"
+        }));
+        
+        // Thêm vào body (không thêm vào head để tránh parse sớm)
+        document.body.appendChild(script);
+        
+        console.log('✅ Cloudflare script đã được thêm');
     }
 })();
