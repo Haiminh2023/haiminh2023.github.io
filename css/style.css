@@ -29,8 +29,8 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 60px; /* THÊM DÒNG NÀY */
-    min-height: 60px; /* THÊM DÒNG NÀY */
+    height: 60px;
+    min-height: 60px;
 
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
@@ -40,12 +40,12 @@ body {
 .nav-inner {
     max-width: 1200px;
     margin: auto;
-    padding: 10px 20px; /* GIẢM TỪ 14px XUỐNG 10px */
+    padding: 10px 20px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%; /* THÊM DÒNG NÀY để căn giữa */
+    height: 100%;
 }
 
 /* ================= HEADER IMPROVEMENTS ================= */
@@ -126,7 +126,7 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 60px; /* Giảm mạnh: 80px → 60px */
+    padding-top: 60px;
     padding-bottom: 60px;
     min-height: 100vh;
 }
@@ -221,7 +221,7 @@ body {
     gap: 10px;
     color: var(--muted);
     position: relative;
-    padding-left: 30px; /* Tạo khoảng trống cho dấu tích */
+    padding-left: 30px;
 }
 
 /*.feature-content li:before {
@@ -234,7 +234,7 @@ body {
 }
 */
 
-/* THAY DẤU LIỆT KÊ BẰNG TÍCH XANH */
+/* DẤU TÍCH XANH */
 .feature-content li:before {
     content: "✓";
     position: absolute;
@@ -394,7 +394,7 @@ body {
     }
     
     .page {
-        padding-top: 140px; /* Tăng cho mobile layout 2 dòng */
+        padding-top: 140px;
     }
     .nav-inner {
         flex-direction: column;
@@ -475,7 +475,7 @@ body {
     }
     
     .nav-menu a {
-        min-width: calc(50% - 6px); /* 2 items per row */
+        min-width: calc(50% - 6px);
         font-size: 11px;
         padding: 0 8px;
     }
@@ -539,7 +539,7 @@ body {
     }
     
     .nav-menu a {
-        min-width: 100%; /* 1 item per row */
+        min-width: 100%;
         font-size: 12px;
     }
     
@@ -547,7 +547,6 @@ body {
         font-size: 24px;
     }
 }
-/* Thêm vào cuối file style.css */
 
 /* ================= BACK TO TOP (DÙNG CHUNG) ================= */
 .back-to-top {
@@ -631,18 +630,18 @@ body {
 
 /* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
 .features-container, .guide-container {
-    padding-top: 15px; /* Giảm từ 20px */
+    padding-top: 15px;
     min-height: calc(100vh - 60px);
 }
 
 .feature-detail-section, .guide-section, .legal-section {
-    scroll-margin-top: 80px; /* Giảm từ 100px */
+    scroll-margin-top: 80px; 
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
     .page {
-        padding-top: 70px; /* Giảm từ 90px */
+        padding-top: 70px;
     }
     
     .features-container, .guide-container {
@@ -656,7 +655,7 @@ body {
 
 @media (max-width: 768px) {
     .page {
-        padding-top: 100px; /* Giảm từ 140px */
+        padding-top: 100px;
     }
     
     .features-container, .guide-container {
@@ -671,7 +670,7 @@ body {
 
 @media (max-width: 480px) {
     .page {
-        padding-top: 110px; /* Giảm từ 160px */
+        padding-top: 110px;
     }
     
     .features-container, .guide-container {
@@ -686,7 +685,7 @@ body {
 
 @media (max-width: 360px) {
     .page {
-        padding-top: 120px; /* Giảm từ 170px */
+        padding-top: 120px;
     }
 }
 
@@ -738,24 +737,23 @@ body {
     
     .feature-image {
         width: 100%;
-        /* QUAN TRỌNG: Cho phép container mở rộng theo nội dung */
         height: auto;
-        min-height: 180px; /* Chiều cao tối thiểu */
+        min-height: 180px;
         order: -1;
         background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
         border-bottom: 1px solid rgba(37, 99, 235, 0.1);
         display: flex;
-        align-items: center; /* Căn giữa ảnh theo chiều dọc */
-        justify-content: center; /* Căn giữa ảnh theo chiều ngang */
-        overflow: visible; /* Cho phép ảnh hiển thị đầy đủ */
+        align-items: center;
+        justify-content: center; 
+        overflow: visible; 
     }
     
     .feature-image img {
-        width: 100%; /* Chiều ngang bằng khung */
-        height: auto; /* Chiều cao tự động theo tỉ lệ */
-        max-width: 100%; /* Đảm bảo không vượt quá */
+        width: 100%;
+        height: auto; 
+        max-width: 100%;
         display: block;
-        object-fit: contain; /* QUAN TRỌNG: Hiển thị toàn bộ ảnh không cắt */
+        object-fit: contain;
     }
     
     .feature-content {
