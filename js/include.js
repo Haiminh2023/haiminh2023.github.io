@@ -69,7 +69,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ==================== FUNCTIONS ====================
-    
+        // ==================== AUTO HIDE HEADER ON MOBILE ====================
+    function initAutoHideHeader() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+        
+        const mobileBreakpoint = 768;
+        
+        // Chỉ áp dụng trên mobile
+        if (window.innerWidth <= mobileBreakpoint) {
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+            
+            function updateNavbar() {
+                const currentScrollY = window.scrollY;
+                
+                // Ẩn header khi scroll xuống > 50px và không ở đầu trang
+                if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                    navbar.classList.add('hidden');
+                } 
+                // Hiện header khi scroll lên
+                else {
+                    navbar.classList.remove('hidden');
+                }
+                
+                lastScrollY = currentScrollY;
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
+            }, { passive: true });
+            
+            // Reset khi resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > mobileBreakpoint) {
+                    navbar.classList.remove('hidden');
+                }
+            });
+            
+            // Điều chỉnh padding khi header ẩn/hiện
+            const page = document.querySelector('.page');
+            if (page) {
+                const observer = new MutationObserver(function() {
+                    adjustPagePadding();
+                });
+                
+                observer.observe(navbar, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+            }
+        }
+    }
     // Xử lý active state cho navigation
     function handleActiveState() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
