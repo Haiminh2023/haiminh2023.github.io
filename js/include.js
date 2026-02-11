@@ -77,63 +77,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== FUNCTIONS ====================
     // ==================== AUTO HIDE HEADER ON MOBILE ====================
     function initAutoHideHeader() {
-        console.log('🔄 Đang khởi tạo auto-hide header...');
-        
         const navbar = document.querySelector('.navbar');
         if (!navbar) {
-            console.error('❌ Không tìm thấy .navbar');
             setTimeout(initAutoHideHeader, 100);
             return;
         }
         
-        console.log('✅ Tìm thấy navbar');
-        
-        const mobileBreakpoint = 768;
-        
-        // Chỉ áp dụng trên mobile
-        if (window.innerWidth <= mobileBreakpoint) {
-            console.log('📱 Đang ở chế độ mobile');
-            
-            let lastScrollY = window.scrollY;
+        if (window.innerWidth <= 768) {
+            let lastScroll = 0;
             let ticking = false;
             
-            function updateNavbar() {
-                const currentScrollY = window.scrollY;
+            function handleScroll() {
+                const currentScroll = window.pageYOffset;
                 
-                // Ẩn header khi scroll xuống > 100px
-                if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    if (!navbar.classList.contains('hidden')) {
-                        console.log('⬇️ Ẩn header');
-                        navbar.classList.add('hidden');
-                    }
+                if (currentScroll > lastScroll && currentScroll > 150) {
+                    navbar.classList.add('hidden');
                 } 
-                // Hiện header khi scroll lên
-                else if (currentScrollY < lastScrollY) {
-                    if (navbar.classList.contains('hidden')) {
-                        console.log('⬆️ Hiện header');
-                        navbar.classList.remove('hidden');
-                    }
+                else if (currentScroll < lastScroll) {
+                    navbar.classList.remove('hidden');
                 }
                 
-                lastScrollY = currentScrollY;
+                if (currentScroll < 50) {
+                    navbar.classList.remove('hidden');
+                }
+                
+                lastScroll = currentScroll;
                 ticking = false;
             }
             
             window.addEventListener('scroll', function() {
                 if (!ticking) {
-                    window.requestAnimationFrame(updateNavbar);
+                    window.requestAnimationFrame(handleScroll);
                     ticking = true;
                 }
             }, { passive: true });
             
-            // Reset khi resize
+            // Hiện header khi tap (cho mobile UX tốt hơn)
+            document.addEventListener('touchstart', function() {
+                navbar.classList.remove('hidden');
+            });
+            
             window.addEventListener('resize', function() {
-                if (window.innerWidth > mobileBreakpoint) {
+                if (window.innerWidth > 768) {
                     navbar.classList.remove('hidden');
                 }
             });
-            
-            console.log('🎯 Auto-hide header đã kích hoạt');
         }
     }
     // Xử lý active state cho navigation
