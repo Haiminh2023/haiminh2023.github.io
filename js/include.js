@@ -76,34 +76,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ==================== FUNCTIONS ====================
     
-    // ==================== AUTO HIDE HEADER ON MOBILE ====================
     function initAutoHideHeader() {
         const navbar = document.querySelector('.navbar');
         if (!navbar) {
-            console.log('Không tìm thấy navbar, sẽ thử lại sau...');
-            setTimeout(initAutoHideHeader, 100); // Thử lại sau 100ms
+            setTimeout(initAutoHideHeader, 100);
             return;
         }
         
-        console.log('Đang khởi tạo auto-hide header...');
-        
         const mobileBreakpoint = 768;
         
-        // Chỉ áp dụng trên mobile
         if (window.innerWidth <= mobileBreakpoint) {
             let lastScrollY = window.scrollY;
             let ticking = false;
             
             function updateNavbar() {
                 const currentScrollY = window.scrollY;
+                const scrollDelta = currentScrollY - lastScrollY;
                 
-                // Ẩn header khi scroll xuống > 100px
-                if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    navbar.classList.add('hidden');
+                // Thu nhỏ header khi scroll xuống
+                if (scrollDelta > 0 && currentScrollY > 100) {
+                    navbar.classList.add('shrink');
+                    navbar.classList.remove('expanded');
                 } 
-                // Hiện header khi scroll lên
-                else if (currentScrollY < lastScrollY) {
-                    navbar.classList.remove('hidden');
+                // Mở rộng header khi scroll lên
+                else if (scrollDelta < 0) {
+                    navbar.classList.remove('shrink');
+                    navbar.classList.add('expanded');
+                }
+                
+                // Ở đầu trang - hiện đầy đủ
+                if (currentScrollY < 50) {
+                    navbar.classList.remove('shrink');
+                    navbar.classList.add('expanded');
                 }
                 
                 lastScrollY = currentScrollY;
@@ -117,22 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, { passive: true });
             
-            // Hiện header khi tap (cho mobile)
-            document.addEventListener('touchstart', function() {
-                navbar.classList.remove('hidden');
-            });
-            
             // Reset khi resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > mobileBreakpoint) {
-                    navbar.classList.remove('hidden');
+                    navbar.classList.remove('shrink', 'expanded');
                 }
             });
-            
-            console.log('Auto-hide header đã được kích hoạt trên mobile');
         }
     }
-    
     // Xử lý active state cho navigation
     function handleActiveState() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
