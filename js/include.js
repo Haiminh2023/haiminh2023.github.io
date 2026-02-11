@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(headerHTML => {
                 headerPlaceholder.outerHTML = headerHTML;
-                setTimeout(handleActiveState, 50);
-                setTimeout(adjustPagePadding, 100);
+                setTimeout(() => {
+                    handleActiveState();
+                    adjustPagePadding();
+                    initAutoHideHeader(); // <== THÊM DÒNG NÀY
+                }, 50);
             })
             .catch(error => {
                 console.error('Lỗi load header:', error);
@@ -35,8 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </header>
                 `;
-                setTimeout(handleActiveState, 50);
-                setTimeout(adjustPagePadding, 100);
+                setTimeout(() => {
+                    handleActiveState();
+                    adjustPagePadding();
+                    initAutoHideHeader(); // <== THÊM DÒNG NÀY
+                }, 50);
             });
     }
     
@@ -83,13 +89,20 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function updateNavbar() {
                 const currentScrollY = window.scrollY;
+                const scrollDelta = currentScrollY - lastScrollY;
                 
-                // Ẩn header khi scroll xuống > 50px và không ở đầu trang
-                if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                // Chỉ xử lý nếu scroll đủ nhanh
+                if (Math.abs(scrollDelta) < 10) {
+                    ticking = false;
+                    return;
+                }
+                
+                // Ẩn header khi scroll xuống nhanh
+                if (scrollDelta > 0 && currentScrollY > 100) {
                     navbar.classList.add('hidden');
                 } 
                 // Hiện header khi scroll lên
-                else {
+                else if (scrollDelta < 0) {
                     navbar.classList.remove('hidden');
                 }
                 
@@ -104,25 +117,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, { passive: true });
             
+            // Hiện header khi click/tap (trải nghiệm người dùng tốt hơn)
+            document.addEventListener('click', function() {
+                navbar.classList.remove('hidden');
+            });
+            
             // Reset khi resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > mobileBreakpoint) {
                     navbar.classList.remove('hidden');
                 }
             });
-            
-            // Điều chỉnh padding khi header ẩn/hiện
-            const page = document.querySelector('.page');
-            if (page) {
-                const observer = new MutationObserver(function() {
-                    adjustPagePadding();
-                });
-                
-                observer.observe(navbar, {
-                    attributes: true,
-                    attributeFilter: ['class']
-                });
-            }
         }
     }
     // Xử lý active state cho navigation
