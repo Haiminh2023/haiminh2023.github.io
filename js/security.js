@@ -1,10 +1,21 @@
-// js/security.js - Tự động thêm security meta tags
+// js/security.js - Tự động thêm security headers nếu thiếu
 (function() {
-    // Chỉ thêm nếu chưa có
-    if (document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
+    'use strict';
+    
+    // Kiểm tra đã có security headers chưa
+    function hasSecurityHeaders() {
+        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null;
+    }
+    
+    // Nếu đã có thì không làm gì
+    if (hasSecurityHeaders()) {
+        console.log('✅ Trang đã có security headers');
         return;
     }
     
+    console.log('🔄 Đang thêm security headers tự động...');
+    
+    // Danh sách security meta tags
     const securityMetaTags = [
         {
             'http-equiv': 'Content-Security-Policy',
@@ -28,19 +39,23 @@
         }
     ];
     
+    // Danh sách preconnect links
     const preconnectLinks = [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preconnect', href: 'https://haiminh2023.github.io' }
     ];
     
-    // Thêm meta tags
+    // Lấy element đầu tiên trong head để chèn trước nó
+    const firstHeadElement = document.head.firstElementChild;
+    
+    // Thêm security meta tags
     securityMetaTags.forEach(tag => {
         const meta = document.createElement('meta');
         for (const [attr, value] of Object.entries(tag)) {
             meta.setAttribute(attr, value);
         }
-        document.head.appendChild(meta);
+        document.head.insertBefore(meta, firstHeadElement);
     });
     
     // Thêm preconnect links
@@ -49,7 +64,7 @@
         for (const [attr, value] of Object.entries(link)) {
             linkEl.setAttribute(attr, value);
         }
-        document.head.appendChild(linkEl);
+        document.head.insertBefore(linkEl, firstHeadElement);
     });
     
     console.log('✅ Security headers đã được thêm tự động');
