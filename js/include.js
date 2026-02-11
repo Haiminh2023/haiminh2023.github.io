@@ -86,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Xóa sự kiện cũ nếu có
         if (lastScrollHandler) {
             window.removeEventListener('scroll', lastScrollHandler);
+            document.removeEventListener('touchstart', handleTap);
+            document.removeEventListener('touchend', handleTouchEnd);
         }
         
         // Chỉ áp dụng cho mobile
@@ -93,60 +95,143 @@ document.addEventListener('DOMContentLoaded', function() {
             let lastScroll = 0;
             let ticking = false;
             let isHidden = false;
+            let touchStartY = 0;
+            let touchStartTime = 0;
+            let isTouching = false;
+            let scrollDisabled = false;
             
-            const handleScroll = () => {
-                const currentScroll = window.pageYOffset;
+            // Hàm xử lý touch start
+            const handleTap = (e) => {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+                isTouching = true;
                 
-                // Tính toán direction
-                const scrollingDown = currentScroll > lastScroll;
-                const scrollingUp = currentScroll < lastScroll;
-                const atTop = currentScroll < 50;
-                const scrolledEnough = currentScroll > 150;
-                
-                if (scrollingDown && scrolledEnough && !isHidden) {
-                    navbar.classList.add('hidden');
-                    isHidden = true;
-                } 
-                else if ((scrollingUp || atTop) && isHidden) {
+                // Chỉ hiện header nếu đang ẩn và không phải đang scroll
+                if (isHidden && !scrollDisabled) {
                     navbar.classList.remove('hidden');
                     isHidden = false;
+                    
+                    // Tạm thời disable scroll detection trong 300ms
+                    scrollDisabled = true;
+                    setTimeout(() => {
+                        scrollDisabled = false;
+                    }, 300);
                 }
-                
-                lastScroll = currentScroll;
-                ticking = false;
             };
             
-            const throttledScrollHandler = () => {
+            // Hàm xử lý touch end - phân biệt tap và swipe
+            const handleTouchEnd = (e) => {
+                const touchEndY = e.changedTouches[0].clientY;
+                const touchEndTime = Date.now();
+                const distance = Math.abs(touchEndY - touchStartY);
+                const duration = touchEndTime - touchStartTime;
+                
+                // Chỉ coi là tap nếu di chuyển ít và thời gian ngắn
+                if (distance < 10 && duration < 200) {
+                    // Đây là tap thực sự - hiện header
+                    navbar.classList.remove('hidden');
+                    isHidden = false;
+                    
+                    // Tạm thời disable auto-hide trong 2 giây
+                    clearTimeout(autoHideTimeout);
+                    autoHideTimeout = setTimeout(() => {
+                        if (window.pageYOffset > 150 && !isTouching) {
+                            navbar.classList.add('hidden');
+                            isHidden = true;
+                        }
+                    }, 2000);
+                }
+                
+                isTouching = false;
+            };
+            
+            let autoHideTimeout;
+            
+            const handleScroll = () => {
+                // Bỏ qua nếu đang trong thời gian chặn scroll detection
+                if (scrollDisabled) return;
+                
+                const currentScroll = window.pageYOffset;
+                const scrollDelta = currentScroll - lastScroll;
+                
                 if (!ticking) {
-                    window.requestAnimationFrame(handleScroll);
+                    window.requestAnimationFrame(() => {
+                        // Chỉ xử lý nếu scroll đủ nhiều
+                        if (Math.abs(scrollDelta) > 5) {
+                            const scrollingDown = currentScroll > lastScroll;
+                            const atTop = currentScroll < 50;
+                            
+                            // Vuốt xuống - ẩn header
+                            if (scrollingDown && currentScroll > 100 && !isHidden) {
+                                navbar.classList.add('hidden');
+                                isHidden = true;
+                            } 
+                            // Vuốt lên hoặc ở top - hiện header
+                            else if ((!scrollingDown || atTop) && isHidden) {
+                                navbar.classList.remove('hidden');
+                                isHidden = false;
+                            }
+                        }
+                        
+                        lastScroll = currentScroll;
+                        ticking = false;
+                    });
+                    
                     ticking = true;
                 }
             };
             
             // Lưu reference để có thể xóa sau
-            lastScrollHandler = throttledScrollHandler;
+            lastScrollHandler = handleScroll;
             
-            // Thêm sự kiện
-            window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+            // Thêm sự kiện với passive: true để tăng performance
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            document.addEventListener('touchstart', handleTap, { passive: true });
+            document.addEventListener('touchend', handleTouchEnd, { passive: true });
             
-            // Hiện header khi tap (cho mobile UX tốt hơn)
-            let tapTimeout;
-            document.addEventListener('touchstart', () => {
-                clearTimeout(tapTimeout);
-                navbar.classList.remove('hidden');
-                isHidden = false;
-                
-                // Auto hide sau 3 giây nếu không có tương tác
-                tapTimeout = setTimeout(() => {
-                    if (window.pageYOffset > 150 && !navbar.matches(':hover')) {
-                        navbar.classList.add('hidden');
-                        isHidden = true;
-                    }
-                }, 3000);
+            // Hiện header khi hover (cho tablet có mouse)
+            navbar.addEventListener('mouseenter', () => {
+                if (isHidden) {
+                    navbar.classList.remove('hidden');
+                    isHidden = false;
+                }
             });
+            
+            // Auto-hide khi mouse leave (chỉ trên tablet/desktop)
+            navbar.addEventListener('mouseleave', () => {
+                if (!isTouching && window.pageYOffset > 150 && window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        if (!navbar.matches(':hover') && !isTouching) {
+                            navbar.classList.add('hidden');
+                            isHidden = true;
+                        }
+                    }, 500);
+                }
+            });
+            
         } else {
             // Trên desktop, đảm bảo header luôn hiển thị
             navbar.classList.remove('hidden');
+            
+            // Thêm hiệu ứng mượt mà cho desktop scroll
+            let desktopLastScroll = 0;
+            const handleDesktopScroll = () => {
+                const currentScroll = window.pageYOffset;
+                const scrollingDown = currentScroll > desktopLastScroll;
+                
+                if (scrollingDown && currentScroll > 100) {
+                    navbar.style.transform = 'translateY(-10px)';
+                    navbar.style.opacity = '0.95';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                    navbar.style.opacity = '1';
+                }
+                
+                desktopLastScroll = currentScroll;
+            };
+            
+            window.addEventListener('scroll', handleDesktopScroll, { passive: true });
+            lastScrollHandler = handleDesktopScroll;
         }
     }
     
