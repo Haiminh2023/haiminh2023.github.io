@@ -1,86 +1,94 @@
-// js/security.js - FIXED - Cho phép JSON và tất cả resources cần thiết
+// js/security.js - FIXED cho anchor links và inline handlers
 (function() {
     'use strict';
     
-    // Kiểm tra đã có security headers chưa
-    const hasSecurityHeaders = () => {
-        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null;
-    };
-    
-    // Nếu đã có headers thì không làm gì
-    if (hasSecurityHeaders()) {
-        console.log('✅ Trang đã có security headers');
+    // Kiểm tra đã có CSP chưa
+    if (document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
         return;
     }
     
-    console.log('🔄 Đang thêm security headers tự động...');
+    // Lấy hostname hiện tại
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+    const baseDomain = hostname.replace('www.', '');
     
-    // Xác định CSP dựa trên trang hiện tại
-    function getCSPForCurrentPage() {
-        const path = window.location.pathname;
-        const hostname = window.location.hostname;
-        
-        // CSP cơ bản - MỞ RỘNG connect-src
-        let csp = `
-            default-src 'self';
-            script-src 'self' 'unsafe-inline';
-            style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-            font-src 'self' https://fonts.gstatic.com;
-            img-src 'self' data: https://haiminh2023.github.io;
-            connect-src 'self' https://${hostname} https://*.${hostname};
-            object-src 'none';
-            base-uri 'self';
-            form-action 'self';
-        `;
-        
-        // Trang versions.html cần Cloudflare Insights và JSON
-        if (path.includes('versions.html')) {
-            csp = `
-                default-src 'self';
-                script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com;
-                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                font-src 'self' https://fonts.gstatic.com;
-                img-src 'self' data: https://haiminh2023.github.io;
-                connect-src 'self' https://${hostname} https://*.${hostname} https://*.cloudflare.com;
-                object-src 'none';
-                base-uri 'self';
-                form-action 'self';
-            `;
-        }
-        
-        // Trang guide.html cần các link và resources
-        if (path.includes('guide.html')) {
-            csp = `
-                default-src 'self';
-                script-src 'self' 'unsafe-inline';
-                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                font-src 'self' https://fonts.gstatic.com;
-                img-src 'self' data: https://haiminh2023.github.io;
-                connect-src 'self' https://${hostname} https://*.${hostname};
-                object-src 'none';
-                base-uri 'self';
-                form-action 'self';
-                frame-src https://www.youtube.com https://player.vimeo.com;
-            `;
-        }
-        
-        // Trang features.html cần onclick inline
-        if (path.includes('features.html') || path === '/' || path.includes('index.html')) {
-            csp = csp.replace(
-                "script-src 'self' 'unsafe-inline'",
-                "script-src 'self' 'unsafe-inline'"
-            );
-        }
-        
-        return csp.replace(/\s+/g, ' ').trim();
+    // CSP HOÀN CHỈNH - Cho phép tất cả cần thiết
+    const csp = `
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: blob: https://haiminh2023.github.io;
+        connect-src 'self' ${isLocalhost ? 'http://localhost:* http://127.0.0.1:*' : `https://${baseDomain} https://*.${baseDomain}`} https://*.cloudflare.com;
+        media-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+        frame-src 'self' https://www.youtube.com https://player.vimeo.com;
+        worker-src 'self' blob:;
+        child-src 'self' blob:;
+        manifest-src 'self';
+        prefetch-src 'self';
+        navigate-to 'self' https://${baseDomain}/*;
+    `.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+    
+    // Thêm CSP
+    const meta = document.createElement('meta');
+    meta.setAttribute('http-equiv', 'Content-Security-Policy');
+    meta.setAttribute('content', csp);
+    document.head.appendChild(meta);
+    
+    console.log('✅ Applied CSP for:', hostname);
+    console.log('CSP:', csp);
+    
+    // FIX THÊM: Đảm bảo anchor links hoạt động
+    setTimeout(() => {
+        fixAnchorLinks();
+        fixInlineHandlers();
+    }, 100);
+    
+    // Hàm fix anchor links
+    function fixAnchorLinks() {
+        // Tìm tất cả links có hash (#)
+        const anchorLinks = document.querySelectorAll('a[href*="#"]');
+        anchorLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                // Đảm bảo click handler hoạt động
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        // Update URL hash
+                        history.pushState(null, null, `#${targetId}`);
+                    }
+                }, { passive: false });
+            }
+        });
+        console.log(`🔗 Fixed ${anchorLinks.length} anchor links`);
     }
     
-    // Thêm CSP meta tag
-    const cspMeta = document.createElement('meta');
-    cspMeta.setAttribute('http-equiv', 'Content-Security-Policy');
-    cspMeta.setAttribute('content', getCSPForCurrentPage());
-    document.head.insertBefore(cspMeta, document.head.firstElementChild);
-    
-    console.log('✅ Security headers đã được thêm');
-    console.log('CSP:', getCSPForCurrentPage());
+    // Hàm fix inline handlers (onclick, etc.)
+    function fixInlineHandlers() {
+        // Tìm các element có onclick
+        const elementsWithOnclick = document.querySelectorAll('[onclick]');
+        elementsWithOnclick.forEach(el => {
+            const onclickAttr = el.getAttribute('onclick');
+            if (onclickAttr) {
+                // Thêm event listener thay thế
+                el.addEventListener('click', function() {
+                    try {
+                        // Chạy onclick code
+                        new Function(onclickAttr).call(this);
+                    } catch (error) {
+                        console.error('Error executing onclick:', error);
+                    }
+                });
+                console.log(`🔄 Fixed onclick for:`, el);
+            }
+        });
+    }
 })();
