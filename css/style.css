@@ -220,6 +220,8 @@ body {
     align-items: flex-start;
     gap: 10px;
     color: var(--muted);
+    position: relative;
+    padding-left: 30px; /* Tạo khoảng trống cho dấu tích */
 }
 
 /*.feature-content li:before {
@@ -233,8 +235,8 @@ body {
 */
 
 /* THAY DẤU LIỆT KÊ BẰNG TÍCH XANH */
-.feature-highlights li::before {
-    content: '✓';
+.feature-content li:before {
+    content: "✓";
     position: absolute;
     left: 0;
     top: 2px;
