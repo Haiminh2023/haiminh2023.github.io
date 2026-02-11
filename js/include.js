@@ -91,23 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function updateNavbar() {
                 const currentScrollY = window.scrollY;
-                const scrollDelta = currentScrollY - lastScrollY;
                 
-                // Thu nhỏ header khi scroll xuống
-                if (scrollDelta > 0 && currentScrollY > 100) {
-                    navbar.classList.add('shrink');
-                    navbar.classList.remove('expanded');
+                // Ẩn menu khi scroll xuống > 100px
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    navbar.classList.add('hide-menu');
                 } 
-                // Mở rộng header khi scroll lên
-                else if (scrollDelta < 0) {
-                    navbar.classList.remove('shrink');
-                    navbar.classList.add('expanded');
+                // Hiện menu khi scroll lên
+                else if (currentScrollY < lastScrollY) {
+                    navbar.classList.remove('hide-menu');
                 }
                 
-                // Ở đầu trang - hiện đầy đủ
+                // Ở đầu trang - luôn hiện menu
                 if (currentScrollY < 50) {
-                    navbar.classList.remove('shrink');
-                    navbar.classList.add('expanded');
+                    navbar.classList.remove('hide-menu');
                 }
                 
                 lastScrollY = currentScrollY;
@@ -121,10 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, { passive: true });
             
+            // Hiện menu khi tap
+            document.addEventListener('touchstart', function() {
+                navbar.classList.remove('hide-menu');
+            });
+            
             // Reset khi resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > mobileBreakpoint) {
-                    navbar.classList.remove('shrink', 'expanded');
+                    navbar.classList.remove('hide-menu');
                 }
             });
         }
