@@ -775,8 +775,6 @@ body {
 }
 
 /* ================= HEADER AUTO-HIDE ON MOBILE ================= */
-/* THÊM VÀO CUỐI FILE CSS */
-
 @media (max-width: 768px) {
     .navbar {
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -788,14 +786,13 @@ body {
         transform: translateY(-100%);
     }
     
-    /* Debug để thấy hiệu ứng */
-    .navbar {
-        border: 3px solid #ff0000 !important;
+    /* Giảm padding-top cho page khi header ẩn */
+    .page {
+        transition: padding-top 0.4s ease;
     }
     
-    .navbar.hidden {
-        border: 3px solid #00ff00 !important;
+    .navbar.hidden ~ .page {
+        padding-top: 20px !important;
     }
 }
-
 
