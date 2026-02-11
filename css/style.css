@@ -774,20 +774,26 @@ body {
     }
 }
 
-/* ================= HEADER AUTO HIDE ON MOBILE ================= */
+/* ================= HEADER SCROLL SHRINK EFFECT ================= */
 @media (max-width: 768px) {
     .navbar {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateY(0);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                    height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                    min-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: top;
+        height: 70px;
+        min-height: 70px;
     }
     
-    .navbar.hidden {
+    .navbar.scrolling-down {
         transform: translateY(-100%);
-        box-shadow: none;
+        height: 0;
+        min-height: 0;
     }
     
-    /* Giảm padding top cho page khi header ẩn */
-    .page {
-        transition: padding-top 0.3s ease;
+    .navbar.scrolling-up {
+        transform: translateY(0);
+        height: 70px;
+        min-height: 70px;
     }
 }
