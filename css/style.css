@@ -774,4 +774,28 @@ body {
     }
 }
 
+/* ================= HEADER AUTO-HIDE ON MOBILE ================= */
+/* THÊM VÀO CUỐI FILE CSS */
+
+@media (max-width: 768px) {
+    .navbar {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(0);
+        will-change: transform;
+    }
+    
+    .navbar.hidden {
+        transform: translateY(-100%);
+    }
+    
+    /* Debug để thấy hiệu ứng */
+    .navbar {
+        border: 3px solid #ff0000 !important;
+    }
+    
+    .navbar.hidden {
+        border: 3px solid #00ff00 !important;
+    }
+}
+
 
