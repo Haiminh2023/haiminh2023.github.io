@@ -1,88 +1,81 @@
-// js/security.js - Thêm security headers cho tất cả trang
+// js/security.js - CSP linh hoạt theo từng trang
 (function() {
     'use strict';
     
     // Kiểm tra đã có security headers chưa
     const hasSecurityHeaders = () => {
-        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null ||
-               document.querySelector('meta[http-equiv="X-Frame-Options"]') !== null;
+        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null;
     };
     
-    // Nếu đã có headers thì chỉ thêm preconnect nếu thiếu
+    // Nếu đã có headers thì không làm gì
     if (hasSecurityHeaders()) {
-        addPreconnectLinksIfNeeded();
+        console.log('✅ Trang đã có security headers');
         return;
     }
     
     console.log('🔄 Đang thêm security headers tự động...');
     
-    // Thêm security meta tags
-    const metaTags = [
-        ['Content-Security-Policy', `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://haiminh2023.github.io; connect-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';`],
-        ['X-Frame-Options', 'SAMEORIGIN'],
+    // Xác định CSP dựa trên trang hiện tại
+    function getCSPForCurrentPage() {
+        const path = window.location.pathname;
+        
+        // CSP cơ bản cho hầu hết trang
+        let csp = `
+            default-src 'self';
+            script-src 'self' 'unsafe-inline';
+            style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+            font-src 'self' https://fonts.gstatic.com;
+            img-src 'self' data: https://haiminh2023.github.io;
+            connect-src 'self';
+            object-src 'none';
+            base-uri 'self';
+            form-action 'self';
+        `;
+        
+        // Trang versions.html cần Cloudflare Insights
+        if (path.includes('versions.html')) {
+            csp = csp.replace(
+                "script-src 'self' 'unsafe-inline'",
+                "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com"
+            );
+        }
+        
+        // Trang home và features có onclick inline
+        if (path === '/' || path.includes('features.html') || path.includes('index.html')) {
+            csp = csp.replace(
+                "script-src 'self' 'unsafe-inline'",
+                "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+            );
+        }
+        
+        return csp.replace(/\s+/g, ' ').trim(); // Xóa khoảng trắng thừa
+    }
+    
+    // Thêm CSP meta tag
+    const cspMeta = document.createElement('meta');
+    cspMeta.setAttribute('http-equiv', 'Content-Security-Policy');
+    cspMeta.setAttribute('content', getCSPForCurrentPage());
+    document.head.insertBefore(cspMeta, document.head.firstElementChild);
+    
+    // Thêm các meta tags khác (nhưng frame-ancestors và X-Frame-Options không hoạt động trong meta)
+    const otherMetaTags = [
         ['X-Content-Type-Options', 'nosniff'],
         ['Referrer-Policy', 'strict-origin-when-cross-origin']
     ];
     
-    // Thêm vào đầu <head>
-    const firstElement = document.head.firstElementChild;
-    
-    metaTags.forEach(([httpEquiv, content]) => {
+    otherMetaTags.forEach(([httpEquiv, content]) => {
         const meta = document.createElement('meta');
         meta.setAttribute('http-equiv', httpEquiv);
         meta.setAttribute('content', content);
-        document.head.insertBefore(meta, firstElement);
+        document.head.insertBefore(meta, document.head.firstElementChild);
     });
     
     // Thêm robots meta
     const robotsMeta = document.createElement('meta');
     robotsMeta.setAttribute('name', 'robots');
     robotsMeta.setAttribute('content', 'index, follow');
-    document.head.insertBefore(robotsMeta, firstElement);
-    
-    // Thêm preconnect links
-    addPreconnectLinks();
+    document.head.insertBefore(robotsMeta, document.head.firstElementChild);
     
     console.log('✅ Security headers đã được thêm');
-    
-    function addPreconnectLinks() {
-        const links = [
-            { href: 'https://fonts.googleapis.com' },
-            { href: 'https://fonts.gstatic.com', crossorigin: true },
-            { href: 'https://haiminh2023.github.io' }
-        ];
-        
-        links.forEach(config => {
-            const link = document.createElement('link');
-            link.rel = 'preconnect';
-            link.href = config.href;
-            if (config.crossorigin) {
-                link.crossOrigin = '';
-            }
-            document.head.appendChild(link);
-        });
-    }
-    
-    function addPreconnectLinksIfNeeded() {
-        const existingUrls = Array.from(document.querySelectorAll('link[rel="preconnect"]'))
-            .map(link => link.href);
-        
-        const neededUrls = [
-            'https://fonts.googleapis.com/',
-            'https://fonts.gstatic.com/',
-            'https://haiminh2023.github.io/'
-        ];
-        
-        neededUrls.forEach(url => {
-            if (!existingUrls.includes(url)) {
-                const link = document.createElement('link');
-                link.rel = 'preconnect';
-                link.href = url;
-                if (url.includes('fonts.gstatic.com')) {
-                    link.crossOrigin = '';
-                }
-                document.head.appendChild(link);
-            }
-        });
-    }
+    console.log('CSP:', getCSPForCurrentPage());
 })();
