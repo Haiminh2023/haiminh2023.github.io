@@ -75,10 +75,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ==================== FUNCTIONS ====================
-        // ==================== AUTO HIDE HEADER ON MOBILE ====================
+    
+    // ==================== AUTO HIDE HEADER ON MOBILE ====================
     function initAutoHideHeader() {
         const navbar = document.querySelector('.navbar');
-        if (!navbar) return;
+        if (!navbar) {
+            console.log('Không tìm thấy navbar, sẽ thử lại sau...');
+            setTimeout(initAutoHideHeader, 100); // Thử lại sau 100ms
+            return;
+        }
+        
+        console.log('Đang khởi tạo auto-hide header...');
         
         const mobileBreakpoint = 768;
         
@@ -89,20 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function updateNavbar() {
                 const currentScrollY = window.scrollY;
-                const scrollDelta = currentScrollY - lastScrollY;
                 
-                // Chỉ xử lý nếu scroll đủ nhanh
-                if (Math.abs(scrollDelta) < 10) {
-                    ticking = false;
-                    return;
-                }
-                
-                // Ẩn header khi scroll xuống nhanh
-                if (scrollDelta > 0 && currentScrollY > 100) {
+                // Ẩn header khi scroll xuống > 100px
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
                     navbar.classList.add('hidden');
                 } 
                 // Hiện header khi scroll lên
-                else if (scrollDelta < 0) {
+                else if (currentScrollY < lastScrollY) {
                     navbar.classList.remove('hidden');
                 }
                 
@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, { passive: true });
             
-            // Hiện header khi click/tap (trải nghiệm người dùng tốt hơn)
-            document.addEventListener('click', function() {
+            // Hiện header khi tap (cho mobile)
+            document.addEventListener('touchstart', function() {
                 navbar.classList.remove('hidden');
             });
             
@@ -128,8 +128,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     navbar.classList.remove('hidden');
                 }
             });
+            
+            console.log('Auto-hide header đã được kích hoạt trên mobile');
         }
     }
+    
     // Xử lý active state cho navigation
     function handleActiveState() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -166,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Khởi tạo back to top button
-    // Khởi tạo back to top button - GIỐNG TRANG TÍNH NĂNG
     function initBackToTop() {
         const backToTop = document.querySelector('.back-to-top');
         if (!backToTop) return;
@@ -221,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Gọi khi resize
     window.addEventListener('resize', adjustPagePadding);
 
-        // ==================== INIT IMAGE SLIDERS ====================
+    // ==================== INIT IMAGE SLIDERS ====================
     function initImageSliders() {
         const sliders = document.querySelectorAll('.image-slider');
         if (sliders.length === 0) return;
@@ -301,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextBtn.addEventListener('click', nextSlide);
             }
             
-            // Thêm sự kiện swipe cho mobile (tùy chọn)
+            // Thêm sự kiện swipe cho mobile
             let startX = 0;
             let endX = 0;
             
@@ -316,31 +318,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function handleSwipe() {
                 const diff = startX - endX;
-                if (Math.abs(diff) > 50) { // Ngưỡng swipe
+                if (Math.abs(diff) > 50) {
                     if (diff > 0) {
-                        nextSlide(); // Swipe trái
+                        nextSlide();
                     } else {
-                        prevSlide(); // Swipe phải
+                        prevSlide();
                     }
                 }
             }
             
-            // Tự động chuyển slide (tùy chọn - bỏ comment nếu muốn)
-            // let autoSlideInterval = setInterval(nextSlide, 5000);
-            
-            // Dừng auto slide khi hover
-            // slider.addEventListener('mouseenter', () => {
-            //     clearInterval(autoSlideInterval);
-            // });
-            
-            // slider.addEventListener('mouseleave', () => {
-            //     autoSlideInterval = setInterval(nextSlide, 5000);
-            // });
-            
-            // Khởi tạo ban đầu
             updateSlider();
             
-            // Xử lý responsive - điều chỉnh kích thước slide
             function handleResize() {
                 slides.forEach(slide => {
                     slide.style.minWidth = '100%';
@@ -353,4 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Gọi hàm khởi tạo slider sau khi load nội dung
     setTimeout(initImageSliders, 100);
+    
+    // Khởi tạo auto hide header sau khi mọi thứ load xong
+    setTimeout(initAutoHideHeader, 300);
 });
