@@ -729,33 +729,32 @@ body {
         scroll-margin-top: 110px;
     }
 }
-/* ================= LAYOUT MOBILE VỚI ẢNH LỚN - TỰ ĐỘNG CO GIÃN ================= */
+/* ================= LAYOUT MOBILE - ẢNH NGANG GIÃN BẰNG KHUNG ================= */
 @media (max-width: 768px) {
     .feature-card {
-        display: grid;
-        grid-template-rows: auto 1fr; /* 2 hàng: ảnh + nội dung */
+        flex-direction: column;
         height: auto;
-        min-height: 0; /* Bỏ min-height cố định */
+        min-height: 0;
     }
     
     .feature-image {
         width: 100%;
-        height: 0;
-        padding-bottom: 56.25%; /* Tỉ lệ 16:9 - thay đổi nếu muốn */
-        position: relative;
+        height: auto; /* Chiều cao tự động */
+        min-height: 160px;
         order: -1;
         background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
         border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px; /* Padding cho khung ảnh */
     }
     
     .feature-image img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100%; /* Chiều ngang bằng khung */
+        height: auto; /* Chiều cao tự động theo tỉ lệ */
+        max-height: 250px; /* Giới hạn chiều cao tối đa */
         object-fit: contain;
-        padding: 20px;
         display: block;
     }
     
@@ -777,11 +776,12 @@ body {
 /* Mobile nhỏ hơn */
 @media (max-width: 480px) {
     .feature-image {
-        padding-bottom: 75%; /* Tỉ lệ 4:3 cho mobile nhỏ */
+        padding: 12px;
+        min-height: 140px;
     }
     
     .feature-image img {
-        padding: 15px;
+        max-height: 200px;
     }
     
     .feature-content {
