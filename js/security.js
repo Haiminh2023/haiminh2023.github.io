@@ -1,4 +1,4 @@
-// js/security.js - CSP linh hoạt theo từng trang
+// js/security.js - FIXED - Cho phép JSON và tất cả resources cần thiết
 (function() {
     'use strict';
     
@@ -18,37 +18,61 @@
     // Xác định CSP dựa trên trang hiện tại
     function getCSPForCurrentPage() {
         const path = window.location.pathname;
+        const hostname = window.location.hostname;
         
-        // CSP cơ bản cho hầu hết trang
+        // CSP cơ bản - MỞ RỘNG connect-src
         let csp = `
             default-src 'self';
             script-src 'self' 'unsafe-inline';
             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
             font-src 'self' https://fonts.gstatic.com;
             img-src 'self' data: https://haiminh2023.github.io;
-            connect-src 'self';
+            connect-src 'self' https://${hostname} https://*.${hostname};
             object-src 'none';
             base-uri 'self';
             form-action 'self';
         `;
         
-        // Trang versions.html cần Cloudflare Insights
+        // Trang versions.html cần Cloudflare Insights và JSON
         if (path.includes('versions.html')) {
+            csp = `
+                default-src 'self';
+                script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com;
+                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                font-src 'self' https://fonts.gstatic.com;
+                img-src 'self' data: https://haiminh2023.github.io;
+                connect-src 'self' https://${hostname} https://*.${hostname} https://*.cloudflare.com;
+                object-src 'none';
+                base-uri 'self';
+                form-action 'self';
+            `;
+        }
+        
+        // Trang guide.html cần các link và resources
+        if (path.includes('guide.html')) {
+            csp = `
+                default-src 'self';
+                script-src 'self' 'unsafe-inline';
+                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                font-src 'self' https://fonts.gstatic.com;
+                img-src 'self' data: https://haiminh2023.github.io;
+                connect-src 'self' https://${hostname} https://*.${hostname};
+                object-src 'none';
+                base-uri 'self';
+                form-action 'self';
+                frame-src https://www.youtube.com https://player.vimeo.com;
+            `;
+        }
+        
+        // Trang features.html cần onclick inline
+        if (path.includes('features.html') || path === '/' || path.includes('index.html')) {
             csp = csp.replace(
                 "script-src 'self' 'unsafe-inline'",
-                "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com"
+                "script-src 'self' 'unsafe-inline'"
             );
         }
         
-        // Trang home và features có onclick inline
-        if (path === '/' || path.includes('features.html') || path.includes('index.html')) {
-            csp = csp.replace(
-                "script-src 'self' 'unsafe-inline'",
-                "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-            );
-        }
-        
-        return csp.replace(/\s+/g, ' ').trim(); // Xóa khoảng trắng thừa
+        return csp.replace(/\s+/g, ' ').trim();
     }
     
     // Thêm CSP meta tag
@@ -56,25 +80,6 @@
     cspMeta.setAttribute('http-equiv', 'Content-Security-Policy');
     cspMeta.setAttribute('content', getCSPForCurrentPage());
     document.head.insertBefore(cspMeta, document.head.firstElementChild);
-    
-    // Thêm các meta tags khác (nhưng frame-ancestors và X-Frame-Options không hoạt động trong meta)
-    const otherMetaTags = [
-        ['X-Content-Type-Options', 'nosniff'],
-        ['Referrer-Policy', 'strict-origin-when-cross-origin']
-    ];
-    
-    otherMetaTags.forEach(([httpEquiv, content]) => {
-        const meta = document.createElement('meta');
-        meta.setAttribute('http-equiv', httpEquiv);
-        meta.setAttribute('content', content);
-        document.head.insertBefore(meta, document.head.firstElementChild);
-    });
-    
-    // Thêm robots meta
-    const robotsMeta = document.createElement('meta');
-    robotsMeta.setAttribute('name', 'robots');
-    robotsMeta.setAttribute('content', 'index, follow');
-    document.head.insertBefore(robotsMeta, document.head.firstElementChild);
     
     console.log('✅ Security headers đã được thêm');
     console.log('CSP:', getCSPForCurrentPage());
