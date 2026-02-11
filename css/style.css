@@ -318,6 +318,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; /* Thêm position relative */
+    z-index: 100; /* Z-index thấp hơn header */
+    clear: both;
+    margin-top: 0;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -393,9 +397,11 @@ body {
         padding: 10px 0;
     }
     
+    /* FIX: Dùng giá trị cố định, không phụ thuộc vào header height */
     .page {
-        padding-top: 140px;
+        padding-top: 140px !important;
     }
+    
     .nav-inner {
         flex-direction: column;
         gap: 15px;
@@ -428,9 +434,7 @@ body {
         font-size: 12px;
     }
     
-    .page {
-        padding-top: 20px;
-    }
+    /* XÓA dòng padding-top: 20px; ở đây */
     
     .page h1 {
         font-size: 28px;
@@ -448,13 +452,11 @@ body {
     }
 }
 
-
 /* Small Mobile */
 @media (max-width: 600px) {
     .page {
-        padding-top: 150px;
+        padding-top: 150px !important; /* Giá trị cố định */
     }
-    
     .logo-section {
         flex-direction: column;
         align-items: center;
@@ -485,9 +487,8 @@ body {
 /* Extra Small Mobile */
 @media (max-width: 480px) {
     .page {
-        padding-top: 160px;
+        padding-top: 160px !important; /* Giá trị cố định */
     }
-    
     .nav-inner {
         padding: 12px 15px;
     }
@@ -535,7 +536,7 @@ body {
 /* Very Small Mobile */
 @media (max-width: 360px) {
     .page {
-        padding-top: 170px;
+        padding-top: 170px !important; /* Giá trị cố định */
     }
     
     .nav-menu a {
@@ -548,7 +549,7 @@ body {
     }
 }
 
-/* ================= BACK TO TOP (DÙNG CHUNG) ================= */
+/* ================= BACK TO TOP - FIX GIẬT Ở FOOTER ================= */
 .back-to-top {
     position: fixed !important;
     bottom: 30px !important;
@@ -567,10 +568,18 @@ body {
     opacity: 0 !important;
     visibility: hidden !important;
     transform: translateY(20px) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    z-index: 1000 !important;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease !important;
+    z-index: 999 !important; /* Giảm z-index xuống 999 */
     padding: 0 !important;
     margin: 0 !important;
+    pointer-events: none; /* Mặc định không click được */
+}
+
+.back-to-top.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto; /* Chỉ click được khi visible */
 }
 
 .back-to-top:hover {
@@ -579,11 +588,6 @@ body {
     box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4) !important;
 }
 
-.back-to-top.visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-}
 
 .back-to-top svg {
     width: 24px !important;
@@ -629,45 +633,37 @@ body {
 }
 
 /* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
-.features-container, .guide-container {
-    padding-top: 15px;
+/* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
+.features-container, 
+.guide-container,
+.contact-container,
+.pricing-container {
+    padding-top: 0;
     min-height: calc(100vh - 60px);
 }
 
-.feature-detail-section, .guide-section, .legal-section {
+.feature-detail-section, 
+.guide-section, 
+.legal-section {
     scroll-margin-top: 80px; 
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .page {
-        padding-top: 70px;
-    }
-    
-    .features-container, .guide-container {
-        padding-top: 10px;
-    }
-    
-    .feature-detail-section, .guide-section, .legal-section {
+    .feature-detail-section, 
+    .guide-section, 
+    .legal-section {
         scroll-margin-top: 90px;
     }
 }
 
 @media (max-width: 768px) {
-    .page {
-        padding-top: 100px;
-    }
-    
-    .features-container, .guide-container {
-        padding-top: 5px;
-        margin-top: 5px;
-    }
-    
-    .feature-detail-section, .guide-section, .legal-section {
+    .feature-detail-section, 
+    .guide-section, 
+    .legal-section {
         scroll-margin-top: 110px;
     }
 }
-
 @media (max-width: 480px) {
     .page {
         padding-top: 110px;
@@ -775,22 +771,37 @@ body {
 /* ================= HEADER AUTO-HIDE ON MOBILE ================= */
 @media (max-width: 768px) {
     .navbar {
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translateY(0);
         will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
     
     .navbar.hidden {
         transform: translateY(-100%);
     }
     
-    /* Giảm padding-top cho page khi header ẩn */
+    /* KHÔNG thay đổi padding-top khi header ẩn - tránh giật */
     .page {
-        transition: padding-top 0.4s ease;
+        transition: none; /* BỎ transition padding-top */
     }
     
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
+    /* Đảm bảo header ở cuối trang luôn hiện */
+    .navbar:not(.hidden) {
+        transform: translateY(0);
     }
+}
+/* ================= THÊM Z-INDEX CHUẨN ================= */
+.navbar {
+    z-index: 1000; /* Header cao nhất */
+}
+
+.back-to-top {
+    z-index: 999; /* Thấp hơn header */
+}
+
+.footer {
+    z-index: 100; /* Thấp nhất */
 }
 
