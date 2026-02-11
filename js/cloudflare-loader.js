@@ -2,16 +2,12 @@
 (function() {
     'use strict';
     
-    // Hàm load Cloudflare khi an toàn
     function loadCloudflareAnalytics() {
-        // Chỉ load trên production
         if (window.location.hostname.includes('localhost') || 
             window.location.hostname.includes('127.0.0.1')) {
-            console.log('🌐 Cloudflare Analytics disabled on localhost');
             return;
         }
         
-        // Chỉ load trên các trang cần thiết
         const allowedPages = [
             '/',
             '/index.html',
@@ -25,9 +21,7 @@
         if (!allowedPages.includes(currentPage)) {
             return;
         }
-        
-        console.log('📊 Loading Cloudflare Analytics...');
-        
+               
         // Tạo script element
         const script = document.createElement('script');
         script.defer = true;
@@ -43,13 +37,10 @@
             "version": "2024.11.0"
         }));
         
-        // Đảm bảo body tồn tại trước khi append
         function appendScript() {
             if (document.body) {
                 document.body.appendChild(script);
-                console.log('✅ Cloudflare Analytics script loaded');
             } else {
-                // Thử lại sau 100ms
                 setTimeout(appendScript, 100);
             }
         }
@@ -57,11 +48,9 @@
         appendScript();
     }
     
-    // Chờ DOM hoàn toàn sẵn sàng
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadCloudflareAnalytics);
     } else {
-        // DOM đã ready, nhưng đợi thêm một chút cho chắc
         setTimeout(loadCloudflareAnalytics, 100);
     }
 })();
