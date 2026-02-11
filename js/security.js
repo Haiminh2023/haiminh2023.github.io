@@ -1,71 +1,88 @@
-// js/security.js - Tự động thêm security headers nếu thiếu
+// js/security.js - Thêm security headers cho tất cả trang
 (function() {
     'use strict';
     
     // Kiểm tra đã có security headers chưa
-    function hasSecurityHeaders() {
-        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null;
-    }
+    const hasSecurityHeaders = () => {
+        return document.querySelector('meta[http-equiv="Content-Security-Policy"]') !== null ||
+               document.querySelector('meta[http-equiv="X-Frame-Options"]') !== null;
+    };
     
-    // Nếu đã có thì không làm gì
+    // Nếu đã có headers thì chỉ thêm preconnect nếu thiếu
     if (hasSecurityHeaders()) {
-        console.log('✅ Trang đã có security headers');
+        addPreconnectLinksIfNeeded();
         return;
     }
     
     console.log('🔄 Đang thêm security headers tự động...');
     
-    // Danh sách security meta tags
-    const securityMetaTags = [
-        {
-            'http-equiv': 'Content-Security-Policy',
-            'content': `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://haiminh2023.github.io; connect-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';`
-        },
-        {
-            'http-equiv': 'X-Frame-Options',
-            'content': 'SAMEORIGIN'
-        },
-        {
-            'http-equiv': 'X-Content-Type-Options',
-            'content': 'nosniff'
-        },
-        {
-            'http-equiv': 'Referrer-Policy',
-            'content': 'strict-origin-when-cross-origin'
-        },
-        {
-            'name': 'robots',
-            'content': 'index, follow'
-        }
-    ];
-    
-    // Danh sách preconnect links
-    const preconnectLinks = [
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'preconnect', href: 'https://haiminh2023.github.io' }
-    ];
-    
-    // Lấy element đầu tiên trong head để chèn trước nó
-    const firstHeadElement = document.head.firstElementChild;
-    
     // Thêm security meta tags
-    securityMetaTags.forEach(tag => {
+    const metaTags = [
+        ['Content-Security-Policy', `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://haiminh2023.github.io; connect-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';`],
+        ['X-Frame-Options', 'SAMEORIGIN'],
+        ['X-Content-Type-Options', 'nosniff'],
+        ['Referrer-Policy', 'strict-origin-when-cross-origin']
+    ];
+    
+    // Thêm vào đầu <head>
+    const firstElement = document.head.firstElementChild;
+    
+    metaTags.forEach(([httpEquiv, content]) => {
         const meta = document.createElement('meta');
-        for (const [attr, value] of Object.entries(tag)) {
-            meta.setAttribute(attr, value);
-        }
-        document.head.insertBefore(meta, firstHeadElement);
+        meta.setAttribute('http-equiv', httpEquiv);
+        meta.setAttribute('content', content);
+        document.head.insertBefore(meta, firstElement);
     });
+    
+    // Thêm robots meta
+    const robotsMeta = document.createElement('meta');
+    robotsMeta.setAttribute('name', 'robots');
+    robotsMeta.setAttribute('content', 'index, follow');
+    document.head.insertBefore(robotsMeta, firstElement);
     
     // Thêm preconnect links
-    preconnectLinks.forEach(link => {
-        const linkEl = document.createElement('link');
-        for (const [attr, value] of Object.entries(link)) {
-            linkEl.setAttribute(attr, value);
-        }
-        document.head.insertBefore(linkEl, firstHeadElement);
-    });
+    addPreconnectLinks();
     
-    console.log('✅ Security headers đã được thêm tự động');
+    console.log('✅ Security headers đã được thêm');
+    
+    function addPreconnectLinks() {
+        const links = [
+            { href: 'https://fonts.googleapis.com' },
+            { href: 'https://fonts.gstatic.com', crossorigin: true },
+            { href: 'https://haiminh2023.github.io' }
+        ];
+        
+        links.forEach(config => {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = config.href;
+            if (config.crossorigin) {
+                link.crossOrigin = '';
+            }
+            document.head.appendChild(link);
+        });
+    }
+    
+    function addPreconnectLinksIfNeeded() {
+        const existingUrls = Array.from(document.querySelectorAll('link[rel="preconnect"]'))
+            .map(link => link.href);
+        
+        const neededUrls = [
+            'https://fonts.googleapis.com/',
+            'https://fonts.gstatic.com/',
+            'https://haiminh2023.github.io/'
+        ];
+        
+        neededUrls.forEach(url => {
+            if (!existingUrls.includes(url)) {
+                const link = document.createElement('link');
+                link.rel = 'preconnect';
+                link.href = url;
+                if (url.includes('fonts.gstatic.com')) {
+                    link.crossOrigin = '';
+                }
+                document.head.appendChild(link);
+            }
+        });
+    }
 })();
