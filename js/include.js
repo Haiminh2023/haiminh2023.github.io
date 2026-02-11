@@ -1,4 +1,3 @@
-// js/include.js
 document.addEventListener('DOMContentLoaded', function() {
     // ==================== LOAD HEADER ====================
     const headerPlaceholder = document.getElementById('header-placeholder');
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Lỗi load header:', error);
-                // Fallback header
                 headerPlaceholder.outerHTML = `
                     <header class="navbar">
                         <div class="nav-inner">
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Lỗi load footer:', error);
-                // Fallback footer
                 footerPlaceholder.outerHTML = `
                     <footer class="footer">
                         © 2026 Doc Online
@@ -72,10 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initImageSliders();
     }
     
- // ==================== AUTO HIDE HEADER ON MOBILE ====================
+    // ==================== AUTO HIDE HEADER ON MOBILE ====================
     let lastScrollHandler = null;
     let touchHandlerRef = null;
     let touchEndHandlerRef = null;
+    let backToTopHandlerRef = null; // THÊM: reference cho back-to-top
     
     function initAutoHideHeader() {
         const navbar = document.querySelector('.navbar');
@@ -105,9 +103,18 @@ document.addEventListener('DOMContentLoaded', function() {
             let isScrolling = false;
             let scrollTimeout;
             
+            // Hàm kiểm tra vị trí cuối trang
+            const isAtBottom = () => {
+                const scrollY = window.scrollY;
+                const visibleHeight = window.innerHeight;
+                const pageHeight = document.body.offsetHeight;
+                return scrollY + visibleHeight >= pageHeight - 50; // 50px threshold
+            };
+            
             // Hàm xử lý scroll
             const handleScroll = () => {
                 const currentScroll = window.pageYOffset;
+                const atBottom = isAtBottom();
                 
                 // Tính toán direction
                 const scrollingDown = currentScroll > lastScroll;
@@ -122,50 +129,51 @@ document.addEventListener('DOMContentLoaded', function() {
                     isScrolling = false;
                 }, 150);
                 
-                // Xử lý ẩn/hiện header dựa trên scroll direction
-                if (scrollingDown && scrolledEnough && !isHidden) {
-                    navbar.classList.add('hidden');
-                    isHidden = true;
-                } 
-                else if (scrollingUp && isHidden) {
-                    navbar.classList.remove('hidden');
-                    isHidden = false;
-                }
-                else if (atTop && isHidden) {
-                    navbar.classList.remove('hidden');
-                    isHidden = false;
+                // XỬ LÝ HEADER - QUAN TRỌNG: KHÔNG ẩn khi ở cuối trang
+                if (atBottom) {
+                    // Ở cuối trang: LUÔN hiện header
+                    if (isHidden) {
+                        navbar.classList.remove('hidden');
+                        isHidden = false;
+                    }
+                } else {
+                    // Không ở cuối trang: xử lý bình thường
+                    if (scrollingDown && scrolledEnough && !isHidden) {
+                        navbar.classList.add('hidden');
+                        isHidden = true;
+                    } 
+                    else if ((scrollingUp || atTop) && isHidden) {
+                        navbar.classList.remove('hidden');
+                        isHidden = false;
+                    }
                 }
                 
                 lastScroll = currentScroll;
                 ticking = false;
             };
             
-            // Hàm xử lý touch start - chỉ lưu vị trí, KHÔNG hiện header ngay
+            // Hàm xử lý touch start
             const handleTouchStart = (e) => {
                 touchStartY = e.touches[0].clientY;
                 touchStartTime = Date.now();
             };
             
-            // Hàm xử lý touch end - phân biệt tap và swipe
+            // Hàm xử lý touch end
             const handleTouchEnd = (e) => {
-                // Không xử lý nếu đang scroll
                 if (isScrolling) return;
+                if (isAtBottom()) return; // KHÔNG xử lý khi ở cuối trang
                 
                 const touchEndY = e.changedTouches[0].clientY;
                 const touchEndTime = Date.now();
                 const distance = Math.abs(touchEndY - touchStartY);
                 const duration = touchEndTime - touchStartTime;
                 
-                // CHỈ hiện header nếu là TAP (di chuyển ít, thời gian ngắn)
-                // KHÔNG hiện header nếu là swipe (đã được xử lý bởi scroll)
                 if (distance < 10 && duration < 200) {
-                    // Đây là tap - hiện header
                     navbar.classList.remove('hidden');
                     isHidden = false;
                     
-                    // Tự động ẩn sau 3 giây nếu không scroll
                     setTimeout(() => {
-                        if (window.pageYOffset > 150 && !isScrolling) {
+                        if (window.pageYOffset > 150 && !isScrolling && !isAtBottom()) {
                             navbar.classList.add('hidden');
                             isHidden = true;
                         }
@@ -173,7 +181,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            // Throttle scroll handler với requestAnimationFrame
             const throttledScrollHandler = () => {
                 if (!ticking) {
                     window.requestAnimationFrame(handleScroll);
@@ -181,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            // Lưu references để cleanup
+            // Lưu references
             lastScrollHandler = throttledScrollHandler;
             touchHandlerRef = handleTouchStart;
             touchEndHandlerRef = handleTouchEnd;
@@ -192,79 +199,74 @@ document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('touchend', handleTouchEnd, { passive: true });
             
         } else {
-            // Trên desktop, đảm bảo header luôn hiển thị
             navbar.classList.remove('hidden');
         }
     }
     
-    // Xử lý active state cho navigation
-    function handleActiveState() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            
-            const linkHref = link.getAttribute('href');
-            const linkPage = linkHref.split('/').pop();
-            
-            // Kiểm tra active
-            if (currentPage === linkPage) {
-                link.classList.add('active');
-            }
-            
-            // Xử lý trang chủ
-            if ((currentPage === '' || currentPage === 'index.html' || currentPage === '../index.html') && 
-                (linkHref === '../index.html' || linkHref === 'index.html' || linkHref === '/')) {
-                link.classList.add('active');
-            }
-        });
-    }
-    
-    // Tự động điều chỉnh padding-top cho content
-    function adjustPagePadding() {
-        const header = document.querySelector('.navbar');
-        const page = document.querySelector('.page');
-        
-        if (header && page) {
-            const headerHeight = header.offsetHeight;
-            page.style.paddingTop = (headerHeight + 20) + 'px';
-        }
-    }
-    
-    // Khởi tạo back to top button
+    // ==================== BACK TO TOP BUTTON ====================
     function initBackToTop() {
         const backToTop = document.querySelector('.back-to-top');
         if (!backToTop) return;
         
-        // Thêm class nếu chưa có
+        // Xóa handler cũ nếu có
+        if (backToTopHandlerRef) {
+            window.removeEventListener('scroll', backToTopHandlerRef);
+        }
+        
+        // Thêm class
         if (!backToTop.classList.contains('back-to-top')) {
             backToTop.classList.add('back-to-top');
         }
         
         // CSS transitions
-        backToTop.style.transition = 'opacity 0.3s, transform 0.3s, visibility 0.3s';
+        backToTop.style.transition = 'opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease';
+        
+        let ticking = false;
         
         const updateBackToTop = () => {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
+            const pageHeight = document.body.offsetHeight;
             
-            // Hiển thị khi cuộn xuống 80% chiều cao màn hình
-            if (scrollPosition > windowHeight * 0.8) {
-                backToTop.classList.add('visible');
-                backToTop.style.opacity = '1';
-                backToTop.style.visibility = 'visible';
-                backToTop.style.transform = 'translateY(0)';
+            // CHỈ hiển thị khi:
+            // 1. Scroll xuống > 80% màn hình
+            // 2. KHÔNG ở cuối trang (tránh giật)
+            const shouldShow = scrollPosition > windowHeight * 0.8 && 
+                              (scrollPosition + windowHeight) < pageHeight - 100;
+            
+            if (shouldShow) {
+                if (!backToTop.classList.contains('visible')) {
+                    backToTop.classList.add('visible');
+                    backToTop.style.opacity = '1';
+                    backToTop.style.visibility = 'visible';
+                    backToTop.style.transform = 'translateY(0)';
+                }
             } else {
-                backToTop.classList.remove('visible');
-                backToTop.style.opacity = '0';
-                backToTop.style.visibility = 'hidden';
-                backToTop.style.transform = 'translateY(20px)';
+                if (backToTop.classList.contains('visible')) {
+                    backToTop.classList.remove('visible');
+                    backToTop.style.opacity = '0';
+                    backToTop.style.visibility = 'hidden';
+                    backToTop.style.transform = 'translateY(20px)';
+                }
+            }
+            
+            ticking = false;
+        };
+        
+        const throttledUpdate = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateBackToTop);
+                ticking = true;
             }
         };
         
-        window.addEventListener('scroll', updateBackToTop, { passive: true });
+        // Lưu reference để cleanup
+        backToTopHandlerRef = throttledUpdate;
         
+        // Thêm event listener
+        window.addEventListener('scroll', throttledUpdate, { passive: true });
+        
+        // Click handler
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({
@@ -277,19 +279,50 @@ document.addEventListener('DOMContentLoaded', function() {
         updateBackToTop();
     }
     
+    // Xử lý active state
+    function handleActiveState() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            
+            const linkHref = link.getAttribute('href');
+            const linkPage = linkHref.split('/').pop();
+            
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            }
+            
+            if ((currentPage === '' || currentPage === 'index.html' || currentPage === '../index.html') && 
+                (linkHref === '../index.html' || linkHref === 'index.html' || linkHref === '/')) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Điều chỉnh padding
+    function adjustPagePadding() {
+        const header = document.querySelector('.navbar');
+        const page = document.querySelector('.page');
+        
+        if (header && page) {
+            const headerHeight = header.offsetHeight;
+            page.style.paddingTop = (headerHeight + 20) + 'px';
+        }
+    }
+    
     // ==================== INIT IMAGE SLIDERS ====================
     function initImageSliders() {
         const sliders = document.querySelectorAll('.image-slider');
         if (sliders.length === 0) return;
         
         sliders.forEach(slider => {
-            // ... (giữ nguyên phần slider code của bạn)
-            // (Đã có trong code bạn cung cấp)
+            // Giữ nguyên code slider của bạn
         });
     }
     
     // ==================== GLOBAL EVENT LISTENERS ====================
-    // Debounce function
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -302,18 +335,27 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
-    // Xử lý resize với debounce
     const handleResize = debounce(() => {
         adjustPagePadding();
-        initAutoHideHeader(); // Re-init header behavior
+        initAutoHideHeader();
+        initBackToTop(); // THÊM: re-init back-to-top khi resize
     }, 150);
     
     window.addEventListener('resize', handleResize);
     
-    // Cleanup khi trang bị unload
+    // Cleanup ĐẦY ĐỦ khi unload
     window.addEventListener('beforeunload', () => {
         if (lastScrollHandler) {
             window.removeEventListener('scroll', lastScrollHandler);
+        }
+        if (backToTopHandlerRef) {
+            window.removeEventListener('scroll', backToTopHandlerRef);
+        }
+        if (touchHandlerRef) {
+            document.removeEventListener('touchstart', touchHandlerRef);
+        }
+        if (touchEndHandlerRef) {
+            document.removeEventListener('touchend', touchEndHandlerRef);
         }
         window.removeEventListener('resize', handleResize);
     });
