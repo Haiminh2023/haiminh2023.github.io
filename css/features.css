@@ -1,4 +1,3 @@
-/* CSS giữ nguyên style cũ cho trang tính năng */
 
 /* CSS cho multiple images */
 .feature-screenshots {
@@ -30,7 +29,7 @@
     }
 }
 
-/* STYLE CŨ - Không thay đổi */
+
 .features-container {
     display: flex;
     gap: 30px;
@@ -39,7 +38,7 @@
     position: relative;
 }
 
-/* Sidebar bên trái - GIẢM CHIỀU CAO THẺ */
+/* Sidebar bên trái */
 .features-sidebar {
     width: 320px;
     flex-shrink: 0;
@@ -55,7 +54,7 @@
     border: 1px solid #eaeaea;
 }
 
-/* Ẩn scrollbar cho đẹp */
+/* Ẩn scrollbar */
 .features-sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -98,13 +97,13 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 15px 18px; /* Giảm padding */
+    padding: 15px 18px;
     border-radius: 12px;
     background: #f9f9f9;
     border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 70px; /* Giảm chiều cao tối thiểu */
+    min-height: 70px;
     height: auto;
 }
 
@@ -121,7 +120,7 @@
 }
 
 .sidebar-icon {
-    font-size: 22px; /* Giảm kích thước icon */
+    font-size: 22px;
     width: 45px; /* Giảm kích thước */
     height: 45px; /* Giảm kích thước */
     display: flex;
@@ -134,7 +133,7 @@
 }
 
 .sidebar-content h3 {
-    font-size: 16px; /* Giảm kích thước chữ */
+    font-size: 16px;
     font-weight: 700;
     color: #1a1a1a;
     margin: 0 0 4px 0;
@@ -142,13 +141,13 @@
 }
 
 .sidebar-content p {
-    font-size: 13px; /* Giảm kích thước chữ */
+    font-size: 13px;
     color: #666;
     margin: 0;
     line-height: 1.4;
 }
 
-/* Nội dung bên phải - Giữ nguyên style cũ */
+/* Nội dung bên phải */
 .features-content {
     flex: 1;
     padding: 0 0 50px 0;
@@ -196,7 +195,7 @@
     margin-bottom: 20px;
 }
 
-/* KHUNG ĐIỂM NỔI BẬT - NÂNG CẤP GIỐNG PHIÊN BẢN TRƯỚC */
+/* KHUNG ĐIỂM NỔI BẬT */
 .feature-highlights {
     background: linear-gradient(135deg, #f8fbff 0%, #f0f7ff 100%);
     padding: 25px 30px;
@@ -249,7 +248,7 @@
     font-size: 15.5px;
 }
 
-/* THAY DẤU LIỆT KÊ BẰNG TÍCH XANH */
+/* DẤU TÍCH XANH */
 .feature-highlights li::before {
     content: '✓';
     position: absolute;
@@ -344,7 +343,7 @@
     
     .sidebar-card {
         flex: 1;
-        min-width: 220px; /* Giảm chiều rộng tối thiểu */
+        min-width: 220px;
         padding: 14px 16px;
     }
     
