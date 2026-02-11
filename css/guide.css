@@ -7,12 +7,12 @@
     position: relative;
 }
 
-/* ================= SIDEBAR BÊN TRÁI - STICKY GIỐNG FEATURES ================= */
+/* ================= SIDEBAR BÊN TRÁI - STICKY ================= */
 .guide-sidebar {
     width: 320px;
     flex-shrink: 0;
     position: sticky;
-    top: 100px; /* GIỐNG FEATURES: 100px chứ không phải 120px */
+    top: 100px;
     height: fit-content;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
@@ -23,7 +23,7 @@
     border: 1px solid #eaeaea;
 }
 
-/* Ẩn scrollbar cho đẹp - GIỐNG FEATURES */
+/* Ẩn scrollbar cho đẹp */
 .guide-sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -42,7 +42,7 @@
     background: #a8a8a8;
 }
 
-/* SIDEBAR HEADER - GIỐNG FEATURES */
+/* SIDEBAR HEADER */
 .sidebar-header {
     margin-bottom: 20px;
     padding-bottom: 15px;
@@ -56,11 +56,11 @@
     margin: 0;
 }
 
-/* ================= MENU ĐIỀU HƯỚNG - GIỐNG FEATURES ================= */
+/* ================= MENU ĐIỀU HƯỚNG ================= */
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* GIỐNG FEATURES */
+    gap: 12px;
 }
 
 .nav-item {
@@ -74,14 +74,14 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    min-height: 70px; /* GIỐNG FEATURES */
+    min-height: 70px;
     height: auto;
 }
 
 .nav-item:hover {
     background: #f0f7ff;
     border-color: #e1eeff;
-    transform: translateY(-2px); /* Hiệu ứng hover giống features */
+    transform: translateY(-2px);
 }
 
 .nav-item.active {
@@ -91,7 +91,7 @@
 }
 
 .nav-number {
-    width: 45px; /* GIỐNG FEATURES: 45px không phải 32px */
+    width: 45px;
     height: 45px;
     display: flex;
     align-items: center;
@@ -137,7 +137,7 @@
     padding: 40px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     border: 1px solid #eaeaea;
-    scroll-margin-top: 100px; /* ĐỂ KHÔNG BỊ HEADER CHE */
+    scroll-margin-top: 100px;
 }
 
 .section-header {
@@ -397,7 +397,7 @@
     transform: translateY(-2px);
 }
 
-/* FEATURE SCREENSHOTS - GIỐNG FEATURES.CSS */
+/* FEATURE SCREENSHOTS */
 .feature-screenshots {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -442,7 +442,7 @@
     margin: 0;
 }
 
-/* ================= RESPONSIVE - GIỐNG FEATURES ================= */
+/* ================= RESPONSIVE ================= */
 
 /* Desktop nhỏ */
 @media (max-width: 1200px) {
@@ -474,7 +474,7 @@
     
     .nav-item {
         flex: 1;
-        min-width: 220px; /* GIỐNG FEATURES */
+        min-width: 220px;
         padding: 14px 16px;
     }
     
@@ -502,7 +502,7 @@
 /* Mobile */
 @media (max-width: 768px) {
     .page-inner {
-        padding: 10px; /* GIẢM XUỐNG 10px (Features dùng 10px) */
+        padding: 10px; 
         max-width: 100%;
         overflow-x: hidden;
         width: 100%;
@@ -513,7 +513,7 @@
         margin-top: 20px;
         width: 100%;
         box-sizing: border-box;
-        padding: 0; /* THÊM DÒNG NÀY */
+        padding: 0; 
     }
     
     body {
@@ -521,12 +521,12 @@
     }
     
     .guide-section {
-        padding: 20px; /* GIẢM XUỐNG 20px (Features dùng 20px) */
-        margin-bottom: 40px; /* GIẢM XUỐNG 40px */
+        padding: 20px; 
+        margin-bottom: 40px;
         max-width: 100%;
         box-sizing: border-box;
         width: 100%;
-        border-radius: 12px; /* THÊM DÒNG NÀY - Features dùng 12px */
+        border-radius: 12px;
     }
     
     .section-content {
@@ -537,23 +537,23 @@
     
     .section-title {
         font-size: 24px;
-        padding: 0; /* THÊM DÒNG NÀY */
+        padding: 0;
         margin: 0 0 10px 0;
     }
     
     .section-subtitle {
         font-size: 16px;
-        padding: 0; /* THÊM DÒNG NÀY */
+        padding: 0;
         margin: 0 0 20px 0;
     }
     
     .nav-item {
         min-width: 100%;
-        margin: 0; /* THÊM DÒNG NÀY */
+        margin: 0;
     }
     
     .device-tabs {
-        flex-direction: row; /* ĐỔI TỪ column THÀNH row */
+        flex-direction: row;
         flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 25px;
@@ -561,27 +561,27 @@
     }
     
     .device-tab {
-        width: auto; /* ĐỔI TỪ 100% THÀNH auto */
+        width: auto;
         flex: 1;
-        min-width: calc(50% - 4px); /* THÊM DÒNG NÀY - 2 cột */
+        min-width: calc(50% - 4px);
         text-align: center;
-        padding: 10px 12px; /* THÊM DÒNG NÀY */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        font-size: 14px; /* THÊM DÒNG NÀY */
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 14px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ MỞ RỘNG CARD */
+    /* MỞ RỘNG CARD */
     .requirement-card,
     .download-card {
-        padding: 20px; /* GIỮ NGUYÊN */
-        border-radius: 12px; /* THÊM DÒNG NÀY */
+        padding: 20px;
+        border-radius: 12px;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
     
     .requirements-grid {
-        gap: 15px; /* GIẢM XUỐNG 15px */
+        gap: 15px;
         margin-top: 20px;
     }
     
@@ -590,7 +590,7 @@
     }
     
     .download-header {
-        flex-direction: row; /* ĐỔI LẠI THÀNH row (để giống Features) */
+        flex-direction: row;
         align-items: center;
         gap: 20px;
     }
@@ -606,10 +606,10 @@
         width: 36px;
         height: 36px;
         font-size: 16px;
-        border-radius: 8px; /* THÊM DÒNG NÀY */
+        border-radius: 8px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX FEATURE SCREENSHOTS */
+    /* FIX FEATURE SCREENSHOTS */
     .feature-screenshots {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -617,10 +617,10 @@
     }
     
     .feature-screenshots img {
-        border-radius: 10px; /* THÊM DÒNG NÀY */
+        border-radius: 10px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX PATH BOX */
+    /* FIX PATH BOX */
     .path-box {
         padding: 12px 15px;
         border-radius: 10px;
@@ -630,94 +630,94 @@
     }
     
     .path-box code {
-        font-size: 14px; /* GIẢM XUỐNG 14px */
+        font-size: 14px;
     }
 }
 
 /* Mobile nhỏ */
 @media (max-width: 480px) {
     .page-inner {
-        padding: 8px; /* GIẢM XUỐNG 8px (Features dùng 8px) */
+        padding: 8px;
     }
     
     .guide-sidebar {
-        padding: 15px; /* GIẢM XUỐNG 15px */
-        border-radius: 10px; /* THÊM DÒNG NÀY */
+        padding: 15px;
+        border-radius: 10px;
     }
     
     .sidebar-header h1 {
-        font-size: 20px; /* GIẢM XUỐNG 20px */
+        font-size: 20px;
         padding: 0;
     }
     
     .nav-item {
         padding: 12px 15px;
-        min-height: 60px; /* GIẢM XUỐNG 60px */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        margin: 0 0 8px 0; /* THÊM DÒNG NÀY */
+        min-height: 60px;
+        border-radius: 8px;
+        margin: 0 0 8px 0;
     }
     
     .nav-number {
-        width: 36px; /* GIẢM XUỐNG 36px */
+        width: 36px;
         height: 36px;
-        font-size: 14px; /* GIẢM XUỐNG 14px */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
+        font-size: 14px;
+        border-radius: 8px;
     }
     
-    /* QUAN TRỌNG: MỞ RỘNG CÁC SECTION */
+    /* MỞ RỘNG CÁC SECTION */
     .guide-section {
-        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
-        margin-bottom: 30px; /* GIẢM XUỐNG 30px */
-        border-radius: 10px; /* THÊM DÒNG NÀY */
+        padding: 15px;
+        margin-bottom: 30px;
+        border-radius: 10px;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
     
     .section-title {
-        font-size: 20px; /* GIẢM XUỐNG 20px */
+        font-size: 20px;
         margin-bottom: 8px;
     }
     
     .section-subtitle {
-        font-size: 15px; /* GIẢM XUỐNG 15px */
+        font-size: 15px;
         margin-bottom: 15px;
     }
     
     .download-section h3 {
-        font-size: 18px; /* GIẢM XUỐNG 18px */
+        font-size: 18px;
         margin-bottom: 8px;
     }
     
-    /* QUAN TRỌNG: MỞ RỘNG CARD */
+    /*  MỞ RỘNG CARD */
     .requirement-card,
     .download-card {
-        padding: 15px; /* GIẢM XUỐNG 15px (Features dùng 15px) */
-        border-radius: 8px; /* THÊM DÒNG NÀY */
-        margin: 0 0 12px 0; /* THÊM DÒNG NÀY */
+        padding: 15px;
+        border-radius: 8px;
+        margin: 0 0 12px 0; 
         width: 100%;
     }
     
     .requirements-grid {
-        gap: 12px; /* GIẢM XUỐNG 12px */
+        gap: 12px; 
     }
     
     .requirement-icon,
     .file-icon {
-        font-size: 28px; /* GIẢM XUỐNG 28px */
+        font-size: 28px;
     }
     
     .requirement-card h3 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+        font-size: 16px;
         margin-bottom: 10px;
     }
     
     .download-header {
-        gap: 15px; /* GIẢM XUỐNG 15px */
+        gap: 15px;
     }
     
     .file-info h4 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+        font-size: 16px;
     }
     
     /* FIX CHO DEVICE TABS */
@@ -727,9 +727,9 @@
     }
     
     .device-tab {
-        padding: 8px 10px; /* GIẢM PADDING */
-        font-size: 13px; /* GIẢM FONT SIZE */
-        border-radius: 6px; /* THÊM DÒNG NÀY */
+        padding: 8px 10px;
+        font-size: 13px;
+        border-radius: 6px;
     }
     
     /* FIX CHO STEP */
@@ -739,14 +739,14 @@
     }
     
     .step-number {
-        width: 32px; /* GIẢM XUỐNG 32px */
+        width: 32px;
         height: 32px;
-        font-size: 14px; /* GIẢM XUỐNG 14px */
-        border-radius: 6px; /* THÊM DÒNG NÀY */
+        font-size: 14px;
+        border-radius: 6px;
     }
     
     .step-content h3 {
-        font-size: 16px; /* THÊM DÒNG NÀY */
+        font-size: 16px;
     }
     
     /* FIX CHO PATH BOX */
@@ -756,19 +756,19 @@
     }
     
     .path-box code {
-        font-size: 13px; /* GIẢM XUỐNG 13px */
+        font-size: 13px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX DOWNLOAD BUTTON */
+    /* FIX DOWNLOAD BUTTON */
     .download-btn {
         width: 100%;
         justify-content: center;
-        padding: 10px 15px; /* GIẢM PADDING */
-        font-size: 14px; /* GIẢM FONT SIZE */
+        padding: 10px 15px;
+        font-size: 14px;
         border-radius: 8px;
     }
     
-    /* THÊM ĐOẠN NÀY ĐỂ FIX FAQ */
+    /* FIX FAQ */
     .faq-item {
         margin-bottom: 15px;
     }
