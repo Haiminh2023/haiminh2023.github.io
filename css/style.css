@@ -773,3 +773,21 @@ body {
         padding: 20px;
     }
 }
+
+/* ================= HEADER AUTO HIDE ON MOBILE ================= */
+@media (max-width: 768px) {
+    .navbar {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(0);
+    }
+    
+    .navbar.hidden {
+        transform: translateY(-100%);
+        box-shadow: none;
+    }
+    
+    /* Giảm padding top cho page khi header ẩn */
+    .page {
+        transition: padding-top 0.3s ease;
+    }
+}
