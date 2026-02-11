@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     handleActiveState();
                     adjustPagePadding();
-                    initAutoHideHeader(); // <== THÊM DÒNG NÀY
                 }, 50);
             })
             .catch(error => {
@@ -75,61 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ==================== FUNCTIONS ====================
-    
-    function initAutoHideHeader() {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) {
-            setTimeout(initAutoHideHeader, 100);
-            return;
-        }
-        
-        const mobileBreakpoint = 768;
-        
-        if (window.innerWidth <= mobileBreakpoint) {
-            let lastScrollY = window.scrollY;
-            let ticking = false;
-            
-            function updateNavbar() {
-                const currentScrollY = window.scrollY;
-                
-                // Ẩn menu khi scroll xuống > 100px
-                if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    navbar.classList.add('hide-menu');
-                } 
-                // Hiện menu khi scroll lên
-                else if (currentScrollY < lastScrollY) {
-                    navbar.classList.remove('hide-menu');
-                }
-                
-                // Ở đầu trang - luôn hiện menu
-                if (currentScrollY < 50) {
-                    navbar.classList.remove('hide-menu');
-                }
-                
-                lastScrollY = currentScrollY;
-                ticking = false;
-            }
-            
-            window.addEventListener('scroll', function() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateNavbar);
-                    ticking = true;
-                }
-            }, { passive: true });
-            
-            // Hiện menu khi tap
-            document.addEventListener('touchstart', function() {
-                navbar.classList.remove('hide-menu');
-            });
-            
-            // Reset khi resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > mobileBreakpoint) {
-                    navbar.classList.remove('hide-menu');
-                }
-            });
-        }
-    }
+
     // Xử lý active state cho navigation
     function handleActiveState() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
