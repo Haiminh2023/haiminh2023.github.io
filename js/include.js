@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== INITIALIZE ALL COMPONENTS ====================
     function initComponents() {
         handleActiveState();
+        adjustPagePadding();
         initAutoHideHeader();
         initImageSliders();
     }
@@ -77,89 +78,76 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function initAutoHideHeader() {
         const navbar = document.querySelector('.navbar');
-        if (!navbar) return;
-    
+        if (!navbar) {
+            setTimeout(initAutoHideHeader, 100);
+            return;
+        }
+        
+        // Xóa sự kiện cũ nếu có
         if (lastScrollHandler) {
             window.removeEventListener('scroll', lastScrollHandler);
         }
-    
-        // Desktop: luôn hiện header
-        if (window.innerWidth > 768) {
-            navbar.classList.remove('hidden');
-            return;
-        }
-    
-        // Reset trạng thái
-        navbar.classList.remove('hidden');
-        let lastScroll = window.pageYOffset;
-        let isHidden = false;
-        let ticking = false;
-        let atBottom = false;
-    
-        const isAtBottom = () => {
-            const scrollY = window.scrollY;
-            const visibleHeight = window.innerHeight;
-            const pageHeight = document.documentElement.scrollHeight;
-            return scrollY + visibleHeight >= pageHeight - 10;
-        };
-    
-        const handleScroll = () => {
-            const currentScroll = window.pageYOffset;
-            const scrollingDown = currentScroll > lastScroll;
-            const scrollingUp = currentScroll < lastScroll;
-            const atTop = currentScroll < 50;
-            atBottom = isAtBottom();
-    
-            // Ở đầu trang: LUÔN hiện header
-            if (atTop) {
-                if (isHidden) {
+        
+        // Chỉ áp dụng cho mobile
+        if (window.innerWidth <= 768) {
+            let lastScroll = 0;
+            let ticking = false;
+            let isHidden = false;
+            
+            const handleScroll = () => {
+                const currentScroll = window.pageYOffset;
+                
+                // Tính toán direction
+                const scrollingDown = currentScroll > lastScroll;
+                const scrollingUp = currentScroll < lastScroll;
+                const atTop = currentScroll < 50;
+                const scrolledEnough = currentScroll > 150;
+                
+                if (scrollingDown && scrolledEnough && !isHidden) {
+                    navbar.classList.add('hidden');
+                    isHidden = true;
+                } 
+                else if ((scrollingUp || atTop) && isHidden) {
                     navbar.classList.remove('hidden');
                     isHidden = false;
                 }
+                
                 lastScroll = currentScroll;
                 ticking = false;
-                return;
-            }
-    
-            // Ở cuối trang: LUÔN hiện header
-            if (atBottom) {
-                if (isHidden) {
-                    navbar.classList.remove('hidden');
-                    isHidden = false;
+            };
+            
+            const throttledScrollHandler = () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(handleScroll);
+                    ticking = true;
                 }
-                lastScroll = currentScroll;
-                ticking = false;
-                return;
-            }
-    
-            // Giữa trang: ẩn khi vuốt xuống, hiện khi vuốt lên
-            const delta = Math.abs(currentScroll - lastScroll);
-            if (delta < 5) {
-                ticking = false;
-                return;
-            }
-    
-            if (scrollingDown && currentScroll > 150 && !isHidden) {
-                navbar.classList.add('hidden');
-                isHidden = true;
-            } else if (scrollingUp && isHidden) {
+            };
+            
+            // Lưu reference để có thể xóa sau
+            lastScrollHandler = throttledScrollHandler;
+            
+            // Thêm sự kiện
+            window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+            
+            // Hiện header khi tap (cho mobile UX tốt hơn)
+            let tapTimeout;
+            document.addEventListener('touchstart', () => {
+                clearTimeout(tapTimeout);
                 navbar.classList.remove('hidden');
                 isHidden = false;
-            }
-    
-            lastScroll = currentScroll;
-            ticking = false;
-        };
-    
-        const scrollHandler = () => {
-            if (!ticking) {
-                requestAnimationFrame(handleScroll);
-                ticking = true;
-            }
-        };
-    
-        lastScrollHandler = scrollHandler;
-        window.addEventListener('scroll', scrollHandler, { passive: true });
+                
+                // Auto hide sau 3 giây nếu không có tương tác
+                tapTimeout = setTimeout(() => {
+                    if (window.pageYOffset > 150 && !navbar.matches(':hover')) {
+                        navbar.classList.add('hidden');
+                        isHidden = true;
+                    }
+                }, 3000);
+            });
+        } else {
+            // Trên desktop, đảm bảo header luôn hiển thị
+            navbar.classList.remove('hidden');
+        }
     }
     
     // Xử lý active state cho navigation
@@ -186,6 +174,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Tự động điều chỉnh padding-top cho content
+    function adjustPagePadding() {
+        const header = document.querySelector('.navbar');
+        const page = document.querySelector('.page');
+        
+        if (header && page) {
+            const headerHeight = header.offsetHeight;
+            page.style.paddingTop = (headerHeight + 20) + 'px';
+        }
+    }
     
     // Khởi tạo back to top button
     function initBackToTop() {
@@ -197,31 +195,28 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTop.classList.add('back-to-top');
         }
         
-        
-        let backTicking = false;
+        // CSS transitions
+        backToTop.style.transition = 'opacity 0.3s, transform 0.3s, visibility 0.3s';
         
         const updateBackToTop = () => {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
-        
+            
+            // Hiển thị khi cuộn xuống 80% chiều cao màn hình
             if (scrollPosition > windowHeight * 0.8) {
                 backToTop.classList.add('visible');
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+                backToTop.style.transform = 'translateY(0)';
             } else {
                 backToTop.classList.remove('visible');
-            }
-        
-            backTicking = false;
-        };
-        
-        const scrollHandler = () => {
-            if (!backTicking) {
-                requestAnimationFrame(updateBackToTop);
-                backTicking = true;
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+                backToTop.style.transform = 'translateY(20px)';
             }
         };
         
-        window.addEventListener('scroll', scrollHandler, { passive: true });
-
+        window.addEventListener('scroll', updateBackToTop, { passive: true });
         
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
@@ -262,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Xử lý resize với debounce
     const handleResize = debounce(() => {
+        adjustPagePadding();
         initAutoHideHeader(); // Re-init header behavior
     }, 150);
     
