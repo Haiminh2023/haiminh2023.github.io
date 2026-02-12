@@ -129,21 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Thêm sự kiện
             window.addEventListener('scroll', throttledScrollHandler, { passive: true });
             
-            // Hiện header khi tap (cho mobile UX tốt hơn)
-            let tapTimeout;
-            document.addEventListener('touchstart', () => {
-                clearTimeout(tapTimeout);
-                navbar.classList.remove('hidden');
-                isHidden = false;
-                
-                // Auto hide sau 3 giây nếu không có tương tác
-                tapTimeout = setTimeout(() => {
-                    if (window.pageYOffset > 150 && !navbar.matches(':hover')) {
-                        navbar.classList.add('hidden');
-                        isHidden = true;
-                    }
-                }, 3000);
-            });
         } else {
             // Trên desktop, đảm bảo header luôn hiển thị
             navbar.classList.remove('hidden');
