@@ -138,9 +138,14 @@ body {
     padding: 0 20px;
 }
 
-/* ================= HERO IMAGE FULL WIDTH ================= */
+/* ================= HERO FULL WIDTH (TRÀN MÀN HÌNH) ================= */
 .hero {
-    width: 100%;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
     margin-bottom: 40px;
 }
 
@@ -149,6 +154,7 @@ body {
     height: auto;
     display: block;
 }
+
 
 /* ================= TYPO ================= */
 .page h1 {
