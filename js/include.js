@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    /* ===== THÊM NÚT NỔI TẢI PLUGIN VÀO TẤT CẢ CÁC TRANG ===== */
+    /* ===== TẠO NÚT TẢI PLUGIN ===== */
     if (!document.querySelector('.floating-download-button')) {
         const button = document.createElement('a');
         
-        // Xử lý đường dẫn guide.html#download - linh hoạt theo cấu trúc thư mục
+        // Xử lý đường dẫn
         const isInPages = window.location.pathname.includes('/pages/');
         button.href = isInPages ? '../guide.html#download' : 'guide.html#download';
         
@@ -19,6 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         document.body.appendChild(button);
     }
+
+    /* ===== TẠO NÚT BACK TO TOP ===== */
+    if (!document.querySelector('.back-to-top')) {
+        const backToTop = document.createElement('a');
+        backToTop.href = '#';
+        backToTop.className = 'back-to-top';
+        backToTop.setAttribute('aria-label', 'Back to top');
+        backToTop.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"/>
+            </svg>
+        `;
+        document.body.appendChild(backToTop);
+    }
+
 
     /* ================= LOAD HEADER ================= */
     const headerPlaceholder = document.getElementById('header-placeholder');
