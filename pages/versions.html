@@ -75,12 +75,6 @@
     </section>
 </main>
 
-<!-- NÚT BACK TO TOP -->
-<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m18 15-6-6-6 6"/>
-    </svg>
-</button>
 
 <!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
@@ -98,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const latestVersionBanner = document.getElementById('latestVersionBanner');
         const prevBtn = document.getElementById('prevVersions');
         const nextBtn = document.getElementById('nextVersions');
-        const backToTopBtn = document.getElementById('backToTop');
         
         function formatVersionNumber(version) {
             return version.startsWith('Ver ') ? version : `v${version}`;
