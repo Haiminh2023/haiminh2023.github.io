@@ -351,7 +351,7 @@ body {
     position: fixed;
     bottom: 100px;
     right: 30px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);  /* Màu xanh tím */
+    background: linear-gradient(135deg, #2563eb, #3b82f6);  /* Xanh đẹp - từ xanh đậm sang xanh sáng */
     color: white;
     padding: 14px 28px;
     border-radius: 50px;
@@ -361,7 +361,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);  /* Bóng xanh */
     z-index: 9998;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -375,36 +375,36 @@ body {
 }
 
 .floating-download-button:hover {
-    background: linear-gradient(135deg, #4f52e0, #7c3aed);
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);  /* Xanh đậm hơn khi hover */
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.6);
 }
 
 .floating-download-button:hover svg {
     transform: translateY(3px);
 }
 
-/* ===== BACK TO TOP - CÙNG KÍCH THƯỚC & MÀU XANH ===== */
+/* ===== BACK TO TOP - CÙNG MÀU XANH ===== */
 .back-to-top {
     position: fixed;
     bottom: 40px;
     right: 30px;
-    width: 54px;          /* Cùng chiều cao với nút tải (padding 14px*2 + 16px ≈ 54px) */
-    height: 54px;         /* Cùng chiều cao với nút tải */
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);  /* CÙNG MÀU XANH */
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);  /* CÙNG MÀU XANH */
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);  /* CÙNG BÓNG ĐỔ */
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);  /* BÓNG XANH */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 9999;
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* CÙNG VIỀN */
-    backdrop-filter: blur(5px);  /* CÙNG HIỆU ỨNG */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .back-to-top svg {
@@ -415,9 +415,9 @@ body {
 }
 
 .back-to-top:hover {
-    background: linear-gradient(135deg, #4f52e0, #7c3aed);  /* CÙNG MÀU HOVER */
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);  /* Xanh đậm hơn khi hover */
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);  /* CÙNG BÓNG ĐỔ HOVER */
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.6);
 }
 
 .back-to-top.visible {
@@ -432,13 +432,13 @@ body {
         bottom: 80px;
         right: 20px;
         padding: 0;
-        width: 54px;            /* CÙNG KÍCH THƯỚC VỚI BACK TO TOP */
-        height: 54px;           /* CÙNG KÍCH THƯỚC VỚI BACK TO TOP */
+        width: 54px;
+        height: 54px;
         border-radius: 50%;
         justify-content: center;
         align-items: center;
         gap: 0;
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);  /* XANH */
         font-size: 0;
         color: transparent;
         text-indent: -9999px;
@@ -463,13 +463,13 @@ body {
         transform: scale(0.95);
     }
     
-    /* Nút back to top - CÙNG KÍCH THƯỚC VỚI NÚT TẢI */
+    /* Nút back to top - CÙNG MÀU XANH */
     .back-to-top {
         bottom: 20px;
         right: 20px;
-        width: 54px;            /* CÙNG KÍCH THƯỚC */
-        height: 54px;           /* CÙNG KÍCH THƯỚC */
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);  /* CÙNG MÀU XANH */
+        width: 54px;
+        height: 54px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);  /* XANH */
     }
     
     .back-to-top svg {
@@ -483,8 +483,9 @@ body {
     .floating-download-button {
         bottom: 70px;
         right: 15px;
-        width: 48px;            /* Giảm nhẹ cho màn hình nhỏ */
+        width: 48px;
         height: 48px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);  /* XANH */
     }
     
     .floating-download-button svg {
@@ -495,8 +496,9 @@ body {
     .back-to-top {
         bottom: 15px;
         right: 15px;
-        width: 48px;            /* CÙNG KÍCH THƯỚC */
-        height: 48px;           /* CÙNG KÍCH THƯỚC */
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);  /* XANH */
     }
     
     .back-to-top svg {
