@@ -433,7 +433,7 @@ body {
 @media (max-width: 768px) {
     /* Nút tải plugin - CHỈ ICON */
     .floating-download-button {
-        bottom: 100px;        /* Giữ khoảng cách với back to top */
+        bottom: 200px;        /* Giữ khoảng cách với back to top */
         right: 20px;
         padding: 0;
         width: 56px;         /* Cùng kích thước back to top */
@@ -470,7 +470,7 @@ body {
     
     /* Nút back to top */
     .back-to-top {
-        bottom: 30px;
+        bottom: 130px;
         right: 20px;
         width: 56px;
         height: 56px;
@@ -481,7 +481,7 @@ body {
 /* === MÀN HÌNH RẤT NHỎ === */
 @media (max-width: 480px) {
     .floating-download-button {
-        bottom: 90px;
+        bottom: 150px;
         right: 15px;
         width: 52px;
         height: 52px;
@@ -493,7 +493,7 @@ body {
     }
     
     .back-to-top {
-        bottom: 25px;
+        bottom: 100px;
         right: 15px;
         width: 52px;
         height: 52px;
