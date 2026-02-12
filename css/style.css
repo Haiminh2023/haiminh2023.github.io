@@ -5,6 +5,7 @@
     --card: #ffffff;
     --text: #111827;
     --muted: #6b7280;
+    --header-height: 60px;
 }
 
 /* RESET */
@@ -29,8 +30,8 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 60px;
-    min-height: 60px;
+    height: var(--header-height);
+    min-height: var(--header-height);
 
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
@@ -126,7 +127,7 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: 60px;
+    padding-top: var(--header-height);
     padding-bottom: 60px;
     min-height: 100vh;
 }
@@ -393,8 +394,8 @@ body {
         padding: 10px 0;
     }
     
-    .page {
-        padding-top: 140px;
+    :root {
+        --header-height: 140px; /* chỉnh số này nếu cần */
     }
     .nav-inner {
         flex-direction: column;
