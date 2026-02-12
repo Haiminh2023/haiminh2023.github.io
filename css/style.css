@@ -345,3 +345,76 @@ body {
         text-align: center;
     }
 }
+
+/* ===== NÚT NỔI TẢI PLUGIN ===== */
+.floating-download-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    letter-spacing: 0.5px;
+}
+
+.floating-download-button svg {
+    stroke: white;
+    transition: transform 0.3s ease;
+}
+
+.floating-download-button:hover {
+    background: linear-gradient(135deg, #4f52e0, #7c3aed);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
+}
+
+.floating-download-button:hover svg {
+    transform: translateY(3px);
+}
+
+.floating-download-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .floating-download-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .floating-download-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.floating-download-button {
+    animation: slideIn 0.5s ease;
+}
