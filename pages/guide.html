@@ -560,12 +560,6 @@
     </section>
 </main>
 
-<!-- NÚT BACK TO TOP -->
-<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m18 15-6-6-6 6"/>
-    </svg>
-</button>
 
 <!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
@@ -644,42 +638,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Back to top button
-    const backToTopBtn = document.getElementById('backToTop');
-    
-    function toggleBackToTopButton() {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        if (scrollPosition > windowHeight * 0.8) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    }
-    
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    window.addEventListener('scroll', toggleBackToTopButton);
-    toggleBackToTopButton();
-    setTimeout(initImageSliders, 500);
-});
-
-// Hàm giả lập tải file (thay bằng link thật)
-function downloadFile(filename) {
-    alert(`Tính năng tải ${filename} sẽ được tích hợp sau.`);
-    // Thực tế sẽ là: window.location.href = `path/to/${filename}`;
-}
-
-// Hàm copy đường dẫn
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        alert('Đã copy đường dẫn vào clipboard!');
-    }).catch(err => {
-        console.error('Lỗi khi copy: ', err);
-    });
-}
 
 function initImageSliders() {
     const sliders = document.querySelectorAll('.image-slider');
