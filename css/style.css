@@ -351,7 +351,7 @@ body {
     position: fixed;
     bottom: 100px;
     right: 30px;
-    background: linear-gradient(145deg, #4ade80, #22c55e);  /* Xanh nõn chuối tươi sáng */
+    background: linear-gradient(135deg, #4a90e2, #2ecc71);  /* Xanh dương - Xanh lá */
     color: white;
     padding: 14px 28px;
     border-radius: 50px;
@@ -361,10 +361,10 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 15px 25px rgba(34, 197, 94, 0.35), 0 5px 10px rgba(0, 0, 0, 0.1);  /* Đổ bóng xanh lá đẹp */
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);  /* Bóng xanh dương */
     z-index: 9998;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
     backdrop-filter: blur(5px);
     letter-spacing: 0.5px;
 }
@@ -372,79 +372,81 @@ body {
 .floating-download-button svg {
     stroke: white;
     transition: transform 0.3s ease;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
 }
 
 .floating-download-button:hover {
-    background: linear-gradient(145deg, #22c55e, #16a34a);  /* Đậm hơn khi hover */
-    transform: translateY(-5px);
-    box-shadow: 0 20px 30px rgba(34, 197, 94, 0.45), 0 8px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #3a80d2, #1ebc61);  /* Đậm hơn khi hover */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
 }
 
 .floating-download-button:hover svg {
     transform: translateY(3px);
 }
 
-/* ===== BACK TO TOP - CÙNG MÀU XANH NÕN CHUỐI ===== */
+/* ===== BACK TO TOP - GIỮ NGUYÊN MÀU CỦA BẠN ===== */
 .back-to-top {
     position: fixed;
-    bottom: 40px;
+    bottom: 30px;
     right: 30px;
-    width: 54px;
-    height: 54px;
-    background: linear-gradient(145deg, #4ade80, #22c55e);  /* CÙNG MÀU XANH NÕN CHUỐI */
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #4a90e2, #2ecc71);  /* GIỮ NGUYÊN */
     color: white;
+    border: none;
     border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 15px 25px rgba(34, 197, 94, 0.35), 0 5px 10px rgba(0, 0, 0, 0.1);  /* BÓNG XANH LÁ */
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9999;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.back-to-top svg {
-    width: 24px;
-    height: 24px;
-    stroke: white;
-    stroke-width: 2.5;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
 }
 
 .back-to-top:hover {
-    background: linear-gradient(145deg, #22c55e, #16a34a);  /* Đậm hơn khi hover */
-    transform: translateY(-5px);
-    box-shadow: 0 20px 30px rgba(34, 197, 94, 0.45), 0 8px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #3a80d2, #1ebc61);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
 }
 
 .back-to-top.visible {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover svg {
+    transform: translateY(-2px);
 }
 
 /* ===== RESPONSIVE CHO MOBILE ===== */
 @media (max-width: 768px) {
     /* Nút tải plugin - CHỈ ICON */
     .floating-download-button {
-        bottom: 80px;
+        bottom: 100px;        /* Giữ khoảng cách với back to top */
         right: 20px;
         padding: 0;
-        width: 54px;
-        height: 54px;
+        width: 56px;         /* Cùng kích thước back to top */
+        height: 56px;        /* Cùng kích thước back to top */
         border-radius: 50%;
         justify-content: center;
         align-items: center;
         gap: 0;
-        background: linear-gradient(145deg, #4ade80, #22c55e);  /* XANH NÕN CHUỐI */
+        background: linear-gradient(135deg, #4a90e2, #2ecc71);
         font-size: 0;
         color: transparent;
         text-indent: -9999px;
-        box-shadow: 0 12px 20px rgba(34, 197, 94, 0.35), 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
     }
     
     /* Ẩn span chứa chữ */
@@ -460,38 +462,29 @@ body {
         margin: 0;
         stroke: white;
         stroke-width: 2;
-        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
     }
     
     .floating-download-button:active {
         transform: scale(0.95);
     }
     
-    /* Nút back to top - CÙNG MÀU XANH NÕN CHUỐI */
+    /* Nút back to top */
     .back-to-top {
-        bottom: 20px;
+        bottom: 30px;
         right: 20px;
-        width: 54px;
-        height: 54px;
-        background: linear-gradient(145deg, #4ade80, #22c55e);  /* XANH NÕN CHUỐI */
-        box-shadow: 0 12px 20px rgba(34, 197, 94, 0.35), 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .back-to-top svg {
-        width: 24px;
-        height: 24px;
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #4a90e2, #2ecc71);
     }
 }
 
 /* === MÀN HÌNH RẤT NHỎ === */
 @media (max-width: 480px) {
     .floating-download-button {
-        bottom: 70px;
+        bottom: 90px;
         right: 15px;
-        width: 48px;
-        height: 48px;
-        background: linear-gradient(145deg, #4ade80, #22c55e);
-        box-shadow: 0 10px 18px rgba(34, 197, 94, 0.35), 0 3px 6px rgba(0, 0, 0, 0.1);
+        width: 52px;
+        height: 52px;
     }
     
     .floating-download-button svg {
@@ -500,12 +493,10 @@ body {
     }
     
     .back-to-top {
-        bottom: 15px;
+        bottom: 25px;
         right: 15px;
-        width: 48px;
-        height: 48px;
-        background: linear-gradient(145deg, #4ade80, #22c55e);
-        box-shadow: 0 10px 18px rgba(34, 197, 94, 0.35), 0 3px 6px rgba(0, 0, 0, 0.1);
+        width: 52px;
+        height: 52px;
     }
     
     .back-to-top svg {
