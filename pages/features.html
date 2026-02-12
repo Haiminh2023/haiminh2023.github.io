@@ -202,12 +202,6 @@
     </section>
 </main>
 
-<!-- NÚT BACK TO TOP -->
-<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m18 15-6-6-6 6"/>
-    </svg>
-</button>
 
 <!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
@@ -219,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         const sidebarCards = document.querySelectorAll('.sidebar-card');
         const featureSections = document.querySelectorAll('.feature-detail-section');
-        const backToTopBtn = document.getElementById('backToTop');
         
         // Hàm cuộn đến section
         function scrollToSection(sectionId) {
