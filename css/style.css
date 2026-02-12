@@ -433,7 +433,7 @@ body {
 @media (max-width: 768px) {
     /* Nút tải plugin - CHỈ ICON */
     .floating-download-button {
-        bottom: 200px;        /* Giữ khoảng cách với back to top */
+        bottom: 170px;        /* Giữ khoảng cách với back to top */
         right: 20px;
         padding: 0;
         width: 56px;         /* Cùng kích thước back to top */
@@ -493,7 +493,7 @@ body {
     }
     
     .back-to-top {
-        bottom: 90px;
+        bottom: 80px;
         right: 15px;
         width: 52px;
         height: 52px;
