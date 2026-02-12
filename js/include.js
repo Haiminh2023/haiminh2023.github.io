@@ -83,38 +83,66 @@ document.addEventListener('DOMContentLoaded', function() {
             window.removeEventListener('scroll', lastScrollHandler);
         }
     
+        // Desktop: luôn hiện header
         if (window.innerWidth > 768) {
             navbar.classList.remove('hidden');
             return;
         }
     
+        // Reset trạng thái
+        navbar.classList.remove('hidden');
         let lastScroll = window.pageYOffset;
         let isHidden = false;
         let ticking = false;
+        let atBottom = false;
+    
+        const isAtBottom = () => {
+            const scrollY = window.scrollY;
+            const visibleHeight = window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+            return scrollY + visibleHeight >= pageHeight - 10;
+        };
     
         const handleScroll = () => {
             const currentScroll = window.pageYOffset;
-            const maxScroll =
-                document.documentElement.scrollHeight - window.innerHeight;
+            const scrollingDown = currentScroll > lastScroll;
+            const scrollingUp = currentScroll < lastScroll;
+            const atTop = currentScroll < 50;
+            atBottom = isAtBottom();
     
-            // 🚫 Nếu chạm đáy hoặc gần đáy -> không xử lý ẩn/hiện
-            if (currentScroll >= maxScroll - 2) {
+            // Ở đầu trang: LUÔN hiện header
+            if (atTop) {
+                if (isHidden) {
+                    navbar.classList.remove('hidden');
+                    isHidden = false;
+                }
+                lastScroll = currentScroll;
                 ticking = false;
                 return;
             }
     
-            const delta = currentScroll - lastScroll;
-    
-            // 🚫 Nếu thay đổi quá nhỏ (<5px) thì bỏ qua (chống rung)
-            if (Math.abs(delta) < 5) {
+            // Ở cuối trang: LUÔN hiện header
+            if (atBottom) {
+                if (isHidden) {
+                    navbar.classList.remove('hidden');
+                    isHidden = false;
+                }
+                lastScroll = currentScroll;
                 ticking = false;
                 return;
             }
     
-            if (delta > 0 && currentScroll > 150 && !isHidden) {
+            // Giữa trang: ẩn khi vuốt xuống, hiện khi vuốt lên
+            const delta = Math.abs(currentScroll - lastScroll);
+            if (delta < 5) {
+                ticking = false;
+                return;
+            }
+    
+            if (scrollingDown && currentScroll > 150 && !isHidden) {
                 navbar.classList.add('hidden');
                 isHidden = true;
-            } else if (delta < 0 && isHidden) {
+            } else if (scrollingUp && isHidden) {
                 navbar.classList.remove('hidden');
                 isHidden = false;
             }
@@ -133,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollHandler = scrollHandler;
         window.addEventListener('scroll', scrollHandler, { passive: true });
     }
-
     
     // Xử lý active state cho navigation
     function handleActiveState() {
