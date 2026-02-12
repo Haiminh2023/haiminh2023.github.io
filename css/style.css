@@ -432,7 +432,7 @@ body {
         bottom: 80px;     /* Thấp hơn trên mobile */
         right: 20px;
         padding: 12px 20px;
-        font-size: 14px;
+        font-size: 0;
     }
     
     .back-to-top {
