@@ -353,31 +353,33 @@ body {
     transform: translateY(-2px) !important;
 }
 
-/* ================= HEADER AUTO-HIDE MOBILE ================= */
+/* ================= HEADER AUTO-HIDE MOBILE - ĐÃ SỬA LỖI ================= */
 @media (max-width: 768px) {
+    /* HEADER */
     .navbar {
         transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateY(0);
         will-change: transform;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         height: auto;
         padding: 10px 0;
+        /* ĐÃ XÓA transform: translateY(0); - tránh chặn ẩn */
     }
     
+    /* KHI ẨN HEADER */
     .navbar.hidden {
-        transform: translateY(-100%);
+        transform: translateY(-100%) !important; /* THÊM !important */
     }
     
-    .navbar:not(.hidden) {
-        transform: translateY(0);
-    }
+    /* ĐÃ XÓA .navbar:not(.hidden) - không chặn ẩn nữa */
     
+    /* PAGE */
     .page {
         transition: none;
         padding-top: 140px !important;
     }
     
+    /* NAVIGATION */
     .nav-inner {
         flex-direction: column;
         gap: 15px;
@@ -410,6 +412,7 @@ body {
         font-size: 12px;
     }
     
+    /* TYPOGRAPHY */
     .page h1 {
         font-size: 28px;
         text-align: center;
@@ -425,32 +428,40 @@ body {
         text-align: center;
     }
     
+    /* ===== FEATURE CARD - FIX ẢNH CHE TEXT ===== */
     .feature-card {
-        flex-direction: column;
-        height: auto;
+        flex-direction: column !important;
+        height: auto !important;
+        display: flex !important;
     }
     
     .feature-image {
-        width: 100%;
-        height: auto;
-        min-height: 180px;
-        order: -1;
+        width: 100% !important;
+        height: 200px !important; /* CỐ ĐỊNH chiều cao */
+        order: 0 !important; /* Ảnh lên TRÊN */
         background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
         border-bottom: 1px solid rgba(37, 99, 235, 0.1);
-        overflow: visible;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        position: relative !important;
     }
     
     .feature-image img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        object-fit: contain;
+        width: 100% !important;
+        height: 100% !important; /* Ảnh full khung */
+        object-fit: contain !important;
+        padding: 15px !important;
+        display: block !important;
     }
     
     .feature-content {
-        padding: 25px;
+        padding: 25px !important;
+        width: 100% !important;
+        order: 1 !important; /* Nội dung xuống DƯỚI */
+        flex: none !important;
     }
     
+    /* BACK TO TOP */
     .back-to-top {
         bottom: 15px !important;
         right: 15px !important;
