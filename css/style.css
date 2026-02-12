@@ -138,6 +138,18 @@ body {
     padding: 0 20px;
 }
 
+/* ================= HERO IMAGE FULL WIDTH ================= */
+.hero {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ================= TYPO ================= */
 .page h1 {
     font-size: 38px;
@@ -306,9 +318,20 @@ body {
     }
 
     .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-wrap: nowrap;        /* không cho xuống dòng */
+        gap: 6px;
+        padding: 6px;
+        width: 100%;
+        justify-content: space-between;
     }
+    
+    .nav-menu a {
+        flex: 1;                  /* chia đều 5 nút */
+        min-height: 36px;
+        padding: 0 6px;
+        font-size: 12px;          /* nhỏ lại cho vừa */
+    }
+
 
     .feature-card {
         flex-direction: column;
