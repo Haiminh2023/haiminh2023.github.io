@@ -1,22 +1,18 @@
-/* ================= LOAD HEADER NGAY LẬP TỨC ================= */
+/* ================= LOAD HEADER ĐỒNG BỘ ================= */
 (function() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
         const isInPages = window.location.pathname.includes('/pages/');
         const headerPath = isInPages ? '../includes/header.html' : 'includes/header.html';
-
-        fetch(headerPath)
-            .then(res => res.text())
-            .then(html => {
-                headerPlaceholder.outerHTML = html;
-                
-                // Đợi header render xong rồi mới init các functions
-                setTimeout(() => {
-                    // Gọi các functions sau khi header có trong DOM
-                    if (typeof initAll === 'function') initAll();
-                    if (typeof initBackToTop === 'function') initBackToTop();
-                }, 50);
-            });
+        
+        // Dùng XMLHttpRequest đồng bộ - CHẶN trình duyệt đọc tiếp
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', headerPath, false);  // false = đồng bộ
+        xhr.send();
+        
+        if (xhr.status === 200) {
+            headerPlaceholder.outerHTML = xhr.responseText;
+        }
     }
 
     /* ================= LOAD FOOTER ================= */
@@ -24,13 +20,23 @@
     if (footerPlaceholder) {
         const isInPages = window.location.pathname.includes('/pages/');
         const footerPath = isInPages ? '../includes/footer.html' : 'includes/footer.html';
-
-        fetch(footerPath)
-            .then(res => res.text())
-            .then(html => {
-                footerPlaceholder.outerHTML = html;
-            });
+        
+        var xhrFooter = new XMLHttpRequest();
+        xhrFooter.open('GET', footerPath, false);
+        xhrFooter.send();
+        
+        if (xhrFooter.status === 200) {
+            footerPlaceholder.outerHTML = xhrFooter.responseText;
+        }
     }
+    
+    // Khởi tạo các functions ngay sau khi chèn xong
+    setTimeout(function() {
+        syncBodyPadding();
+        initAutoHideHeader();
+        initBackToTop();
+        handleActiveState();
+    }, 0);
 })();
 
 /* ================= INIT ALL ================= */
