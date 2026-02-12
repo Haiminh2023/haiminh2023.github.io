@@ -427,14 +427,53 @@ body {
 }
 
 /* Responsive cho mobile */
+/* ===== RESPONSIVE CHO MOBILE ===== */
 @media (max-width: 768px) {
+    /* Nút tải plugin - CHỈ HIỆN ICON, ẨN CHỮ */
     .floating-download-button {
-        bottom: 80px;     /* Thấp hơn trên mobile */
+        bottom: 80px;
         right: 20px;
-        padding: 12px 20px;
-        font-size: 0;
+        padding: 0;              /* Xóa padding */
+        width: 50px;            /* Hình tròn */
+        height: 50px;           /* Hình tròn */
+        border-radius: 50%;     /* Bo tròn */
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        font-size: 0;           /* Ẩn hoàn toàn chữ */
+        color: transparent;     /* Ẩn chữ dự phòng */
+        text-indent: -9999px;   /* Đẩy chữ ra ngoài màn hình */
     }
     
+    /* Ẩn span chứa chữ */
+    .floating-download-button .download-text {
+        display: none !important;
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+    }
+    
+    /* Hiển thị icon SVG to rõ */
+    .floating-download-button svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        margin: 0;
+        transform: none;
+        stroke: white;
+        stroke-width: 2;
+    }
+    
+    /* Hover effect cho mobile */
+    .floating-download-button:active {
+        transform: scale(0.95);
+    }
+    
+    /* Nút back to top trên mobile */
     .back-to-top {
         bottom: 20px;
         right: 20px;
@@ -445,5 +484,27 @@ body {
     .back-to-top svg {
         width: 20px;
         height: 20px;
+    }
+}
+
+/* === THÊM CHO MÀN HÌNH RẤT NHỎ === */
+@media (max-width: 480px) {
+    .floating-download-button {
+        bottom: 70px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .floating-download-button svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
     }
 }
