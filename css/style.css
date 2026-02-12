@@ -349,7 +349,7 @@ body {
 /* ===== NÚT NỔI TẢI PLUGIN ===== */
 .floating-download-button {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;        /* Cách lề dưới 100px - nằm trên footer */
     right: 30px;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
@@ -362,7 +362,7 @@ body {
     align-items: center;
     gap: 10px;
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-    z-index: 9999;
+    z-index: 9998;        /* Thấp hơn back to top 1 đơn vị */
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
@@ -384,37 +384,66 @@ body {
     transform: translateY(3px);
 }
 
-.floating-download-button:active {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5);
+/* ===== BACK TO TOP - CHUẨN HÓA KÍCH THƯỚC ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;         /* Cách lề dưới 40px */
+    right: 30px;
+    width: 50px;          /* Cố định kích thước */
+    height: 50px;         /* Cố định kích thước */
+    background: linear-gradient(135deg, #4f52e0, #7c3aed);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;        /* Cao nhất */
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive */
+.back-to-top svg {
+    width: 24px;          /* Cố định kích thước SVG */
+    height: 24px;
+    stroke: white;
+    stroke-width: 2.5;
+}
+
+.back-to-top:hover {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive cho mobile */
 @media (max-width: 768px) {
     .floating-download-button {
-        bottom: 20px;
+        bottom: 80px;     /* Thấp hơn trên mobile */
         right: 20px;
         padding: 12px 20px;
         font-size: 14px;
     }
     
-    .floating-download-button svg {
-        width: 18px;
-        height: 18px;
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
     }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
+    
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
     }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.floating-download-button {
-    animation: slideIn 0.5s ease;
 }
