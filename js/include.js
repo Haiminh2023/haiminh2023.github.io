@@ -1,214 +1,124 @@
-// js/include.js
 document.addEventListener('DOMContentLoaded', function () {
 
     /* ================= LOAD HEADER ================= */
-
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
         const isInPages = window.location.pathname.includes('/pages/');
         const headerPath = isInPages ? '../includes/header.html' : 'includes/header.html';
 
         fetch(headerPath)
-            .then(res => {
-                if (!res.ok) throw new Error();
-                return res.text();
-            })
+            .then(res => res.text())
             .then(html => {
                 headerPlaceholder.outerHTML = html;
-                setTimeout(initComponents, 50);
-            })
-            .catch(() => {
-                headerPlaceholder.outerHTML = `
-                    <header class="navbar">
-                        <div class="nav-inner">
-                            <a class="logo" href="../index.html">❄ Đọc Online</a>
-                            <nav class="nav-menu">
-                                <a href="../index.html">Trang chủ</a>
-                                <a href="features.html">Tính năng</a>
-                                <a href="guide.html">Hướng dẫn</a>
-                                <a href="pricing.html">Giá</a>
-                                <a href="contact.html">Liên hệ</a>
-                            </nav>
-                        </div>
-                    </header>
-                `;
-                setTimeout(initComponents, 50);
+                setTimeout(initAll, 50);
             });
     }
 
     /* ================= LOAD FOOTER ================= */
-
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
         const isInPages = window.location.pathname.includes('/pages/');
         const footerPath = isInPages ? '../includes/footer.html' : 'includes/footer.html';
 
         fetch(footerPath)
-            .then(res => {
-                if (!res.ok) throw new Error();
-                return res.text();
-            })
+            .then(res => res.text())
             .then(html => {
                 footerPlaceholder.outerHTML = html;
-                setTimeout(initBackToTop, 50);
-            })
-            .catch(() => {
-                footerPlaceholder.outerHTML = `
-                    <footer class="footer">© 2026 Doc Online</footer>
-                    <a href="#" class="back-to-top">↑</a>
-                `;
                 setTimeout(initBackToTop, 50);
             });
     }
 
     /* ================= INIT ALL ================= */
-
-    function initComponents() {
-        handleActiveState();
+    function initAll() {
+        syncBodyPadding();
         initAutoHideHeader();
-        initImageSliders();
+        initBackToTop();
+        handleActiveState();
     }
 
-    /* =====================================================
-       AUTO HIDE HEADER (MƯỢT – KHÔNG GIẬT – KHÔNG TAP BUG)
-    ===================================================== */
-
-    let headerScrollHandler = null;
-
-    function initAutoHideHeader() {
-
+    /* ================= SYNC BODY PADDING ================= */
+    function syncBodyPadding() {
         const navbar = document.querySelector('.navbar');
         if (!navbar) return;
 
-        // Xóa listener cũ nếu có
-        if (headerScrollHandler) {
-            window.removeEventListener('scroll', headerScrollHandler);
-            headerScrollHandler = null;
-        }
+        const height = navbar.offsetHeight;
+        document.body.style.paddingTop = height + "px";
+    }
 
-        // Desktop luôn hiển thị
-        if (window.innerWidth > 768) {
-            navbar.classList.remove('hidden');
-            return;
-        }
+    window.addEventListener('resize', syncBodyPadding);
 
-        let lastScroll = window.pageYOffset;
-        let isHidden = false;
+    /* ================= AUTO HIDE HEADER ================= */
+    function initAutoHideHeader() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+
+        let lastScroll = 0;
         let ticking = false;
 
         const handleScroll = () => {
+            const currentScroll = window.pageYOffset;
+            const scrollingDown = currentScroll > lastScroll;
+            const scrollingUp = currentScroll < lastScroll;
 
-            const current = window.pageYOffset;
-            const delta = current - lastScroll;
-
-            // Nếu gần top → luôn hiện
-            if (current < 80) {
+            if (window.innerWidth <= 768) {
+                if (scrollingDown && currentScroll > 150) {
+                    navbar.classList.add('hidden');
+                } else if (scrollingUp || currentScroll < 50) {
+                    navbar.classList.remove('hidden');
+                }
+            } else {
                 navbar.classList.remove('hidden');
-                isHidden = false;
-                lastScroll = current;
-                ticking = false;
-                return;
             }
 
-            // Chỉ phản ứng nếu cuộn đủ lớn (chống rung tay)
-            if (Math.abs(delta) < 8) {
-                ticking = false;
-                return;
-            }
-
-            if (delta > 0 && !isHidden) {
-                // Cuộn xuống
-                navbar.classList.add('hidden');
-                isHidden = true;
-            } else if (delta < 0 && isHidden) {
-                // Cuộn lên
-                navbar.classList.remove('hidden');
-                isHidden = false;
-            }
-
-            lastScroll = current;
+            lastScroll = currentScroll;
             ticking = false;
         };
 
-        headerScrollHandler = () => {
+        window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(handleScroll);
                 ticking = true;
             }
-        };
-
-        window.addEventListener('scroll', headerScrollHandler, { passive: true });
-    }
-
-    /* ================= ACTIVE NAV ================= */
-
-    function handleActiveState() {
-        const currentPage =
-            window.location.pathname.split('/').pop() || 'index.html';
-
-        const links = document.querySelectorAll('.nav-menu a');
-
-        links.forEach(link => {
-            link.classList.remove('active');
-            const page = link.getAttribute('href').split('/').pop();
-
-            if (currentPage === page) {
-                link.classList.add('active');
-            }
-
-            if (
-                (currentPage === '' || currentPage === 'index.html') &&
-                (page === 'index.html')
-            ) {
-                link.classList.add('active');
-            }
-        });
+        }, { passive: true });
     }
 
     /* ================= BACK TO TOP ================= */
-
     function initBackToTop() {
         const btn = document.querySelector('.back-to-top');
         if (!btn) return;
 
-        const onScroll = () => {
-            if (window.scrollY > window.innerHeight * 0.8) {
+        const update = () => {
+            if (window.scrollY > window.innerHeight * 0.7) {
                 btn.classList.add('visible');
             } else {
                 btn.classList.remove('visible');
             }
         };
 
-        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('scroll', update, { passive: true });
 
-        btn.addEventListener('click', e => {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
-        onScroll();
+        update();
     }
 
-    /* ================= IMAGE SLIDER (GIỮ NGUYÊN) ================= */
+    /* ================= ACTIVE NAV ================= */
+    function handleActiveState() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const links = document.querySelectorAll('.nav-menu a');
 
-    function initImageSliders() {
-        const sliders = document.querySelectorAll('.image-slider');
-        if (!sliders.length) return;
-
-        sliders.forEach(slider => {
-            // Giữ nguyên code slider của bạn
+        links.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            }
         });
     }
-
-    /* ================= RESIZE ================= */
-
-    let resizeTimeout;
-
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            initAutoHideHeader();
-        }, 150);
-    });
-
 });
