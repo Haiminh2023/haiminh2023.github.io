@@ -138,18 +138,6 @@ body {
     padding: 0 20px;
 }
 
-/* ================= HERO FULL WIDTH (TRÀN MÀN HÌNH) ================= */
-.hero {
-    width: 100%;
-}
-
-.hero img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-
 
 /* ================= TYPO ================= */
 .page h1 {
@@ -341,9 +329,13 @@ body {
 
     .feature-image {
         width: 100%;
-        height: 180px;
+        height: auto;    /* Chiều cao tự động theo ảnh */
+        padding: 0;      /* Thêm dòng này */
     }
-
+    .feature-image img {
+        height: auto;    /* Chiều cao tự động theo tỉ lệ */
+        padding: 0;      /* Bỏ padding */
+    }
     .page h1 {
         font-size: 30px;
         text-align: center;
