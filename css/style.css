@@ -5,8 +5,6 @@
     --card: #ffffff;
     --text: #111827;
     --muted: #6b7280;
-    --header-height: 60px;
-    --header-height-mobile: 140px;
 }
 
 /* RESET */
@@ -21,17 +19,19 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
+    /* XÓA: padding-top: 60px; */
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER (LUÔN NỔI) ================= */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: var(--header-height);
-    min-height: var(--header-height);
+    height: 60px;
+    min-height: 60px;
+
     background: rgba(248,250,252,0.95);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid #e5e7eb;
@@ -41,6 +41,7 @@ body {
     max-width: 1200px;
     margin: auto;
     padding: 10px 20px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -103,14 +104,18 @@ body {
     color: var(--text);
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 0 0 1px #e5e7eb;
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.08),
+        inset 0 0 0 1px #e5e7eb;
     transition: all .25s ease;
 }
 
 .nav-menu a:hover {
     transform: translateY(-2px);
     color: var(--primary);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.15), inset 0 0 0 1px var(--primary);
+    box-shadow:
+        0 10px 24px rgba(0,0,0,0.15),
+        inset 0 0 0 1px var(--primary);
 }
 
 .nav-menu a.active {
@@ -121,7 +126,7 @@ body {
 
 /* ================= PAGE LAYOUT ================= */
 .page {
-    padding-top: var(--header-height);
+    padding-top: 60px;
     padding-bottom: 60px;
     min-height: 100vh;
 }
@@ -132,7 +137,7 @@ body {
     padding: 0 20px;
 }
 
-/* ================= TYPOGRAPHY ================= */
+/* ================= TYPO ================= */
 .page h1 {
     font-size: 38px;
     font-weight: 800;
@@ -211,10 +216,23 @@ body {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
     color: var(--muted);
     position: relative;
     padding-left: 30px;
 }
+
+/*.feature-content li:before {
+    content: "✓";
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+*/
 
 /* DẤU TÍCH XANH */
 .feature-content li:before {
@@ -235,7 +253,7 @@ body {
     box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
 }
 
-/* ================= FEATURE IMAGE ================= */
+/* ================= ẢNH NẰM TRONG KHUNG ================= */
 .feature-image {
     width: 220px;
     flex-shrink: 0;
@@ -300,60 +318,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 100;
 }
 
-/* ================= BACK TO TOP ================= */
-.back-to-top {
-    position: fixed !important;
-    bottom: 30px !important;
-    right: 30px !important;
-    width: 56px !important;
-    height: 56px !important;
-    background: linear-gradient(135deg, #4a90e2, #2ecc71) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 50% !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(20px) !important;
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease !important;
-    z-index: 999 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    pointer-events: none;
-}
+/* ================= RESPONSIVE ================= */
 
-.back-to-top.visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    pointer-events: auto;
-}
-
-.back-to-top:hover {
-    background: linear-gradient(135deg, #3a80d2, #1ebc61) !important;
-    transform: translateY(-4px) !important;
-    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4) !important;
-}
-
-.back-to-top svg {
-    width: 24px !important;
-    height: 24px !important;
-    transition: transform 0.3s ease !important;
-}
-
-.back-to-top:hover svg {
-    transform: translateY(-2px) !important;
-}
-
-/* ================= TABLET ================= */
+/* Tablet */
 @media (max-width: 1024px) {
     .navbar {
         height: 70px;
@@ -383,16 +352,9 @@ body {
         font-size: 13px;
         padding-left: 10px;
     }
-    
-    .back-to-top {
-        bottom: 20px !important;
-        right: 20px !important;
-        width: 50px !important;
-        height: 50px !important;
-    }
 }
 
-/* ================= MOBILE LANDSCAPE ================= */
+/* Mobile Landscape */
 @media (max-width: 900px) {
     .feature-grid {
         grid-template-columns: 1fr;
@@ -423,20 +385,17 @@ body {
     }
 }
 
-/* ================= MOBILE PORTRAIT - CHỈ 1 MEDIA QUERY DUY NHẤT ================= */
+/* Mobile Portrait */
 @media (max-width: 768px) {
-    /* ---------- HEADER ---------- */
     .navbar {
         height: auto;
+        position: fixed;
         padding: 10px 0;
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
     }
     
-    .navbar.hidden {
-        transform: translateY(-100%);
+    .page {
+        padding-top: 140px;
     }
-    
     .nav-inner {
         flex-direction: column;
         gap: 15px;
@@ -469,18 +428,10 @@ body {
         font-size: 12px;
     }
     
-    /* ---------- PAGE - NỘI DUNG LUÔN DƯỚI HEADER ---------- */
     .page {
-        padding-top: var(--header-height-mobile, 140px) !important;
-        transition: padding-top 0.25s ease;
+        padding-top: 20px;
     }
     
-    .navbar.hidden + .page,
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
-    }
-    
-    /* ---------- TYPOGRAPHY ---------- */
     .page h1 {
         font-size: 28px;
         text-align: center;
@@ -489,76 +440,19 @@ body {
     .page h2 {
         font-size: 24px;
         margin: 40px 0 16px;
-        text-align: center;
     }
     
     .page p {
         font-size: 16px;
         text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    /* ---------- FEATURE CARDS - FIX ẢNH CHE TEXT ---------- */
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .feature-card {
-        flex-direction: column !important;
-        height: auto !important;
-        display: flex !important;
-    }
-    
-    .feature-image {
-        width: 100% !important;
-        height: 200px !important;
-        order: 0 !important;
-        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-        border-bottom: 1px solid rgba(37, 99, 235, 0.1);
-        overflow: hidden !important;
-        flex-shrink: 0 !important;
-    }
-    
-    .feature-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain !important;
-        padding: 15px !important;
-    }
-    
-    .feature-content {
-        padding: 25px !important;
-        width: 100% !important;
-        order: 1 !important;
-    }
-    
-    .feature-content h3 {
-        text-align: center;
-    }
-    
-    .feature-content li {
-        text-align: left;
-    }
-    
-    /* ---------- BACK TO TOP ---------- */
-    .back-to-top {
-        bottom: 15px !important;
-        right: 15px !important;
-        width: 48px !important;
-        height: 48px !important;
     }
 }
 
-/* ================= SMALL MOBILE ================= */
+
+/* Small Mobile */
 @media (max-width: 600px) {
     .page {
-        padding-top: 150px !important;
-    }
-    
-    .navbar.hidden + .page,
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
+        padding-top: 150px;
     }
     
     .logo-section {
@@ -587,15 +481,11 @@ body {
     }
 }
 
-/* ================= EXTRA SMALL MOBILE ================= */
+
+/* Extra Small Mobile */
 @media (max-width: 480px) {
     .page {
-        padding-top: 160px !important;
-    }
-    
-    .navbar.hidden + .page,
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
+        padding-top: 160px;
     }
     
     .nav-inner {
@@ -616,15 +506,11 @@ body {
     }
     
     .feature-image {
-        height: 180px !important;
-    }
-    
-    .feature-image img {
-        padding: 12px !important;
+        height: 160px;
     }
     
     .feature-content {
-        padding: 20px !important;
+        padding: 20px;
     }
     
     .feature-content h3 {
@@ -644,30 +530,12 @@ body {
         font-size: 13px;
         min-height: 45px;
     }
-    
-    .back-to-top {
-        bottom: 12px !important;
-        right: 12px !important;
-        width: 44px !important;
-        height: 44px !important;
-        z-index: 998 !important;
-    }
-    
-    .back-to-top svg {
-        width: 20px !important;
-        height: 20px !important;
-    }
 }
 
-/* ================= VERY SMALL MOBILE ================= */
+/* Very Small Mobile */
 @media (max-width: 360px) {
     .page {
-        padding-top: 170px !important;
-    }
-    
-    .navbar.hidden + .page,
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
+        padding-top: 170px;
     }
     
     .nav-menu a {
@@ -678,39 +546,251 @@ body {
     .page h1 {
         font-size: 24px;
     }
-    
-    .feature-image {
-        height: 160px !important;
+}
+
+/* ================= BACK TO TOP (DÙNG CHUNG) ================= */
+.back-to-top {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 56px !important;
+    height: 56px !important;
+    background: linear-gradient(135deg, #4a90e2, #2ecc71) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(20px) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 1000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.back-to-top:hover {
+    background: linear-gradient(135deg, #3a80d2, #1ebc61) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4) !important;
+}
+
+.back-to-top.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+.back-to-top svg {
+    width: 24px !important;
+    height: 24px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.back-to-top:hover svg {
+    transform: translateY(-2px) !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .back-to-top {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 50px !important;
+        height: 50px !important;
     }
 }
 
-/* ================= SCROLL MARGIN - ANCHOR LINKS ================= */
-.feature-detail-section, 
-.guide-section, 
-.legal-section {
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 15px !important;
+        right: 15px !important;
+        width: 48px !important;
+        height: 48px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-to-top {
+        bottom: 12px !important;
+        right: 12px !important;
+        width: 44px !important;
+        height: 44px !important;
+    }
+    
+    .back-to-top svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* ================= FIX KHOẢNG CÁCH CHO CÁC TRANG KHÁC ================= */
+.features-container, .guide-container {
+    padding-top: 15px;
+    min-height: calc(100vh - 60px);
+}
+
+.feature-detail-section, .guide-section, .legal-section {
     scroll-margin-top: 80px; 
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
-    .feature-detail-section, 
-    .guide-section, 
-    .legal-section {
+    .page {
+        padding-top: 70px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 10px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
         scroll-margin-top: 90px;
     }
 }
 
 @media (max-width: 768px) {
-    .feature-detail-section, 
-    .guide-section, 
-    .legal-section {
+    .page {
+        padding-top: 100px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
         scroll-margin-top: 110px;
     }
 }
 
 @media (max-width: 480px) {
-    .feature-detail-section, 
-    .guide-section, 
-    .legal-section {
+    .page {
+        padding-top: 110px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 0;
+        margin-top: 0;
+    }
+    
+    .feature-detail-section, .guide-section, .legal-section {
         scroll-margin-top: 120px;
     }
 }
+
+@media (max-width: 360px) {
+    .page {
+        padding-top: 120px;
+    }
+}
+
+/* ĐẢM BẢO CÁC CONTAINER KHÔNG BỊ TRÀN TRÊN MOBILE */
+.features-container, .guide-container {
+    padding-top: 15px;
+    min-height: calc(100vh - 60px);
+}
+
+.feature-detail-section, .guide-section {
+    scroll-margin-top: 80px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .page {
+        padding-top: 70px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 10px;
+    }
+    
+    .feature-detail-section, .guide-section {
+        scroll-margin-top: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding-top: 100px;
+    }
+    
+    .features-container, .guide-container {
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+    
+    .feature-detail-section, .guide-section {
+        scroll-margin-top: 110px;
+    }
+}
+/* ================= LAYOUT MOBILE - ẢNH NGANG GIÃN BẰNG KHUNG ================= */
+@media (max-width: 768px) {
+    .feature-card {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .feature-image {
+        width: 100%;
+        height: auto;
+        min-height: 180px;
+        order: -1;
+        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        overflow: visible; 
+    }
+    
+    .feature-image img {
+        width: 100%;
+        height: auto; 
+        max-width: 100%;
+        display: block;
+        object-fit: contain;
+    }
+    
+    .feature-content {
+        padding: 25px;
+    }
+}
+
+/* Mobile nhỏ hơn */
+@media (max-width: 480px) {
+    .feature-image {
+        min-height: 150px;
+    }
+    
+    .feature-content {
+        padding: 20px;
+    }
+}
+
+/* ================= HEADER AUTO-HIDE ON MOBILE ================= */
+@media (max-width: 768px) {
+    .navbar {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(0);
+        will-change: transform;
+    }
+    
+    .navbar.hidden {
+        transform: translateY(-100%);
+    }
+    
+    /* Giảm padding-top cho page khi header ẩn */
+    .page {
+        transition: padding-top 0.4s ease;
+    }
+    
+    .navbar.hidden ~ .page {
+        padding-top: 20px !important;
+    }
+}
+
