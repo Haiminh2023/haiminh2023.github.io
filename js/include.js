@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== INITIALIZE ALL COMPONENTS ====================
     function initComponents() {
         handleActiveState();
-        adjustPagePadding();
         initAutoHideHeader();
         initImageSliders();
     }
@@ -160,16 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Tự động điều chỉnh padding-top cho content
-    function adjustPagePadding() {
-        const header = document.querySelector('.navbar');
-        const page = document.querySelector('.page');
-        
-        if (header && page) {
-            const headerHeight = header.offsetHeight;
-            page.style.paddingTop = (headerHeight + 20) + 'px';
-        }
-    }
     
     // Khởi tạo back to top button
     function initBackToTop() {
@@ -246,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Xử lý resize với debounce
     const handleResize = debounce(() => {
-        adjustPagePadding();
         initAutoHideHeader(); // Re-init header behavior
     }, 150);
     
