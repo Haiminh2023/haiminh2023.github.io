@@ -140,13 +140,7 @@ body {
 
 /* ================= HERO FULL WIDTH (TRÀN MÀN HÌNH) ================= */
 .hero {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    width: 100vw;
-    margin-bottom: 40px;
+    width: 100%;
 }
 
 .hero img {
@@ -154,6 +148,7 @@ body {
     height: auto;
     display: block;
 }
+
 
 
 /* ================= TYPO ================= */
