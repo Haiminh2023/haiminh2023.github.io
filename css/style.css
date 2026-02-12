@@ -470,7 +470,7 @@ body {
     
     /* Nút back to top */
     .back-to-top {
-        bottom: 130px;
+        bottom: 100px;
         right: 20px;
         width: 56px;
         height: 56px;
@@ -493,7 +493,7 @@ body {
     }
     
     .back-to-top {
-        bottom: 100px;
+        bottom: 90px;
         right: 15px;
         width: 52px;
         height: 52px;
