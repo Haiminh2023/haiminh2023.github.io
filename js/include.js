@@ -4,9 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!document.querySelector('.floating-download-button')) {
         const button = document.createElement('a');
         
-        // Xử lý đường dẫn
+        // XỬ LÝ ĐƯỜNG DẪN ĐÚNG:
         const isInPages = window.location.pathname.includes('/pages/');
-        button.href = isInPages ? '../guide.html#download' : 'guide.html#download';
+        
+        if (isInPages) {
+            // ĐANG Ở TRONG /pages/ -> link đến guide.html cùng thư mục
+            button.href = 'guide.html#download';
+        } else {
+            // ĐANG Ở THƯ MỤC GỐC -> link vào /pages/guide.html
+            button.href = 'pages/guide.html#download';
+        }
         
         button.className = 'floating-download-button';
         button.innerHTML = `
