@@ -784,13 +784,7 @@ body {
         transform: translateY(-100%);
     }
     
-    /* Giảm padding-top cho page khi header ẩn */
-    .page {
-        transition: padding-top 0.4s ease;
-    }
+
     
-    .navbar.hidden ~ .page {
-        padding-top: 20px !important;
-    }
 }
 
