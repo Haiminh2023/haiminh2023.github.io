@@ -349,7 +349,7 @@ body {
 /* ===== NÚT NỔI TẢI PLUGIN ===== */
 .floating-download-button {
     position: fixed;
-    bottom: 100px;
+    bottom: 140px;
     right: 30px;
     background: linear-gradient(135deg, #4a90e2, #2ecc71);  /* Xanh dương - Xanh lá */
     color: white;
@@ -387,7 +387,7 @@ body {
 /* ===== BACK TO TOP - GIỮ NGUYÊN MÀU CỦA BẠN ===== */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 70px;
     right: 30px;
     width: 56px;
     height: 56px;
