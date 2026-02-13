@@ -12,12 +12,12 @@
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: https://haiminh2023.github.io;
         connect-src 'self';
-        frame-src *;              // 👈 CHO PHÉP TẤT CẢ
-        frame-ancestors *;        // 👈 THÊM DÒNG NÀY
+        frame-src *;
+        frame-ancestors *;
         form-action 'self';
         base-uri 'self';
         object-src 'none';
-        default-src *;           // 👈 THÊM DÒNG NÀY NẾU VẪN LỖI
+        default-src *;
     `.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();;
     
     // Thêm CSP meta tag
