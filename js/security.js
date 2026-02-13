@@ -13,7 +13,7 @@
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: https://haiminh2023.github.io;
         connect-src 'self';
-        frame-src 'self';
+        frame-src 'self' https: http: data:;
         form-action 'self';
         base-uri 'self';
         object-src 'none'
