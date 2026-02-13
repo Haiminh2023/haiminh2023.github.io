@@ -639,99 +639,110 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 
-function initImageSliders() {
-    const sliders = document.querySelectorAll('.image-slider');
-    if (sliders.length === 0) return;
-    
-    sliders.forEach(slider => {
-        const track = slider.querySelector('.slider-track');
-        const slides = slider.querySelectorAll('.slider-slide');
-        const prevBtn = slider.querySelector('.slider-prev');
-        const nextBtn = slider.querySelector('.slider-next');
-        const dotsContainer = slider.querySelector('.slider-dots');
+    function initImageSliders() {
+        const sliders = document.querySelectorAll('.image-slider');
+        if (sliders.length === 0) return;
         
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        
-        // Tạo dots
-        if (dotsContainer) {
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('span');
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
+        sliders.forEach(slider => {
+            const track = slider.querySelector('.slider-track');
+            const slides = slider.querySelectorAll('.slider-slide');
+            const prevBtn = slider.querySelector('.slider-prev');
+            const nextBtn = slider.querySelector('.slider-next');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            // ĐỊNH NGHĨA HÀM TRƯỚC KHI DÙNG - QUAN TRỌNG!
+            function goToSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+                currentSlide = index;
+                updateSlider();
             }
-        }
-        
-        const dots = dotsContainer ? dotsContainer.querySelectorAll('span') : [];
-        
-        function updateSlider() {
-            // Di chuyển track
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // Cập nhật dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
             
-            // Cập nhật trạng thái nút
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+            
+            function updateSlider() {
+                // Di chuyển track
+                if (track) {
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                
+                // Cập nhật dots
+                const dots = dotsContainer ? dotsContainer.querySelectorAll('span') : [];
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Cập nhật trạng thái nút
+                if (prevBtn) {
+                    prevBtn.disabled = currentSlide === 0;
+                    prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+                    prevBtn.style.pointerEvents = currentSlide === 0 ? 'none' : 'auto';
+                }
+                if (nextBtn) {
+                    nextBtn.disabled = currentSlide === totalSlides - 1;
+                    nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+                    nextBtn.style.pointerEvents = currentSlide === totalSlides - 1 ? 'none' : 'auto';
+                }
+                
+                // Hiệu ứng fade cho slide
+                slides.forEach((slide, index) => {
+                    slide.style.opacity = index === currentSlide ? '1' : '0.5';
+                    slide.style.transition = 'opacity 0.3s ease';
+                });
+            }
+            
+            // Tạo dots - SỬA LỖI CLOSURE
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('span');
+                    
+                    // CÁCH 1: Dùng data attribute (AN TOÀN NHẤT)
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', function(e) {
+                        const index = parseInt(e.currentTarget.dataset.index);
+                        goToSlide(index);
+                    });
+                    
+                    // Active dot đầu tiên
+                    if (i === 0) dot.classList.add('active');
+                    
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Thêm sự kiện cho nút
             if (prevBtn) {
-                prevBtn.disabled = currentSlide === 0;
-                prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
-            }
-            if (nextBtn) {
-                nextBtn.disabled = currentSlide === totalSlides - 1;
-                nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    prevSlide();
+                });
             }
             
-            // Thêm hiệu ứng fade cho slide
-            slides.forEach((slide, index) => {
-                slide.style.opacity = index === currentSlide ? '1' : '0.5';
-            });
-        }
-        
-        function goToSlide(index) {
-            if (index < 0 || index >= totalSlides) return;
-            currentSlide = index;
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    nextSlide();
+                });
+            }
+            
+            // Khởi tạo ban đầu
             updateSlider();
-        }
-        
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlider();
-            }
-        }
-        
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlider();
-            }
-        }
-        
-        // Thêm sự kiện cho nút
-        if (prevBtn) {
-            prevBtn.addEventListener('click', prevSlide);
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', nextSlide);
-        }
-        
-        // Khởi tạo ban đầu
-        updateSlider();
-        
-        // Tự động chuyển slide mỗi 5 giây (tùy chọn)
-        // let autoSlide = setInterval(nextSlide, 5000);
-        
-        // Dừng auto slide khi hover
-        // slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
-        // slider.addEventListener('mouseleave', () => {
-        //     clearInterval(autoSlide);
-        //     autoSlide = setInterval(nextSlide, 5000);
-        // });
-    });
+        });
     }
 });
 </script>
