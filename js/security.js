@@ -13,7 +13,6 @@
         img-src 'self' data: https://haiminh2023.github.io;
         connect-src 'self';
         frame-src *;
-        frame-ancestors *;
         form-action 'self';
         base-uri 'self';
         object-src 'none';
