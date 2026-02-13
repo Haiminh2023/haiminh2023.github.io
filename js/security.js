@@ -7,17 +7,17 @@
     }
     
     const csp = `
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes' https://static.cloudflareinsights.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        font-src 'self' https://fonts.gstatic.com;
-        img-src 'self' data: https://haiminh2023.github.io;
-        connect-src 'self';
-        frame-src *;
-        form-action 'self';
-        base-uri 'self';
-        object-src 'none';
-        default-src *;
-    `.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();;
+        default-src * data: blob: 'unsafe-inline' 'unsafe-eval';
+        script-src * 'unsafe-inline' 'unsafe-eval' data: blob: https://static.cloudflareinsights.com;
+        style-src * 'unsafe-inline' data: blob: https://fonts.googleapis.com;
+        font-src * data: blob: https://fonts.gstatic.com;
+        img-src * data: blob: https://haiminh2023.github.io;
+        connect-src * data: blob:;
+        frame-src * data: blob:;
+        form-action *;
+        base-uri *;
+        object-src *;
+    `.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
     
     // Thêm CSP meta tag
     const meta = document.createElement('meta');
@@ -28,7 +28,6 @@
     if (document.head) {
         document.head.appendChild(meta);
     } else {
-        // Fallback: chờ head tồn tại
         const observer = new MutationObserver(() => {
             if (document.head) {
                 document.head.appendChild(meta);
