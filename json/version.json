@@ -1,9 +1,22 @@
 {
   "versions": [
+      {
+      "version": "1.0.26",
+      "date": "23 Tháng 2, 2026",
+      "isLatest": true,
+      "title": "Cập nhật phân quyền key",
+      "description": "Phân quyền key truy cập các tính năng của app không ảnh hưởng trải nghiệm người dùng cao cấp",
+      "features": [
+        {
+          "title": "Cập nhật phân quyền key",
+          "description": "Phân quyền key truy cập các tính năng của app không ảnh hưởng trải nghiệm người dùng cao cấp"
+        }
+      ]
+    },
     {
       "version": "1.0.25",
       "date": "11 Tháng 2, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "Cập nhật fix lỗi điều hướng",
       "description": "Trải nghiệm điều hướng mượt mà hơn",
       "features": [
