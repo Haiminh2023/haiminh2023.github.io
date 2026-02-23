@@ -38,11 +38,11 @@
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     font-size: 1rem;
-    border: 2px solid #3498db; /* Khung ngoài cùng */
+    border: 2px solid #2c3e50; /* Khung ngoài cùng */
 }
 
 .pricing-table thead tr {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #2c3e50;
 }
 
 .pricing-table th {
@@ -53,8 +53,8 @@
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-right: 1px solid rgba(255,255,255,0.2);
-    border-bottom: 2px solid rgba(255,255,255,0.3);
+    border-right: 1px solid #4a5568;
+    border-bottom: 2px solid #1e293b;
 }
 
 .pricing-table th:last-child {
@@ -64,17 +64,12 @@
 .pricing-table th:first-child {
     text-align: left;
     padding-left: 20px;
-    border-top-left-radius: 14px;
-}
-
-.pricing-table th:last-child {
-    border-top-right-radius: 14px;
 }
 
 .pricing-table td {
     padding: 16px 12px;
     text-align: center;
-    border: 1px solid #e0e7ff; /* Kẻ khung giữa các ô */
+    border: 1px solid #cbd5e1; /* Kẻ khung giữa các ô */
     color: #2c3e50;
     font-size: 1rem;
 }
@@ -83,88 +78,47 @@
     text-align: left;
     padding-left: 20px;
     font-weight: 600;
-    border-left: 2px solid #3498db;
+    border-left: 2px solid #2c3e50;
 }
 
 .pricing-table td:last-child {
-    border-right: 2px solid #3498db;
+    border-right: 2px solid #2c3e50;
 }
 
 /* Khung cho từng gói dịch vụ */
 .pricing-table tbody tr {
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease;
 }
 
 .pricing-table tbody tr:hover {
-    background: #f0f4ff;
-    transform: scale(1.01);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    background: #f1f5f9;
 }
 
 .pricing-table tbody tr:last-child td {
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #2c3e50;
 }
 
-/* Đánh dấu gói đặc biệt (Dùng thử) */
+/* Đánh dấu gói dùng thử */
 .pricing-table tbody tr:last-child {
-    background: #f0f9ff;
-    border-top: 2px dashed #3498db;
-}
-
-.pricing-table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 14px;
-}
-
-.pricing-table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 14px;
+    background: #f8fafc;
+    border-top: 2px dashed #64748b;
 }
 
 .package-name {
     font-weight: 700;
     color: #1e293b;
-    position: relative;
 }
 
-/* Thêm icon nhỏ cho từng gói */
-.package-name::before {
-    content: "📦";
-    margin-right: 8px;
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-/* Gói full tính năng được đánh dấu */
-tr:has(td.package-name:contains("full")) {
-    background: #fef9e7;
-    border-left: 4px solid #f1c40f;
-}
-
-/* Gói dùng thử */
-tr:has(td.package-name:contains("Dùng thử")) {
-    background: #e8f5e9;
-    font-style: italic;
-}
-
-tr:has(td.package-name:contains("Dùng thử")) .package-name::before {
-    content: "⭐";
-}
-
+/* Tích xanh đơn giản */
 .check {
     color: #27ae60;
     font-size: 1.3rem;
     font-weight: bold;
     display: inline-block;
-    background: #e8f5e9;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    text-align: center;
 }
 
 .unavailable {
     color: #bdc3c7;
-    position: relative;
 }
 
 .unavailable::after {
@@ -173,34 +127,30 @@ tr:has(td.package-name:contains("Dùng thử")) .package-name::before {
     color: #cbd5e1;
 }
 
+/* Giá tiền - không nổi khối */
 .price {
-    font-weight: 800;
-    color: #2980b9;
+    font-weight: 600;
+    color: #2c3e50;
     white-space: nowrap;
-    font-size: 1.2rem;
-    background: #ebf5ff;
-    padding: 8px 12px !important;
-    border-radius: 30px;
-    display: inline-block;
-    margin: 5px 0;
+    font-size: 1.1rem;
 }
 
 /* Ghi chú */
 .pricing-note {
     margin-top: 40px;
-    padding: 25px;
+    padding: 20px 25px;
     background: white;
     border-radius: 12px;
-    border-left: 6px solid #3498db;
+    border-left: 6px solid #2c3e50;
     font-size: 1rem;
     color: #475569;
     line-height: 1.8;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    border: 2px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
 }
 
 .pricing-note p {
-    margin: 10px 0;
+    margin: 5px 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -211,16 +161,9 @@ tr:has(td.package-name:contains("Dùng thử")) .package-name::before {
     font-size: 1.2rem;
 }
 
-.pricing-note p:last-child {
-    color: #64748b;
-    font-style: italic;
-    padding-top: 10px;
-    border-top: 1px dashed #cbd5e1;
-}
-
-/* Thêm phân cách giữa các gói */
+/* Phân cách giữa các gói */
 .pricing-table tbody tr:not(:last-child) {
-    border-bottom: 2px dashed #cbd5e1;
+    border-bottom: 1px dashed #cbd5e1;
 }
 
 /* Responsive */
@@ -252,15 +195,11 @@ tr:has(td.package-name:contains("Dùng thử")) .package-name::before {
     }
     
     .check {
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
         font-size: 1.1rem;
     }
     
     .price {
         font-size: 1rem;
-        padding: 6px 8px !important;
     }
 }
 
@@ -275,14 +214,7 @@ tr:has(td.package-name:contains("Dùng thử")) .package-name::before {
     }
 
     .check {
-        width: 22px;
-        height: 22px;
-        line-height: 22px;
         font-size: 1rem;
-    }
-    
-    .package-name::before {
-        margin-right: 4px;
     }
 }
 
