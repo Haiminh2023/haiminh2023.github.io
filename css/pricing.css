@@ -1,0 +1,176 @@
+
+.pricing-page {
+    padding: 40px 0;
+    background: #f8fafc;
+    min-height: calc(100vh - 200px);
+}
+
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Tiêu đề trang */
+.pricing-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pricing-header h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.pricing-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* Bảng giá */
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    font-size: 1rem;
+}
+
+.pricing-table th {
+    background: #34495e;
+    color: white;
+    font-weight: 600;
+    padding: 16px 12px;
+    text-align: center;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.pricing-table th:first-child {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.pricing-table td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+.pricing-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 600;
+}
+
+.pricing-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.package-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.check {
+    color: #27ae60;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+.unavailable {
+    color: #bdc3c7;
+}
+
+.price {
+    font-weight: 700;
+    color: #2980b9;
+    white-space: nowrap;
+}
+
+/* Ghi chú */
+.pricing-note {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    line-height: 1.8;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.pricing-note p {
+    margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pricing-page {
+        padding: 20px 0;
+    }
+
+    .pricing-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .pricing-header p {
+        font-size: 1rem;
+    }
+
+    .pricing-table {
+        font-size: 0.9rem;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+        padding: 12px 8px;
+    }
+
+    .pricing-table th:first-child,
+    .pricing-table td:first-child {
+        padding-left: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-table {
+        font-size: 0.8rem;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+        padding: 10px 4px;
+    }
+
+    .check {
+        font-size: 1rem;
+    }
+
+    .price {
+        font-size: 0.85rem;
+    }
+}
+
+/* Tối ưu cho màn hình rất nhỏ */
+@media (max-width: 400px) {
+    .pricing-table th {
+        font-size: 0.7rem;
+        padding: 10px 2px;
+    }
+
+    .pricing-table td {
+        padding: 8px 2px;
+        font-size: 0.75rem;
+    }
+
+    .package-name {
+        font-size: 0.75rem;
+    }
+}
