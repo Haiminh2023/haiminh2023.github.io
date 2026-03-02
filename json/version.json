@@ -1,9 +1,30 @@
 {
   "versions": [
+    {
+      "version": "1.0.28",
+      "date": "2 Tháng 3, 2026",
+      "isLatest": true,
+      "title": "**Giao diện đọc truyện hoàn toàn mới**",
+      "description": "trải nghiệm mượt và trực quan hơn",
+      "features": [
+        {
+          "title": "Danh sách truyện có **ảnh thumbnail** sinh động",
+          "description": "Cung cấp thông tin truyện đầy đủ, tác giả- tổng chương"
+        },
+        {
+          "title": "Trang đọc truyện chi tiết thiết kế lại trực quan hơn",
+          "description": "Bố cụ được thiết kế gọn gàng, phù hợp màn e ink"
+        },
+        {
+          "title": "Bố trí lại các tính năng liên quan phù hợp hơn",
+          "description": "Dễ dàng truy cập tác vụ liên quan"
+        }
+      ]
+    },
       {
       "version": "1.0.26",
       "date": "23 Tháng 2, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "Cập nhật phân quyền key",
       "description": "Phân quyền key truy cập các tính năng của app không ảnh hưởng trải nghiệm người dùng cao cấp",
       "features": [
