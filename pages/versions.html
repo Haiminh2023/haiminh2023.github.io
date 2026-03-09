@@ -118,19 +118,41 @@ document.addEventListener('DOMContentLoaded', function() {
             let featuresContent = '';
             
             if (version.features && version.features.length > 0) {
+                let featuresHTML = '';
+                
+                version.features.forEach(feature => {
+                    // Title chính (feature-main)
+                    featuresHTML += `<li class="feature-main">${feature.title}</li>`;
+                    
+                    // Xử lý description
+                    if (feature.description) {
+                        if (Array.isArray(feature.description)) {
+                            // Nếu là mảng - hiển thị nhiều dòng với class feature-sub
+                            feature.description.forEach(desc => {
+                                featuresHTML += `
+                                    <li class="feature-sub">
+                                        <span class="sub-bullet">•</span>
+                                        <span>${desc}</span>
+                                    </li>
+                                `;
+                            });
+                        } else {
+                            // Nếu là string - hiển thị 1 dòng với class feature-sub
+                            featuresHTML += `
+                                <li class="feature-sub">
+                                    <span class="sub-bullet">•</span>
+                                    <span>${feature.description}</span>
+                                </li>
+                            `;
+                        }
+                    }
+                });
+                
                 featuresContent = `
                     <div class="feature-highlights">
                         <h4>Cập nhật chi tiết</h4>
                         <ul>
-                            ${version.features.map(feature => `
-                                <li class="feature-main">${feature.title}</li>
-                                ${feature.description ? `
-                                    <li class="feature-sub">
-                                        <span class="sub-bullet">-</span>
-                                        <span>${feature.description}</span>
-                                    </li>
-                                ` : ''}
-                            `).join('')}
+                            ${featuresHTML}
                         </ul>
                     </div>
                 `;
