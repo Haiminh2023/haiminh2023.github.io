@@ -9,14 +9,14 @@
       "features": [
         {
           "title": "Đọc truyện",
-          "description": "Sửa màn hình home đơn giản, truy cập truyện đang đọc nhanh"
-          "description": "Nâng cấp tìm kiếm truyện, quyển + chương...."
-          "description": "Tùy chọn bật / tắt tải thumbnail( ảnh đại diện truyện) để trải nghiệm mượt hơn "
+          "description": [ "Sửa màn hình home đơn giản, truy cập truyện đang đọc nhanh",
+          "Nâng cấp tìm kiếm truyện, quyển + chương....",
+          "Tùy chọn bật / tắt tải thumbnail( ảnh đại diện truyện) để trải nghiệm mượt hơn " ]
         },
         {
           "title": "Đọc báo",
-          "description": "Thêm tác giả vào bài viết"
-          "description": "Tùy chọn bật / tắt ảnh đại diện bài viết => trải nghiệm mượt mà hơn"
+          "description": ["Thêm tác giả vào bài viết",
+          "Tùy chọn bật / tắt ảnh đại diện bài viết => trải nghiệm mượt mà hơn"]
         },
         {
           "title": "Google drive",
@@ -24,8 +24,8 @@
         },
         {
           "title": "Tính năng chung",
-          "description": "Sửa lỗi điều hướng phím cứng"
-          "description": "Thoát koreader không cần reset"
+          "description": ["Sửa lỗi điều hướng phím cứng",
+          "Thoát koreader không cần reset"]
         }
       ]
     },
