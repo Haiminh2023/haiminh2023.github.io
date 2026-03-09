@@ -1,9 +1,38 @@
 {
   "versions": [
+        {
+      "version": "1.0.29",
+      "date": "7 Tháng 3, 2026",
+      "isLatest": true,
+      "title": "**Fix lỗi, cập nhật thêm tuy trọn**",
+      "description": "trải nghiệm mượt và trực quan hơn",
+      "features": [
+        {
+          "title": "Đọc truyện",
+          "description": "Sửa màn hình home đơn giản, truy cập truyện đang đọc nhanh"
+          "description": "Nâng cấp tìm kiếm truyện, quyển + chương...."
+          "description": "Tùy chọn bật / tắt tải thumbnail( ảnh đại diện truyện) để trải nghiệm mượt hơn "
+        },
+        {
+          "title": "Đọc báo",
+          "description": "Thêm tác giả vào bài viết"
+          "description": "Tùy chọn bật / tắt ảnh đại diện bài viết => trải nghiệm mượt mà hơn"
+        },
+        {
+          "title": "Google drive",
+          "description": "Sửa điều hướng đăng nhập/ đăng xuất tài khoản"
+        },
+        {
+          "title": "Tính năng chung",
+          "description": "Sửa lỗi điều hướng phím cứng"
+          "description": "Thoát koreader không cần reset"
+        }
+      ]
+    },
     {
       "version": "1.0.28",
       "date": "2 Tháng 3, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Giao diện đọc truyện hoàn toàn mới**",
       "description": "trải nghiệm mượt và trực quan hơn",
       "features": [
