@@ -1,9 +1,31 @@
 {
   "versions": [
         {
+      "version": "1.0.30",
+      "date": "12 Tháng 3, 2026",
+      "isLatest": true,
+      "title": "**Fix lỗi và cải thiện hiệu năng**",
+      "description": "trải nghiệm mượt và trực quan hơn",
+      "features": [
+        {
+          "title": "Đọc truyện",
+          "description": [ "Tối ưu tìm truyện",
+          "Cải thiện tốc độ hiện truyện đang đọc" ]
+        },
+        {
+          "title": "Đọc báo",
+          "description": "Fix phím vật lý"
+        },
+        {
+          "title": "Chung",
+          "description": "Fix lỗi điều hướng ở 1 số menu"
+        }
+      ]
+    },
+    {
       "version": "1.0.29",
       "date": "7 Tháng 3, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Fix lỗi, cập nhật thêm tùy trọn**",
       "description": "trải nghiệm mượt và trực quan hơn",
       "features": [
