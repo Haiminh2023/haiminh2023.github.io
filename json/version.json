@@ -9,12 +9,12 @@
       "features": [
         {
           "title": "Đọc truyện",
-          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại"
+          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại",
           "Tùy chọn không tải ảnh thumbnail giúp hiển thị mượt hơn"]
         },
         {
           "title": "Đọc báo",
-          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại" ,
+          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại",
           "Tùy chọn không tải ảnh thumbnail giúp hiển thị mượt hơn",
           "Thêm nguồn báo nước ngoài"]
         }
