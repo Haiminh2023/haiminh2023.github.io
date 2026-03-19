@@ -1,9 +1,29 @@
 {
   "versions": [
+      {
+      "version": "1.0.31",
+      "date": "18 Tháng 3, 2026",
+      "isLatest": true,
+      "title": "**Tối ưu hiển thị cho từng máy có kích thước màn hình khác nhau**",
+      "description": "Chuyển đổi layout phù hợp từng loại kích thước màn hình",
+      "features": [
         {
+          "title": "Đọc truyện",
+          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại"
+          "Tùy chọn không tải ảnh thumbnail giúp hiển thị mượt hơn"]
+        },
+        {
+          "title": "Đọc báo",
+          "description": ["Sửa lỗi load ảnh khi thoát app và vào lại" ,
+          "Tùy chọn không tải ảnh thumbnail giúp hiển thị mượt hơn",
+          "Thêm nguồn báo nước ngoài"]
+        }
+      ]
+    },
+      {
       "version": "1.0.30",
       "date": "12 Tháng 3, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Fix lỗi và cải thiện hiệu năng**",
       "description": "trải nghiệm mượt và trực quan hơn",
       "features": [
