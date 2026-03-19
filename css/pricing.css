@@ -156,9 +156,10 @@
     gap: 10px;
 }
 
-.pricing-note p:first-child::before {
+.pricing-note p::before {
     content: "📌";
     font-size: 1.2rem;
+    margin-right: 10px;
 }
 
 /* Phân cách giữa các gói */
