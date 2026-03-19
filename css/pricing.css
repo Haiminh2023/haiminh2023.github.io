@@ -255,27 +255,29 @@
     font-style: italic;
 }
 
-.key-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 8px;
-    counter-reset: key-counter;  /* Khởi tạo counter */
+.key-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.key-item {
-    counter-increment: key-counter;  /* Tăng counter mỗi item */
+.key-table tr td {
     padding: 8px 12px;
     background: white;
     border: 1px solid #bbdefb;
-    border-radius: 6px;
     font-family: 'Courier New', monospace;
     font-size: 0.95rem;
-    display: flex;
-    align-items: center;
+    width: 50%;
 }
 
-.key-item::before {
-    content: counter(key-counter) ". ";  /* Hiển thị số thứ tự */
+.key-table tr td:first-child {
+    border-right: none;
+}
+
+.key-table tr td:last-child {
+    border-left: none;
+}
+
+.key-number {
     color: #2196F3;
     font-weight: bold;
     margin-right: 8px;
