@@ -1,9 +1,26 @@
 {
   "versions": [
+    {
+      "version": "1.0.34",
+      "date": "26 Tháng 3, 2026",
+      "isLatest": true,
+      "title": "**Cải thiện trải nghiệm người dùng**",
+      "description": "Cải thiện trải nghiệm người dùng",
+      "features": [
+        {
+          "title": "Đọc truyện",
+          "description": ["Load ảnh truyện đọc dở chất lượng cao"]
+        },
+        {
+          "title": "Đọc báo",
+          "description": ["Thêm link bài viết gốc vào trình đọc"]
+        }
+      ]
+    },
       {
       "version": "1.0.31",
       "date": "18 Tháng 3, 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Tối ưu hiển thị cho từng máy có kích thước màn hình khác nhau**",
       "description": "Chuyển đổi layout phù hợp từng loại kích thước màn hình",
       "features": [
