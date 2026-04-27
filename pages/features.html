@@ -6,7 +6,7 @@
 <script src="../js/cloudflare-loader.js?v=20260416"></script>
     
 <meta charset="UTF-8">
-<title>Tính năng - Đọc Online</title>
+<title>Tính năng - Ứng dụng học tập thông minh</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -30,27 +30,35 @@
                 </div>
                 
                 <div class="sidebar-cards">
-                    <div class="sidebar-card active" data-target="rss-feature">
-                        <div class="sidebar-icon">📰</div>
+                    <div class="sidebar-card active" data-target="study-feature">
+                        <div class="sidebar-icon">🎓</div>
                         <div class="sidebar-content">
-                            <h3>Đọc báo RSS</h3>
-                            <p>Cập nhật tin tức mới nhất</p>
+                            <h3>Học thông minh</h3>
+                            <p>Flashcard, Quiz, Cloze</p>
                         </div>
                     </div>
                     
-                    <div class="sidebar-card" data-target="story-feature">
-                        <div class="sidebar-icon">📖</div>
+                    <div class="sidebar-card" data-target="library-feature">
+                        <div class="sidebar-icon">📚</div>
                         <div class="sidebar-content">
-                            <h3>Đọc truyện online</h3>
-                            <p>Kho truyện đa dạng</p>
+                            <h3>Thư viện & Store</h3>
+                            <p>Đa ngôn ngữ, cập nhật sách</p>
                         </div>
                     </div>
                     
-                    <div class="sidebar-card" data-target="drive-feature">
-                        <div class="sidebar-icon">☁️</div>
+                    <div class="sidebar-card" data-target="upload-feature">
+                        <div class="sidebar-icon">📤</div>
                         <div class="sidebar-content">
-                            <h3>Google Drive</h3>
-                            <p>Đồng bộ sách đám mây</p>
+                            <h3>Upload Excel</h3>
+                            <p>Tự tạo thẻ từ file Excel</p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card" data-target="offline-feature">
+                        <div class="sidebar-icon">📡</div>
+                        <div class="sidebar-content">
+                            <h3>Offline tuyệt đối</h3>
+                            <p>Học không cần mạng</p>
                         </div>
                     </div>
                 </div>
@@ -58,107 +66,205 @@
             
             <!-- CỘT PHẢI: NỘI DUNG CHI TIẾT -->
             <div class="features-content">
-                <!-- Phần 1: Đọc báo RSS -->
-                <section id="rss-feature" class="feature-detail-section">
+                <!-- Phần 1: Học thông minh -->
+                <section id="study-feature" class="feature-detail-section">
                     <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">Đọc báo RSS</h2>
-                        <div class="feature-detail-subtitle">Cập nhật tin tức mọi lúc, mọi nơi trên thiết bị e-ink</div>
+                        <h2 class="feature-detail-title">🎓 Học thông minh</h2>
+                        <div class="feature-detail-subtitle">3 chế độ học trên một màn hình – Lật, chọn, điền</div>
                     </div>
                     
                     <div class="feature-content-wrapper">
                         <div class="feature-description">
-                            <p>Tính năng đọc báo RSS được tối ưu hóa cho màn hình e-ink, mang đến trải nghiệm đọc báo thoải mái, không gây mỏi mắt.</p>
-                            <p>Hỗ trợ theo dõi nhiều nguồn RSS công khai do người dùng lựa chọn.</p>
+                            <p>Tính năng học tập đa dạng, phù hợp với mọi phong cách học. Chuyển đổi linh hoạt giữa các chế độ mà không cần thoát màn hình.</p>
+                            
                             <div class="feature-highlights">
-                                <h4>Điểm nổi bật</h4>
+                                <h4>🎴 Flashcard (Lật thẻ)</h4>
                                 <ul>
-                                    <li>Hiển thị nội dung từ website gốc ở chế độ đọc tối ưu cho e-ink</li>
-                                    <li>Danh sách bài viết dạng thumbnail</li>
-                                    <li>Theo dõi nhiều nguồn RSS cùng lúc</li>
-                                    <li>Tìm kiếm nội dung theo từ khóa, chủ đề</li>
-                                    <li>Quản lý và hiển thị danh mục tin yêu thích</li>
-                                    <li>Tối ưu hóa hình ảnh cho màn hình e-ink</li>
+                                    <li>Mặt trước: từ vựng / câu hỏi</li>
+                                    <li>Mặt sau: nghĩa / giải thích / ví dụ</li>
+                                    <li>Vuốt để lật thẻ, đánh dấu đã nhớ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>✅ Quiz (Trắc nghiệm)</h4>
+                                <ul>
+                                    <li>Chọn đáp án đúng trong 4 lựa chọn</li>
+                                    <li>Hiển thị gợi ý và giải thích sau mỗi câu</li>
+                                    <li>Tổng hợp tỉ lệ đúng sau mỗi bài test</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>✍️ Cloze (Điền từ)</h4>
+                                <ul>
+                                    <li>Câu bị khuyết một từ – nhập từ đúng</li>
+                                    <li>Kiểm tra chính tả và ngữ cảnh sử dụng</li>
+                                    <li>Phù hợp luyện ngữ pháp và từ vựng nâng cao</li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_01.jpg?v=1.5" alt="Đọc báo RSS">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_02.jpg?v=1.5" alt="Đọc báo RSS">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_03.jpg?v=1.5" alt="Đọc báo RSS">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_04.jpg?v=1.5" alt="Đọc báo RSS">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_05.jpg?v=1.5" alt="Đọc báo RSS">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_06.jpg?v=1.5" alt="Đọc báo RSS">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_01.jpg?v=1.5" alt="Flashcard">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_02.jpg?v=1.5" alt="Quiz trắc nghiệm">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_03.jpg?v=1.5" alt="Cloze điền từ">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_04.jpg?v=1.5" alt="Chuyển đổi chế độ">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_05.jpg?v=1.5" alt="Học tập thông minh">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/rss_06.jpg?v=1.5" alt="Luyện tập mỗi ngày">
                         </div>
                     </div>
                 </section>
                 
-                <!-- Phần 2: Đọc truyện online -->
-                <section id="story-feature" class="feature-detail-section">
+                <!-- Phần 2: Thư viện & Store -->
+                <section id="library-feature" class="feature-detail-section">
                     <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">Đọc truyện online</h2>
-                        <div class="feature-detail-subtitle">Hỗ trợ truy cập và theo dõi truyện từ nhiều website</div>
+                        <h2 class="feature-detail-title">📚 Thư viện & Store</h2>
+                        <div class="feature-detail-subtitle">Kho sách đa ngôn ngữ, tải một lần dùng mãi</div>
                     </div>
                     
                     <div class="feature-content-wrapper">
                         <div class="feature-description">
-                            <p>Hỗ trợ truy cập nhiều website truyện công khai theo lựa chọn của người dùng. Hỗ trợ duyệt nhiều thể loại truyện từ website gốc: tiên hiệp, huyền huyễn, đô thị, ngôn tình, xuyên không, trọng sinh, hệ thống...</p>
-                            
-                            <p>Tự động lưu lại chương đang đọc, tiếp tục đọc ngay trên thiết bị hoặc các thiết bị khác mà không bị gián đoạn.</p>
+                            <p>Thư viện thông minh giúp bạn quản lý tất cả sách đã tải. Store cung cấp kho sách phong phú với nhiều ngôn ngữ và chủ đề.</p>
                             
                             <div class="feature-highlights">
-                                <h4>Điểm nổi bật</h4>
+                                <h4>📦 Thư viện sách đã tải</h4>
                                 <ul>
-                                    <li>Hỗ trợ duyệt truyện theo thể loại từ website gốc.</li>
-                                    <li>Nhấn next tự động chuyển và hiển thị chương tiếp theo</li>
-                                    <li>Tự động lưu chương đang đọc, đồng bộ đa thiết bị để đọc tiếp không gián đoạn</li>
-                                    <li>Tìm kiếm truyện theo tên, chương </li>
-                                    <li>Hỗ trợ lưu nội dung về thiết bị để đọc offline.</li>
+                                    <li>Hiển thị danh sách kèm ảnh bìa và tiến độ học (%)</li>
+                                    <li>Nút "Học tiếp" – resume ngay từ chỗ dừng</li>
+                                    <li>Thống kê riêng cho từng sách</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>🛒 Store – Chọn sách theo ngôn ngữ</h4>
+                                <ul>
+                                    <li>Tiếng Anh (Giao tiếp, TOEIC, IELTS, Từ vựng)</li>
+                                    <li>Tiếng Trung (HSK, Giao tiếp)</li>
+                                    <li>Tiếng Nhật (Kanji N5-N1, Minna no Nihongo)</li>
+                                    <li>Tiếng Hàn (TOPIK, Giao tiếp cơ bản)</li>
+                                    <li>Tiếng Pháp, Đức, Việt cho người nước ngoài</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>🔄 Cập nhật sách</h4>
+                                <ul>
+                                    <li>Hiển thị badge "Cập nhật" khi có phiên bản mới</li>
+                                    <li>Sửa lỗi, bổ sung thẻ từ mà không mất tiến độ</li>
+                                    <li>Tải lại nội dung chỉ với một chạm</li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_01.jpg?v=1.1" alt="Đọc truyện online">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_02.jpg?v=1.1" alt="Đọc truyện online">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_03.jpg?v=1.1" alt="Đọc truyện online">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_04.jpg?v=1.1" alt="Đọc truyện online">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_05.jpg?v=1.1" alt="Đọc truyện online">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_06.jpg?v=1.1" alt="Đọc truyện online">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_01.jpg?v=1.1" alt="Thư viện sách">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_02.jpg?v=1.1" alt="Store đa ngôn ngữ">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_03.jpg?v=1.1" alt="Cập nhật sách">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_04.jpg?v=1.1" alt="Quản lý sách">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_05.jpg?v=1.1" alt="Kho sách phong phú">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_06.jpg?v=1.1" alt="Học mọi ngôn ngữ">
                         </div>
                     </div>
                 </section>
                 
+                <!-- Phần 3: Upload Excel -->
+                <section id="upload-feature" class="feature-detail-section">
+                    <div class="feature-detail-header">
+                        <h2 class="feature-detail-title">📤 Upload Excel</h2>
+                        <div class="feature-detail-subtitle">Tự tạo bộ thẻ từ file Excel của bạn</div>
+                    </div>
+                    
+                    <div class="feature-content-wrapper">
+                        <div class="feature-description">
+                            <p>Bạn có bộ từ vựng riêng? Giáo viên muốn tạo bài tập cho học sinh? Chỉ cần một file Excel, ứng dụng sẽ tự động chuyển đổi thành thẻ học thông minh.</p>
+                            
+                            <div class="feature-highlights">
+                                <h4>📎 Định dạng Excel hỗ trợ</h4>
+                                <ul>
+                                    <li>Cột A: Thuật ngữ / Từ vựng / Câu hỏi</li>
+                                    <li>Cột B: Định nghĩa / Nghĩa / Đáp án</li>
+                                    <li>Cột C: Ví dụ (không bắt buộc)</li>
+                                    <li>Cột D: Hình ảnh URL (không bắt buộc)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>🔄 Tự động sinh nội dung học</h4>
+                                <ul>
+                                    <li>Flashcard: mặt trước (cột A) – mặt sau (cột B)</li>
+                                    <li>Quiz: Câu hỏi từ cột A, đáp án từ cột B</li>
+                                    <li>Cloze: Tự động tạo câu điền từ dựa trên ví dụ</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>👥 Đối tượng sử dụng</h4>
+                                <ul>
+                                    <li>👨‍🏫 Giáo viên: Tạo bài tập cho lớp</li>
+                                    <li>👩‍🎓 Học sinh: Tự làm kho từ vựng cá nhân</li>
+                                    <li>💼 Người đi làm: Ôn chuyên ngành, thuật ngữ công ty</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-screenshots">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_01.jpg?v=1.1" alt="Upload Excel">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_02.jpg?v=1.1" alt="Định dạng file mẫu">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_03.jpg?v=1.1" alt="Tự động sinh flashcard">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_04.jpg?v=1.1" alt="Tạo bộ thẻ từ Excel">
+                        </div>
+                    </div>
+                </section>
 
-                <!-- Phần 4: Google Drive -->
-                <section id="drive-feature" class="feature-detail-section">
+                <!-- Phần 4: Offline tuyệt đối -->
+                <section id="offline-feature" class="feature-detail-section">
                     <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">Google Drive</h2>
-                        <div class="feature-detail-subtitle">Đồng bộ sách từ đám mây, đọc mọi lúc mọi nơi</div>
+                        <h2 class="feature-detail-title">📡 Offline tuyệt đối</h2>
+                        <div class="feature-detail-subtitle">Học mọi lúc, mọi nơi – Không cần kết nối Internet</div>
                     </div>
                     
                     <div class="feature-content-wrapper">
                         <div class="feature-description">
-                            <p>Kết nối trực tiếp với Google Drive cá nhân, truy cập ngay kho sách của bạn trên đám mây. Xem cả những file được chia sẻ với bạn một cách dễ dàng.</p>
-                            
-                            <p>Hỗ trợ đa định dạng sách điện tử: EPUB, MOBI, PDF, TXT, AZW3.</p>
+                            <p>Ứng dụng được thiết kế để hoạt động hoàn toàn offline sau khi tải sách. Bạn có thể học trên máy bay, tàu điện, vùng núi, hầm mỏ – bất cứ đâu không có sóng mạng.</p>
                             
                             <div class="feature-highlights">
-                                <h4>Điểm nổi bật</h4>
+                                <h4>📥 Cơ chế hoạt động offline</h4>
                                 <ul>
-                                    <li>Kết nối an toàn với Google Drive cá nhân</li>
-                                    <li>Xem và đọc file được chia sẻ với bạn</li>
-                                    <li>Tải sách về để đọc offline không cần mạng</li>
-                                    <li>Hỗ trợ đa định dạng sách điện tử</li>
+                                    <li>Tải sách một lần – lưu trữ vĩnh viễn trên thiết bị</li>
+                                    <li>Không cần mạng để xem thống kê, làm bài test, lật thẻ</li>
+                                    <li>Chỉ cần mạng khi: tải sách mới, cập nhật sách</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>📊 Thống kê vẫn hoạt động offline</h4>
+                                <ul>
+                                    <li>🎴 Thẻ mới học trong ngày</li>
+                                    <li>⭐ XP & Cấp độ tích lũy</li>
+                                    <li>📈 Tỉ lệ test đúng theo từng sách</li>
+                                    <li>⏰ Thẻ đến hạn (Due) – không bỏ sót lịch ôn tập</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="feature-highlights">
+                                <h4>🔋 Lợi ích khi dùng offline</h4>
+                                <ul>
+                                    <li>Tiết kiệm pin – không liên tục đồng bộ qua mạng</li>
+                                    <li>Không bị gián đoạn quảng cáo hay thông báo</li>
+                                    <li>An toàn – dữ liệu học tập không phải gửi lên cloud</li>
+                                    <li>Phù hợp cho trẻ em – kiểm soát được nội dung</li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_01.jpg?v=1.1" alt="Kết nối Google Drive">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_02.jpg?v=1.1" alt="Kết nối Google Drive">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_03.jpg?v=1.1" alt="Kết nối Google Drive">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/google_drive_04.jpg?v=1.1" alt="Kết nối Google Drive">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_01.jpg?v=1.1" alt="Học offline trên máy bay">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_02.jpg?v=1.1" alt="Thống kê offline">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_03.jpg?v=1.1" alt="Không cần mạng">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_04.jpg?v=1.1" alt="Học mọi lúc mọi nơi">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_05.jpg?v=1.1" alt="Tiết kiệm pin">
+                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/story_online_06.jpg?v=1.1" alt="Offline tuyệt đối">
                         </div>
                     </div>
                 </section>
@@ -246,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }, {
                 root: null,
-                rootMargin: '-10% 0px -70% 0px', // Điều chỉnh để highlight sớm hơn
+                rootMargin: '-10% 0px -70% 0px',
                 threshold: 0.2
             });
             
@@ -289,14 +395,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-
         // Thêm sự kiện scroll để highlight chính xác hơn
         let scrollTimeout;
         window.addEventListener('scroll', function() {
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(function() {
                 // Tìm section nào đang gần nhất với top của viewport
-                const scrollPosition = window.scrollY + 150; // Offset để highlight sớm hơn
+                const scrollPosition = window.scrollY + 150;
                 
                 let closestSection = null;
                 let closestDistance = Infinity;
