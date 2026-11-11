@@ -1,80 +1,10 @@
 {
   "versions": [
     {
-      "version": "1.0.8",
-      "date": "11 Tháng 11, 2026",
-      "date_en": "11 November 2026",
-      "isLatest": true,
-      "title": "**Giao diện mới · Gia sư AI · Store đa ngôn ngữ**",
-      "title_en": "**New design · AI tutor · Multilingual Store**",
-      "description": "Bản cập nhật lớn: thiết kế lại toàn bộ giao diện, thêm gia sư AI và kho bộ thẻ nhiều ngôn ngữ.",
-      "description_en": "A big update: a fully redesigned interface, a new AI tutor and a multilingual deck store.",
-      "features": [
-        {
-          "title": "Giao diện mới",
-          "title_en": "New interface",
-          "description": [
-            "Trang chủ gọn: số thẻ cần ôn hôm nay, mục tiêu ngày, nút Học ngay",
-            "4 tab Trang chủ, Học, Thư viện, Cài đặt; tối ưu cho màn hình e-ink",
-            "Thẻ học có thanh tiến độ và 4 nút đánh giá Lại / Khó / Tốt / Dễ",
-            "Hiện cách đọc (furigana, pinyin) trên chữ Hán ở câu ví dụ"
-          ],
-          "description_en": [
-            "Cleaner home: cards due today, daily goal and a Study now button",
-            "4 tabs: Home, Study, Library, Settings; tuned for e-ink screens",
-            "Study cards with a progress bar and 4 rating buttons: Again / Hard / Good / Easy",
-            "Readings (furigana, pinyin) shown above Chinese characters in examples"
-          ]
-        },
-        {
-          "title": "Gia sư AI",
-          "title_en": "AI tutor",
-          "description": [
-            "Mặt sau thẻ có nút Mẹo nhớ, Giải thích, Thêm ví dụ, Từ dễ lẫn",
-            "Tạo bộ thẻ bằng AI theo ngôn ngữ, trình độ, chủ đề và số thẻ",
-            "AI điền ô trống và thêm phiên âm câu ví dụ cho bộ thẻ của bạn"
-          ],
-          "description_en": [
-            "Card back has Memory tip, Explain, More examples and Look-alike words",
-            "Create decks with AI by language, level, topic and size",
-            "AI fills empty fields and adds example readings to your decks"
-          ]
-        },
-        {
-          "title": "Store đa ngôn ngữ",
-          "title_en": "Multilingual Store",
-          "description": [
-            "Bộ thẻ nhiều ngôn ngữ và trình độ, lọc theo ngôn ngữ, trình độ, nghĩa",
-            "Xem giới thiệu, thẻ mẫu và danh sách chủ đề trước khi tải",
-            "Chọn ngôn ngữ nghĩa khi tải; tải chạy nền, không treo máy"
-          ],
-          "description_en": [
-            "Decks in many languages and levels, filter by language, level and meaning",
-            "See the overview, sample cards and topic list before downloading",
-            "Pick the meaning language when downloading; downloads run in the background"
-          ]
-        },
-        {
-          "title": "Ôn tập và tiện ích",
-          "title_en": "Review and extras",
-          "description": [
-            "7 kiểu kiểm tra: trắc nghiệm, điền từ, đúng/sai, ghép cặp, phiên âm…",
-            "Thẻ ôn trên màn hình chờ và ôn nhanh trước khi đọc sách",
-            "Tra từ nhanh, giao diện 10 ngôn ngữ, tự kiểm tra và cập nhật plugin"
-          ],
-          "description_en": [
-            "7 test types: multiple choice, cloze, true/false, matching, reading…",
-            "Review cards on the sleep screen and a quick review before reading",
-            "Quick lookup, 10 interface languages, built-in update check"
-          ]
-        }
-      ]
-    },
-    {
       "version": "1.0.0",
       "date": "09 Tháng 5, 2026",
       "date_en": "9 May 2026",
-      "isLatest": false,
+      "isLatest": true,
       "title": "**Phát hành mới plugin**",
       "title_en": "**First release**",
       "description": "Học ít - Nhớ lâu",
@@ -83,22 +13,14 @@
         {
           "title": "Flash",
           "title_en": "Flashcards",
-          "description": [
-            "Học thông minh với lặp lại ngắt quãng"
-          ],
-          "description_en": [
-            "Smart study with spaced repetition"
-          ]
+          "description": ["Học thông minh với lặp lại ngắt quãng"],
+          "description_en": ["Smart study with spaced repetition"]
         },
         {
           "title": "Test quiz, cloze",
           "title_en": "Quiz and cloze tests",
-          "description": [
-            "Ôn luyện"
-          ],
-          "description_en": [
-            "Practice"
-          ]
+          "description": ["Ôn luyện"],
+          "description_en": ["Practice"]
         }
       ]
     }
