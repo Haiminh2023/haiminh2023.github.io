@@ -1,455 +1,139 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<!-- Load security.js trước để thêm headers -->
 <script src="../js/security.js?v=20260416"></script>
 <script src="../js/cloudflare-loader.js?v=20260416"></script>
-    
 <meta charset="UTF-8">
-<title>Tính năng - Memdeck: Học ít, nhớ lâu</title>
+<title>Tính năng – MemDeck: Học ít, nhớ lâu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Tính năng MemDeck: học flashcard SM-2, 7 kiểu kiểm tra, gia sư AI, kho bộ thẻ đa ngôn ngữ, nhập CSV/Anki, thống kê học tập.">
+<meta property="og:image" content="https://doc-online.io.vn/assets/images/banner/og-memdeck.jpg">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css?v=20260303">
-<link rel="stylesheet" href="../css/features.css?v=20260226">
-<!-- Load include.js với đường dẫn tương đối -->
-<script src="../js/include.js?v=20260604"></script>
+<link rel="stylesheet" href="../css/site.css?v=20261111">
+<script src="../js/include.js?v=20261111"></script>
 </head>
-<body>
+<body class="mx">
 
-<!-- HEADER sẽ được tự động chèn vào đây -->
 <div id="header-placeholder"></div>
 
-<main class="page">
-    <section class="page-inner">
-        <div class="features-container">
-            <!-- CỘT TRÁI: MENU THẺ DỌC + TIÊU ĐỀ -->
-            <div class="features-sidebar">
-                <div class="sidebar-header">
-                    <h1>Tính năng nổi bật</h1>
-                </div>
-                
-                <div class="sidebar-cards">
-                    <div class="sidebar-card active" data-target="study-feature">
-                        <div class="sidebar-icon">🎓</div>
-                        <div class="sidebar-content">
-                            <h3>Học thông minh</h3>
-                            <p>Flashcard, Quiz, Cloze</p>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card" data-target="library-feature">
-                        <div class="sidebar-icon">📚</div>
-                        <div class="sidebar-content">
-                            <h3>Thư viện & Store</h3>
-                            <p>Đa ngôn ngữ, cập nhật sách</p>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-card" data-target="upload-feature">
-                        <div class="sidebar-icon">📤</div>
-                        <div class="sidebar-content">
-                            <h3>Upload Excel</h3>
-                            <p>Tự tạo thẻ từ file Excel</p>
-                        </div>
-                    </div>
+<main>
+<section class="page-hero">
+    <div class="wrap reveal">
+        <span class="eyebrow">Tính năng</span>
+        <h1>Một plugin, <em class="hl">đủ cả</em> để học từ vựng</h1>
+        <p class="lead">Học flashcard, kiểm tra, hỏi AI, tải bộ thẻ và theo dõi tiến độ, ngay trên máy đọc sách e-ink.</p>
+    </div>
+</section>
 
-                    <div class="sidebar-card" data-target="progress-feature">
-                        <div class="sidebar-icon">📊</div>
-                        <div class="sidebar-content">
-                            <h3>Quản lý tiến độ</h3>
-                            <p>XP, Due, thống kê</p>
-                        </div>
-                    </div>
-                </div>
+<nav class="subnav" aria-label="Các nhóm tính năng"><div class="wrap"><a href="#study-feature">Học flashcard</a><a href="#test-feature">Kiểm tra</a><a href="#ai-feature">Gia sư AI</a><a href="#library-feature">Thư viện & Store</a><a href="#upload-feature">Bộ thẻ của bạn</a><a href="#progress-feature">Thống kê</a></div></nav>
+
+<section class="feat" id="study-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Học flashcard</span>
+            <h2>Chạm để lật. <em class="hl">Nhớ</em> theo SM-2.</h2>
+            <p class="lead">Thẻ hiện đúng lúc bạn sắp quên. Thẻ khó gặp lại sớm, thẻ dễ giãn dần, nên mỗi ngày chỉ cần vài phút.</p>
+            <ul class="feat-list"><li><i>1</i><div><b>Chạm vào thẻ để lật</b><span>Không cần nút lật, từ khoá giữ nguyên chỗ ở cả hai mặt.</span></div></li><li><i>あ</i><div><b>Phiên âm trên chữ Hán</b><span>Furigana cho tiếng Nhật, pinyin cho tiếng Trung, nằm ngay trên chữ trong câu ví dụ.</span></div></li><li><i>2</i><div><b>Nghĩa và 2 câu ví dụ có dịch</b><span>Kèm cách đọc, âm Hán Việt và loại từ.</span></div></li><li><i>✓</i><div><b>Lại · Khó · Tốt · Dễ</b><span>Mỗi nút hiện sẵn ngày ôn lại. Chạm là chuyển sang thẻ tiếp theo.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/study_front.jpg" alt="Mặt trước" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/study_back.jpg" alt="Mặt sau" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/card_list.jpg" alt="Danh sách thẻ" loading="lazy"></div></div></div>
+            <p class="shot-cap">Mặt trước · Mặt sau · Danh sách thẻ</p>
+        </div>
+    </div>
+</section>
+<section class="feat flip" id="test-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Kiểm tra</span>
+            <h2><em class="hl">7</em> kiểu test, đổi cách hỏi để nhớ chắc</h2>
+            <p class="lead">Mỗi kiểu test hỏi từ một góc khác nhau. Đúng hay sai đều được tính lại vào lịch ôn và điểm XP.</p>
+            <ul class="feat-list"><li><i>A</i><div><b>Trắc nghiệm, Đúng / Sai</b><span>Chọn từ đúng với nghĩa, hoặc đoán câu đúng sai.</span></div></li><li><i>__</i><div><b>Điền từ (Cloze)</b><span>Điền từ còn thiếu vào câu ví dụ, học theo ngữ cảnh.</span></div></li><li><i>⇄</i><div><b>Ghép cặp</b><span>Nối từ với nghĩa, chơi theo lượt.</span></div></li><li><i>読</i><div><b>Cách đọc, Nghĩa → Từ, Gõ từ</b><span>Luyện đọc chữ Hán và nhớ chủ động.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/quiz.jpg" alt="Trắc nghiệm" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/cloze.jpg" alt="Điền từ" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/matching.jpg" alt="Ghép cặp" loading="lazy"></div></div></div>
+            <p class="shot-cap">Trắc nghiệm · Điền từ · Ghép cặp</p>
+        </div>
+    </div>
+</section>
+<section class="feat" id="ai-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Gia sư AI</span>
+            <h2>Hỏi gì cũng có <em class="hl">AI</em> trả lời</h2>
+            <p class="lead">Dùng Google Gemini bằng key miễn phí của bạn. AI biết bạn đang học ngôn ngữ nào, trình độ nào, và trả lời bằng ngôn ngữ giao diện.</p>
+            <ul class="feat-list"><li><i>✦</i><div><b>4 nút AI ngay dưới thẻ</b><span>Mẹo nhớ, Giải thích, Thêm ví dụ, Từ dễ lẫn.</span></div></li><li><i>?</i><div><b>Câu hỏi gợi ý một chạm</b><span>Dạy 5 từ mới, kiểm tra từ đang học, luyện hội thoại, sửa câu, giải thích ngữ pháp, truyện ngắn bằng từ đang học…</span></div></li><li><i>+</i><div><b>Tạo bộ thẻ bằng AI</b><span>Chọn ngôn ngữ, trình độ A1–C2, chủ đề và số thẻ từ 20 đến 500.</span></div></li><li><i>⌕</i><div><b>Tra cứu và từ điển AI</b><span>Tìm một từ trong mọi bộ thẻ đã có, rồi nhờ AI giải thích sâu hơn.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/ai_suggest.jpg" alt="Câu hỏi gợi ý" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_chat.jpg" alt="Hỏi đáp AI" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_deck.jpg" alt="Tạo bộ thẻ bằng AI" loading="lazy"></div></div></div>
+            <p class="shot-cap">Câu hỏi gợi ý · Hỏi đáp AI · Tạo bộ thẻ bằng AI</p>
+        </div>
+    </div>
+</section>
+<section class="feat flip" id="library-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Thư viện & Store</span>
+            <h2>Kho bộ thẻ <em class="hl">đa ngôn ngữ</em></h2>
+            <p class="lead">Tải bộ thẻ có sẵn rồi học không cần mạng. Thư viện cho biết bộ nào đến hạn, đã học bao nhiêu phần trăm.</p>
+            <ul class="feat-list"><li><i>N</i><div><b>JLPT N5 → N1 và nhiều bộ khác</b><span>HSK, tiếng Anh, tiếng Hàn… lọc theo ngôn ngữ, trình độ, thể loại.</span></div></li><li><i>9</i><div><b>Chọn ngôn ngữ nghĩa khi tải</b><span>Việt, Anh, Hàn, Trung, Pháp, Đức, Tây Ban Nha, Nga, Thái.</span></div></li><li><i>👁</i><div><b>Xem trước khi tải</b><span>Giới thiệu, thẻ mẫu và danh sách chủ đề.</span></div></li><li><i>↻</i><div><b>Cập nhật không mất tiến độ</b><span>Bộ đã tải có dấu ✓, có bản mới thì MemDeck báo. Tải chạy nền, vẫn học được.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/store.jpg" alt="Kho sách" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/store_detail.jpg" alt="Chi tiết bộ thẻ" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" alt="Thư viện" loading="lazy"></div></div></div>
+            <p class="shot-cap">Kho sách · Chi tiết bộ thẻ · Thư viện</p>
+        </div>
+    </div>
+</section>
+<section class="feat" id="upload-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Bộ thẻ của bạn</span>
+            <h2>Tự tạo bộ thẻ <em class="hl">từ file</em></h2>
+            <p class="lead">Giáo viên, học sinh hay người đi làm đều tự làm được bộ thẻ riêng, rồi học với đủ tính năng như bộ thẻ trên Store.</p>
+            <ul class="feat-list"><li><i>CSV</i><div><b>Nhập file CSV / Excel</b><span>Dùng file mẫu trong thư mục plugin, kèm ảnh bìa nếu muốn.</span></div></li><li><i>A</i><div><b>Nhập bộ thẻ Anki (.apkg)</b><span>Mang bộ thẻ cũ sang, AI điền các ô còn trống.</span></div></li><li><i>⇄</i><div><b>Gửi file qua Wi-Fi</b><span>Quét mã QR trên máy đọc, chọn file trên điện thoại hoặc máy tính là xong.</span></div></li><li><i>本</i><div><b>Tạo thẻ từ sách đang đọc</b><span>Thêm từ mới ngay khi đang đọc trong KOReader.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" alt="Thư viện" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/lookup.jpg" alt="Tra cứu trong mọi bộ thẻ" loading="lazy"></div></div></div>
+            <p class="shot-cap">Thư viện · Tra cứu trong mọi bộ thẻ</p>
+        </div>
+    </div>
+</section>
+<section class="feat flip" id="progress-feature">
+    <div class="wrap feat-grid">
+        <div class="feat-text reveal">
+            <span class="eyebrow">Thống kê</span>
+            <h2>Thấy rõ <em class="hl">tiến bộ</em> mỗi ngày</h2>
+            <p class="lead">Mọi con số bạn cần để giữ thói quen: hôm nay học được bao nhiêu, ngày mai cần ôn bao nhiêu, đã học đều chưa.</p>
+            <ul class="feat-list"><li><i>◎</i><div><b>Mục tiêu ngày và chuỗi ngày học</b><span>Có cả ngày nghỉ được giữ chuỗi.</span></div></li><li><i>▮</i><div><b>Thẻ đến hạn 7 ngày tới</b><span>Biết trước ngày nào sẽ nhiều thẻ.</span></div></li><li><i>▦</i><div><b>Lịch học 12 tuần</b><span>Mỗi ô là một ngày, càng đậm càng học nhiều.</span></div></li><li><i>⚙</i><div><b>Cài đặt theo ý bạn</b><span>Mục tiêu ngày, giới hạn thẻ mới, thẻ ôn trên màn hình chờ, ngôn ngữ giao diện.</span></div></li></ul>
+        </div>
+        <div class="reveal">
+            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/stats.jpg" alt="Thống kê" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/settings.jpg" alt="Cài đặt" loading="lazy"></div></div></div>
+            <p class="shot-cap">Thống kê · Cài đặt</p>
+        </div>
+    </div>
+</section>
+
+<section class="sec" style="padding-top:40px">
+    <div class="wrap">
+        <div class="cta-box reveal">
+            <div class="cta-kanji" aria-hidden="true">始</div>
+            <div>
+                <h2>Sẵn sàng thử MemDeck?</h2>
+                <p>Tải plugin, chép vào thư mục plugins của KOReader và bắt đầu học trong vài phút.</p>
             </div>
-            
-            <!-- CỘT PHẢI: NỘI DUNG CHI TIẾT -->
-            <div class="features-content">
-                <!-- Phần 1: Học thông minh -->
-                <section id="study-feature" class="feature-detail-section">
-                    <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">🎓 Học thông minh với lặp lại ngắt quãng</h2>
-                        <div class="feature-detail-subtitle">Flashcard, Quiz, Cloze – 3 chế độ học luân phiên giúp nhớ lâu tự nhiên</div>
-                    </div>
-                    
-                    <div class="feature-content-wrapper">
-                        <div class="feature-description">
-                            <p>Ứng dụng áp dụng thuật toán lặp lại ngắt quãng (Spaced Repetition) – phương pháp học được khoa học chứng minh giúp tăng khả năng ghi nhớ lên đến 90%.</p>
-                            
-                            <div class="feature-highlights">
-                                <h4>🔄 Lặp lại ngắt quãng – Nhớ lâu tự nhiên</h4>
-                                <ul>
-                                    <li>Hệ thống tự động tính toán thời điểm ôn tập tối ưu cho mỗi thẻ</li>
-                                    <li>Thẻ càng khó càng được ôn thường xuyên, thẻ dễ thì giãn dần</li>
-                                    <li>Giảm tải trí nhớ, không học vẹt, không lãng phí thời gian</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>🎴 Flashcard – Lật thẻ ghi nhớ nhanh</h4>
-                                <ul>
-                                    <li>Mặt trước: từ vựng</li>
-                                    <li>Mặt sau: định nghĩa / cách phát âm / giải thích / ví dụ</li>
-                                    <li>Chạm để lật, đánh dấu "Đã nhớ" hoặc "Cần ôn lại"</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>✅ Quiz – Kiểm tra kiến thức</h4>
-                                <ul>
-                                    <li>Chọn đáp án đúng trong 4 lựa chọn</li>
-                                    <li>Phù hợp luyện từ vựng</li>
-                                    <li>Tích hợp tính lại due, điểm XP với đáp án đúng / sai</li>
-                                </ul>
-                            </div>
-
-                            <div class="feature-highlights">
-                                <h4>✍️ Cloze – Học qua ngữ cảnh</h4>
-                                <ul>
-                                    <li>Câu bị khuyết một từ – điền từ đúng vào chỗ trống</li>
-                                    <li>Phù hợp luyện ngữ pháp, từ vựng theo ngữ cảnh thực tế</li>
-                                    <li>Tự động kiểm tra chính tả và đưa ra gợi ý</li>
-                                    <li>Tích hợp tính lại due, điểm XP với đáp án đúng / sai</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/learn_flash_1.jpg?v=1.7" alt="Flashcard">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/learn_quize_2.jpg?v=1.9" alt="Quiz trắc nghiệm">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/learn_cloze_2.jpg?v=1.8" alt="Cloze điền từ">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/matching.jpg?v=1.8" alt="matching nối từ">
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Phần 2: Thư viện & Store -->
-                <section id="library-feature" class="feature-detail-section">
-                    <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">📚 Thư viện thông minh & Store đa ngôn ngữ</h2>
-                        <div class="feature-detail-subtitle">Hàng trăm sách có sẵn, tải một lần dùng mãi</div>
-                    </div>
-                    
-                    <div class="feature-content-wrapper">
-                        <div class="feature-description">
-                            <p>Thư viện thông minh giúp bạn quản lý tất cả sách đã tải. Store cung cấp kho sách phong phú với nhiều ngôn ngữ và chủ đề.</p>
-                            
-                            <div class="feature-highlights">
-                                <h4>📦 Thư viện sách đã tải</h4>
-                                <ul>
-                                    <li>Danh sách sách kèm ảnh bìa, tiến độ học (%)</li>
-                                    <li>Nút "Học tiếp" – tiếp tục ngay từ chỗ dừng</li>
-                                    <li>Thống kê riêng cho từng sách (thẻ đến hạn, tỉ lệ % thẻ đã học)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>🛒 Store – Kho sách đa ngôn ngữ</h4>
-                                <ul>
-                                    <li>🇻🇳 Tiếng Việt (Tiếng Việt)</li>
-                                    <li>🇬🇧 English (English)</li>
-                                    <li>🇯🇵 Japanese (日本語)</li>
-                                    <li>🇰🇷 Korean (한국어)</li>
-                                    <li>🇨🇳 Chinese (中文)</li>
-                                    <li>🇫🇷 French (Français)</li>
-                                    <li>🇩🇪 German (Deutsch)</li>
-                                    <li>🇪🇸 Spanish (Español)</li>
-                                    <li>🇷🇺 Russian (Русский)</li>
-                                    <li>🇹🇭 Thai (ภาษาไทย)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>🔄 Quản lý & Cập nhật sách</h4>
-                                <ul>
-                                    <li>Badge "Cập nhật" khi có phiên bản mới</li>
-                                    <li>Sửa lỗi chính tả, bổ sung thẻ mà không mất tiến độ</li>
-                                    <li>Chỉ tải lại nội dung, không cần cài lại app</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/library_1.jpg?v=2.4" alt="Thư viện sách">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/store_1.3.jpg?v=2.5" alt="Store đa ngôn ngữ">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/book_detail_1.jpg?v=2.4" alt="Cập nhật sách">
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Phần 3: Upload Excel -->
-                <section id="upload-feature" class="feature-detail-section">
-                    <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">📤 Upload Excel – Tự tạo bộ thẻ của riêng bạn</h2>
-                        <div class="feature-detail-subtitle">Giáo viên, học sinh, người đi làm đều có thể tự tạo nội dung học</div>
-                    </div>
-                    
-                    <div class="feature-content-wrapper">
-                        <div class="feature-description">
-                            <p>Bạn có bộ từ vựng riêng? Chỉ cần một file Excel, ứng dụng sẽ tự động chuyển đổi thành thẻ học thông minh.</p>
-                            
-                            <div class="feature-highlights">
-                                <h4>📎 Định dạng Excel hỗ trợ</h4>
-                                <ul>
-                                    <li>Cột A: Thuật ngữ / Từ vựng / Câu hỏi (✅ Bắt buộc)</li>
-                                    <li>Cột B: Định nghĩa / Nghĩa / Đáp án (✅ Bắt buộc)</li>
-                                    <li>Cột C: Ví dụ minh họa (❌ Không bắt buộc)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>🔄 Tự động sinh nội dung học</h4>
-                                <ul>
-                                    <li><strong>Flashcard:</strong> Cột A → mặt trước, Cột B → mặt sau</li>
-                                    <li><strong>Quiz:</strong> Câu hỏi từ cột A, đáp án từ cột B + 3 đáp án nhiễu tự động sinh</li>
-                                    <li><strong>Cloze:</strong> Tự động tạo câu điền từ dựa trên ví dụ (cột C)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>👥 Đối tượng sử dụng</h4>
-                                <ul>
-                                    <li>👨‍🏫 <strong>Giáo viên:</strong> Tạo bộ bài tập cho cả lớp, chia sẻ qua file</li>
-                                    <li>👩‍🎓 <strong>Học sinh:</strong> Tự làm kho từ vựng cá nhân từ sách giáo khoa</li>
-                                    <li>💼 <strong>Người đi làm:</strong> Ôn chuyên ngành, thuật ngữ công ty, từ vựng lĩnh vực</li>
-                                </ul>
-                            </div>
-
-                            <div class="feature-highlights">
-                                <h4>📤 Cách sử dụng</h4>
-                                <ul>
-                                    <li>1. Chuẩn bị file Excel theo đúng định dạng</li>
-                                    <li>2. Mở app → Chọn "Upload Excel"</li>
-                                    <li>3. Chọn file → Hệ thống tự động xử lý</li>
-                                    <li>4. Bộ thẻ mới xuất hiện trong Thư viện</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/home/home_3.1.jpg?v=1.13" alt="Upload Excel">">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Phần 4: Quản lý tiến độ học -->
-                <section id="progress-feature" class="feature-detail-section">
-                    <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">📊 Theo dõi tiến độ – Thấy rõ sự tiến bộ</h2>
-                        <div class="feature-detail-subtitle">XP, tỉ lệ đúng, thẻ cần ôn – Mọi chỉ số đều được thống kê</div>
-                    </div>
-                    
-                    <div class="feature-content-wrapper">
-                        <div class="feature-description">
-                            <p>Theo dõi mọi chỉ số học tập để biết bạn đang ở đâu và cần cải thiện điều gì.</p>
-                            
-                            <div class="feature-highlights">
-                                <h4>📈 Các chỉ số theo dõi</h4>
-                                <ul>
-                                    <li><strong>⭐ XP (Kinh nghiệm):</strong> Tích lũy mỗi khi học / test đúng – Hiển thị ở màn hình chính</li>
-                                    <li><strong>🎴 Thẻ mới hôm nay:</strong> Số thẻ lần đầu học trong ngày – Hiển thị ở màn hình chính</li>
-                                    <li><strong>📊 Tỉ lệ test đúng:</strong> % câu trả lời đúng trong các bài quiz – Hiển thị ở màn hình chính</li>
-                                    <li><strong>⏰ Thẻ đến hạn (Due):</strong> Số thẻ cần ôn hôm nay – Hiển thị ở màn hình chính + từng sách</li>
-                                    <li><strong>🔥 Chuỗi ngày học:</strong> Duy trì thói quen học tập – Hiển thị ở màn hình chính</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>🔄 Lặp lại thông minh</h4>
-                                <ul>
-                                    <li>Hệ thống tự động tính lịch ôn tập dựa trên <strong>mức độ nhớ</strong> (1: Quên hoàn toàn → 5: Nhớ ngay)</li>
-                                    <li>Điều chỉnh khoảng cách ôn linh hoạt: 1 ngày → 3 ngày → 7 ngày → 14 ngày → 30 ngày</li>
-                                    <li>Báo cáo hằng ngày: Bạn đã học bao nhiêu, đúng bao nhiêu, cần ôn bao nhiêu</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feature-highlights">
-                                <h4>📊 Thống kê</h4>
-                                <ul>
-                                    <li>Thành tích: Điểm kinh nghiệm XP, chuỗi ngày học, tỉ lệ đúng khi test</li>
-                                </ul>
-                            </div>
-
-                            <div class="feature-highlights">
-                                <h4>🎯 Lợi ích khi theo dõi tiến độ</h4>
-                                <ul>
-                                    <li><strong>Tạo động lực:</strong> Nhìn thấy XP tăng dần, duy trì chuỗi ngày học</li>
-                                    <li><strong>Điều chỉnh kịp thời:</strong> Biết sách nào đang yếu để ôn thêm</li>
-                                    <li><strong>Tiết kiệm thời gian:</strong> Chỉ ôn thẻ due, không học lan man</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-screenshots">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/statistics_1.1.jpg?v=1.3" alt="Thống kê XP">
-                            <img src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/features/setting_2.jpg?v=1.3" alt="Setting">
-                        </div>
-                    </div>
-                </section>
+            <div class="cta-actions">
+                <a class="btn btn-light" href="guide.html#download">Tải plugin miễn phí</a>
+                <a class="btn btn-outline-light" href="../index.html#video">Xem video giới thiệu</a>
             </div>
         </div>
-        
-    </section>
+    </div>
+</section>
 </main>
 
-
-<!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Đợi include.js load xong
-    setTimeout(function() {
-        const sidebarCards = document.querySelectorAll('.sidebar-card');
-        const featureSections = document.querySelectorAll('.feature-detail-section');
-        
-        // Hàm cuộn đến section
-        function scrollToSection(sectionId) {
-            const targetSection = document.getElementById(sectionId);
-            if (!targetSection) return;
-            
-            const header = document.querySelector('.navbar');
-            const offset = header ? header.offsetHeight + 40 : 100;
-            const targetPosition = targetSection.offsetTop - offset;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Cập nhật URL với hash
-            history.pushState(null, null, `#${sectionId}`);
-        }
-        
-        // Xử lý click vào thẻ sidebar
-        if (sidebarCards.length > 0) {
-            sidebarCards.forEach(card => {
-                card.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('data-target');
-                    
-                    sidebarCards.forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    scrollToSection(targetId);
-                });
-            });
-        }
-        
-        // CẢI THIỆN: Intersection Observer để highlight thẻ khi cuộn
-        if (featureSections.length > 0) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        
-                        // Cập nhật active class cho sidebar card
-                        sidebarCards.forEach(card => {
-                            card.classList.remove('active');
-                            if (card.getAttribute('data-target') === id) {
-                                card.classList.add('active');
-                                
-                                // Cuộn sidebar để thẻ active luôn hiển thị
-                                const sidebar = document.querySelector('.features-sidebar');
-                                if (sidebar) {
-                                    const cardRect = card.getBoundingClientRect();
-                                    const sidebarRect = sidebar.getBoundingClientRect();
-                                    
-                                    // Nếu thẻ không nằm trong viewport của sidebar
-                                    if (cardRect.top < sidebarRect.top || cardRect.bottom > sidebarRect.bottom) {
-                                        card.scrollIntoView({ 
-                                            behavior: 'smooth', 
-                                            block: 'center',
-                                            inline: 'nearest'
-                                        });
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });
-            }, {
-                root: null,
-                rootMargin: '-10% 0px -70% 0px',
-                threshold: 0.2
-            });
-            
-            featureSections.forEach(section => {
-                observer.observe(section);
-            });
-        }
-        
-        // Xử lý hash trong URL khi load trang
-        function handleInitialHash() {
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1);
-                setTimeout(() => {
-                    scrollToSection(hash);
-                    
-                    // Highlight thẻ tương ứng
-                    sidebarCards.forEach(card => {
-                        card.classList.remove('active');
-                        if (card.getAttribute('data-target') === hash) {
-                            card.classList.add('active');
-                        }
-                    });
-                }, 1000); 
-            }
-        }
-        
-        // Gọi hàm xử lý hash
-        handleInitialHash();
-        
-        // Lắng nghe sự kiện hashchange
-        window.addEventListener('hashchange', function() {
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1);
-                sidebarCards.forEach(card => {
-                    card.classList.remove('active');
-                    if (card.getAttribute('data-target') === hash) {
-                        card.classList.add('active');
-                    }
-                });
-            }
-        });
-        
-        // Thêm sự kiện scroll để highlight chính xác hơn
-        let scrollTimeout;
-        window.addEventListener('scroll', function() {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(function() {
-                // Tìm section nào đang gần nhất với top của viewport
-                const scrollPosition = window.scrollY + 150;
-                
-                let closestSection = null;
-                let closestDistance = Infinity;
-                
-                featureSections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const distance = Math.abs(sectionTop - scrollPosition);
-                    
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        closestSection = section;
-                    }
-                });
-                
-                if (closestSection) {
-                    const id = closestSection.id;
-                    sidebarCards.forEach(card => {
-                        card.classList.remove('active');
-                        if (card.getAttribute('data-target') === id) {
-                            card.classList.add('active');
-                        }
-                    });
-                }
-            }, 100);
-        });
-        
-    }, 500);
-});
-</script>
-
+<script src="../js/site.js?v=20261111"></script>
 </body>
 </html>

@@ -2,167 +2,263 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Memdeck - Học ít, nhớ lâu</title>
+<title>MemDeck – Flashcard thông minh cho máy đọc sách e-ink | Học ít, nhớ lâu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MemDeck là plugin học từ vựng cho KOReader trên Kindle, Kobo, PocketBook và Android: flashcard SM-2, 7 kiểu kiểm tra, gia sư AI, kho bộ thẻ JLPT N5–N1 với nghĩa 9 ngôn ngữ.">
+<meta property="og:title" content="MemDeck – Học ít, nhớ lâu">
+<meta property="og:description" content="Flashcard thông minh cho máy đọc sách e-ink: SM-2, 7 kiểu kiểm tra, gia sư AI, kho bộ thẻ đa ngôn ngữ.">
+<meta property="og:image" content="https://doc-online.io.vn/assets/images/banner/og-memdeck.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f4f1ea">
 
 <script src="js/security.js?v=20260415"></script>
-<script src="../js/cloudflare-loader.js?v=20260416"></script>
-<script src="js/include.js?v=20260617"></script>
-    
-<!-- Preconnect for external domains -->
+<script src="js/cloudflare-loader.js?v=20260416"></script>
+<script src="js/include.js?v=20261111"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-    
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 
-<!-- Styles -->
 <link rel="stylesheet" href="css/style.css?v=20260510">
-
-<!-- Canonical URL -->
+<link rel="stylesheet" href="css/site.css?v=20261111">
 <link rel="canonical" href="https://doc-online.io.vn/">
-
 </head>
-<body>
+<body class="mx">
 
-<!-- HEADER sẽ được tự động chèn vào đây -->
 <div id="header-placeholder"></div>
 
-<main class="page">
-    <section class="page-inner">
+<main>
 
-        <!-- Banner image thay thế cho tiêu đề h1 cũ -->
-        <div class="banner-container">
-            <img 
-                src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/banner/home.jpg?v=2.3"
-                alt="Memdeck - Flashcard thông minh cho việc ghi nhớ"
-                loading="lazy"
-                width="100%" 
-                style="max-width: 100%; height: auto; display: block;"
-            >
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="hero-kanji" aria-hidden="true">記</div>
+    <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+            <span class="badge"><b>MỚI</b> Giao diện mới · Gia sư AI · Store JLPT N5–N1</span>
+            <h1><span>Học ít.</span><span><em class="hl">Nhớ lâu.</em></span></h1>
+            <p class="lead">MemDeck biến máy đọc sách e-ink thành người bạn học từ vựng: flashcard lặp lại ngắt quãng, 7 kiểu kiểm tra và gia sư AI, ngay trong KOReader.</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="pages/guide.html#download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Tải plugin miễn phí
+                </a>
+                <a class="btn btn-ghost" href="#video">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+                    Xem video 30 giây
+                </a>
+            </div>
+            <div class="hero-meta">
+                <span>Kindle</span><span>Kobo</span><span>PocketBook</span><span>Android</span>
+            </div>
         </div>
-
-        <!-- ===== GRID 4 THẺ ===== -->
-        <div class="feature-grid">
-        
-            <!-- Thẻ 1: Học thông minh -->
-            <div class="feature-card" onclick="window.location.href='pages/features.html#study-feature'">
-                <div class="feature-content">
-                    <h3>🎓 Học thông minh</h3>
-                    <ul>
-                        <li>Lặp lại ngắt quãng – nhớ lâu tự nhiên</li>
-                        <li>Lật thẻ Flashcard ghi nhớ nhanh</li>
-                        <li>Test Quiz kiểm tra kiến thức</li>
-                        <li>Cloze điền từ – học theo ngữ cảnh</li>
-                    </ul>
-                </div>
-                <div class="feature-image">
-                    <img 
-                        src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/home/home_1.1.jpg?v=1.7" 
-                        alt="Học với Flashcard, Quiz, Cloze"
-                        loading="lazy"
-                        width="400"
-                        height="300"
-                    >
-                </div>
-            </div>
-        
-            <!-- Thẻ 2: Thư viện & Store -->
-            <div class="feature-card" onclick="window.location.href='pages/features.html#library-feature'">
-                <div class="feature-content">
-                    <h3>📚 Thư viện & Store</h3>
-                    <ul>
-                        <li>Chọn ngôn ngữ học dễ dàng</li>
-                        <li>Sách đa ngôn ngữ tích hợp sẵn</li>
-                        <li>Quản lý sách – theo dõi tiến độ</li>
-                        <li>Tải & cập nhật sách từ Store</li>
-                    </ul>
-                </div>
-                <div class="feature-image">
-                    <img 
-                        src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/home/home_2.1.jpg?v=1.6" 
-                        alt="Thư viện sách học tập đa ngôn ngữ"
-                        loading="lazy"
-                        width="400"
-                        height="300"
-                    >
-                </div>
-            </div>
-        
-            <!-- Thẻ 3: Upload Excel -->
-            <div class="feature-card" onclick="window.location.href='pages/features.html#upload-feature'">
-                <div class="feature-content">
-                    <h3>📤 Upload Excel</h3>
-                    <ul>
-                        <li>Tạo sách & thẻ từ từ file Excel</li>
-                        <li>Thao tác nhanh, dễ sử dụng</li>
-                        <li>Tự động tạo Flashcard</li>
-                        <li>Sinh Quiz & Cloze tự động</li>
-                    </ul>
-                </div>
-                <div class="feature-image">
-                    <img 
-                        src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/home/home_3.1.jpg?v=1.4" 
-                        alt="Upload Excel tạo thẻ từ"
-                        loading="lazy"
-                        width="400"
-                        height="300"
-                    >
-                </div>
-            </div>
-        
-            <!-- Thẻ 4: Offline tuyệt đối -->
-            <div class="feature-card" onclick="window.location.href='pages/features.html#offline-feature'">
-                <div class="feature-content">
-                    <h3>📊 Quản lý tiến độ học</h3>
-                    <ul>
-                        <li>Theo dõi XP, độ chính xác, thẻ cần ôn</li>
-                        <li>Lặp lại thông minh giúp nhớ lâu</li>
-                        <li>Duy trì thói quen học mỗi ngày</li>
-                        <li>Thấy rõ tiến bộ theo thời gian</li>
-                    </ul>
-                </div>
-                <div class="feature-image">
-                    <img 
-                        src="https://cdn.jsdelivr.net/gh/haiminh2023/haiminh2023.github.io/assets/images/home/home_4.1.jpg?v=1.3" 
-                        alt="Học offline không cần mạng"
-                        loading="lazy"
-                        width="400"
-                        height="300"
-                    >
-                </div>
-            </div>
-        
+        <div class="hero-stage reveal" aria-hidden="true">
+            <div class="device d1"><div class="screen"><img src="assets/images/app/home.jpg" alt=""></div></div>
+            <div class="device d2"><div class="screen"><img src="assets/images/app/study_back.jpg" alt=""></div></div>
+            <div class="float-chip fc1"><i>✦</i><div>Mẹo nhớ bằng AI<small>Giải thích · Ví dụ · Từ dễ lẫn</small></div></div>
+            <div class="float-chip fc2"><i>8d</i><div>Ôn lại sau 8 ngày<small>Lặp lại ngắt quãng SM-2</small></div></div>
+            <div class="float-chip fc3"><i>✓</i><div>16 thẻ cần ôn hôm nay</div></div>
         </div>
+    </div>
+</section>
 
-    </section>
+<!-- ================= SỐ LIỆU ================= -->
+<section class="stats">
+    <div class="wrap">
+        <div class="stats-grid reveal">
+            <div class="stat"><b>7</b><span>kiểu kiểm tra</span></div>
+            <div class="stat"><b>10</b><span>ngôn ngữ giao diện</span></div>
+            <div class="stat"><b>5.467</b><span>thẻ JLPT N5 → N1</span></div>
+            <div class="stat"><b>SM-2</b><span>lặp lại ngắt quãng</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= TOUR ================= -->
+<section class="sec" id="tour">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="eyebrow">Giao diện mới</span>
+            <h2>Gọn, rõ, <em class="hl">sinh ra cho e-ink</em></h2>
+            <p class="lead">Chữ đen trên nền trắng, nút lớn dễ chạm, ít làm mới màn hình. Chọn một mục để xem màn hình thật trong app.</p>
+        </div>
+        <div class="tour reveal" id="tourBox">
+            <div class="tour-tabs" role="tablist">
+                <button class="tour-tab on" data-shot="home" role="tab"><span class="ic">今</span><h3>Trang chủ</h3><p>Mở máy là biết hôm nay cần ôn bao nhiêu thẻ, mất bao lâu, chuỗi ngày học và một nút Học ngay.</p><span class="bar"><i></i></span></button>
+                <button class="tour-tab" data-shot="study_back" role="tab"><span class="ic">薬</span><h3>Học flashcard</h3><p>Chạm để lật thẻ. Furigana nằm trên chữ Hán, nghĩa và 2 câu ví dụ có dịch, 4 nút AI ngay dưới thẻ.</p><span class="bar"><i></i></span></button>
+                <button class="tour-tab" data-shot="test_menu" role="tab"><span class="ic">試</span><h3>Kiểm tra</h3><p>Trắc nghiệm, điền từ, đúng/sai, ghép cặp, cách đọc, nghĩa → từ, gõ từ. Chọn 10 đến 50 câu.</p><span class="bar"><i></i></span></button>
+                <button class="tour-tab" data-shot="ai_chat" role="tab"><span class="ic">師</span><h3>Gia sư AI</h3><p>Hỏi ngữ pháp, nhờ sửa câu, luyện hội thoại. AI trả lời theo trình độ và ngôn ngữ của bạn.</p><span class="bar"><i></i></span></button>
+                <button class="tour-tab" data-shot="store" role="tab"><span class="ic">店</span><h3>Kho bộ thẻ</h3><p>Tải bộ thẻ JLPT, HSK, tiếng Anh, tiếng Hàn… với nghĩa bằng 9 ngôn ngữ. Có dấu ✓ cho bộ đã tải.</p><span class="bar"><i></i></span></button>
+                <button class="tour-tab" data-shot="stats" role="tab"><span class="ic">績</span><h3>Thống kê</h3><p>Thẻ học hôm nay, thẻ đến hạn 7 ngày tới và lịch học 12 tuần để giữ thói quen.</p><span class="bar"><i></i></span></button>
+            </div>
+            <div class="tour-device">
+                <div class="device"><div class="screen">
+                    <img class="on" data-id="home" src="assets/images/app/home.jpg" alt="Trang chủ MemDeck">
+                    <img data-id="study_back" src="assets/images/app/study_back.jpg" alt="Mặt sau thẻ học" loading="lazy">
+                    <img data-id="test_menu" src="assets/images/app/test_menu.jpg" alt="Chọn kiểu kiểm tra" loading="lazy">
+                    <img data-id="ai_chat" src="assets/images/app/ai_chat.jpg" alt="Hỏi đáp AI" loading="lazy">
+                    <img data-id="store" src="assets/images/app/store.jpg" alt="Kho bộ thẻ" loading="lazy">
+                    <img data-id="stats" src="assets/images/app/stats.jpg" alt="Thống kê" loading="lazy">
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= VIDEO ================= -->
+<section class="sec video-sec" id="video">
+    <div class="wrap">
+        <div class="sec-head center reveal">
+            <span class="eyebrow">Video giới thiệu</span>
+            <h2>MemDeck trong 30 giây</h2>
+            <p class="lead">Trang chủ, học flashcard, 7 kiểu kiểm tra, gia sư AI, tạo bộ thẻ bằng AI, kho bộ thẻ và thống kê.</p>
+        </div>
+        <div class="video-frame reveal" id="videoFrame">
+            <video id="introVideo" src="assets/video/memdeck-intro.mp4" poster="assets/video/memdeck-intro-poster.jpg" preload="metadata" playsinline muted controls></video>
+            <button class="video-play" id="videoPlay" aria-label="Phát video"><span><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></button>
+        </div>
+        <div class="video-chips reveal">
+            <button data-t="3.2">Trang chủ</button>
+            <button data-t="6.4">Học flashcard</button>
+            <button data-t="9.6">Kiểm tra</button>
+            <button data-t="12.8">Gia sư AI</button>
+            <button data-t="16">Tạo bộ thẻ AI</button>
+            <button data-t="19.2">Kho bộ thẻ</button>
+            <button data-t="22.4">Thống kê</button>
+        </div>
+    </div>
+</section>
+
+<!-- ================= BENTO ================= -->
+<section class="sec" id="highlights">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="eyebrow">Điểm nổi bật</span>
+            <h2>Mọi thứ để học từ vựng, <em class="hl">không cần điện thoại</em></h2>
+        </div>
+        <div class="bento">
+            <div class="tile t-ai reveal">
+                <div class="tag">✦ Gia sư AI · Google Gemini</div>
+                <h3>Không hiểu từ nào, hỏi ngay trên thẻ</h3>
+                <p>Mẹo nhớ, giải thích sắc thái, thêm ví dụ, từ dễ lẫn. Hỏi đáp tự do, luyện hội thoại, sửa câu bạn viết, và tạo cả bộ thẻ mới theo chủ đề bạn chọn.</p>
+                <div class="chips">
+                    <span class="chip on">✦ Mẹo nhớ</span><span class="chip">Giải thích</span><span class="chip">Thêm ví dụ</span><span class="chip">Từ dễ lẫn</span><span class="chip">Luyện hội thoại</span><span class="chip">Tạo bộ thẻ bằng AI</span>
+                </div>
+            </div>
+            <div class="tile t-ruby reveal">
+                <div class="tag">Phiên âm trên chữ Hán</div>
+                <h3>Đọc được câu ví dụ ngay</h3>
+                <div class="ruby-demo">
+                    <ruby>薬<rt>くすり</rt></ruby>を<ruby>飲<rt>の</rt></ruby>んだら、よくなった。
+                    <small>→ Uống thuốc xong thì khỏe hơn.</small>
+                </div>
+            </div>
+            <div class="tile t-tests reveal">
+                <div class="tag">Kiểm tra</div>
+                <h3>7 kiểu test, đổi cách hỏi để nhớ chắc</h3>
+                <p>Kết quả tính vào lịch ôn và điểm XP.</p>
+                <div class="chips">
+                    <span class="chip on">Trắc nghiệm</span><span class="chip">Điền từ</span><span class="chip">Đúng / Sai</span><span class="chip">Ghép cặp</span><span class="chip">Cách đọc</span><span class="chip">Nghĩa → Từ</span><span class="chip">Gõ từ</span>
+                </div>
+            </div>
+            <div class="tile t-eink reveal">
+                <div class="tag">Tối ưu e-ink</div>
+                <h3>Vừa mọi màn hình, từ 6 inch đến điện thoại</h3>
+                <p>Bố cục tự co giãn, tương phản cao, cảm ứng và phím lật trang.</p>
+                <div class="eink-sizes" aria-hidden="true">
+                    <div style="width:54px;height:72px">6"</div>
+                    <div style="width:64px;height:86px">7"</div>
+                    <div style="width:76px;height:101px">8"</div>
+                    <div style="width:44px;height:96px;border-radius:12px">📱</div>
+                </div>
+            </div>
+            <div class="tile t-import reveal">
+                <div class="tag">Bộ thẻ của bạn</div>
+                <h3>Nhập CSV, Anki, gửi qua Wi-Fi</h3>
+                <p>Quét mã QR để gửi file từ điện thoại sang máy đọc. AI điền các ô còn trống.</p>
+                <div class="big-ic">⇄</div>
+            </div>
+            <div class="tile t-sleep reveal">
+                <div class="tag">Màn hình chờ</div>
+                <h3>Ôn một thẻ mỗi lần cầm máy</h3>
+                <p>Khi máy ngủ, màn hình chờ hiện một thẻ cần ôn. Nhìn qua là nhớ thêm một từ.</p>
+                <div class="big-ic">☾</div>
+            </div>
+            <div class="tile t-lang reveal">
+                <div class="tag">Đa ngôn ngữ</div>
+                <h3>Giao diện 10 ngôn ngữ</h3>
+                <p>Nghĩa thẻ theo ngôn ngữ bạn chọn khi tải bộ thẻ.</p>
+                <div class="langs"><span>VI</span><span>EN</span><span>JA</span><span>KO</span><span>ZH</span><span>FR</span><span>DE</span><span>ES</span><span>RU</span><span>TH</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= KHO BỘ THẺ ================= -->
+<section class="sec" id="store" style="padding-top:20px">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="eyebrow">Kho bộ thẻ</span>
+            <h2>JLPT <em class="hl">N5 → N1</em>, tải một chạm</h2>
+            <p class="lead">Mỗi thẻ có cách đọc, âm Hán Việt, loại từ, nghĩa và 2 câu ví dụ có dịch. Chọn nghĩa bằng tiếng Việt, Anh, Hàn, Trung, Pháp, Đức, Tây Ban Nha, Nga hoặc Thái.</p>
+        </div>
+        <div class="decks">
+            <a class="deck reveal" href="pages/features.html#library-feature"><div class="cover"><img src="assets/images/decks/n5.jpg" alt="JLPT N5" loading="lazy"></div><h4>JLPT N5</h4><p>411 từ · 18 chủ đề</p></a>
+            <a class="deck reveal" href="pages/features.html#library-feature"><div class="cover"><img src="assets/images/decks/n4.jpg" alt="JLPT N4" loading="lazy"></div><h4>JLPT N4</h4><p>825 từ · 18 chủ đề</p></a>
+            <a class="deck reveal" href="pages/features.html#library-feature"><div class="cover"><img src="assets/images/decks/n3.jpg" alt="JLPT N3" loading="lazy"></div><h4>JLPT N3</h4><p>1.238 từ · 18 chủ đề</p></a>
+            <a class="deck reveal" href="pages/features.html#library-feature"><div class="cover"><img src="assets/images/decks/n2.jpg" alt="JLPT N2" loading="lazy"></div><h4>JLPT N2</h4><p>1.480 từ · 18 chủ đề</p></a>
+            <a class="deck reveal" href="pages/features.html#library-feature"><div class="cover"><img src="assets/images/decks/n1.jpg" alt="JLPT N1" loading="lazy"></div><h4>JLPT N1</h4><p>1.513 từ · 18 chủ đề</p></a>
+        </div>
+        <div class="store-note reveal">
+            <p>Bộ thẻ tải về được lưu trên máy, học không cần mạng. Khi bộ thẻ có bản mới, MemDeck báo để bạn cập nhật mà không mất tiến độ.</p>
+            <a class="btn btn-ghost" href="pages/features.html#library-feature">Xem thêm về Store</a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= THIẾT BỊ ================= -->
+<section class="sec" style="padding-top:0">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="eyebrow">Thiết bị hỗ trợ</span>
+            <h2>Chạy ở đâu có <em class="hl">KOReader</em></h2>
+        </div>
+        <div class="devices">
+            <div class="dev-card reveal"><b>Kindle</b><span>Máy đã cài KOReader</span></div>
+            <div class="dev-card reveal"><b>Kobo</b><span>Libra, Clara, Sage, Elipsa…</span></div>
+            <div class="dev-card reveal"><b>PocketBook</b><span>Verse, Era, InkPad…</span></div>
+            <div class="dev-card reveal"><b>Android</b><span>Máy đọc Android và điện thoại</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="sec" style="padding-top:0">
+    <div class="wrap">
+        <div class="cta-box reveal">
+            <div class="cta-kanji" aria-hidden="true">始</div>
+            <div>
+                <h2>Bắt đầu học hôm nay</h2>
+                <p>Tải plugin, chép vào thư mục plugins của KOReader và mở MemDeck. Hướng dẫn có ảnh cho từng dòng máy.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="btn btn-light" href="pages/guide.html#download">Tải plugin miễn phí</a>
+                <a class="btn btn-outline-light" href="pages/guide.html">Xem hướng dẫn cài đặt</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 </main>
 
-<!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
 
-<!-- NoScript fallback -->
 <noscript>
-    <div class="noscript-warning">
-        <h3>JavaScript bị tắt</h3>
-        <p>Vui lòng bật JavaScript để sử dụng đầy đủ tính năng của trang web.</p>
-        <a href="/pages/guide.html">Hướng dẫn sử dụng</a>
+    <div style="position:fixed;top:0;left:0;width:100%;background:#d9480f;color:#fff;padding:16px;text-align:center;z-index:9999">
+        Vui lòng bật JavaScript để xem đầy đủ trang web. <a style="color:#fff" href="/pages/guide.html">Hướng dẫn sử dụng</a>
     </div>
-    <style>
-    .noscript-warning {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: #ff6b6b;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        z-index: 9999;
-    }
-    </style>
+    <style>.mx .reveal{opacity:1;transform:none}</style>
 </noscript>
 
+<script src="js/site.js?v=20261111"></script>
 </body>
 </html>
