@@ -1,419 +1,89 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<!-- Load security.js trước để thêm headers -->
 <script src="../js/security.js?v=20260415"></script>
 <script src="../js/cloudflare-loader.js?v=20260415"></script>
-    
 <meta charset="UTF-8">
-<title>Lịch sử phiên bản - Đọc Online</title>
+<title data-en="Release history – MemDeck">Lịch sử phiên bản – MemDeck</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=20260403">
+<meta name="description" content="Các bản cập nhật của plugin MemDeck." data-en-content="Release notes for the MemDeck plugin.">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/site.css?v=20261111">
-<link rel="stylesheet" href="../css/version.css?v=20260401">
-<script src="../js/include.js?v=20260703"></script>
+<link rel="stylesheet" href="../css/style.css?v=20260403">
+<link rel="stylesheet" href="../css/site.css?v=20261112">
+<script src="../js/i18n.js?v=20261112"></script>
+<script src="../js/include.js?v=20261112"></script>
 </head>
-<body>
-
-<!-- HEADER sẽ được tự động chèn vào đây -->
+<body class="mx">
 <div id="header-placeholder"></div>
-
-<main class="page">
-    <section class="page-inner">
-        <div class="features-container">
-            <!-- CỘT TRÁI: MENU THẺ DỌC + TIÊU ĐỀ -->
-            <div class="features-sidebar">
-                <div class="sidebar-header">
-                    <h1>Lịch sử cập nhật</h1>
-                </div>
-                
-                <div class="sidebar-cards">
-                    <!-- Các thẻ phiên bản sẽ được JS tự động tạo -->
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Đang tải dữ liệu...</p>
-                    </div>
-                </div>
-                
-                <!-- Nút điều hướng -->
-                <div class="version-nav">
-                    <button class="nav-btn prev-btn" id="prevVersions" aria-label="Xem phiên bản mới hơn" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m15 18-6-6 6-6"/>
-                        </svg>
-                        <span>Mới hơn</span>
-                    </button>
-                    <button class="nav-btn next-btn" id="nextVersions" aria-label="Xem phiên bản cũ hơn" disabled>
-                        <span>Cũ hơn</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- CỘT PHẢI: NỘI DUNG CHI TIẾT -->
-            <div class="features-content">
-                <!-- Banner phiên bản mới nhất -->
-                <div id="latestVersionBanner" class="latest-version-banner">
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Đang tải thông tin...</p>
-                    </div>
-                </div>
-                
-                <!-- Danh sách chi tiết phiên bản -->
-                <div class="version-details">
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>Đang tải chi tiết...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main>
+<section class="page-hero">
+    <div class="wrap reveal">
+        <span class="eyebrow" data-en="Versions">Phiên bản</span>
+        <h1 data-en="What’s <em class=&quot;hl&quot;>new</em>">Có gì <em class="hl">mới</em></h1>
+        <p class="lead" data-en="Every MemDeck update. The plugin checks for updates by itself and installs them in Settings.">Tất cả các bản cập nhật của MemDeck. Plugin tự kiểm tra bản mới và cập nhật ngay trong phần Cài đặt.</p>
+    </div>
+</section>
+<section class="sec v-sec">
+    <div class="wrap">
+        <div class="v-latest" id="vLatest"><div class="v-loading" data-en="Loading…">Đang tải…</div></div>
+        <div class="v-list" id="vList"></div>
+    </div>
+</section>
 </main>
-
-
-<!-- FOOTER sẽ được tự động chèn vào đây -->
 <div id="footer-placeholder"></div>
-
-<!-- Script chính -->
+<script src="../js/site.js?v=20261112"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        let allVersions = [];
-        let currentVersionIndex = 0;
-        const VERSIONS_PER_PAGE = 3; // Hiển thị 3 thẻ
-        
-        const sidebarCardsContainer = document.querySelector('.sidebar-cards');
-        const versionDetailsContainer = document.querySelector('.version-details');
-        const latestVersionBanner = document.getElementById('latestVersionBanner');
-        const prevBtn = document.getElementById('prevVersions');
-        const nextBtn = document.getElementById('nextVersions');
-        
-        function formatVersionNumber(version) {
-            return version.startsWith('Ver ') ? version : `v${version}`;
-        }
-        
-        function createVersionCard(version, index, isActive = false) {
-            const versionNumber = formatVersionNumber(version.version);
-            
-            return `
-                <div class="sidebar-card ${isActive ? 'active' : ''}" 
-                     data-index="${index}" 
-                     data-version="${version.version}">
-                    <div class="sidebar-icon">📘</div>
-                    <div class="sidebar-content">
-                        <h3>${versionNumber}</h3>
-                        <p>${version.date} ${version.isLatest ? '• Mới nhất' : ''}</p>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function createVersionDetail(version) {
-            const versionNumber = formatVersionNumber(version.version);
-            let featuresContent = '';
-            
-            if (version.features && version.features.length > 0) {
-                let featuresHTML = '';
-                
-                version.features.forEach(feature => {
-                    // Title chính (feature-main)
-                    featuresHTML += `<li class="feature-main">${feature.title}</li>`;
-                    
-                    // Xử lý description
-                    if (feature.description) {
-                        if (Array.isArray(feature.description)) {
-                            // Nếu là mảng - hiển thị nhiều dòng với class feature-sub
-                            feature.description.forEach(desc => {
-                                featuresHTML += `
-                                    <li class="feature-sub">
-                                        <span class="sub-bullet">•</span>
-                                        <span>${desc}</span>
-                                    </li>
-                                `;
-                            });
-                        } else {
-                            // Nếu là string - hiển thị 1 dòng với class feature-sub
-                            featuresHTML += `
-                                <li class="feature-sub">
-                                    <span class="sub-bullet">•</span>
-                                    <span>${feature.description}</span>
-                                </li>
-                            `;
-                        }
-                    }
-                });
-                
-                featuresContent = `
-                    <div class="feature-highlights">
-                        <h4>Cập nhật chi tiết</h4>
-                        <ul>
-                            ${featuresHTML}
-                        </ul>
-                    </div>
-                `;
-            }
-            
-            return `
-                <section id="${version.version}" class="feature-detail-section">
-                    <div class="feature-detail-header">
-                        <h2 class="feature-detail-title">${versionNumber}</h2>
-                        <div class="feature-detail-subtitle">
-                            ${version.date} ${version.isLatest ? '• Phiên bản mới nhất' : ''}
-                        </div>
-                    </div>
-                    
-                    <div class="feature-content-wrapper">
-                        <div class="feature-description">
-                            <h3>${version.title}</h3>
-                            <p>${version.description}</p>
-                            ${featuresContent}
-                        </div>
-                    </div>
-                </section>
-            `;
-        }
-        
-        function createLatestVersionBanner(latestVersion) {
-            const versionNumber = formatVersionNumber(latestVersion.version);
-            
-            return `
-                <div class="banner-content">
-                    <div class="banner-badge">
-                        <span class="badge-text">MỚI NHẤT</span>
-                        <span class="version-number">${versionNumber}</span>
-                    </div>
-                    <h2 class="banner-title">🎉 Đã có bản cập nhật ${latestVersion.version} 🎉</h2>
-                    <p class="banner-description">${latestVersion.title}</p>
-                    
-                    <div class="banner-action-buttons">
-                        <div class="action-buttons-container">
-                            <a href="#${latestVersion.version}" class="banner-button detail-button" id="bannerDetailLink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M12 16v-4"/>
-                                    <path d="M12 8h.01"/>
-                                </svg>
-                                Xem chi tiết cập nhật
-                            </a>
-                            
-                            <div class="button-spacer"></div>
-                            
-                            <a href="guide.html#download" class="banner-button download-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7 10 12 15 17 10"/>
-                                    <line x1="12" y1="15" x2="12" y2="3"/>
-                                </svg>
-                                Tải plugin mới nhất
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-decoration">
-                    <div class="decoration-circle"></div>
-                    <div class="decoration-circle"></div>
-                    <div class="decoration-circle"></div>
-                </div>
-            `;
-        }
-        
-        function updateVersionCards() {
-            const startIndex = currentVersionIndex;
-            const endIndex = Math.min(startIndex + VERSIONS_PER_PAGE, allVersions.length);
-            
-            let cardsHTML = '';
-            for (let i = startIndex; i < endIndex; i++) {
-                const version = allVersions[i];
-                const isActive = i === startIndex;
-                cardsHTML += createVersionCard(version, i, isActive);
-            }
-            
-            sidebarCardsContainer.innerHTML = cardsHTML;
-            
-            // Cập nhật trạng thái nút điều hướng
-            prevBtn.disabled = currentVersionIndex === 0;
-            nextBtn.disabled = endIndex >= allVersions.length;
-            
-            // Thêm sự kiện click cho các thẻ
-            document.querySelectorAll('.sidebar-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const index = parseInt(this.dataset.index);
-                    const versionId = this.dataset.version;
-                    
-                    currentVersionIndex = Math.floor(index / VERSIONS_PER_PAGE) * VERSIONS_PER_PAGE;
-                    scrollToVersion(versionId);
-                    setTimeout(updateVersionCards, 100);
-                });
-            });
-        }
-        
-        function scrollToVersion(versionId) {
-            const targetSection = document.getElementById(versionId);
-            if (targetSection) {
-                const header = document.querySelector('.navbar');
-                const offset = header ? header.offsetHeight + 40 : 100;
-                const targetPosition = targetSection.offsetTop - offset;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                history.pushState(null, null, `#${versionId}`);
-            }
-        }
-        
-        function displayAllVersionDetails() {
-            let detailsHTML = '';
-            allVersions.forEach((version) => {
-                detailsHTML += createVersionDetail(version);
-            });
-            versionDetailsContainer.innerHTML = detailsHTML;
-        }
-        
-        function handleScroll() {
-            const scrollPosition = window.scrollY + 150;
-            let currentActiveIndex = 0;
-            
-            // Tìm phiên bản nào đang hiển thị gần nhất
-            for (let i = 0; i < allVersions.length; i++) {
-                const section = document.getElementById(allVersions[i].version);
-                if (section) {
-                    const sectionTop = section.offsetTop;
-                    if (scrollPosition >= sectionTop) {
-                        currentActiveIndex = i;
-                    }
-                }
-            }
-            
-            // Tính toán xem có cần thay đổi nhóm thẻ hiện tại không
-            const newGroupIndex = Math.floor(currentActiveIndex / VERSIONS_PER_PAGE) * VERSIONS_PER_PAGE;
-            
-            if (newGroupIndex !== currentVersionIndex) {
-                currentVersionIndex = newGroupIndex;
-                updateVersionCards();
-            }
-            
-            // Cập nhật active class cho thẻ đang xem
-            document.querySelectorAll('.sidebar-card').forEach(card => {
-                card.classList.remove('active');
-                const cardIndex = parseInt(card.dataset.index);
-                if (cardIndex === currentActiveIndex) {
-                    card.classList.add('active');
-                }
-            });
-        }
-        
-        async function init() {
-            try {
-                const response = await fetch('../json/version.json?v=' + Date.now());
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                
-                const versionData = await response.json();
-                if (!versionData.versions || !Array.isArray(versionData.versions)) {
-                    throw new Error('Dữ liệu JSON không đúng định dạng');
-                }
-                
-                allVersions = versionData.versions;
-                
-                // Sắp xếp từ mới đến cũ
-                allVersions.sort((a, b) => {
-                    const verA = a.version.split('.').map(Number);
-                    const verB = b.version.split('.').map(Number);
-                    for (let i = 0; i < Math.max(verA.length, verB.length); i++) {
-                        const numA = verA[i] || 0;
-                        const numB = verB[i] || 0;
-                        if (numB !== numA) return numB - numA;
-                    }
-                    return 0;
-                });
-                
-                // Tìm phiên bản mới nhất
-                const latestVersion = allVersions.find(v => v.isLatest) || allVersions[0];
-                
-                // Hiển thị banner phiên bản mới nhất
-                if (latestVersionBanner && latestVersion) {
-                    latestVersionBanner.innerHTML = createLatestVersionBanner(latestVersion);
-                }
-                
-                // Hiển thị tất cả chi tiết phiên bản
-                displayAllVersionDetails();
-                
-                // Hiển thị thẻ phiên bản ban đầu
-                updateVersionCards();
-                
-                // Xử lý sự kiện cuộn
-                window.addEventListener('scroll', handleScroll);
-                
-                // Xử lý nút điều hướng
-                prevBtn.addEventListener('click', function() {
-                    if (currentVersionIndex > 0) {
-                        currentVersionIndex -= VERSIONS_PER_PAGE;
-                        if (currentVersionIndex < 0) currentVersionIndex = 0;
-                        updateVersionCards();
-                    }
-                });
-                
-                nextBtn.addEventListener('click', function() {
-                    if (currentVersionIndex + VERSIONS_PER_PAGE < allVersions.length) {
-                        currentVersionIndex += VERSIONS_PER_PAGE;
-                        updateVersionCards();
-                    }
-                });
-                
-                // Xử lý hash URL khi load
-                if (window.location.hash) {
-                    const hash = window.location.hash.substring(1);
-                    const versionIndex = allVersions.findIndex(v => v.version === hash);
-                    
-                    if (versionIndex !== -1) {
-                        currentVersionIndex = Math.floor(versionIndex / VERSIONS_PER_PAGE) * VERSIONS_PER_PAGE;
-                        updateVersionCards();
-                        
-                        setTimeout(() => {
-                            scrollToVersion(hash);
-                        }, 500);
-                    }
-                }
-                
-                // Xử lý banner button
-                document.addEventListener('click', function(e) {
-                    if (e.target.id === 'bannerDetailLink' || 
-                        e.target.closest('.detail-button')) {
-                        e.preventDefault();
-                        const targetId = e.target.closest('.detail-button').getAttribute('href');
-                        scrollToVersion(targetId.replace('#', ''));
-                    }
-                    // Nút download sẽ điều hướng bình thường
-                });
-                
-            } catch (error) {
-                console.error('Lỗi khi tải dữ liệu phiên bản:', error);
-                const errorHTML = `
-                    <div class="error-state">
-                        <div class="error-icon">⚠️</div>
-                        <h3>Không thể tải dữ liệu</h3>
-                        <button onclick="location.reload()" class="retry-button">Thử lại</button>
-                    </div>
-                `;
-                if (sidebarCardsContainer) sidebarCardsContainer.innerHTML = errorHTML;
-                if (latestVersionBanner) latestVersionBanner.innerHTML = errorHTML;
-                if (versionDetailsContainer) versionDetailsContainer.innerHTML = errorHTML;
-            }
-        }
-        
-        init();
-        
-    }, 500);
-});
+(function () {
+    var data = null;
+    var L = function () { return window.MD_LANG === 'en' ? 'en' : 'vi'; };
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+    var md = function (s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); };
+    // trường song ngữ: dùng xxx_en khi xem tiếng Anh, không có thì dùng bản tiếng Việt
+    function f(o, k) { return (L() === 'en' && o[k + '_en']) ? o[k + '_en'] : o[k]; }
+    function T(vi, en) { return L() === 'en' ? en : vi; }
+    function vnum(v) { return /^ver/i.test(v) ? v : 'v' + v; }
+    function feats(v) {
+        return (v.features || []).map(function (x) {
+            var d = f(x, 'description'); d = Array.isArray(d) ? d : (d ? [d] : []);
+            return '<li><b>' + md(f(x, 'title')) + '</b>' + (d.length ? '<ul>' + d.map(function (y) { return '<li>' + md(y) + '</li>'; }).join('') + '</ul>' : '') + '</li>';
+        }).join('');
+    }
+    function render() {
+        if (!data) return;
+        var latest = data.find(function (v) { return v.isLatest; }) || data[0];
+        document.getElementById('vLatest').innerHTML = latest ?
+            '<div class="v-hero"><div><span class="v-tag">' + T('Mới nhất', 'Latest') + '</span><h2>' + esc(vnum(latest.version)) + '</h2>' +
+            '<p class="v-date">' + esc(f(latest, 'date')) + '</p><h3>' + md(f(latest, 'title')) + '</h3><p>' + md(f(latest, 'description')) + '</p></div>' +
+            '<div class="v-hero-cta"><a class="btn btn-light" href="guide.html#download">' + T('Tải bản mới nhất', 'Download the latest') + '</a>' +
+            '<a class="btn btn-outline-light" href="#v' + esc(latest.version) + '">' + T('Xem chi tiết', 'See details') + '</a></div></div>' : '';
+        document.getElementById('vList').innerHTML = data.map(function (v) {
+            return '<article class="v-item" id="v' + esc(v.version) + '"><div class="v-dot"></div><div class="v-card">' +
+                '<div class="v-top"><h3>' + esc(vnum(v.version)) + '</h3><span>' + esc(f(v, 'date')) + (v.isLatest ? ' · ' + T('Mới nhất', 'Latest') : '') + '</span></div>' +
+                '<h4>' + md(f(v, 'title')) + '</h4>' + (f(v, 'description') ? '<p>' + md(f(v, 'description')) + '</p>' : '') +
+                (feats(v) ? '<ul class="v-feats">' + feats(v) + '</ul>' : '') + '</div></article>';
+        }).join('');
+    }
+    function load(urls) {
+        var u = urls.shift();
+        return fetch(u + '?v=' + Date.now()).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+            .catch(function (e) { if (urls.length) return load(urls); throw e; });
+    }
+    load(['../json/version.json', '../json/Version.json']).then(function (j) {
+        data = (j.versions || []).slice().sort(function (a, b) {
+            var x = String(a.version).replace(/[^\d.]/g, '').split('.').map(Number), y = String(b.version).replace(/[^\d.]/g, '').split('.').map(Number);
+            for (var i = 0; i < Math.max(x.length, y.length); i++) { if ((y[i] || 0) !== (x[i] || 0)) return (y[i] || 0) - (x[i] || 0); }
+            return 0;
+        });
+        render();
+    }).catch(function () {
+        document.getElementById('vLatest').innerHTML = '<div class="v-loading">' + T('Chưa tải được lịch sử phiên bản.', 'Could not load the release history.') + '</div>';
+    });
+    document.addEventListener('md:lang', render);
+})();
 </script>
-
 </body>
 </html>

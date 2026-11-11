@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<script src="../js/security.js?v=20260416"></script>
+<script src="../js/cloudflare-loader.js?v=20260416"></script>
+<meta charset="UTF-8">
+<title data-en="Deck store – MemDeck">Kho bộ thẻ – MemDeck</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Duyệt kho bộ thẻ MemDeck: tiếng Nhật, Anh, Trung, Hàn và nhiều ngôn ngữ khác, mọi trình độ. Xem thẻ mẫu và chủ đề trước khi tải trong app." data-en-content="Browse the MemDeck deck store: Japanese, English, Chinese, Korean and more, at every level. Preview sample cards and topics before downloading in the app.">
+<meta property="og:image" content="https://doc-online.io.vn/assets/images/banner/og-memdeck.jpg">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=20260303">
+<link rel="stylesheet" href="../css/site.css?v=20261112">
+<script src="../js/i18n.js?v=20261112"></script>
+<script src="../js/include.js?v=20261112"></script>
+</head>
+<body class="mx">
+
+<div id="header-placeholder"></div>
+
+<main>
+<section class="page-hero store-hero">
+    <div class="wrap reveal">
+        <span class="eyebrow" data-en="Deck store">Kho bộ thẻ</span>
+        <h1 data-en="Every language, <em class=&quot;hl&quot;>every level</em>">Mọi ngôn ngữ, <em class="hl">mọi trình độ</em></h1>
+        <p class="lead" data-en="Japanese, English, Chinese, Korean and more, with meanings in many languages. Preview sample cards and topics here, then download the deck inside the MemDeck app.">Tiếng Nhật, Anh, Trung, Hàn và nhiều ngôn ngữ khác, nghĩa bằng nhiều thứ tiếng. Xem thẻ mẫu và chủ đề ngay tại đây, rồi tải bộ thẻ trong app MemDeck.</p>
+    </div>
+</section>
+
+<section class="sec store-sec">
+    <div class="wrap">
+        <div class="st-bar">
+            <label class="st-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input id="stQ" type="search" autocomplete="off" placeholder="Tìm bộ thẻ, chủ đề, trình độ…" data-en-placeholder="Search decks, topics, levels…">
+            </label>
+            <div class="st-selects">
+                <label><span data-en="Meanings in">Nghĩa bằng</span>
+                    <select id="stMeaning"></select></label>
+                <label><span data-en="Sort">Sắp xếp</span>
+                    <select id="stSort">
+                        <option value="featured" data-en="Featured">Nổi bật</option>
+                        <option value="new" data-en="Newest">Mới nhất</option>
+                        <option value="popular" data-en="Popular">Phổ biến</option>
+                        <option value="name" data-en="Name">Tên</option>
+                        <option value="size" data-en="Most cards">Nhiều thẻ nhất</option>
+                    </select></label>
+            </div>
+        </div>
+        <div class="st-chips" id="stLangs" aria-label="Ngôn ngữ"></div>
+        <div class="st-chips small" id="stLevels" aria-label="Trình độ"></div>
+        <p class="st-count" id="stCount"></p>
+        <div class="st-grid" id="stGrid"></div>
+        <div class="st-more"><button class="btn btn-ghost" id="stMore" hidden data-en="Show more">Xem thêm</button></div>
+        <div class="st-howto reveal">
+            <div>
+                <h3 data-en="How to download a deck">Cách tải bộ thẻ</h3>
+                <p data-en="In MemDeck, open the <b>Decks</b> tab, tap <b>+ Add</b> and choose <b>Download from Store</b>. Pick the meaning language you want and the deck is saved on your device, ready to study offline.">Trong MemDeck, mở tab <b>Bộ thẻ</b>, nhấn <b>+ Thêm</b> rồi chọn <b>Tải từ Store</b>. Chọn ngôn ngữ nghĩa bạn muốn, bộ thẻ được lưu trên máy để học cả khi không có mạng.</p>
+            </div>
+            <a class="btn btn-primary" href="guide.html#download" data-en="Get the plugin">Tải plugin</a>
+        </div>
+    </div>
+</section>
+</main>
+
+<div class="st-modal" id="stModal" hidden>
+    <div class="st-backdrop" data-close></div>
+    <div class="st-panel" role="dialog" aria-modal="true" aria-labelledby="stmTitle">
+        <button class="st-x" data-close aria-label="Đóng" data-en-aria-label="Close">✕</button>
+        <div class="st-panel-body" id="stmBody"></div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="../js/site.js?v=20261112"></script>
+<script src="../js/store.js?v=20261112"></script>
+</body>
+</html>

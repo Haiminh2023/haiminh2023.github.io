@@ -2,6 +2,14 @@
 (function () {
     'use strict';
 
+    /* ----- chiều cao header nổi -> biến CSS --nav-h (cho menu dính) ----- */
+    function navHeight() {
+        var nb = document.querySelector('.navbar');
+        var h = nb && !nb.classList.contains('hidden') ? nb.offsetHeight : 0;
+        document.documentElement.style.setProperty('--nav-h', h + 'px');
+    }
+    setInterval(navHeight, 300);
+
     /* ----- Hiện dần khi cuộn ----- */
     var items = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
@@ -60,6 +68,7 @@
         var p = video.play();
         if (p && p.catch) p.catch(function () {});
     }
+    document.addEventListener('md:lang', function () { if (video) { video.pause(); frame.classList.remove('playing'); video.load(); } });
     if (playBtn) playBtn.addEventListener('click', function () { playVideo(); });
     if (video) video.addEventListener('play', function () { frame.classList.add('playing'); });
     document.querySelectorAll('.video-chips button').forEach(function (b) {
@@ -74,12 +83,6 @@
     if (sub) {
         var links = Array.prototype.slice.call(sub.querySelectorAll('a'));
         var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-        function navH() {
-            var nb = document.querySelector('.navbar');
-            var h = nb && !nb.classList.contains('hidden') ? nb.offsetHeight : 0;
-            document.documentElement.style.setProperty('--nav-h', h + 'px');
-        }
-        setInterval(navH, 300);
         function mark() {
             var y = window.scrollY + 180, cur = secs[0];
             secs.forEach(function (s) { if (s.offsetTop <= y) cur = s; });

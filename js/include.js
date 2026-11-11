@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            <span class="download-text">Tải plugin</span>
+            <span class="download-text" data-en="Get plugin">Tải plugin</span>
         `;
         document.body.appendChild(button);
     }
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         links.forEach(link => {
             link.classList.remove('active');
-            const linkPage = link.getAttribute('href').split('/').pop();
+            const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
             if (currentPage === linkPage) {
                 link.classList.add('active');
             }

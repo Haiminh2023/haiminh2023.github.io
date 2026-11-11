@@ -1,0 +1,28 @@
+{
+  "versions": [
+    {
+      "version": "1.0.0",
+      "date": "09 Tháng 5, 2026",
+      "date_en": "9 May 2026",
+      "isLatest": true,
+      "title": "**Phát hành mới plugin**",
+      "title_en": "**First release**",
+      "description": "Học ít - Nhớ lâu",
+      "description_en": "Learn less, remember longer",
+      "features": [
+        {
+          "title": "Flash",
+          "title_en": "Flashcards",
+          "description": ["Học thông minh với lặp lại ngắt quãng"],
+          "description_en": ["Smart study with spaced repetition"]
+        },
+        {
+          "title": "Test quiz, cloze",
+          "title_en": "Quiz and cloze tests",
+          "description": ["Ôn luyện"],
+          "description_en": ["Practice"]
+        }
+      ]
+    }
+  ]
+}

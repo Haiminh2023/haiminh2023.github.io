@@ -4,17 +4,19 @@
 <script src="../js/security.js?v=20260416"></script>
 <script src="../js/cloudflare-loader.js?v=20260416"></script>
 <meta charset="UTF-8">
-<title>Tính năng – MemDeck: Học ít, nhớ lâu</title>
+<title data-en="Features – MemDeck: learn less, remember longer">Tính năng – MemDeck: Học ít, nhớ lâu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Tính năng MemDeck: học flashcard SM-2, 7 kiểu kiểm tra, gia sư AI, kho bộ thẻ đa ngôn ngữ, nhập CSV/Anki, thống kê học tập.">
+<meta name="description" content="Tính năng MemDeck: học flashcard SM-2, 7 kiểu kiểm tra, gia sư AI, kho bộ thẻ đa ngôn ngữ, nhập CSV/Anki, thống kê học tập." data-en-content="MemDeck features: SM-2 flashcards, 7 test types, AI tutor, multilingual deck store, CSV/Anki import, study statistics.">
 <meta property="og:image" content="https://doc-online.io.vn/assets/images/banner/og-memdeck.jpg">
 <meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css?v=20260303">
-<link rel="stylesheet" href="../css/site.css?v=20261111">
-<script src="../js/include.js?v=20261111"></script>
+<link rel="stylesheet" href="../css/site.css?v=20261112">
+<script src="../js/i18n.js?v=20261112"></script>
+<script src="../js/include.js?v=20261112"></script>
 </head>
 <body class="mx">
 
@@ -23,95 +25,95 @@
 <main>
 <section class="page-hero">
     <div class="wrap reveal">
-        <span class="eyebrow">Tính năng</span>
-        <h1>Một plugin, <em class="hl">đủ cả</em> để học từ vựng</h1>
-        <p class="lead">Học flashcard, kiểm tra, hỏi AI, tải bộ thẻ và theo dõi tiến độ, ngay trên máy đọc sách e-ink.</p>
+        <span class="eyebrow" data-en="Features">Tính năng</span>
+        <h1 data-en="One plugin, &lt;em class=&quot;hl&quot;&gt;everything&lt;/em&gt; you need to learn a language">Một plugin, <em class="hl">đủ cả</em> để học ngoại ngữ</h1>
+        <p class="lead" data-en="Flashcards, tests, an AI tutor, decks in many languages and progress tracking, right on your e-ink reader.">Học flashcard, kiểm tra, hỏi AI, tải bộ thẻ nhiều ngôn ngữ và theo dõi tiến độ, ngay trên máy đọc sách e-ink.</p>
     </div>
 </section>
 
-<nav class="subnav" aria-label="Các nhóm tính năng"><div class="wrap"><a href="#study-feature">Học flashcard</a><a href="#test-feature">Kiểm tra</a><a href="#ai-feature">Gia sư AI</a><a href="#library-feature">Thư viện & Store</a><a href="#upload-feature">Bộ thẻ của bạn</a><a href="#progress-feature">Thống kê</a></div></nav>
+<nav class="subnav" aria-label="Tính năng" data-en-aria-label="Features"><div class="wrap"><a href="#study-feature" data-en="Flashcards">Học flashcard</a><a href="#test-feature" data-en="Tests">Kiểm tra</a><a href="#ai-feature" data-en="AI tutor">Gia sư AI</a><a href="#library-feature" data-en="Library &amp; Store">Thư viện & Store</a><a href="#upload-feature" data-en="Your decks">Bộ thẻ của bạn</a><a href="#progress-feature" data-en="Statistics">Thống kê</a></div></nav>
 
 <section class="feat" id="study-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Học flashcard</span>
-            <h2>Chạm để lật. <em class="hl">Nhớ</em> theo SM-2.</h2>
-            <p class="lead">Thẻ hiện đúng lúc bạn sắp quên. Thẻ khó gặp lại sớm, thẻ dễ giãn dần, nên mỗi ngày chỉ cần vài phút.</p>
-            <ul class="feat-list"><li><i>1</i><div><b>Chạm vào thẻ để lật</b><span>Không cần nút lật, từ khoá giữ nguyên chỗ ở cả hai mặt.</span></div></li><li><i>あ</i><div><b>Phiên âm trên chữ Hán</b><span>Furigana cho tiếng Nhật, pinyin cho tiếng Trung, nằm ngay trên chữ trong câu ví dụ.</span></div></li><li><i>2</i><div><b>Nghĩa và 2 câu ví dụ có dịch</b><span>Kèm cách đọc, âm Hán Việt và loại từ.</span></div></li><li><i>✓</i><div><b>Lại · Khó · Tốt · Dễ</b><span>Mỗi nút hiện sẵn ngày ôn lại. Chạm là chuyển sang thẻ tiếp theo.</span></div></li></ul>
+            <span class="eyebrow" data-en="Flashcards">Học flashcard</span>
+            <h2 data-en="Tap to flip. &lt;em class=&quot;hl&quot;&gt;Remember&lt;/em&gt; with SM-2.">Chạm để lật. <em class="hl">Nhớ</em> theo SM-2.</h2>
+            <p class="lead" data-en="Cards come back right before you forget them. Hard cards return sooner, easy ones space out, so a few minutes a day is enough.">Thẻ hiện đúng lúc bạn sắp quên. Thẻ khó gặp lại sớm, thẻ dễ giãn dần, nên mỗi ngày chỉ cần vài phút.</p>
+            <ul class="feat-list"><li><i>1</i><div><b data-en="Tap the card to flip">Chạm vào thẻ để lật</b><span data-en="No flip button needed, the word stays in place on both sides.">Không cần nút lật, từ khoá giữ nguyên chỗ ở cả hai mặt.</span></div></li><li><i>あ</i><div><b data-en="Readings above the text">Phiên âm trên chữ</b><span data-en="Furigana for Japanese, pinyin for Chinese, right above the words in the examples.">Furigana cho tiếng Nhật, pinyin cho tiếng Trung, nằm ngay trên chữ trong câu ví dụ.</span></div></li><li><i>2</i><div><b data-en="Meaning and 2 translated examples">Nghĩa và 2 câu ví dụ có dịch</b><span data-en="Plus reading, Sino-Vietnamese reading and part of speech.">Kèm cách đọc, âm Hán Việt và loại từ.</span></div></li><li><i>✓</i><div><b data-en="Again · Hard · Good · Easy">Lại · Khó · Tốt · Dễ</b><span data-en="Each button shows the next review date. Tap and the next card appears.">Mỗi nút hiện sẵn ngày ôn lại. Chạm là chuyển sang thẻ tiếp theo.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/study_front.jpg" alt="Mặt trước" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/study_back.jpg" alt="Mặt sau" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/card_list.jpg" alt="Danh sách thẻ" loading="lazy"></div></div></div>
-            <p class="shot-cap">Mặt trước · Mặt sau · Danh sách thẻ</p>
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/study_front.jpg" data-en-src="../assets/images/app/en/study_front.jpg" alt="Mặt trước" data-en-alt="Front" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/study_back.jpg" data-en-src="../assets/images/app/en/study_back.jpg" alt="Mặt sau" data-en-alt="Back" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/card_list.jpg" data-en-src="../assets/images/app/en/card_list.jpg" alt="Danh sách thẻ" data-en-alt="Card list" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Front · Back · Card list">Mặt trước · Mặt sau · Danh sách thẻ</p>
         </div>
     </div>
 </section>
 <section class="feat flip" id="test-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Kiểm tra</span>
-            <h2><em class="hl">7</em> kiểu test, đổi cách hỏi để nhớ chắc</h2>
-            <p class="lead">Mỗi kiểu test hỏi từ một góc khác nhau. Đúng hay sai đều được tính lại vào lịch ôn và điểm XP.</p>
-            <ul class="feat-list"><li><i>A</i><div><b>Trắc nghiệm, Đúng / Sai</b><span>Chọn từ đúng với nghĩa, hoặc đoán câu đúng sai.</span></div></li><li><i>__</i><div><b>Điền từ (Cloze)</b><span>Điền từ còn thiếu vào câu ví dụ, học theo ngữ cảnh.</span></div></li><li><i>⇄</i><div><b>Ghép cặp</b><span>Nối từ với nghĩa, chơi theo lượt.</span></div></li><li><i>読</i><div><b>Cách đọc, Nghĩa → Từ, Gõ từ</b><span>Luyện đọc chữ Hán và nhớ chủ động.</span></div></li></ul>
+            <span class="eyebrow" data-en="Tests">Kiểm tra</span>
+            <h2 data-en="&lt;em class=&quot;hl&quot;&gt;7&lt;/em&gt; test types that change the question so it sticks"><em class="hl">7</em> kiểu test, đổi cách hỏi để nhớ chắc</h2>
+            <p class="lead" data-en="Each test asks from a different angle. Right or wrong, every answer updates your review schedule and XP.">Mỗi kiểu test hỏi từ một góc khác nhau. Đúng hay sai đều được tính lại vào lịch ôn và điểm XP.</p>
+            <ul class="feat-list"><li><i>A</i><div><b data-en="Multiple choice, True / False">Trắc nghiệm, Đúng / Sai</b><span data-en="Pick the word that matches the meaning, or judge a statement.">Chọn từ đúng với nghĩa, hoặc đoán câu đúng sai.</span></div></li><li><i>__</i><div><b data-en="Fill in the blank (cloze)">Điền từ (Cloze)</b><span data-en="Fill the missing word in an example sentence and learn in context.">Điền từ còn thiếu vào câu ví dụ, học theo ngữ cảnh.</span></div></li><li><i>⇄</i><div><b data-en="Matching">Ghép cặp</b><span data-en="Match words with meanings, round by round.">Nối từ với nghĩa, chơi theo lượt.</span></div></li><li><i>読</i><div><b data-en="Reading, Meaning → Word, Typing">Cách đọc, Nghĩa → Từ, Gõ từ</b><span data-en="Practise reading and active recall.">Luyện đọc chữ và nhớ chủ động.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/quiz.jpg" alt="Trắc nghiệm" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/cloze.jpg" alt="Điền từ" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/matching.jpg" alt="Ghép cặp" loading="lazy"></div></div></div>
-            <p class="shot-cap">Trắc nghiệm · Điền từ · Ghép cặp</p>
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/quiz.jpg" data-en-src="../assets/images/app/en/quiz.jpg" alt="Trắc nghiệm" data-en-alt="Multiple choice" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/cloze.jpg" data-en-src="../assets/images/app/en/cloze.jpg" alt="Điền từ" data-en-alt="Fill in" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/matching.jpg" data-en-src="../assets/images/app/en/matching.jpg" alt="Ghép cặp" data-en-alt="Matching" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Multiple choice · Fill in · Matching">Trắc nghiệm · Điền từ · Ghép cặp</p>
         </div>
     </div>
 </section>
 <section class="feat" id="ai-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Gia sư AI</span>
-            <h2>Hỏi gì cũng có <em class="hl">AI</em> trả lời</h2>
-            <p class="lead">Dùng Google Gemini bằng key miễn phí của bạn. AI biết bạn đang học ngôn ngữ nào, trình độ nào, và trả lời bằng ngôn ngữ giao diện.</p>
-            <ul class="feat-list"><li><i>✦</i><div><b>4 nút AI ngay dưới thẻ</b><span>Mẹo nhớ, Giải thích, Thêm ví dụ, Từ dễ lẫn.</span></div></li><li><i>?</i><div><b>Câu hỏi gợi ý một chạm</b><span>Dạy 5 từ mới, kiểm tra từ đang học, luyện hội thoại, sửa câu, giải thích ngữ pháp, truyện ngắn bằng từ đang học…</span></div></li><li><i>+</i><div><b>Tạo bộ thẻ bằng AI</b><span>Chọn ngôn ngữ, trình độ A1–C2, chủ đề và số thẻ từ 20 đến 500.</span></div></li><li><i>⌕</i><div><b>Tra cứu và từ điển AI</b><span>Tìm một từ trong mọi bộ thẻ đã có, rồi nhờ AI giải thích sâu hơn.</span></div></li></ul>
+            <span class="eyebrow" data-en="AI tutor">Gia sư AI</span>
+            <h2 data-en="Ask anything, &lt;em class=&quot;hl&quot;&gt;AI&lt;/em&gt; answers">Hỏi gì cũng có <em class="hl">AI</em> trả lời</h2>
+            <p class="lead" data-en="Uses Google Gemini with your own free key. The AI knows which language and level you are learning, and replies in your interface language.">Dùng Google Gemini bằng key miễn phí của bạn. AI biết bạn đang học ngôn ngữ nào, trình độ nào, và trả lời bằng ngôn ngữ giao diện.</p>
+            <ul class="feat-list"><li><i>✦</i><div><b data-en="4 AI buttons under every card">4 nút AI ngay dưới thẻ</b><span data-en="Memory tip, Explain, More examples, Look-alikes.">Mẹo nhớ, Giải thích, Thêm ví dụ, Từ dễ lẫn.</span></div></li><li><i>?</i><div><b data-en="One-tap suggested prompts">Câu hỏi gợi ý một chạm</b><span data-en="Teach me 5 new words, quiz my words, practise a conversation, fix my sentence, explain grammar, a short story with my words…">Dạy 5 từ mới, kiểm tra từ đang học, luyện hội thoại, sửa câu, giải thích ngữ pháp, truyện ngắn bằng từ đang học…</span></div></li><li><i>+</i><div><b data-en="AI deck builder">Tạo bộ thẻ bằng AI</b><span data-en="Choose a language, level A1–C2, topics and 20 to 500 cards.">Chọn ngôn ngữ, trình độ A1–C2, chủ đề và số thẻ từ 20 đến 500.</span></div></li><li><i>⌕</i><div><b data-en="Lookup and AI dictionary">Tra cứu và từ điển AI</b><span data-en="Find a word across all your decks, then ask the AI to go deeper.">Tìm một từ trong mọi bộ thẻ đã có, rồi nhờ AI giải thích sâu hơn.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/ai_suggest.jpg" alt="Câu hỏi gợi ý" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_chat.jpg" alt="Hỏi đáp AI" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_deck.jpg" alt="Tạo bộ thẻ bằng AI" loading="lazy"></div></div></div>
-            <p class="shot-cap">Câu hỏi gợi ý · Hỏi đáp AI · Tạo bộ thẻ bằng AI</p>
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/ai_suggest.jpg" data-en-src="../assets/images/app/en/ai_suggest.jpg" alt="Câu hỏi gợi ý" data-en-alt="Suggested prompts" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_chat.jpg" data-en-src="../assets/images/app/en/ai_chat.jpg" alt="Hỏi đáp AI" data-en-alt="AI chat" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/ai_deck.jpg" data-en-src="../assets/images/app/en/ai_deck.jpg" alt="Tạo bộ thẻ bằng AI" data-en-alt="AI deck builder" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Suggested prompts · AI chat · AI deck builder">Câu hỏi gợi ý · Hỏi đáp AI · Tạo bộ thẻ bằng AI</p>
         </div>
     </div>
 </section>
 <section class="feat flip" id="library-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Thư viện & Store</span>
-            <h2>Kho bộ thẻ <em class="hl">đa ngôn ngữ</em></h2>
-            <p class="lead">Tải bộ thẻ có sẵn rồi học không cần mạng. Thư viện cho biết bộ nào đến hạn, đã học bao nhiêu phần trăm.</p>
-            <ul class="feat-list"><li><i>N</i><div><b>JLPT N5 → N1 và nhiều bộ khác</b><span>HSK, tiếng Anh, tiếng Hàn… lọc theo ngôn ngữ, trình độ, thể loại.</span></div></li><li><i>9</i><div><b>Chọn ngôn ngữ nghĩa khi tải</b><span>Việt, Anh, Hàn, Trung, Pháp, Đức, Tây Ban Nha, Nga, Thái.</span></div></li><li><i>👁</i><div><b>Xem trước khi tải</b><span>Giới thiệu, thẻ mẫu và danh sách chủ đề.</span></div></li><li><i>↻</i><div><b>Cập nhật không mất tiến độ</b><span>Bộ đã tải có dấu ✓, có bản mới thì MemDeck báo. Tải chạy nền, vẫn học được.</span></div></li></ul>
+            <span class="eyebrow" data-en="Library &amp; Store">Thư viện & Store</span>
+            <h2 data-en="A &lt;em class=&quot;hl&quot;&gt;multilingual&lt;/em&gt; deck store">Kho bộ thẻ <em class="hl">đa ngôn ngữ</em></h2>
+            <p class="lead" data-en="Decks for many languages and every level, with new ones added all the time. Download once and study offline. The library shows what is due and how far you are.">Bộ thẻ cho nhiều ngôn ngữ và mọi trình độ, liên tục có bộ mới. Tải về rồi học không cần mạng. Thư viện cho biết bộ nào đến hạn, đã học bao nhiêu phần trăm.</p>
+            <ul class="feat-list"><li><i>文</i><div><b data-en="Japanese, English, Chinese, Korean and more">Tiếng Nhật, Anh, Trung, Hàn và hơn nữa</b><span data-en="Filter by language, level and category; search by name or topic.">Lọc theo ngôn ngữ, trình độ, thể loại; tìm theo tên hoặc chủ đề.</span></div></li><li><i>9</i><div><b data-en="Pick the meaning language">Chọn ngôn ngữ nghĩa khi tải</b><span data-en="Vietnamese, English, Korean, Chinese, French, German, Spanish, Russian, Thai (depending on the deck).">Việt, Anh, Hàn, Trung, Pháp, Đức, Tây Ban Nha, Nga, Thái (tuỳ bộ thẻ).</span></div></li><li><i>◉</i><div><b data-en="Preview before downloading">Xem trước khi tải</b><span data-en="Description, sample cards and topics. You can also &lt;a href=&quot;store.html&quot;&gt;browse on the web&lt;/a&gt;.">Giới thiệu, thẻ mẫu và danh sách chủ đề. Xem được cả <a href="store.html">trên web</a>.</span></div></li><li><i>↻</i><div><b data-en="Update without losing progress">Cập nhật không mất tiến độ</b><span data-en="Downloaded decks show a ✓ and MemDeck tells you when there is a new version. Downloads run in the background.">Bộ đã tải có dấu ✓, có bản mới thì MemDeck báo. Tải chạy nền, vẫn học được.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/store.jpg" alt="Kho sách" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/store_detail.jpg" alt="Chi tiết bộ thẻ" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" alt="Thư viện" loading="lazy"></div></div></div>
-            <p class="shot-cap">Kho sách · Chi tiết bộ thẻ · Thư viện</p>
+            <div class="shots three"><div class="device"><div class="screen"><img src="../assets/images/app/store.jpg" data-en-src="../assets/images/app/en/store.jpg" alt="Kho bộ thẻ" data-en-alt="Deck store" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/store_detail.jpg" data-en-src="../assets/images/app/en/store_detail.jpg" alt="Chi tiết bộ thẻ" data-en-alt="Deck details" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" data-en-src="../assets/images/app/en/library.jpg" alt="Thư viện" data-en-alt="Library" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Deck store · Deck details · Library">Kho bộ thẻ · Chi tiết bộ thẻ · Thư viện</p>
         </div>
     </div>
 </section>
 <section class="feat" id="upload-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Bộ thẻ của bạn</span>
-            <h2>Tự tạo bộ thẻ <em class="hl">từ file</em></h2>
-            <p class="lead">Giáo viên, học sinh hay người đi làm đều tự làm được bộ thẻ riêng, rồi học với đủ tính năng như bộ thẻ trên Store.</p>
-            <ul class="feat-list"><li><i>CSV</i><div><b>Nhập file CSV / Excel</b><span>Dùng file mẫu trong thư mục plugin, kèm ảnh bìa nếu muốn.</span></div></li><li><i>A</i><div><b>Nhập bộ thẻ Anki (.apkg)</b><span>Mang bộ thẻ cũ sang, AI điền các ô còn trống.</span></div></li><li><i>⇄</i><div><b>Gửi file qua Wi-Fi</b><span>Quét mã QR trên máy đọc, chọn file trên điện thoại hoặc máy tính là xong.</span></div></li><li><i>本</i><div><b>Tạo thẻ từ sách đang đọc</b><span>Thêm từ mới ngay khi đang đọc trong KOReader.</span></div></li></ul>
+            <span class="eyebrow" data-en="Your own decks">Bộ thẻ của bạn</span>
+            <h2 data-en="Build decks &lt;em class=&quot;hl&quot;&gt;from files&lt;/em&gt;">Tự tạo bộ thẻ <em class="hl">từ file</em></h2>
+            <p class="lead" data-en="Teachers, students and professionals can make their own decks and study them with every feature store decks have.">Giáo viên, học sinh hay người đi làm đều tự làm được bộ thẻ riêng, rồi học với đủ tính năng như bộ thẻ trên Store.</p>
+            <ul class="feat-list"><li><i>CSV</i><div><b data-en="Import CSV / Excel">Nhập file CSV / Excel</b><span data-en="Use the sample file in the plugin folder, with a cover image if you like.">Dùng file mẫu trong thư mục plugin, kèm ảnh bìa nếu muốn.</span></div></li><li><i>A</i><div><b data-en="Import Anki decks (.apkg)">Nhập bộ thẻ Anki (.apkg)</b><span data-en="Bring your old decks over; AI fills in empty fields.">Mang bộ thẻ cũ sang, AI điền các ô còn trống.</span></div></li><li><i>⇄</i><div><b data-en="Send files over Wi-Fi">Gửi file qua Wi-Fi</b><span data-en="Scan the QR code on the reader, pick a file on your phone or computer, done.">Quét mã QR trên máy đọc, chọn file trên điện thoại hoặc máy tính là xong.</span></div></li><li><i>本</i><div><b data-en="Cards from the book you are reading">Tạo thẻ từ sách đang đọc</b><span data-en="Add new words while you read in KOReader.">Thêm từ mới ngay khi đang đọc trong KOReader.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" alt="Thư viện" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/lookup.jpg" alt="Tra cứu trong mọi bộ thẻ" loading="lazy"></div></div></div>
-            <p class="shot-cap">Thư viện · Tra cứu trong mọi bộ thẻ</p>
+            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/library.jpg" data-en-src="../assets/images/app/en/library.jpg" alt="Thư viện" data-en-alt="Library" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/lookup.jpg" data-en-src="../assets/images/app/en/lookup.jpg" alt="Tra cứu trong mọi bộ thẻ" data-en-alt="Search across all decks" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Library · Search across all decks">Thư viện · Tra cứu trong mọi bộ thẻ</p>
         </div>
     </div>
 </section>
 <section class="feat flip" id="progress-feature">
     <div class="wrap feat-grid">
         <div class="feat-text reveal">
-            <span class="eyebrow">Thống kê</span>
-            <h2>Thấy rõ <em class="hl">tiến bộ</em> mỗi ngày</h2>
-            <p class="lead">Mọi con số bạn cần để giữ thói quen: hôm nay học được bao nhiêu, ngày mai cần ôn bao nhiêu, đã học đều chưa.</p>
-            <ul class="feat-list"><li><i>◎</i><div><b>Mục tiêu ngày và chuỗi ngày học</b><span>Có cả ngày nghỉ được giữ chuỗi.</span></div></li><li><i>▮</i><div><b>Thẻ đến hạn 7 ngày tới</b><span>Biết trước ngày nào sẽ nhiều thẻ.</span></div></li><li><i>▦</i><div><b>Lịch học 12 tuần</b><span>Mỗi ô là một ngày, càng đậm càng học nhiều.</span></div></li><li><i>⚙</i><div><b>Cài đặt theo ý bạn</b><span>Mục tiêu ngày, giới hạn thẻ mới, thẻ ôn trên màn hình chờ, ngôn ngữ giao diện.</span></div></li></ul>
+            <span class="eyebrow" data-en="Statistics">Thống kê</span>
+            <h2 data-en="See your &lt;em class=&quot;hl&quot;&gt;progress&lt;/em&gt; every day">Thấy rõ <em class="hl">tiến bộ</em> mỗi ngày</h2>
+            <p class="lead" data-en="Every number you need to keep the habit: how much you studied today, what is due tomorrow, how consistent you are.">Mọi con số bạn cần để giữ thói quen: hôm nay học được bao nhiêu, ngày mai cần ôn bao nhiêu, đã học đều chưa.</p>
+            <ul class="feat-list"><li><i>◎</i><div><b data-en="Daily goal and streak">Mục tiêu ngày và chuỗi ngày học</b><span data-en="Including rest days that keep your streak.">Có cả ngày nghỉ được giữ chuỗi.</span></div></li><li><i>▮</i><div><b data-en="Cards due in the next 7 days">Thẻ đến hạn 7 ngày tới</b><span data-en="Know ahead which days will be busy.">Biết trước ngày nào sẽ nhiều thẻ.</span></div></li><li><i>▦</i><div><b data-en="12-week calendar">Lịch học 12 tuần</b><span data-en="Each square is a day; darker means more study.">Mỗi ô là một ngày, càng đậm càng học nhiều.</span></div></li><li><i>⚙</i><div><b data-en="Settings your way">Cài đặt theo ý bạn</b><span data-en="Daily goal, new-card limit, review card on the sleep screen, interface language.">Mục tiêu ngày, giới hạn thẻ mới, thẻ ôn trên màn hình chờ, ngôn ngữ giao diện.</span></div></li></ul>
         </div>
         <div class="reveal">
-            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/stats.jpg" alt="Thống kê" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/settings.jpg" alt="Cài đặt" loading="lazy"></div></div></div>
-            <p class="shot-cap">Thống kê · Cài đặt</p>
+            <div class="shots two"><div class="device"><div class="screen"><img src="../assets/images/app/stats.jpg" data-en-src="../assets/images/app/en/stats.jpg" alt="Thống kê" data-en-alt="Statistics" loading="lazy"></div></div><div class="device"><div class="screen"><img src="../assets/images/app/settings.jpg" data-en-src="../assets/images/app/en/settings.jpg" alt="Cài đặt" data-en-alt="Settings" loading="lazy"></div></div></div>
+            <p class="shot-cap" data-en="Statistics · Settings">Thống kê · Cài đặt</p>
         </div>
     </div>
 </section>
@@ -119,14 +121,14 @@
 <section class="sec" style="padding-top:40px">
     <div class="wrap">
         <div class="cta-box reveal">
-            <div class="cta-kanji" aria-hidden="true">始</div>
+            <div class="cta-flower" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><g style="fill:currentColor;stroke:currentColor" stroke-width="9"><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(0 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(45 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(90 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(135 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(180 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(225 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(270 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(315 50 50)"/></g><g style="fill:var(--logo-bg,#fff)"><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(0 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(45 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(90 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(135 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(180 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(225 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(270 50 50)"/><ellipse cx="50" cy="27" rx="9" ry="18" transform="rotate(315 50 50)"/></g><circle cx="50" cy="50" r="10" style="fill:var(--logo-bg,#fff);stroke:currentColor" stroke-width="4.5"/></svg></div>
             <div>
-                <h2>Sẵn sàng thử MemDeck?</h2>
-                <p>Tải plugin, chép vào thư mục plugins của KOReader và bắt đầu học trong vài phút.</p>
+                <h2 data-en="Ready to try MemDeck?">Sẵn sàng thử MemDeck?</h2>
+                <p data-en="Download the plugin, copy it into KOReader’s plugins folder and start learning in minutes.">Tải plugin, chép vào thư mục plugins của KOReader và bắt đầu học trong vài phút.</p>
             </div>
             <div class="cta-actions">
-                <a class="btn btn-light" href="guide.html#download">Tải plugin miễn phí</a>
-                <a class="btn btn-outline-light" href="../index.html#video">Xem video giới thiệu</a>
+                <a class="btn btn-light" href="guide.html#download" data-en="Get the free plugin">Tải plugin miễn phí</a>
+                <a class="btn btn-outline-light" href="../index.html#video" data-en="Watch the video">Xem video</a>
             </div>
         </div>
     </div>
@@ -134,6 +136,6 @@
 </main>
 
 <div id="footer-placeholder"></div>
-<script src="../js/site.js?v=20261111"></script>
+<script src="../js/site.js?v=20261112"></script>
 </body>
 </html>
