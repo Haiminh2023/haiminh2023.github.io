@@ -67,7 +67,29 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(html => {
                 footerPlaceholder.outerHTML = html;
                 setTimeout(initBackToTop, 50);
+                countVisit();
             });
+    }
+
+    /* ================= ĐẾM LƯỢT TRUY CẬP (hiện ở chân trang) ================= */
+    // Server tự đếm (api.doc-online.io.vn, store.py bản 14). Không cookie, không lưu IP.
+    // Lỗi mạng hoặc server chưa cập nhật thì dòng đếm tự ẩn.
+    function countVisit() {
+        var el = document.getElementById('mdVisits');
+        if (!el || !window.fetch) return;
+        var API = window.MD_STORE_API || 'https://api.doc-online.io.vn/api/hoc/public';
+        try { var q = new URLSearchParams(location.search).get('api'); if (q && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(q)) API = q.replace(/\/$/, ''); } catch (e) {}
+        var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && API.indexOf('localhost') < 0 && API.indexOf('127.0.0.1') < 0;
+        fetch(API + (local ? '/visits?days=1' : '/visit?p=' + encodeURIComponent(location.pathname)), { cache: 'no-store' })
+            .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+            .then(function (j) {
+                var d = j && j.data; if (!d) return;
+                var f = function (n) { return Number(n || 0).toLocaleString('vi-VN'); }, g = function (n) { return Number(n || 0).toLocaleString('en-US'); };
+                el.setAttribute('data-vi', 'Lượt truy cập: <b>' + f(d.total) + '</b> · Hôm nay: <b>' + f(d.today) + '</b>');
+                el.setAttribute('data-en', 'Visits: <b>' + g(d.total) + '</b> · Today: <b>' + g(d.today) + '</b>');
+                el.innerHTML = (window.MD_LANG === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-vi');
+                el.hidden = false;
+            }).catch(function () {});
     }
 
     /* ================= INIT ALL ================= */

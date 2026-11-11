@@ -863,3 +863,7 @@ body.mx img { max-width: 100%; }
     .mx .sp-a-grid .sp-letter, .mx .sp-a-grid .sp-side, .mx .sp-a-grid .sp-prose { grid-column: 1; grid-row: auto; }
 }
 .mx .sp-a-grid { row-gap: 22px; }
+
+/* ---------- ĐẾM LƯỢT TRUY CẬP (chân trang, dưới khối MemDeck) ---------- */
+.footer .footer-visits { margin-top: 14px; color: #8a8274; font-size: 14px; }
+.footer .footer-visits b { color: #d8d0c2; font-weight: 600; }
