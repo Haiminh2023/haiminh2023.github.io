@@ -14,7 +14,7 @@
         if (!data || !data.length) return;
         grid.innerHTML = data.map(function (b) {
             var c = (b.language_code || '').toLowerCase();
-            var img = b.cover_image_url ? '<img src="' + esc(b.cover_image_url) + '" alt="" loading="lazy" onerror="this.remove()">' : '';
+            var img = b.cover_image_url ? '<img src="' + esc(/^https?:/i.test(b.cover_image_url) ? b.cover_image_url : new URL(b.cover_image_url, API).href) + '" alt="" loading="lazy" onerror="this.remove()">' : '';
             return '<a class="st-card" href="pages/store.html#deck-' + b.id + '"><div class="st-cover l-' + esc(c) + '"><span>' + esc(G[c] || c.toUpperCase()) + '</span><em>' + esc(dn(c)) + '</em>' + img + '</div>' +
                 '<div class="st-info"><h3>' + esc(loc(b.title)) + '</h3><p class="st-meta">' + esc(b.level_name || '') + '</p>' +
                 '<p class="st-n">' + Number(b.card_count || 0).toLocaleString(L() === 'en' ? 'en-US' : 'vi-VN') + ' ' + (L() === 'en' ? (Number(b.card_count) === 1 ? 'card' : 'cards') : 'thẻ') + '</p></div></a>';

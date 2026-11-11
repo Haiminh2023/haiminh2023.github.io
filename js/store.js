@@ -15,6 +15,8 @@
     function dn(code, type) {
         try { return new Intl.DisplayNames([L()], { type: type || 'language' }).of(code.toLowerCase()); } catch (e) { return code.toUpperCase(); }
     }
+    // ảnh bìa server trả dạng /static/covers/..: ghép với tên miền API
+    function abs(u) { u = String(u || ''); if (/^https?:/i.test(u)) return u; try { return new URL(u, API).href; } catch (e) { return u; } }
     function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
     // "Gốc|en=...|ja=..." -> tên theo ngôn ngữ giao diện
     function loc(s) {
@@ -72,7 +74,7 @@
     function cover(b, big) {
         var code = (b.language_code || '').toLowerCase();
         var g = GLYPH[code] || (code ? code.toUpperCase() : '?');
-        var img = b.cover_image_url ? '<img src="' + esc(b.cover_image_url) + '" alt="" loading="lazy" onerror="this.remove()">' : '';
+        var img = b.cover_image_url ? '<img src="' + esc(abs(b.cover_image_url)) + '" alt="" loading="lazy" onerror="this.remove()">' : '';
         return '<div class="st-cover l-' + esc(code) + (big ? ' big' : '') + '"><span>' + esc(g) + '</span><em>' + esc(cap(dn(code))) + '</em>' + img + '</div>';
     }
     function card(b) {
@@ -156,7 +158,7 @@
         var desc = loc(d.description || '');
         $('stmBody').innerHTML =
             '<div class="stm-head">' + cover(d, true) + '<div>' +
-            '<p class="stm-kicker">' + esc([cap(dn(d.language_code || '')), lvName(d.level_code || d.level_name), catName(d.category_name)].filter(Boolean).join(' · ')) + '</p>' +
+            '<p class="stm-kicker">' + esc([cap(dn(d.language_code || '')), lvName(d.level_name || d.level_code), catName(d.category_name)].filter(Boolean).join(' · ')) + '</p>' +
             '<h2 id="stmTitle">' + esc(loc(d.title)) + '</h2>' +
             '<p class="stm-n">' + num(d.card_count) + ' ' + T('thẻ', Number(d.card_count) === 1 ? 'card' : 'cards') + ((d.topics || []).length ? ' · ' + d.topics.length + ' ' + T('chủ đề', 'topics') : '') + '</p>' +
             (langs ? '<div class="stm-langs"><span>' + T('Nghĩa bằng', 'Meanings in') + '</span>' + langs + '</div>' : '') +
@@ -177,7 +179,9 @@
         $('stmBody').innerHTML = '<div class="stm-loading">' + T('Đang tải…', 'Loading…') + '</div>';
         if (location.hash !== '#deck-' + id) history.replaceState(null, '', '#deck-' + id);
         var p = detailCache[id] ? Promise.resolve(detailCache[id]) : api('/store/books/' + id);
-        p.then(function (d) { detailCache[id] = d; m._d = d; renderDetail(d); })
+        p.then(function (d) {
+            if (!d.level_name) { var lb = state.books.filter(function (x) { return String(x.id) === String(id); })[0]; if (lb) d.level_name = lb.level_name; }
+            detailCache[id] = d; m._d = d; renderDetail(d); })
          .catch(function () { $('stmBody').innerHTML = '<div class="stm-loading">' + T('Không tải được bộ thẻ này.', 'Could not load this deck.') + '</div>'; });
     }
     function closeDetail() {
