@@ -18,7 +18,15 @@
     function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
     // "Gốc|en=...|ja=..." -> tên theo ngôn ngữ giao diện
     function loc(s) {
-        s = String(s || '');
+        s = String(s || '').trim();
+        // mô tả dạng JSON {"vi": "...", "en": "...", ...}
+        if (s.charAt(0) === '{') {
+            try {
+                var o = JSON.parse(s), lo = {};
+                Object.keys(o).forEach(function (k) { lo[k.toLowerCase()] = o[k]; });
+                return String(lo[L()] || lo.vi || lo.en || lo[Object.keys(lo)[0]] || '');
+            } catch (e) { }
+        }
         var parts = s.split('|'), base = parts[0], want = L(), m = {};
         for (var i = 1; i < parts.length; i++) { var k = parts[i].indexOf('='); if (k > 0) m[parts[i].slice(0, k).trim().toLowerCase()] = parts[i].slice(k + 1).trim(); }
         if (m[want]) return m[want];
@@ -42,9 +50,10 @@
         return esc(s).replace(/\{([^|{}]+)\|([^{}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>');
     }
     function meaningOf(obj) {
-        obj = obj || {};
+        var src = obj || {}; obj = {};
+        Object.keys(src).forEach(function (k) { if (src[k]) obj[k.toUpperCase()] = src[k]; });
         var want = (state.meaning || (L() === 'en' ? 'EN' : 'VI')).toUpperCase();
-        return obj[want] || obj[L().toUpperCase()] || obj.EN || obj.VI || obj[Object.keys(obj)[0]] || '';
+        return obj[want] || obj[L().toUpperCase()] || obj.VI || obj.EN || obj[Object.keys(obj)[0]] || '';
     }
 
     function api(path, params) {
