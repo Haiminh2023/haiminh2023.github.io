@@ -1,7 +1,7 @@
-/* Trang Ủng hộ: chọn mức tiền -> VietQR có sẵn số tiền + nội dung; PayPal theo $; nút chép */
+/* Trang Ủng hộ: chọn mức tiền -> VietQR có sẵn số tiền + nội dung; QR + nút PayPal; nút chép */
 (function () {
     // ==== CẤU HÌNH ====
-    var KOFI = 'https://ko-fi.com/memdeck';   // trang Ko-fi (nhận PayPal + thẻ quốc tế)
+    var PAYPAL = 'https://www.paypal.com/ncp/payment/EK2FPCZLNM3ES';   // link thanh toán PayPal (người ủng hộ tự nhập số USD)
     var BANK_BIN = '970426', ACC = '16001012942156', MSG = 'UNG HO MEMDECK';
 
     function tlv(id, v) { return id + (v.length < 10 ? '0' : '') + v.length + v; }
@@ -27,24 +27,25 @@
         box.querySelectorAll('[data-pane="vn"] [data-amt]').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-amt') === amt); });
         var q = box.querySelector('.sp-code-q'), lab = box.querySelector('.sp-code-amt');
         if (!q) return;
-        if (amt && window.qrcode) {
+        if (window.qrcode) {
+            // Luôn tự tạo mã: có số tiền -> điền sẵn; «Tuỳ ý» -> mã tĩnh, người ủng hộ tự nhập số tiền
             var qr = qrcode(0, 'M'); qr.addData(vietqr(amt)); qr.make();
             q.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
             q.classList.add('gen');
-            lab.textContent = (en() ? 'Amount: ' : 'Số tiền: ') + vnd(amt);
-        } else {
-            q.innerHTML = '<img src="../assets/images/support/qr-msb.png" alt="QR MSB · VietQR" width="352" height="483">';
-            q.classList.remove('gen');
-            lab.textContent = en() ? 'Amount: your choice' : 'Số tiền: tuỳ ý';
         }
+        lab.textContent = amt ? (en() ? 'Amount: ' : 'Số tiền: ') + vnd(amt) : (en() ? 'Amount: your choice' : 'Số tiền: tuỳ ý');
+        var how = box.querySelector('.sp-how');
+        if (how) how.textContent = amt
+            ? (en() ? 'Open your banking app, scan the code: amount and message are filled in, just confirm.' : 'Mở app ngân hàng, quét mã: số tiền và nội dung đã điền sẵn, bạn chỉ cần xác nhận.')
+            : (en() ? 'Open your banking app, scan the code: the message is filled in, enter any amount and confirm.' : 'Mở app ngân hàng, quét mã: nội dung đã điền sẵn, bạn nhập số tiền tuỳ ý rồi xác nhận.');
         box._vn = amt;
     }
-    function setUSD(box, usd) {
-        box.querySelectorAll('[data-pane="intl"] [data-usd]').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-usd') === usd); });
-        var a = box.querySelector('.sp-paypal'), l = box.querySelector('.sp-pp-l');
-        if (a) a.href = KOFI;
-        if (l) l.textContent = usd ? (en() ? 'Support $' + usd + ' on Ko-fi' : 'Ủng hộ $' + usd + ' qua Ko-fi') : (en() ? 'Support on Ko-fi' : 'Ủng hộ qua Ko-fi');
-        box._usd = usd;
+    // Mã QR của link PayPal: người xem trên máy tính quét bằng điện thoại
+    function setPP(box) {
+        var q = box.querySelector('#spPpQr');
+        if (!q || q.firstChild || !window.qrcode) return;
+        var qr = qrcode(0, 'M'); qr.addData(PAYPAL); qr.make();
+        q.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
     }
     function tab(box, which) {
         box.querySelectorAll('[data-pay]').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-pay') === which); });
@@ -58,13 +59,13 @@
         var t = e.target.closest('.sp-tier');   // thẻ mức ở phương án C
         if (t) {
             document.querySelectorAll('.sp-tier').forEach(function (x) { x.classList.toggle('hot', x === t); });
-            boxes().forEach(function (bx) { setVN(bx, t.getAttribute('data-amt')); setUSD(bx, t.getAttribute('data-usd')); });
+            boxes().forEach(function (bx) { setVN(bx, t.getAttribute('data-amt')); });
             return;
         }
         var m = e.target.closest('.sp-amt-b');
         if (m) {
             var bx = m.closest('.sp-qr');
-            if (m.hasAttribute('data-amt')) setVN(bx, m.getAttribute('data-amt')); else setUSD(bx, m.getAttribute('data-usd'));
+            if (m.hasAttribute('data-amt')) setVN(bx, m.getAttribute('data-amt'));
             return;
         }
         var c = e.target.closest('.sp-copy');
@@ -77,7 +78,7 @@
     function init() {
         boxes().forEach(function (bx) {
             setVN(bx, bx._vn !== undefined ? bx._vn : '50000');
-            setUSD(bx, bx._usd !== undefined ? bx._usd : '2');
+            setPP(bx);
             tab(bx, en() ? 'intl' : 'vn');   // người xem tiếng Anh: mở sẵn PayPal
         });
     }

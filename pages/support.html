@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css?v=20260403">
-<link rel="stylesheet" href="../css/site.css?v=20261113">
+<link rel="stylesheet" href="../css/site.css?v=20261114">
 <script src="../js/i18n.js?v=20261112"></script>
 <script src="../js/include.js?v=20261112"></script>
 </head>
@@ -28,12 +28,12 @@
     <p class="lead" data-en="MemDeck is &lt;b&gt;free&lt;/b&gt;, with no ads and no locked features. If it helps you, you can support the developer: &lt;b&gt;$1, $2, $5 or any amount&lt;/b&gt;.">MemDeck đang <b>miễn phí</b>, không quảng cáo, không khoá tính năng. Nếu app giúp ích cho bạn, hãy ủng hộ nhà phát triển một ly cà phê: <b>20K, 50K, 100K hay tuỳ ý</b>.</p>
   </div>
   <div class="sp-side"><div class="sp-qr ">
-  <div class="sp-qr-tabs" role="tablist"><button class="on" data-pay="vn">Việt Nam · VietQR</button><button data-pay="intl" data-en="International · Ko-fi">Quốc tế · Ko-fi</button></div>
+  <div class="sp-qr-tabs" role="tablist"><button class="on" data-pay="vn">Việt Nam · VietQR</button><button data-pay="intl" data-en="International · PayPal">Quốc tế · PayPal</button></div>
   <div class="sp-pay" data-pane="vn">
     <div class="sp-amts"><button class="sp-amt-b" data-amt="20000">20K</button><button class="sp-amt-b on" data-amt="50000">50K</button><button class="sp-amt-b" data-amt="100000">100K</button><button class="sp-amt-b" data-amt="" data-en="Any">Tuỳ ý</button></div>
     <div class="sp-code">
       <div class="sp-code-h"><b>MSB</b><span>VietQR · Napas 247</span></div>
-      <div class="sp-code-q" id="spQr"><img src="../assets/images/support/qr-msb.png" alt="QR MSB · VietQR" width="352" height="483"></div>
+      <div class="sp-code-q gen" id="spQr"></div>
       <div class="sp-code-f"><span class="sp-code-amt" data-en="Amount: your choice">Số tiền: tuỳ ý</span></div>
     </div>
     <p class="sp-note sp-how" data-en="Open your banking app, scan the code: amount and message are filled in, just confirm.">Mở app ngân hàng, quét mã: số tiền và nội dung đã điền sẵn, bạn chỉ cần xác nhận.</p>
@@ -45,11 +45,15 @@
     </dl>
   </div>
   <div class="sp-pay" data-pane="intl" hidden>
-    <div class="sp-amts"><button class="sp-amt-b" data-usd="1">$1</button><button class="sp-amt-b on" data-usd="2">$2</button><button class="sp-amt-b" data-usd="5">$5</button><button class="sp-amt-b" data-usd="" data-en="Any">Tuỳ ý</button></div>
-    <div class="sp-intl">
-      <a class="btn btn-primary sp-paypal" href="https://ko-fi.com/memdeck" target="_blank" rel="noopener"><span class="sp-pp-l" data-en="Support with Ko-fi">Ủng hộ qua Ko-fi</span></a>
+    <div class="sp-code sp-code-pp">
+      <div class="sp-code-h"><b class="sp-pp-b">PayPal</b><span data-en="Scan with your phone">Quét bằng điện thoại</span></div>
+      <div class="sp-code-q gen" id="spPpQr"></div>
+      <div class="sp-code-f"><span data-en="$1, $2, $5 or any amount">$1, $2, $5 hoặc tuỳ ý</span></div>
     </div>
-    <p class="sp-note" data-en="Opens Ko-fi: pay with PayPal or any card, from any country. 1 coffee = $1, so pick 1, 2 or 5 coffees.">Mở trang Ko-fi: trả bằng PayPal hoặc thẻ quốc tế, từ bất kỳ nước nào. 1 coffee = $1, chọn 1, 2 hoặc 5 coffee.</p>
+    <div class="sp-intl">
+      <a class="btn btn-primary sp-paypal" href="https://www.paypal.com/ncp/payment/EK2FPCZLNM3ES" target="_blank" rel="noopener" data-en="Support with PayPal">Ủng hộ qua PayPal</a>
+    </div>
+    <p class="sp-note" data-en="Opens PayPal: enter the amount in USD, then pay with your PayPal account or any card, from any country.">Mở trang PayPal: bạn tự nhập số tiền (USD), rồi trả bằng tài khoản PayPal hoặc thẻ quốc tế, từ bất kỳ nước nào.</p>
   </div>
 </div></div>
   <div class="sp-prose">
@@ -67,6 +71,6 @@
 <div id="footer-placeholder"></div>
 <script src="../js/site.js?v=20261112"></script>
 <script src="../js/qrcode.js?v=1.4.4"></script>
-<script src="../js/support.js?v=20261113"></script>
+<script src="../js/support.js?v=20261114b"></script>
 </body>
 </html>

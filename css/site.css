@@ -867,3 +867,7 @@ body.mx img { max-width: 100%; }
 /* ---------- ĐẾM LƯỢT TRUY CẬP (chân trang, dưới khối MemDeck) ---------- */
 .footer .footer-visits { margin-top: 14px; color: #8a8274; font-size: 14px; }
 .footer .footer-visits b { color: #d8d0c2; font-weight: 600; }
+
+/* PayPal (2026-11-14) */
+.mx .sp-code-h b.sp-pp-b { color: #003087; }
+.mx .sp-code-pp .sp-code-f { font-size: 15px; }
