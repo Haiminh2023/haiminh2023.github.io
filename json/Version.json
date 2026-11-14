@@ -1,10 +1,172 @@
 {
   "versions": [
     {
+      "version": "1.0.16",
+      "date": "14 Tháng 11, 2026",
+      "date_en": "14 November 2026",
+      "isLatest": true,
+      "title": "**Học từ sách · Nhập Anki · Gia sư AI**",
+      "title_en": "**Learn from books · Anki import · AI tutor**",
+      "description": "Học ngay trong lúc đọc, nhập bộ thẻ Anki, AI chạy nền, thống kê và huy hiệu, cùng nhiều sửa lỗi.",
+      "description_en": "Learn while you read, import Anki decks, background AI, stats and badges, plus many fixes.",
+      "features": [
+        {
+          "title": "Học ngay khi đọc sách",
+          "title_en": "Learn while you read",
+          "description": [
+            "Bôi đen một từ → Thêm vào MemDeck: nghĩa lấy từ từ điển, câu gốc làm ví dụ",
+            "Mỗi cuốn sách có bộ thẻ riêng; nhắc số thẻ đến hạn khi mở sách",
+            "Ôn lại đoạn tô sáng và ghi chú trong sách theo lặp lại ngắt quãng",
+            "AI tóm tắt và review sách (EPUB, TXT, HTML, PDF)"
+          ],
+          "description_en": [
+            "Select a word → Add to MemDeck: meaning from the dictionary, the sentence as an example",
+            "Each book gets its own deck; due cards are shown when you open a book",
+            "Review your highlights and notes with spaced repetition",
+            "AI summary and review of books (EPUB, TXT, HTML, PDF)"
+          ]
+        },
+        {
+          "title": "Nhập bộ thẻ từ Anki và nguồn khác",
+          "title_en": "Import from Anki and more",
+          "description": [
+            "Nhập bộ Anki .apkg / .colpkg (cả bản mới lẫn cũ), không cần chỉnh gì trên Anki",
+            "Nhập .csv / .tsv / .txt, tự nhận cột từ, nghĩa, phát âm, ví dụ; hỗ trợ thẻ Cloze",
+            "Gửi tệp từ điện thoại hoặc máy tính qua Wi-Fi, quét QR là vào",
+            "Lấy từ Vocabulary Builder của KOReader; sao lưu, khôi phục, xuất CSV"
+          ],
+          "description_en": [
+            "Import Anki .apkg / .colpkg (new and old formats) with no changes in Anki",
+            "Import .csv / .tsv / .txt with automatic field detection; Cloze cards supported",
+            "Send files from your phone or computer over Wi-Fi, just scan the QR code",
+            "Pull words from KOReader's Vocabulary Builder; backup, restore and CSV export"
+          ]
+        },
+        {
+          "title": "Gia sư AI",
+          "title_en": "AI tutor",
+          "description": [
+            "Chat với AI nhiều lượt: luyện hội thoại, sửa câu, tra từ điển, hỏi về thẻ đang học",
+            "Đoạn văn từ bộ thẻ: AI viết đoạn ngắn dùng phần lớn từ bạn đã học",
+            "AI điền ô trống và dịch lại nghĩa sang ngôn ngữ bạn chọn",
+            "Tạo bộ thẻ bằng AI; việc AI chạy nền và tự tiếp tục khi mở lại"
+          ],
+          "description_en": [
+            "Multi-turn AI chat: conversation practice, sentence fixes, dictionary, questions about your cards",
+            "Passages from your deck: AI writes a short text using mostly words you know",
+            "AI fills empty fields and retranslates meanings into the language you pick",
+            "Create decks with AI; AI jobs run in the background and resume when you return"
+          ]
+        },
+        {
+          "title": "Học, ôn và thống kê",
+          "title_en": "Study, review and stats",
+          "description": [
+            "Lặp lại ngắt quãng với 4 nút Lại / Khó / Tốt / Dễ",
+            "7 kiểu kiểm tra: trắc nghiệm, điền từ, đúng/sai, ghép cặp, phiên âm…",
+            "Thẻ ôn trên màn hình chờ: liếc qua là ôn, không cần mở app",
+            "Thống kê và huy hiệu: chuỗi ngày, bản đồ 12 tuần, 10 từ hay quên nhất"
+          ],
+          "description_en": [
+            "Spaced repetition with 4 buttons: Again / Hard / Good / Easy",
+            "7 test types: multiple choice, cloze, true/false, matching, reading…",
+            "Review cards on the sleep screen, no need to open the app",
+            "Stats and badges: streaks, a 12-week calendar, your 10 most-forgotten words"
+          ]
+        },
+        {
+          "title": "Store, giao diện và ủng hộ",
+          "title_en": "Store, interface and support",
+          "description": [
+            "Store bộ thẻ nhiều ngôn ngữ, tải chạy nền; sửa lỗi treo khi mở Store trên Android",
+            "Lần đầu mở: chọn ngôn ngữ, trình độ, số thẻ mỗi ngày, kèm hướng dẫn từng bước",
+            "Giao diện 10 ngôn ngữ, tối ưu cho màn hình e-ink",
+            "Màn ❀ Ủng hộ: quét VietQR (ngân hàng Việt) hoặc PayPal (quốc tế)"
+          ],
+          "description_en": [
+            "Multilingual deck Store with background downloads; fixed a hang when opening the Store on Android",
+            "First run: pick languages, level and daily cards, with a step-by-step tour",
+            "10 interface languages, tuned for e-ink screens",
+            "❀ Support screen: scan VietQR (Vietnamese banks) or PayPal (international)"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "1.0.8",
+      "date": "11 Tháng 11, 2026",
+      "date_en": "11 November 2026",
+      "isLatest": false,
+      "title": "**Giao diện mới · Gia sư AI · Store đa ngôn ngữ**",
+      "title_en": "**New design · AI tutor · Multilingual Store**",
+      "description": "Bản cập nhật lớn: thiết kế lại toàn bộ giao diện, thêm gia sư AI và kho bộ thẻ nhiều ngôn ngữ.",
+      "description_en": "A big update: a fully redesigned interface, a new AI tutor and a multilingual deck store.",
+      "features": [
+        {
+          "title": "Giao diện mới",
+          "title_en": "New interface",
+          "description": [
+            "Trang chủ gọn: số thẻ cần ôn hôm nay, mục tiêu ngày, nút Học ngay",
+            "4 tab Trang chủ, Học, Thư viện, Cài đặt; tối ưu cho màn hình e-ink",
+            "Thẻ học có thanh tiến độ và 4 nút đánh giá Lại / Khó / Tốt / Dễ",
+            "Hiện cách đọc (furigana, pinyin) trên chữ Hán ở câu ví dụ"
+          ],
+          "description_en": [
+            "Cleaner home: cards due today, daily goal and a Study now button",
+            "4 tabs: Home, Study, Library, Settings; tuned for e-ink screens",
+            "Study cards with a progress bar and 4 rating buttons: Again / Hard / Good / Easy",
+            "Readings (furigana, pinyin) shown above Chinese characters in examples"
+          ]
+        },
+        {
+          "title": "Gia sư AI",
+          "title_en": "AI tutor",
+          "description": [
+            "Mặt sau thẻ có nút Mẹo nhớ, Giải thích, Thêm ví dụ, Từ dễ lẫn",
+            "Tạo bộ thẻ bằng AI theo ngôn ngữ, trình độ, chủ đề và số thẻ",
+            "AI điền ô trống và thêm phiên âm câu ví dụ cho bộ thẻ của bạn"
+          ],
+          "description_en": [
+            "Card back has Memory tip, Explain, More examples and Look-alike words",
+            "Create decks with AI by language, level, topic and size",
+            "AI fills empty fields and adds example readings to your decks"
+          ]
+        },
+        {
+          "title": "Store đa ngôn ngữ",
+          "title_en": "Multilingual Store",
+          "description": [
+            "Bộ thẻ nhiều ngôn ngữ và trình độ, lọc theo ngôn ngữ, trình độ, nghĩa",
+            "Xem giới thiệu, thẻ mẫu và danh sách chủ đề trước khi tải",
+            "Chọn ngôn ngữ nghĩa khi tải; tải chạy nền, không treo máy"
+          ],
+          "description_en": [
+            "Decks in many languages and levels, filter by language, level and meaning",
+            "See the overview, sample cards and topic list before downloading",
+            "Pick the meaning language when downloading; downloads run in the background"
+          ]
+        },
+        {
+          "title": "Ôn tập và tiện ích",
+          "title_en": "Review and extras",
+          "description": [
+            "7 kiểu kiểm tra: trắc nghiệm, điền từ, đúng/sai, ghép cặp, phiên âm…",
+            "Thẻ ôn trên màn hình chờ và ôn nhanh trước khi đọc sách",
+            "Tra từ nhanh, giao diện 10 ngôn ngữ, tự kiểm tra và cập nhật plugin"
+          ],
+          "description_en": [
+            "7 test types: multiple choice, cloze, true/false, matching, reading…",
+            "Review cards on the sleep screen and a quick review before reading",
+            "Quick lookup, 10 interface languages, built-in update check"
+          ]
+        }
+      ]
+    },
+    {
       "version": "1.0.0",
       "date": "09 Tháng 5, 2026",
       "date_en": "9 May 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Phát hành mới plugin**",
       "title_en": "**First release**",
       "description": "Học ít - Nhớ lâu",
@@ -13,14 +175,22 @@
         {
           "title": "Flash",
           "title_en": "Flashcards",
-          "description": ["Học thông minh với lặp lại ngắt quãng"],
-          "description_en": ["Smart study with spaced repetition"]
+          "description": [
+            "Học thông minh với lặp lại ngắt quãng"
+          ],
+          "description_en": [
+            "Smart study with spaced repetition"
+          ]
         },
         {
           "title": "Test quiz, cloze",
           "title_en": "Quiz and cloze tests",
-          "description": ["Ôn luyện"],
-          "description_en": ["Practice"]
+          "description": [
+            "Ôn luyện"
+          ],
+          "description_en": [
+            "Practice"
+          ]
         }
       ]
     }
