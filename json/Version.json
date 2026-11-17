@@ -1,10 +1,80 @@
 {
   "versions": [
     {
+      "version": "1.0.17",
+      "date": "17 Tháng 11, 2026",
+      "date_en": "17 November 2026",
+      "isLatest": true,
+      "title": "**Gạch chân từ đang học · Nhiều AI · Sửa lỗi Kindle**",
+      "title_en": "**Learning words underlined · More AI providers · Kindle fix**",
+      "description": "Từ đang học được gạch chân trong mọi cuốn sách, chạm để xem thẻ ngay khi đọc. Dùng được 7 loại AI, mỗi AI một tab hướng dẫn riêng.",
+      "description_en": "Words you are learning are underlined in every book; tap one to see its card while you read. Choose from 7 AI providers, each with its own setup tab.",
+      "features": [
+        {
+          "title": "Gạch chân từ đang học trong mọi sách",
+          "title_en": "Learning words underlined in every book",
+          "description": [
+            "Từ bạn đang học tự được gạch chân ở mọi cuốn sách (EPUB, FB2, MOBI…), mọi ngôn ngữ kể cả Nhật, Trung, Hàn, Thái",
+            "Chạm vào từ: popup thẻ với nghĩa, câu ví dụ và câu trong sách; chạm ra ngoài để đóng",
+            "Phiên âm furigana / pinyin đầy đủ trên chữ Hán ở câu ví dụ; nút ❀ mở MemDeck ngay",
+            "Nút ✓ Đã thuộc để bỏ gạch chân; lướt qua từ mà không cần xem cũng được tính là ôn"
+          ],
+          "description_en": [
+            "Words you are learning are underlined in every book (EPUB, FB2, MOBI…), in any language including Japanese, Chinese, Korean and Thai",
+            "Tap a word: a card popup with meaning, example and the book sentence; tap outside to close",
+            "Full furigana / pinyin above Chinese characters in examples; the ❀ button opens MemDeck",
+            "✓ Learned button removes the underline; reading past a word without tapping counts as a review"
+          ]
+        },
+        {
+          "title": "Tự lưu thẻ khi tra từ",
+          "title_en": "Auto-save cards from lookups",
+          "description": [
+            "Tra từ điển là tự lưu thẻ kèm câu trong sách làm ngữ cảnh",
+            "Chọn lưu sau 1, 2 hoặc 3 lần tra để chỉ giữ từ bạn hay quên",
+            "Cụm nhiều chữ không tự lưu nhầm: bôi đen rồi bấm Thêm vào MemDeck"
+          ],
+          "description_en": [
+            "Looking up a word saves a card with the book sentence as context",
+            "Save after 1, 2 or 3 lookups to keep only the words you keep forgetting",
+            "Multi-word phrases are never saved by mistake: select them and tap Add to MemDeck"
+          ]
+        },
+        {
+          "title": "Hỗ trợ nhiều AI",
+          "title_en": "More AI providers",
+          "description": [
+            "Gemini, ChatGPT, Claude, DeepSeek, Groq, OpenRouter hoặc máy chủ riêng (Ollama, LM Studio)",
+            "Mỗi AI một tab hướng dẫn lấy key, có mã QR; gửi key từ điện thoại qua Wi-Fi",
+            "Tự nhận key thuộc AI nào; đổi model ngay trong cài đặt",
+            "Lỗi sai key hay hết lượt báo rõ tên AI, model bị gỡ thì tự chuyển model khác"
+          ],
+          "description_en": [
+            "Gemini, ChatGPT, Claude, DeepSeek, Groq, OpenRouter or your own server (Ollama, LM Studio)",
+            "Each AI has its own setup tab with a QR code; send the key from your phone over Wi-Fi",
+            "Keys are recognized automatically; change the model right in settings",
+            "Clear errors for wrong keys or used-up credit; retired models are replaced automatically"
+          ]
+        },
+        {
+          "title": "Sửa lỗi",
+          "title_en": "Fixes",
+          "description": [
+            "Sửa lỗi MemDeck không hiện trên một số máy Kindle (thiếu tệp _meta.lua)",
+            "Từ bản này chỉ cần bấm Cập nhật trong plugin, không phải chép lại"
+          ],
+          "description_en": [
+            "Fixed MemDeck not showing up on some Kindle devices (missing _meta.lua)",
+            "From now on just tap Update inside the plugin, no need to copy files again"
+          ]
+        }
+      ]
+    },
+    {
       "version": "1.0.16",
       "date": "14 Tháng 11, 2026",
       "date_en": "14 November 2026",
-      "isLatest": true,
+      "isLatest": false,
       "title": "**Học từ sách · Nhập Anki · Gia sư AI**",
       "title_en": "**Learn from books · Anki import · AI tutor**",
       "description": "Học ngay trong lúc đọc, nhập bộ thẻ Anki, AI chạy nền, thống kê và huy hiệu, cùng nhiều sửa lỗi.",
